@@ -21,13 +21,13 @@ Here is my extremely early work.  You will need to adjust the lat / lon in both 
 will need your openweather api key and your google maps api.  Eventually I will clean up all the js in the index.html, 
 but I only spent part of the weekend on it thanks to a sprained ankle.
 
-install instructions (wholly untested):
-1 - install chromium-broswer
-2 - install node.js
-3 - npm install request cron
-4 - modify settings-example.json and save as settings.json
-5 - node piclock.js 
-6 - nohup chromium-browser --kiosk http://localhost:8081 &
+install instructions (wholly untested):  
+1 - install chromium-broswer  
+2 - install node.js  
+3 - npm install request cron  
+4 - modify settings-example.json and save as settings.json  
+5 - node piclock.js   
+6 - nohup chromium-browser --kiosk http://localhost:8081 &  
 
 "should work"
 radar images are CONUS only as far as I can tell.  Direct pulls from weather.gov included way too much radar noise.  Resolution is less than optimal.  Animation is not implemented yet.  I just refresh current every 5 minutes.
