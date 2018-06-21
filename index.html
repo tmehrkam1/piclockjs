@@ -39,7 +39,8 @@ html, body {
 			style="float: left; width: 48vw; text-align: center;">
 			<div id="date" style="height: 10vh; font-size: 5vh;"></div>
 			<div id="time"
-				style="height: 80vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 60vh;"></div>
+				style="height: 70vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 60vh;overflow: hidden"></div>
+			<div id="alerts" style="height: 10vh; font-size: 3vh;overflow: hidden;"></div>	
 			<div id="sun_moon" style="height: 10vh; font-size: 2vh;"></div>
 		</div>
 		<div id="col_3" class="columns"
@@ -190,7 +191,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 				var forecastBlock = document.createElement("div");
 				forecastBlock.setAttribute("class","forecastBlock");
 				forecastBlock.setAttribute("id","block"+i);
-				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;overflow: hidden;");
+				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
 	
 				//create the image container
 				var forecastImage = document.createElement("div");
@@ -232,6 +233,33 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		
 		};
 		
+		function updateAlerts(){
+			var alertDiv = document.getElementById("alerts");
+			
+			url=servIP +"/alerts";
+			fetch(url)
+			.then((resp) => resp.json())
+			.then(function(data){
+				for (var i=0;i < data.features.length;i++) {		
+					//create a container for the forecast
+					var alertBlock = document.createElement("div");
+					alertBlock.setAttribute("class","alertBlock");
+					alertBlock.setAttribute("id","alert"+i);
+					alertBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
+		
+					//populate the forecast text
+					alertBlock.innerHTML=data.features[i].severity + " " + data.features[i].areaDesc + '<br />' + data.features[i].headline;
+					
+				    //put the block into the parent div
+					alertDiv.appendChild(alertBlock);				
+			};
+			//put populated block into the column	
+			document.getElementById("col_3").appendChild(content);
+			})
+			  .catch(function(error){
+				  alert(error);
+			  });
+		}
 		//change background color based on temp
 		function updateBackground(temp) {
 			 if (temp < 30 ){

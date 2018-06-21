@@ -10,6 +10,7 @@ var CronJob = require('cron').CronJob;
 //get current weather conditions
 var cur={};
 var forecasts = {};
+var alerts = {};
 
 var lat,lon,owAppId,gMapKey;
 
@@ -22,6 +23,7 @@ gMapKey = settings.gMapKey;
 currentOwObs(lat,lon,owAppId);
 moonPhase();
 getWgovGridP(lat,lon);
+wgAlerts(lat,lon);
 
 //create listener for html requests
 http.createServer(function (req,res) {
@@ -47,6 +49,10 @@ http.createServer(function (req,res) {
 		obj.gMapKey = gMapKey;
 		res.write(JSON.stringify(obj));
 		res.end();
+	} else if (req.url =="/alerts"){
+		res.writeHead(200, {'Content-Type': 'application/json'});
+		res.write(JSON.stringify(alerts));
+		res.end();
 	} else {
 		fs.readFile("index.html", function(err, data){
 			res.writeHead(200, {'Content-Type': 'text/html'});
@@ -60,6 +66,7 @@ http.createServer(function (req,res) {
 //update current observations every 2 min
 new CronJob('0 */2 * * * *', function() {
 	currentOwObs(lat,lon,owAppId);
+	wgAlerts(lat,lon);
 }, null, true, 'America/New_York');
 
 //update forecast every 6 hrs
@@ -74,7 +81,7 @@ function currentOwObs(lat,lon,owAppId){
 	request.get({
 		url: url,
 		json: true,
-		headers: {'User-Agent': 'request'}
+		headers: {'User-Agent': 'piclockjs'}
 	}, (err, res, data) => {
 		if (err) {
 			console.log('Error:', err);
@@ -97,7 +104,7 @@ function moonPhase () {
 	request.get({
 		url: 'http://api.usno.navy.mil/moon/phase?date='+dateStr+'&nump=1',
 		json: true,
-		headers: {'User-Agent': 'request'}
+		headers: {'User-Agent': 'piclockjs'}
 	}, (err, res, data) => {
 		if (err) {
 			console.log('Error:', err);
@@ -115,7 +122,7 @@ function getWgovGridP(lat,lon){
 	request.get({ 
 		url: url,
 		json: true,
-		headers: {'User-Agent': 'request'}
+		headers: {'User-Agent': 'piclockjs'}
 	}, (err, res, data) => {
 		if (err) {
 			console.log('Error:', err);
@@ -129,10 +136,11 @@ function getWgovGridP(lat,lon){
 }
 
 function wgForecast(url){
+	console.log(url);
 	request.get({
 		url: url,
 		json: true,
-		headers: {'User-Agent': 'request'}
+		headers: {'User-Agent': 'piclockjs'}
 	}, (err, res, data) => {
 		if (err) {
 			console.log('Error:', err);
@@ -140,6 +148,24 @@ function wgForecast(url){
 			console.log('Status:', res.statusCode);
 		} else {
 			parseWgForecast(data);
+		}
+	});
+}
+
+function wgAlerts(lat,lon){
+	var url = "https://api.weather.gov/alerts/active?point=" + lat + "," + lon;
+	console.log(url);
+	request.get({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs'}
+	}, (err, res, data) => {
+		if (err) {
+			console.log('Error:', err);
+		} else if (res.statusCode !== 200) {
+			console.log('Status:', res.statusCode);
+		} else {
+			parseWgAlert(data);
 		}
 	});
 }
@@ -178,6 +204,19 @@ function parseWgForecast(data) {
 		array.push(forecast);
 	}
 	forecasts.list = array;
+}
+
+function parseWgAlert(data) {
+	var array = [];
+	for (var i =0; i < data.features.length; i++) {
+		var alert ={};
+		alert.areaDesc = data.features[i].properties.areaDesc;
+		alert.severity = data.features[i].properties.severity;
+		alert.headline = data.features[i].properties.headline;
+		alert.description - data.features[i].properties.description;
+		array.push(alert);
+	}
+	alerts.features = array;
 }
 
 function degToCard(deg){
