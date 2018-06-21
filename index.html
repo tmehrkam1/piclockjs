@@ -178,24 +178,53 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 	}
 	
 	function updateForecast() {
-		var contentStr="";
+		//setup a container for the entire forcast contents
+		var content = document.createElement("div");
 		
 		url=servIP +"/forecast";
 		fetch(url)
 		.then((resp) => resp.json())
 		.then(function(data){
-			// replace with dom when you have time
-			for(var i=0;i < data.list.length;i++) {				
-				contentStr = contentStr + '<div id="block'+i+'" class="forecastBlock" style="display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;overflow: hidden;">';
-				contentStr = contentStr + '<div id="img'+i+'" class="forecastImage" style="float: left;height: 100%;" >';
-				contentStr = contentStr + '<img src="'+data.list[i].icon+'" style="height:100%;"></img>';
-				contentStr = contentStr + '</div>';
-				contentStr = contentStr + '<div id="forecast'+i+'" class="forecastText" style="float:left;width: 70%;font-size:2vh;">';
-				contentStr = contentStr + data.list[i].name + '<br />' + data.list[i].temp + '<br />' + data.list[i].short;
-				contentStr = contentStr + '</div>';
-				contentStr = contentStr + '</div>';
-			};
-			document.getElementById("col_3").innerHTML = contentStr;
+			for (var i=0;i < data.list.length;i++) {		
+				//create a container for the forecast
+				var forecastBlock = document.createElement("div");
+				forecastBlock.setAttribute("class","forecastBlock");
+				forecastBlock.setAttribute("id","block"+i);
+				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;overflow: hidden;");
+	
+				//create the image container
+				var forecastImage = document.createElement("div");
+				forecastImage.setAttribute("class","forecastImage");
+				forecastImage.setAttribute("id","imgDiv"+i);
+				forecastImage.setAttribute("style","float: left;height: 100%;");
+			
+				//create the text container
+				var forecastText = document.createElement("div");
+				forecastText.setAttribute("class","forecastText");
+				forecastText.setAttribute("id","forecast"+i);
+				forecastText.setAttribute("style","float:left;width: 70%;font-size:2vh;");
+	
+				//populate the forecast icon with the image
+				var image = document.createElement("img");
+				image.setAttribute("src",data.list[i].icon);
+				image.setAttribute("style","height:100%;");
+	
+				//populate the forecast text
+				forecastText.innerHTML=data.list[i].name + '<br />' + data.list[i].temp + '<br />' + data.list[i].short;
+				
+				//put the image in the div
+				forecastImage.appendChild(image);
+				
+				//put the image + text into the block
+				forecastBlock.appendChild(forecastImage);
+				forecastBlock.appendChild(forecastText);
+				
+			    //put the block into the parent div
+				content.appendChild(forecastBlock);
+			
+		};
+		//put populated block into the column	
+		document.getElementById("col_3").appendChild(content);
 		})
 		  .catch(function(error){
 			  alert(error);
