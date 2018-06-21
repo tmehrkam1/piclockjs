@@ -1,0 +1,248 @@
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Orbitron"
+	rel="stylesheet">
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 33%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="main">
+		<div id="col_1" class="columns"
+			style="float: left; width: 20vw; text-align: center;">
+			<div id="curConditions" style="height: 33vh;">
+				<img id="curIcon" src="" alt="" style="height: 9vh;"></img> <br />
+				<span id="curDesc" style="font-size: larger;"></span> <br /> <span
+					id="curTemp" style="font-size: x-large;"></span><br /> <span
+					id="curHum"></span> <br /> <span id="curWind"
+					style="font-size: xx-small;"></span> <br /> <span id="curPres"
+					style="font-size: small;"></span> <br />
+			</div>
+			<div id="rdrStack">
+				<div id="rdrRegional" class="rdrView" style="height: 33vh;"></div>
+				<div id="rdrLocal" class="rdrView" style="height: 33vh;"></div>
+			</div>
+		</div>
+		<div id="col_2" class="columns"
+			style="float: left; width: 48vw; text-align: center;">
+			<div id="date" style="height: 10vh; font-size: 5vh;"></div>
+			<div id="time"
+				style="height: 80vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 50vh;"></div>
+			<div id="sun_moon" style="height: 10vh; font-size: 2vh;"></div>
+		</div>
+		<div id="col_3" class="columns"
+			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
+	</div>
+</body>
+
+<script type="text/javascript">
+
+var lat;
+var lon;
+var gMapKey;
+
+var servIP = "http://192.168.1.2:8081"; //server ip.
+
+updateCoords();  //grab map coords from backend.
+
+function updateCoords() {
+	url=servIP + "/coords";
+	var xhr = new XMLHttpRequest();  //need a sync call to initialize Maps
+	xhr.open("GET",url,false);
+	xhr.send(null);
+	var obj = JSON.parse(xhr.responseText);
+	lat = obj.lat;
+	lon = obj.lon;
+	gMapKey = obj.gMapKey;
+}
+
+//used to load the script and variablize the mapkey
+var addScript = document.createElement("script");
+addScript.type = "text/javascript";
+addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
+addScript.async = true;
+addScript.defer = true;
+(document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('rdrRegional'), {
+    center: {lat: lat, lng: lon},
+    zoom: 7,
+    zoomControl: false,
+  	mapTypeControl: false,
+  	scaleControl: false,
+  	streetViewControl: false,
+  	rotateControl: false,
+     fullscreenControl: false,
+     gestureHandling: 'none',
+     mapTypeId: 'hybrid'
+  });
+  mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
+  	center: {lat: lat, lng: lon},
+        zoom: 11,
+        zoomControl: false,
+      	mapTypeControl: false,
+      	scaleControl: false,
+      	streetViewControl: false,
+      	rotateControl: false,
+         fullscreenControl: false,
+         gestureHandling: 'none',
+         mapTypeId: 'hybrid'
+  });
+  tileNEX = new google.maps.ImageMapType({
+      getTileUrl: function(tile, zoom) {
+          return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+      },
+      tileSize: new google.maps.Size(256, 256),
+      opacity:0.60,
+      name : 'NEXRAD',
+      isPng: true
+  });
+
+  
+  goes = new google.maps.ImageMapType({
+      getTileUrl: function(tile, zoom) {
+          return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+      },
+      tileSize: new google.maps.Size(256, 256),
+      opacity:0.60,
+      name : 'GOES East Vis',
+      isPng: true
+  });
+
+updateClock();
+updateCur();
+updateForecast();
+updateRadar();
+
+setInterval(updateClock, 1000); // tick the clock every second
+setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
+setInterval(updateForecast, 3600000) //update the forecast every hour
+setInterval(updateRadar,300000); //udate radar every 5 minutes
+
+	function updateClock() {
+		var timeStamp = new Date();
+		var time = new Date().toLocaleTimeString("en-us", {
+			hour : '2-digit',
+			minute : '2-digit',
+			hour12 : 'true'
+		});
+		document.getElementById("time").textContent = time;
+		
+		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+		var date = new Intl.DateTimeFormat('en-us',options).format(timeStamp);
+		document.getElementById("date").textContent = date
+	}
+	
+	function updateCur() {
+		url=servIP + "/current";
+		  fetch(url)
+		  .then((resp) => resp.json())
+		  .then(function(data){
+			  var sunrise = new Date(data.sunrise).toLocaleTimeString("en-us",{
+				  hour : '2-digit',
+				  minute : '2-digit',
+				  hour12 : 'true'
+			  });
+			  var sunset = new Date(data.sunset).toLocaleTimeString("en-us",{
+				  hour : '2-digit',
+				  minute : '2-digit',
+				  hour12 : 'true'
+			  });
+			  document.getElementById("curIcon").src = data.curIcon;
+			  document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
+			  document.getElementById("curTemp").innerHTML = data.tempF + ' &deg;F';
+			  document.getElementById("curDesc").innerHTML = data.curDesc;
+			  document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar';
+			  document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
+			  document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
+			  updateBackground(data.tempF.toString());
+			  
+		  })
+		  .catch(function(error){
+			  alert(error);
+		  })
+	}
+	
+	function updateForecast() {
+		var contentStr="";
+		
+		url=servIP +"/forecast";
+		fetch(url)
+		.then((resp) => resp.json())
+		.then(function(data){
+			// replace with dom when you have time
+			for(var i=0;i < data.list.length;i++) {				
+				contentStr = contentStr + '<div id="block'+i+'" class="forecastBlock" style="display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;">';
+				contentStr = contentStr + '<div id="img'+i+'" class="forecastImage" style="float: left;height: 100%;" >';
+				contentStr = contentStr + '<img src="'+data.list[i].icon+'" style="height:100%;"></img>';
+				contentStr = contentStr + '</div>';
+				contentStr = contentStr + '<div id="forecast'+i+'" class="forecastText" style="float:left;width: 70%;font-size:2vh;">';
+				contentStr = contentStr + data.list[i].name + '<br />' + data.list[i].temp + '<br />' + data.list[i].short;
+				contentStr = contentStr + '</div>';
+				contentStr = contentStr + '</div>';
+			};
+			document.getElementById("col_3").innerHTML = contentStr;
+		})
+		  .catch(function(error){
+			  alert(error);
+		  });
+		
+		};
+		
+		//change background color based on temp
+		function updateBackground(temp) {
+			 if (temp < 30 ){
+				 document.body.style.backgroundColor = "#00A4E8";
+				 document.body.style.color = "#FF5B17";
+			 } else if (temp>=90) {
+				 document.body.style.backgroundColor = "#E91E24";
+				 document.body.style.color = "#16E1DB";
+			 } else if (temp>=30 && temp<40){
+				 document.body.style.backgroundColor = "#00A4E8";
+				 document.body.style.color = "#FF5B17";
+			 } else if (temp>=40 && temp<50){
+				 document.body.style.backgroundColor = "#2D3389";
+				 document.body.style.color = "#D2CC76";
+			 } else if(temp>=50 && temp<60){
+				 document.body.style.backgroundColor = "#128A43";
+				 document.body.style.color = "#ED75BC";
+			 } else if (temp>=60 && temp<70){
+				 document.body.style.backgroundColor = "#76BD43";
+				 document.body.style.color = "#002B49";
+			 }else if (temp>=70 && temp<80){
+				 document.body.style.backgroundColor = "#FBD905";
+				 document.body.style.color = '#002B49';
+			 } else if (temp>=80 && temp<90){
+				 document.body.style.backgroundColor = "#F58322";
+				 document.body.style.color = '#002B49';
+			 }
+		 }
+
+	        
+	      }	
+	 function updateRadar() {
+		 map.overlayMapTypes.push(null); // create empty overlay entry
+	     map.overlayMapTypes.setAt("0",goes);
+	     map.overlayMapTypes.push(null); // create empty overlay entry
+	     map.overlayMapTypes.setAt("1",tileNEX);
+			
+	     mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+	     mapLocal.overlayMapTypes.setAt("0",goes);
+	     mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+	     mapLocal.overlayMapTypes.setAt("1",tileNEX);
+	 }
+</script>
