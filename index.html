@@ -1,5 +1,5 @@
 <head>
-<meta charset="utf-8" />
+<meta charset="utf-8"/>
 <link href="https://fonts.googleapis.com/css?family=Orbitron"
 	rel="stylesheet">
 <style>
@@ -24,11 +24,11 @@ html, body {
 			style="float: left; width: 20vw; text-align: center;">
 			<div id="curConditions" style="height: 33vh;">
 				<img id="curIcon" src="" alt="" style="height: 9vh;"></img> <br />
-				<span id="curDesc" style="font-size: larger;"></span> <br /> <span
-					id="curTemp" style="font-size: x-large;"></span><br /> <span
-					id="curHum"></span> <br /> <span id="curWind"
-					style="font-size: xx-small;"></span> <br /> <span id="curPres"
-					style="font-size: small;"></span> <br />
+				<span id="curDesc" style="font-size: larger;"></span> <br /> 
+				<span id="curTemp" style="font-size: x-large;"></span><br />
+				<span id="curHum"></span> <br /> 
+				<span id="curWind" style="font-size: xx-small;"></span> <br />
+				<span id="curPres" style="font-size: small;"></span> <br />
 			</div>
 			<div id="rdrStack">
 				<div id="rdrRegional" class="rdrView" style="height: 33vh;"></div>
@@ -186,7 +186,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		.then(function(data){
 			// replace with dom when you have time
 			for(var i=0;i < data.list.length;i++) {				
-				contentStr = contentStr + '<div id="block'+i+'" class="forecastBlock" style="display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;">';
+				contentStr = contentStr + '<div id="block'+i+'" class="forecastBlock" style="display: inline-block;width: 100%;border: 2px solid black;height: 10.2vh;overflow: hidden;">';
 				contentStr = contentStr + '<div id="img'+i+'" class="forecastImage" style="float: left;height: 100%;" >';
 				contentStr = contentStr + '<img src="'+data.list[i].icon+'" style="height:100%;"></img>';
 				contentStr = contentStr + '</div>';
