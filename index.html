@@ -36,7 +36,7 @@ html, body {
 			</div>
 		</div>
 		<div id="col_2" class="columns"
-			style="float: left; width: 48vw; text-align: center;">
+			style="float: left; width: 47vw; text-align: center;">
 			<div id="date" style="height: 10vh; font-size: 5vh;"></div>
 			<div id="time"
 				style="height: 70vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 60vh;overflow: hidden"></div>
@@ -44,7 +44,7 @@ html, body {
 			<div id="sun_moon" style="height: 10vh; font-size: 2vh;"></div>
 		</div>
 		<div id="col_3" class="columns"
-			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
+			style="float: left; width: 31vw; text-align: center;height:100vh;overflow: hidden;"></div>
 	</div>
 </body>
 
@@ -131,6 +131,7 @@ updateRadar();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
+setInterval(updateAlerts, 10000); // every ten seconds update current alerts from cache
 setInterval(updateForecast, 3600000) //update the forecast every hour
 setInterval(updateRadar,300000); //udate radar every 5 minutes
 
@@ -191,7 +192,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 				var forecastBlock = document.createElement("div");
 				forecastBlock.setAttribute("class","forecastBlock");
 				forecastBlock.setAttribute("id","block"+i);
-				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
+				forecastBlock.setAttribute("style","display: inline-block;width: 98%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
 	
 				//create the image container
 				var forecastImage = document.createElement("div");
@@ -252,9 +253,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 					
 				    //put the block into the parent div
 					alertDiv.appendChild(alertBlock);				
-			};
-			//put populated block into the column	
-			document.getElementById("col_3").appendChild(content);
+				};
 			})
 			  .catch(function(error){
 				  alert(error);
