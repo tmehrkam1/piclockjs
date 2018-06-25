@@ -5,6 +5,7 @@
 var http = require('http');
 var request = require('request');
 var fs = require("fs");
+
 var CronJob = require('cron').CronJob;
 
 //get current weather conditions
@@ -72,6 +73,7 @@ new CronJob('0 */2 * * * *', function() {
 //update forecast every 6 hrs
 new CronJob('0 0 */6 * * *', function() {
 	getWgovGridP(lat,lon);
+	moonPhase();
 }, null, true, 'America/New_York');
 
 function currentOwObs(lat,lon,owAppId){
