@@ -97,16 +97,12 @@ function currentOwObs(lat,lon,owAppId){
 
 function moonPhase () {
 	//fugly date mangling
-	var curDate = new Date();
-	year = curDate.getFullYear();
-	month = curDate.getMonth()+1;
-	day = curDate.getDate();
-	dateStr = month + '/' + day + '/' + year;
-
-	console.log('http://api.usno.navy.mil/moon/phase?date='+dateStr+'&nump=1');
+	var url = 'http://api.usno.navy.mil/rstt/oneday?date=now&coords=' + lat +',' + lon;
+	
+	console.log(url);
 	
 	request.get({
-		url: 'http://api.usno.navy.mil/moon/phase?date='+dateStr+'&nump=1',
+		url: url,
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
 	}, (err, res, data) => {
@@ -194,7 +190,7 @@ function parseOW(observation){
 }
 
 function parseMoonPhase(observation) {
-	cur.moonPhase = observation.phasedata[0].phase;
+	cur.moonPhase = observation.curphase;
 }
 
 function parseWgForecast(data) {
