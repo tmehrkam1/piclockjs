@@ -99,10 +99,12 @@ function moonPhase () {
 	//fugly date mangling
 	var curDate = new Date();
 	year = curDate.getFullYear();
-	month = curDate.getMonth();
+	month = curDate.getMonth()+1;
 	day = curDate.getDate();
 	dateStr = month + '/' + day + '/' + year;
 
+	console.log('http://api.usno.navy.mil/moon/phase?date='+dateStr+'&nump=1');
+	
 	request.get({
 		url: 'http://api.usno.navy.mil/moon/phase?date='+dateStr+'&nump=1',
 		json: true,
