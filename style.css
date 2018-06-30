@@ -60,7 +60,7 @@
 }
 
 #time {
-	height: 70vh; 
+	height: 60vh; 
 	font-size: 15vh; 
 	font-family: 'Orbitron'; 
 	line-height: 60vh;
@@ -68,7 +68,7 @@
 }
 
 #alerts {
-	height: 10vh;
+	height: 20vh;
 	font-size: 3vh;
 	overflow: hidden;
 }
@@ -98,9 +98,14 @@
 }
 
 .alertBlock {
+	animation: blinker 1s linear infinite;
+	animation-duration: 10s;
 	display: inline-block;
 	width: 100%;
 	border: 2px solid black;
-	height: 4vh;
 	overflow: hidden;
+}
+
+@keyframes blinker {  
+	50% { opacity: 12; }
 }
