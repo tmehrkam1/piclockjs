@@ -52,12 +52,10 @@ var lat;
 var lon;
 var gMapKey;
 
-var servIP = "http://192.168.1.2:8081"; //server ip.
-
 updateCoords();  //grab map coords from backend.
 
 function updateCoords() {
-	url=servIP + "/coords";
+	url="coords";
 	var xhr = new XMLHttpRequest();  //need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
@@ -147,7 +145,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 	}
 	
 	function updateCur() {
-		url=servIP + "/current";
+		url="current";
 		  fetch(url)
 		  .then((resp) => resp.json())
 		  .then(function(data){
@@ -180,7 +178,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		//setup a container for the entire forcast contents
 		var content = document.createElement("div");
 		
-		url=servIP +"/forecast";
+		url="forecast";
 		fetch(url)
 		.then((resp) => resp.json())
 		.then(function(data){
@@ -232,7 +230,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		function updateAlerts(){
 			var alertDiv = document.getElementById("alerts");
 			
-			url=servIP +"/alerts";
+			url="alerts";
 			fetch(url)
 			.then((resp) => resp.json())
 			.then(function(data){
