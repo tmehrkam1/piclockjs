@@ -107,5 +107,5 @@
 }
 
 @keyframes blinker {  
-	50% { opacity: 12; }
+	50% { opacity: 5; }
 }
