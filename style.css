@@ -103,10 +103,10 @@
 	border: 2px solid black;
 	overflow: hidden;
 	position: relative;
-	animation: mymove 10s linear infinite;
+	animation: mymove 20s linear infinite;
 }
 
 @keyframes mymove {  
 	from {top: 100%;}
-	to {top: -200%;}
+	to {top: -150%;}
 }

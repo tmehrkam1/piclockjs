@@ -124,11 +124,13 @@ updateClock();
 updateCur();
 updateForecast();
 updateRadar();
+updateAlerts();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
 setInterval(updateForecast, 3600000) //update the forecast every hour
 setInterval(updateRadar,300000); //udate radar every 5 minutes
+setInterval(updateAlerts,60000);  //update alerts every minute
 
 	function updateClock() {
 		var timeStamp = new Date();
@@ -167,7 +169,6 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 			  document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
 			  document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 			  updateBackground(data.tempF.toString());
-			  updateAlerts();
 			  
 		  })
 		  .catch(function(error){
