@@ -17,6 +17,7 @@ var express = require('express');
 var bodyParser = require('body-parser')
 const app = express();
 app.use(bodyParser.json());
+app.use(express.static("public"));
 
 //get current weather conditions
 var cur={};
@@ -47,8 +48,9 @@ app.get("/coords", (req,res) => {
     gMapKey: settings.gMapKey
   })
 });
+
 app.get('/', (req,res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/index.html');
 })
 
 app.listen(8081, () => console.log('Example app listening on port 8081!'))
