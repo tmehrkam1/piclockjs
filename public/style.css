@@ -98,14 +98,15 @@
 }
 
 .alertBlock {
-	animation: blinker 1s linear infinite;
-	animation-duration: 10s;
 	display: inline-block;
 	width: 100%;
 	border: 2px solid black;
 	overflow: hidden;
+	position: relative;
+	animation: mymove 20s linear infinite;
 }
 
-@keyframes blinker {  
-	50% { opacity: 5; }
+@keyframes mymove {  
+	from {top: 100%;}
+	to {top: -150%;}
 }
