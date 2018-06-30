@@ -12,14 +12,13 @@ But instead the PiClock was born.
 
 The early days and evolution of it are chronicled on my blog http://n0bel.net/v1/index.php/projects/raspberry-pi-clock
 
-Due to changes in Weather Underground, PiClock needed a new provider for weather information.  A decision
-to build the project in JS was made, and PiClockJS was born.
+-- n0bel
+
+Due to changes in Weather Underground, PiClock needed a new provider for weather information.  I use JS during my day job, so I went from writing a few test scripts to a full blown backend.  Once I had the backend in place, I built a simple HTML front end to lay on top of it.
 
 Ok - no warranty, may cause universe implosion.  Use at your own risk.  standard GPL.  
 
-Here is my extremely early work.  You will need to adjust the lat / lon in both the .js and index.html.  piclock.js 
-will need your openweather api key and your google maps api.  Eventually I will clean up all the js in the index.html, 
-but I only spent part of the weekend on it thanks to a sprained ankle.
+Here is my extremely early work.  This project is in early hacker mode, and is no where near stable enough to attempt without decent system knowledge.  If you are looking for a more mature project, MagicMirror is much more mature.
 
 install instructions (wholly untested):  
 1 - install chromium-broswer  

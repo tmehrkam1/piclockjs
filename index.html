@@ -2,6 +2,7 @@
 <meta charset="utf-8"/>
 <link href="https://fonts.googleapis.com/css?family=Orbitron"
 	rel="stylesheet">
+<link rel = "stylesheet" type = "text/css" href = "style.css" />
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -20,28 +21,25 @@ html, body {
 
 <body>
 	<div id="main">
-		<div id="col_1" class="columns"
-			style="float: left; width: 20vw; text-align: center;">
-			<div id="curConditions" style="height: 33vh;">
-				<img id="curIcon" src="" alt="" style="height: 9vh;"></img> <br />
-				<span id="curDesc" style="font-size: 3vh;"></span> <br /> 
-				<span id="curTemp" style="font-size: 5vh;"></span><br />
-				<span id="curHum" style="font-size: 3vh;"></span> <br /> 
-				<span id="curWind" style="font-size: 2vh;"></span> <br />
-				<span id="curPres" style="font-size: 2vh;"></span> <br />
+		<div id="col_1" class="columns">
+			<div id="curConditions">
+				<img id="curIcon" src="" alt="current weather icon"></img> <br />
+				<span id="curDesc"></span> <br /> 
+				<span id="curTemp"></span><br />
+				<span id="curHum"></span> <br /> 
+				<span id="curWind"></span> <br />
+				<span id="curPres"></span> <br />
 			</div>
 			<div id="rdrStack">
-				<div id="rdrRegional" class="rdrView" style="height: 33vh;"></div>
-				<div id="rdrLocal" class="rdrView" style="height: 33vh;"></div>
+				<div id="rdrRegional" class="rdrView"></div>
+				<div id="rdrLocal" class="rdrView"></div>
 			</div>
 		</div>
-		<div id="col_2" class="columns"
-			style="float: left; width: 48vw; text-align: center;">
-			<div id="date" style="height: 10vh; font-size: 5vh;"></div>
-			<div id="time"
-				style="height: 70vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 60vh;overflow: hidden"></div>
-			<div id="alerts" style="height: 10vh; font-size: 3vh;overflow: hidden;"></div>	
-			<div id="sun_moon" style="height: 10vh; font-size: 2vh;"></div>
+		<div id="col_2" class="columns">
+			<div id="date"></div>
+			<div id="time"></div>
+			<div id="alerts"></div>	
+			<div id="sun_moon"></div>
 		</div>
 		<div id="col_3" class="columns"
 			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
@@ -54,12 +52,10 @@ var lat;
 var lon;
 var gMapKey;
 
-var servIP = "http://192.168.1.2:8081"; //server ip.
-
 updateCoords();  //grab map coords from backend.
 
 function updateCoords() {
-	url=servIP + "/coords";
+	url="coords";
 	var xhr = new XMLHttpRequest();  //need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
@@ -149,7 +145,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 	}
 	
 	function updateCur() {
-		url=servIP + "/current";
+		url="current";
 		  fetch(url)
 		  .then((resp) => resp.json())
 		  .then(function(data){
@@ -171,6 +167,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 			  document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
 			  document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 			  updateBackground(data.tempF.toString());
+			  updateAlerts();
 			  
 		  })
 		  .catch(function(error){
@@ -182,7 +179,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		//setup a container for the entire forcast contents
 		var content = document.createElement("div");
 		
-		url=servIP +"/forecast";
+		url="forecast";
 		fetch(url)
 		.then((resp) => resp.json())
 		.then(function(data){
@@ -191,19 +188,16 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 				var forecastBlock = document.createElement("div");
 				forecastBlock.setAttribute("class","forecastBlock");
 				forecastBlock.setAttribute("id","block"+i);
-				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
 	
 				//create the image container
 				var forecastImage = document.createElement("div");
 				forecastImage.setAttribute("class","forecastImage");
 				forecastImage.setAttribute("id","imgDiv"+i);
-				forecastImage.setAttribute("style","float: left;height: 100%;");
 			
 				//create the text container
 				var forecastText = document.createElement("div");
 				forecastText.setAttribute("class","forecastText");
 				forecastText.setAttribute("id","forecast"+i);
-				forecastText.setAttribute("style","float:left;width: 70%;font-size:2vh;");
 	
 				//populate the forecast icon with the image
 				var image = document.createElement("img");
@@ -236,26 +230,26 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		
 		function updateAlerts(){
 			var alertDiv = document.getElementById("alerts");
+			alertDiv.textContent="";
 			
-			url=servIP +"/alerts";
+			url="alerts";
 			fetch(url)
 			.then((resp) => resp.json())
 			.then(function(data){
+				console.log(data.features.length);
 				for (var i=0;i < data.features.length;i++) {		
 					//create a container for the forecast
 					var alertBlock = document.createElement("div");
 					alertBlock.setAttribute("class","alertBlock");
 					alertBlock.setAttribute("id","alert"+i);
-					alertBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
-		
+
 					//populate the forecast text
-					alertBlock.innerHTML=data.features[i].severity + " " + data.features[i].areaDesc + '<br />' + data.features[i].headline;
+					alertBlock.innerHTML=data.features[i].headline;
 					
 				    //put the block into the parent div
 					alertDiv.appendChild(alertBlock);				
-			};
-			//put populated block into the column	
-			document.getElementById("col_3").appendChild(content);
+				};
+			
 			})
 			  .catch(function(error){
 				  alert(error);
@@ -268,7 +262,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 				 document.body.style.color = "#FF5B17";
 			 } else if (temp>=90) {
 				 document.body.style.backgroundColor = "#E91E24";
-				 document.body.style.color = "#16E1DB";
+				 document.body.style.color = "#ffffff";
 			 } else if (temp>=30 && temp<40){
 				 document.body.style.backgroundColor = "#00A4E8";
 				 document.body.style.color = "#FF5B17";
