@@ -54,6 +54,12 @@ http.createServer(function (req,res) {
 		res.writeHead(200, {'Content-Type': 'application/json'});
 		res.write(JSON.stringify(alerts));
 		res.end();
+	} else if (req.url =="/style.css"){
+		fs.readFile("style.css", function(err, data){
+			res.writeHead(200, {'Content-Type': 'text/css'});
+			res.write(data);
+			res.end();
+		});
 	} else {
 		fs.readFile("index.html", function(err, data){
 			res.writeHead(200, {'Content-Type': 'text/html'});

@@ -2,6 +2,7 @@
 <meta charset="utf-8"/>
 <link href="https://fonts.googleapis.com/css?family=Orbitron"
 	rel="stylesheet">
+<link rel = "stylesheet" type = "text/css" href = "style.css" />
 <style>
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -20,28 +21,25 @@ html, body {
 
 <body>
 	<div id="main">
-		<div id="col_1" class="columns"
-			style="float: left; width: 20vw; text-align: center;">
-			<div id="curConditions" style="height: 33vh;">
-				<img id="curIcon" src="" alt="" style="height: 9vh;"></img> <br />
-				<span id="curDesc" style="font-size: 3vh;"></span> <br /> 
-				<span id="curTemp" style="font-size: 5vh;"></span><br />
-				<span id="curHum" style="font-size: 3vh;"></span> <br /> 
-				<span id="curWind" style="font-size: 2vh;"></span> <br />
-				<span id="curPres" style="font-size: 2vh;"></span> <br />
+		<div id="col_1" class="columns">
+			<div id="curConditions">
+				<img id="curIcon" src="" alt="current weather icon"></img> <br />
+				<span id="curDesc"></span> <br /> 
+				<span id="curTemp"></span><br />
+				<span id="curHum"></span> <br /> 
+				<span id="curWind"></span> <br />
+				<span id="curPres"></span> <br />
 			</div>
 			<div id="rdrStack">
-				<div id="rdrRegional" class="rdrView" style="height: 33vh;"></div>
-				<div id="rdrLocal" class="rdrView" style="height: 33vh;"></div>
+				<div id="rdrRegional" class="rdrView"></div>
+				<div id="rdrLocal" class="rdrView"></div>
 			</div>
 		</div>
-		<div id="col_2" class="columns"
-			style="float: left; width: 48vw; text-align: center;">
-			<div id="date" style="height: 10vh; font-size: 5vh;"></div>
-			<div id="time"
-				style="height: 70vh; font-size: 15vh; font-family: 'Orbitron'; line-height: 60vh;overflow: hidden"></div>
-			<div id="alerts" style="height: 10vh; font-size: 3vh;overflow: hidden;"></div>	
-			<div id="sun_moon" style="height: 10vh; font-size: 2vh;"></div>
+		<div id="col_2" class="columns">
+			<div id="date"></div>
+			<div id="time"></div>
+			<div id="alerts"></div>	
+			<div id="sun_moon"></div>
 		</div>
 		<div id="col_3" class="columns"
 			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
@@ -191,19 +189,16 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 				var forecastBlock = document.createElement("div");
 				forecastBlock.setAttribute("class","forecastBlock");
 				forecastBlock.setAttribute("id","block"+i);
-				forecastBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
 	
 				//create the image container
 				var forecastImage = document.createElement("div");
 				forecastImage.setAttribute("class","forecastImage");
 				forecastImage.setAttribute("id","imgDiv"+i);
-				forecastImage.setAttribute("style","float: left;height: 100%;");
 			
 				//create the text container
 				var forecastText = document.createElement("div");
 				forecastText.setAttribute("class","forecastText");
 				forecastText.setAttribute("id","forecast"+i);
-				forecastText.setAttribute("style","float:left;width: 70%;font-size:2vh;");
 	
 				//populate the forecast icon with the image
 				var image = document.createElement("img");
@@ -246,7 +241,6 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 					var alertBlock = document.createElement("div");
 					alertBlock.setAttribute("class","alertBlock");
 					alertBlock.setAttribute("id","alert"+i);
-					alertBlock.setAttribute("style","display: inline-block;width: 100%;border: 2px solid black;height: 10.1vh;overflow: hidden;");
 		
 					//populate the forecast text
 					alertBlock.innerHTML=data.features[i].severity + " " + data.features[i].areaDesc + '<br />' + data.features[i].headline;
