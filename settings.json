@@ -1,7 +1,7 @@
 {
   "lat": "42.6112",
   "lon": "-71.5745",
-  "owAppId": "e01ea4d2e5ddb4d907c64244533a87cf",
+  "owAppId": "<yourID>",
   "gMapKey": "google_maps_api_key",
   "servIP": "localhost:8081",
   "currentConditionsInterval": 120,
