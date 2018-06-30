@@ -167,6 +167,7 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 			  document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
 			  document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 			  updateBackground(data.tempF.toString());
+			  updateAlerts();
 			  
 		  })
 		  .catch(function(error){
@@ -229,25 +230,26 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 		
 		function updateAlerts(){
 			var alertDiv = document.getElementById("alerts");
+			alertDiv.textContent="";
 			
 			url="alerts";
 			fetch(url)
 			.then((resp) => resp.json())
 			.then(function(data){
+				console.log(data.features.length);
 				for (var i=0;i < data.features.length;i++) {		
 					//create a container for the forecast
 					var alertBlock = document.createElement("div");
 					alertBlock.setAttribute("class","alertBlock");
 					alertBlock.setAttribute("id","alert"+i);
-		
+
 					//populate the forecast text
-					alertBlock.innerHTML=data.features[i].severity + " " + data.features[i].areaDesc + '<br />' + data.features[i].headline;
+					alertBlock.innerHTML=data.features[i].headline;
 					
 				    //put the block into the parent div
 					alertDiv.appendChild(alertBlock);				
-			};
-			//put populated block into the column	
-			document.getElementById("col_3").appendChild(content);
+				};
+			
 			})
 			  .catch(function(error){
 				  alert(error);
