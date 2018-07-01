@@ -155,6 +155,7 @@ setInterval(updateAlerts,60000);  //update alerts every minute
 			//insert analog script here.  Thinking I might move that off of index.html for sanity
 			var clock = document.createElement('iframe');
 			clock.src = "clock.html";
+			clock.setAttribute("id","analogClock");
 			document.getElementById("time").appendChild(clock);
 		}
 
