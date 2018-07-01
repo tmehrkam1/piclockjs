@@ -51,6 +51,7 @@ html, body {
 var lat;
 var lon;
 var gMapKey;
+var clockType;
 
 updateCoords();  //grab map coords from backend.
 
@@ -63,6 +64,7 @@ function updateCoords() {
 	lat = obj.lat;
 	lon = obj.lon;
 	gMapKey = obj.gMapKey;
+	clockType = obj.clock;
 }
 
 //used to load the script and variablize the mapkey
@@ -133,17 +135,26 @@ setInterval(updateRadar,300000); //udate radar every 5 minutes
 setInterval(updateAlerts,60000);  //update alerts every minute
 
 	function updateClock() {
-		var timeStamp = new Date();
-		var time = new Date().toLocaleTimeString("en-us", {
-			hour : '2-digit',
-			minute : '2-digit',
-			hour12 : 'true'
-		});
-		document.getElementById("time").textContent = time;
-		
+		//update date string
 		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 		var date = new Intl.DateTimeFormat('en-us',options).format(timeStamp);
-		document.getElementById("date").textContent = date
+		document.getElementById("date").textContent = date;
+		
+		//depending on analog vs digital, update clock
+		if (clockType="digital") {
+			var timeStamp = new Date();
+			var time = new Date().toLocaleTimeString("en-us", {
+				hour : '2-digit',
+				minute : '2-digit',
+				hour12 : 'true'
+			});
+			document.getElementById("time").textContent = time;
+		} else {
+			//insert analog script here.  Thinking I might move that off of index.html for sanity
+		}
+
+		
+
 	}
 	
 	function updateCur() {
