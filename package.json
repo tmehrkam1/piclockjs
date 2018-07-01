@@ -1,0 +1,23 @@
+{
+	"name": "piclock",
+	"version": "1.0.0",
+	"description": "A Fancy Clock built around a monitor and a Raspberry Pi",
+	"homepage": "https://github.com/ScottChapman/PiClock#readme",
+	"bugs": {
+		"url": "https://github.com/ScottChapman/PiClock/issues"
+	},
+	"license": "ISC",
+	"main": "PiClockJS.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ScottChapman/PiClock.git"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"degrees-to-direction": "^1.1.1",
+		"express": "^4.16.3",
+		"request": "^2.87.0"
+	}
+}
