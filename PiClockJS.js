@@ -45,6 +45,7 @@ app.get("/coords", (req,res) => {
   res.status(200).json({
     lat: settings.lat,
     lon: settings.lon,
+    clock: settings.clock,
     gMapKey: settings.gMapKey
   })
 });
