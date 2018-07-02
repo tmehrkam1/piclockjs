@@ -67,6 +67,11 @@
 	overflow: hidden
 }
 
+#analogClock {
+	height:100%;
+	width:100%
+}
+
 #alerts {
 	height: 20vh;
 	font-size: 3vh;
