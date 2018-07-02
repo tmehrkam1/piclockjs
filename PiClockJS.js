@@ -12,12 +12,64 @@ var getPromise = util.promisify(request.get);
 
 // Read settings
 const settings = JSON.parse(fs.readFileSync('./settings.json'))
+
 // Express app
 var express = require('express');
 var bodyParser = require('body-parser')
 const app = express();
 app.use(bodyParser.json());
 app.use(express.static("public"));
+
+// Logging
+var winston = require('winston');
+const myFormat = winston.format.printf(info => {
+  return `${info.timestamp} ${info.level}: ${info.message}`;
+});
+const tsFormat = () => ( new Date() ).toLocaleDateString() + ' - ' + ( new Date() ).toLocaleTimeString();
+const logger = winston.createLogger({
+  level: 'info',
+  transports: [
+    //
+    // - Write to all logs with level `info` and below to `PiClock.log`
+    //
+    new winston.transports.File({
+      format: winston.format.combine(
+        winston.format.timestamp({
+          format: 'YYYY-MM-DD hh:mm:ss A ZZ'
+        }),
+        winston.format.json()
+      ),
+      handleExceptions: true,
+      filename: 'PiClock.log',
+    })
+  ]
+});
+
+//
+// If we're not in production then log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+//
+
+if (process.env.NODE_ENV !== 'production') {
+  logger.add(new winston.transports.Console({
+    format: winston.format.combine(
+      winston.format.timestamp({
+        format: 'YYYY-MM-DD hh:mm:ss A ZZ'
+      }),
+      winston.format.colorize({ all: true }),
+      winston.format.simple(),
+      myFormat
+    ),
+    handleExceptions: true
+  }));
+}
+
+
+// Handle uncaught handleExceptions
+process.on('unhandledRejection', (reason, p) => {
+  logger.error('Unhandled Rejection: ' + reason.stack);
+  // application specific logging, throwing an error, or other logic here
+});
 
 //get current weather conditions
 var cur={};
@@ -54,7 +106,7 @@ app.get('/', (req,res) => {
   res.sendFile(__dirname + '/public/index.html');
 })
 
-app.listen(8081, () => console.log('Example app listening on port 8081!'))
+app.listen(8081, () => logger.info('Example app listening on port 8081!'))
 
 //update current observations every 2 min
 setInterval(function() {
@@ -69,26 +121,21 @@ setInterval(function() {
 }, settings.forecastInterval * 1000);
 
 async function currentOwObs(){
-  var url = 'http://api.openweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
-  console.log(url);
+  var url = 'http://api.opnweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
+  logger.info(url);
 
-  try {
-    var { body } = await getPromise({
-      url: url,
-      json: true,
-      headers: {'User-Agent': 'piclockjs'}
-    });
-    parseOW(body);
-  }
-  catch(e) {
-    console.dir(e);
-  }
+  var { body } = await getPromise({
+    url: url,
+    json: true,
+    headers: {'User-Agent': 'piclockjs'}
+  });
+  parseOW(body);
 }
 
 async function moonPhase () {
   //fugly date mangling
   var url = 'http://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
-  console.log(url);
+  logger.info(url);
   try {
     var { body } = await getPromise({
       url: url,
@@ -98,13 +145,13 @@ async function moonPhase () {
     parseMoonPhase(body);
   }
   catch(e) {
-    console.dir(e);
+    logger.error(e);
   }
 }
 
 async function getWgovGridP(){
   var url = 'https://api.weather.gov/points/' + settings.lat + ',' + settings.lon;
-  console.log(url);
+  logger.info(url);
   try {
     var { body } = await getPromise({
       url: url,
@@ -114,12 +161,12 @@ async function getWgovGridP(){
     wgForecast(body.properties.forecast);
   }
   catch(e) {
-    console.dir(e)
+    logger.error(e)
   }
 }
 
 async function wgForecast(url){
-  console.log(url);
+  logger.info(url);
   try {
     var { body } = await getPromise({
       url: url,
@@ -129,13 +176,13 @@ async function wgForecast(url){
     parseWgForecast(body);
   }
   catch(e) {
-    cosole.dir(e);
+    logger.error(e);
   }
 }
 
 async function wgAlerts(){
   var url = "https://api.weather.gov/alerts/active?point=" + settings.lat + "," + settings.lon;
-  console.log(url);
+  logger.info(url);
   try {
     var { body } = await getPromise({
       url: url,
@@ -145,7 +192,7 @@ async function wgAlerts(){
     parseWgAlert(body);
   }
   catch(e) {
-    console.dir(e)
+    logger.error(e)
   }
 }
 
