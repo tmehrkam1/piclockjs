@@ -121,7 +121,7 @@ setInterval(function() {
 }, settings.forecastInterval * 1000);
 
 async function currentOwObs(){
-  var url = 'http://api.opnweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
+  var url = 'http://api.openweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
   logger.info(url);
 
   var { body } = await getPromise({
