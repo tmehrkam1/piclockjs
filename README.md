@@ -52,11 +52,10 @@ vi .xinitrc
 exec /usr/bin/chromium-browser
 
 vi .xinitrc
-#!/bin/sh
-xset s off
-xset -dpms
-xset s noblank
-exec /home/pi/kiosk.sh
-exec /usr/bin/chromium-browser
+  #!/bin/sh
+  xset s off
+  xset -dpms
+  xset s noblank
+  exec /home/pi/kiosk.sh
 
 
