@@ -1,3 +1,9 @@
+#main {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
 #col_1 {
 	float: left; 
 	width: 20vw; 
@@ -14,7 +20,6 @@
 	float: left; 
 	width: 31vw; 
 	text-align: center;
-	height=100%;
 }
 
 #curConditions {
@@ -87,13 +92,14 @@
 	display: inline-block;
 	width: 100%;
 	border: 2px solid black;
-	height: 10.1vh;
+	height: 10.3vh;
 	overflow: hidden;
 }
 
 .forecastImage {
 	float: left;
 	height: 100%;
+	width: auto;
 }
 
 .forecastText {
