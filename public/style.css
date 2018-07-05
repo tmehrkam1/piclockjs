@@ -1,3 +1,9 @@
+#main {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
 #col_1 {
 	float: left; 
 	width: 20vw; 
