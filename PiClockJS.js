@@ -22,12 +22,12 @@ app.use(express.static("public"));
 
 // Logging
 var winston = require('winston');
+const NODE_ENV = process.env.NODE_ENV;
 const myFormat = winston.format.printf(info => {
   return `${info.timestamp} ${info.level}: ${info.message}`;
 });
-const tsFormat = () => ( new Date() ).toLocaleDateString() + ' - ' + ( new Date() ).toLocaleTimeString();
 const logger = winston.createLogger({
-  level: 'info',
+  level: NODE_ENV === "production" ? 'warn' : 'info',
   transports: [
     //
     // - Write to all logs with level `info` and below to `PiClock.log`
@@ -50,7 +50,7 @@ const logger = winston.createLogger({
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
 
-if (process.env.NODE_ENV !== 'production') {
+if (NODE_ENV !== 'production') {
   logger.add(new winston.transports.Console({
     format: winston.format.combine(
       winston.format.timestamp({
