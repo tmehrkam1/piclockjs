@@ -33,29 +33,4 @@ radar images are CONUS only as far as I can tell.  Direct pulls from weather.gov
 ![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)
 
 Install doc is still a work in progress, but this is a start :
-
-get your pi networked with a lite distribution.  I used stretch-lite
-
-then ..
-
-apt-get install chromium-browser unclutter xinit
-
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-npm install http request fs path degrees-to-direction util winston
-npm install electron
-
-https://www.raspberrypi.org/forums/viewtopic.php?t=42888
-
-vi .xinitrc
-exec /usr/bin/chromium-browser
-
-vi .xinitrc
-  #!/bin/sh
-  xset s off
-  xset -dpms
-  xset s noblank
-  exec /home/pi/kiosk.sh
-
-
+(https://github.com/merky1/PiClock/blob/master/INSTALL.md)
