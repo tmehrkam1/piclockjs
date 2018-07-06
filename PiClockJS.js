@@ -216,7 +216,7 @@ function parseOW(observation){
 }
 
 function parseMoonPhase(observation) {
-  cur.moonPhase = observation.curphase;
+  cur.moonPhase = observation.closestphase.phase;
 }
 
 function parseWgForecast(data) {
