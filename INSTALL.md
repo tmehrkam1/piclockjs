@@ -2,7 +2,7 @@ get your pi networked with a lite distribution.  I used stretch-lite
 
 then ..
 
-apt-get install chromium-browser unclutter xinit
+apt-get install chromium-browser unclutter xinit libgconf-2-4
 
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -10,9 +10,6 @@ sudo apt-get install -y nodejs
 npm install 
 
 (https://www.raspberrypi.org/forums/viewtopic.php?t=42888)
-
-vi .xinitrc
-exec /usr/bin/chromium-browser
 
 vi .xinitrc
   #!/bin/sh
