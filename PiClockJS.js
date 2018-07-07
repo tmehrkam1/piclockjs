@@ -120,6 +120,22 @@ setInterval(function() {
 	moonPhase();
 }, settings.forecastInterval * 1000);
 
+//fire up the electron broswer.
+const {app, BrowserWindow} = require('electron')
+
+
+function createWindow () {
+  // Create the browser window.
+  win = new BrowserWindow({width: 800, height: 600, frame: false})
+
+  // and load the index.html of the app.
+  win.loadURL('http://127.0.0.1:8081')
+  win.maximize()
+}
+
+app.on('ready', createWindow)
+
+
 async function currentOwObs(){
 	var url = 'http://api.openweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
 	logger.info(url);
