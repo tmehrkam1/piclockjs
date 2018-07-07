@@ -75,7 +75,8 @@
 #analogClock {
 	height:60vh;
 	width:100%;
-	overflow: hidden
+	overflow: hidden;
+	scrolling: no
 }
 
 #alerts {
