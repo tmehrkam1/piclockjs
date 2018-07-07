@@ -2,9 +2,7 @@
   border-radius: 50%;
   background: #fff url(/ios_clock.svg) no-repeat center;
   background-size: 88%;
-  height: 20em;
   padding-bottom: 31%;
-  width: 20em;
   
   position: absolute;
   top: 0;
@@ -15,7 +13,6 @@
 }
 
 .clock.simple:after {
-  background: #000;
   border-radius: 50%;
   content: "";
   position: absolute;
