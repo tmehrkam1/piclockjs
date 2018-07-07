@@ -156,6 +156,7 @@ setInterval(updateAlerts,60000);  //update alerts every minute
 			var clock = document.createElement('iframe');
 			clock.src = "clock.html";
 			clock.setAttribute("id","analogClock");
+			clock.setAttribute("scrolling","no");
 			document.getElementById("time").appendChild(clock);
 		}
 
