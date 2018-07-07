@@ -16,9 +16,9 @@ const settings = JSON.parse(fs.readFileSync('./settings.json'))
 //Express app
 var express = require('express');
 var bodyParser = require('body-parser')
-const app = express();
-app.use(bodyParser.json());
-app.use(express.static("public"));
+const appl = express();
+appl.use(bodyParser.json());
+appl.use(express.static("public"));
 
 //Logging
 var winston = require('winston');
@@ -81,19 +81,19 @@ moonPhase();
 getWgovGridP();
 wgAlerts();
 
-app.get("/current", (req,res) => {
+appl.get("/current", (req,res) => {
 	res.status(200).json(cur);
 });
 
-app.get("/forecast", (req,res) => {
+appl.get("/forecast", (req,res) => {
 	res.status(200).json(forecasts);
 });
 
-app.get("/alerts", (req,res) => {
+appl.get("/alerts", (req,res) => {
 	res.status(200).json(alerts);
 });
 
-app.get("/coords", (req,res) => {
+appl.get("/coords", (req,res) => {
 	res.status(200).json({
 		lat: settings.lat,
 		lon: settings.lon,
@@ -102,11 +102,11 @@ app.get("/coords", (req,res) => {
 	})
 });
 
-app.get('/', (req,res) => {
+appl.get('/', (req,res) => {
 	res.sendFile(__dirname + '/public/index.html');
 })
 
-app.listen(8081, () => logger.info('Example app listening on port 8081!'))
+appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
 
 //update current observations every 2 min
 setInterval(function() {
@@ -121,7 +121,7 @@ setInterval(function() {
 }, settings.forecastInterval * 1000);
 
 //fire up the electron broswer.
-const {appl, BrowserWindow} = require('electron')
+const {app, BrowserWindow} = require('electron')
 
 
 function createWindow () {
@@ -133,7 +133,7 @@ function createWindow () {
   win.maximize()
 }
 
-appl.on('ready', createWindow)
+app.on('ready', createWindow)
 
 
 async function currentOwObs(){
