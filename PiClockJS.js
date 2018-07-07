@@ -121,7 +121,7 @@ setInterval(function() {
 }, settings.forecastInterval * 1000);
 
 //fire up the electron broswer.
-const {app, BrowserWindow} = require('electron')
+const {appl, BrowserWindow} = require('electron')
 
 
 function createWindow () {
@@ -133,7 +133,7 @@ function createWindow () {
   win.maximize()
 }
 
-app.on('ready', createWindow)
+appl.on('ready', createWindow)
 
 
 async function currentOwObs(){
