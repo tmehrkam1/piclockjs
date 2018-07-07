@@ -217,7 +217,7 @@ function parseOW(observation){
 
 function parseMoonPhase(observation) {
 	cur.moonPhase = observation.curphase;
-	if (cur.moonPhase = "") {
+	if (cur.moonPhase == "") {
 		cur.moonPhase = observation.closestphase.phase;
 	}
 }
