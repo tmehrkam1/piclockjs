@@ -18,18 +18,13 @@ Due to changes in Weather Underground, PiClock needed a new provider for weather
 
 Ok - no warranty, may cause universe implosion.  Use at your own risk.  standard GPL.  
 
-Here is my extremely early work.  This project is in early hacker mode, and is no where near stable enough to attempt without decent system knowledge.  If you are looking for a more mature project, MagicMirror is much more mature.
-
-install instructions (wholly untested):  
-1 - install chromium-broswer  
-2 - install node.js  
-3 - npm install request cron  
-4 - modify settings-example.json and save as settings.json  
-5 - node piclock.js   
-6 - nohup chromium-browser --kiosk http://localhost:8081 &  
-
 "should work"
-radar images are CONUS only as far as I can tell.  Direct pulls from weather.gov included way too much radar noise.  Resolution is less than optimal.  Animation is not implemented yet.  I just refresh current every 5 minutes.
+
+radar images are CONUS only as far as I can tell.  
+Background color changes depending on the temp.
+takes feeds from openweather for current conditions and US NWS for forecast.  This may limit the forecast to CONUS only.
+The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.
+
 ![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)
 
 Install doc is still a work in progress, but this is a start :
