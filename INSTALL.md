@@ -2,18 +2,18 @@ get your pi networked with a lite distribution.  I used stretch-lite
 
 then ..
 
-apt-get install chromium-browser unclutter xinit libgconf-2-4
+apt-get install chromium-browser unclutter xinit libgconf-2-4  
 
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-sudo apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -  
+sudo apt-get install -y nodejs  
 
-npm install 
+npm install   
 
-(https://www.raspberrypi.org/forums/viewtopic.php?t=42888)
+(https://www.raspberrypi.org/forums/viewtopic.php?t=42888)  
 
-vi .xinitrc
-  #!/bin/sh
-  xset s off
-  xset -dpms
-  xset s noblank
-  exec /home/pi/kiosk.sh
+vi .xinitrc  
+  #!/bin/sh  
+  xset s off  
+  xset -dpms  
+  xset s noblank  
+  exec /home/pi/kiosk.sh  

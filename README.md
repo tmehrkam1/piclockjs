@@ -21,11 +21,11 @@ Ok - no warranty, may cause universe implosion.  Use at your own risk.  standard
 "should work"
 
 radar images are CONUS only as far as I can tell.  
-Background color changes depending on the temp.
-takes feeds from openweather for current conditions and US NWS for forecast.  This may limit the forecast to CONUS only.
-The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.
+Background color changes depending on the temp.  
+takes feeds from openweather for current conditions and US NWS for forecast.  This may limit the forecast to CONUS only.  
+The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.  
 
-![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)
+![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)  
 
-Install doc is still a work in progress, but this is a start :
-(https://github.com/merky1/PiClock/blob/master/INSTALL.md)
+Install doc is still a work in progress, but this is a start :  
+(https://github.com/merky1/PiClock/blob/master/INSTALL.md)  
