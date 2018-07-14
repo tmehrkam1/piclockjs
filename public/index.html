@@ -133,7 +133,8 @@ updateAlerts();
 
 if (backgroundImg !="") {
 	mainDiv = document.getElementById("main");
-	mainDiv.style.backgroundImage = backgroundImg;
+	mainDiv.style.backgroundImage = "url("+backgroundImg+")";
+	mainDiv.style.backgroundSize ="cover";
 	mainDiv.style.color = "#bef";
 }
 
@@ -336,7 +337,12 @@ function toggleNight(){
 		radarDiv = document.getElementById("rdrStack");
 		
 		mainDiv.style.backgroundColor = '';
-		mainDiv.style.color = '';
+		if (backgroundImg == "") {
+			mainDiv.style.color = '';
+		} else {
+			mainDiv.style.color = '#bef'
+		}
+		
 		
 		radarDiv.style.opacity = '1';
 		
