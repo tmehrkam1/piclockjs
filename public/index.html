@@ -54,6 +54,7 @@ var gMapKey;
 var clockType;
 var nightMode;
 var backgroundImg;
+var imgFontColor;
 
 updateCoords();  //grab map coords from backend.
 
@@ -68,6 +69,7 @@ function updateCoords() {
 	gMapKey = obj.gMapKey;
 	clockType = obj.clock;
 	backgroundImg = obj.backgroundImg;
+	imgFontColor = obj.imgFontColor;
 }
 
 //used to load the script and variablize the mapkey
@@ -135,7 +137,7 @@ if (backgroundImg !="") {
 	mainDiv = document.getElementById("main");
 	mainDiv.style.backgroundImage = "url("+backgroundImg+")";
 	mainDiv.style.backgroundSize ="cover";
-	mainDiv.style.color = "#bef";
+	mainDiv.style.color = imgFontColor;
 }
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
@@ -343,7 +345,7 @@ function toggleNight(){
 		} else {
 			mainDiv.style.backgroundImage = "url("+backgroundImg+")";
 			mainDiv.style.backgroundSize ="cover";
-			mainDiv.style.color = '#bef'
+			mainDiv.style.color = imgFontColor;
 		}
 		
 		
