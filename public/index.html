@@ -20,7 +20,7 @@ html, body {
 </head>
 
 <body>
-	<div id="main">
+	<div id="main" onclick="toggleNight()">
 		<div id="col_1" class="columns">
 			<div id="curConditions">
 				<img id="curIcon" src="" alt="current weather icon"></img> <br />
@@ -52,6 +52,8 @@ var lat;
 var lon;
 var gMapKey;
 var clockType;
+var nightMode;
+var backgroundImg;
 
 updateCoords();  //grab map coords from backend.
 
@@ -65,7 +67,7 @@ function updateCoords() {
 	lon = obj.lon;
 	gMapKey = obj.gMapKey;
 	clockType = obj.clock;
-	console.log(clockType);
+	backgroundImg = obj.backgrounImg;
 }
 
 //used to load the script and variablize the mapkey
@@ -131,7 +133,7 @@ updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
-setInterval(updateForecast, 3600000) //update the forecast every hour
+setInterval(updateForecast, 600000) //update the forecast every 10 min
 setInterval(updateRadar,300000); //udate radar every 5 minutes
 setInterval(updateAlerts,60000);  //update alerts every minute
 
@@ -188,6 +190,7 @@ setInterval(updateAlerts,60000);  //update alerts every minute
 			  document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 			  updateBackground(data.tempF.toString());
 			  
+			  
 		  })
 		  .catch(function(error){
 			  alert(error);
@@ -212,7 +215,10 @@ setInterval(updateAlerts,60000);  //update alerts every minute
 				var forecastImage = document.createElement("div");
 				forecastImage.setAttribute("class","forecastImage");
 				forecastImage.setAttribute("id","imgDiv"+i);
-			
+				if (nightMode == true) {
+					forcastImage.style.opacity = '.5';
+				}
+				
 				//create the text container
 				var forecastText = document.createElement("div");
 				forecastText.setAttribute("class","forecastText");
@@ -305,15 +311,38 @@ setInterval(updateAlerts,60000);  //update alerts every minute
 
 	        
 	      }	
-	 function updateRadar() {
-		 map.overlayMapTypes.push(null); // create empty overlay entry
-	     map.overlayMapTypes.setAt("0",goes);
-	     map.overlayMapTypes.push(null); // create empty overlay entry
-	     map.overlayMapTypes.setAt("1",tileNEX);
+function updateRadar() {
+	map.overlayMapTypes.push(null); // create empty overlay entry
+	map.overlayMapTypes.setAt("0",goes);
+	map.overlayMapTypes.push(null); // create empty overlay entry
+	map.overlayMapTypes.setAt("1",tileNEX);
 			
-	     mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-	     mapLocal.overlayMapTypes.setAt("0",goes);
-	     mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-	     mapLocal.overlayMapTypes.setAt("1",tileNEX);
-	 }
+	mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+	mapLocal.overlayMapTypes.setAt("0",goes);
+	mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+	mapLocal.overlayMapTypes.setAt("1",tileNEX);
+}
+
+function toggleNight(){
+	if (nightMode == true) {
+		nightMode = false;
+		mainDiv = document.getElementById("main");
+		radarDiv = document.getElementById("rdrStack");
+		
+		mainDiv.style.backgroundColor = '';
+		mainDiv.style.color = '';
+		
+		radarDiv.style.opacity = '1';
+	} else {
+		nightMode = true;
+		mainDiv = document.getElementById("main");
+		radarDiv = document.getElementById("rdrStack");
+		
+		mainDiv.style.backgroundColor = 'black';
+		mainDiv.style.color = 'darkgray';
+		
+		radarDiv.style.opacity ='.5';
+	}
+		 
+}
 </script>
