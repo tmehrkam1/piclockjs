@@ -7,5 +7,6 @@
   "currentConditionsInterval": 120,
   "forecastInterval": 21600,
   "clock":"digital",
-  "backgroundImg":""
+  "backgroundImg":"",
+  "imgFontColor":""
 }

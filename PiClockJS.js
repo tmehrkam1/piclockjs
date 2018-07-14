@@ -99,7 +99,8 @@ appl.get("/coords", (req,res) => {
 		lon: settings.lon,
 		clock: settings.clock,
 		gMapKey: settings.gMapKey,
-		backgroundImg : settings.backgroundImg
+		backgroundImg : settings.backgroundImg,
+		imgFontColor : settings.imgFontColor
 	})
 });
 
