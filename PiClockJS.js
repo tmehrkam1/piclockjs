@@ -98,7 +98,8 @@ appl.get("/coords", (req,res) => {
 		lat: settings.lat,
 		lon: settings.lon,
 		clock: settings.clock,
-		gMapKey: settings.gMapKey
+		gMapKey: settings.gMapKey,
+		backgroundImg : settings.backgroundImg
 	})
 });
 

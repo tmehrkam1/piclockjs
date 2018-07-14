@@ -67,7 +67,7 @@ function updateCoords() {
 	lon = obj.lon;
 	gMapKey = obj.gMapKey;
 	clockType = obj.clock;
-	backgroundImg = obj.backgrounImg;
+	backgroundImg = obj.backgroundImg;
 }
 
 //used to load the script and variablize the mapkey
@@ -130,6 +130,12 @@ updateCur();
 updateForecast();
 updateRadar();
 updateAlerts();
+
+if (backgroundImg !="") {
+	mainDiv = document.getElementById("main");
+	mainDiv.style.backgroundImage = backgroundImg;
+	mainDiv.style.color = "#bef";
+}
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache

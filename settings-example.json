@@ -6,5 +6,6 @@
   "servIP": "localhost:8081",
   "currentConditionsInterval": 120,
   "forecastInterval": 21600,
-  "clock":"digital"
+  "clock":"digital",
+  "backgroundImg":""
 }
