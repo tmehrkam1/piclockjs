@@ -220,6 +220,7 @@ function parseOW(observation){
 	
 	if (observation.dt <= cur.dt)
 	{
+		logger.info('stale update detected with timestamp : ' + observation.dt);
 		return;
 	}
 
