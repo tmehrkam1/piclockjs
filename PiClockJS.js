@@ -225,7 +225,7 @@ function parseOW(observation){
 		
 		var diffMs = (now - update); //diff in MS
 		var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-		logger.info('stale update detected with timestamp : ' + observation.dt + " behind now by : "+ diffMins);
+		logger.info('stale update detected with timestamp : ' + observation.dt + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
 
