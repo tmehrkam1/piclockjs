@@ -226,7 +226,7 @@ function parseOW(observation){
 		update.setUTCSeconds(observation.dt);
 		
 		var diffMs = (now - update); //diff in MS
-		var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+		var diffMins = Math.round(((diffMs / 1000 / 60); // minutes
 		logger.info('stale update detected with timestamp : ' + update + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
