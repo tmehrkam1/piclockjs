@@ -222,12 +222,18 @@ function parseOW(observation){
 	{
 		var now = new Date();
 		var update = new Date(0);
+		var current = new Date(0);
 		
 		update.setUTCSeconds(observation.dt);
+		current.setUTCSeconds(cur.dt);
 		
 		var diffMs = (now - update); //diff in MS
 		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-		logger.info('stale update detected with timestamp : ' + update + " behind now by : "+ diffMins + " minutes");
+		
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+		
+		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by ; " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
 
