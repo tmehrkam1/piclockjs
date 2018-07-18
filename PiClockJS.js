@@ -76,6 +76,8 @@ var cur={};
 var forecasts = {};
 var alerts = {};
 
+cur.dt=0;
+
 currentOwObs();
 moonPhase();
 getWgovGridP();
@@ -215,6 +217,11 @@ async function wgAlerts(){
 }
 
 function parseOW(observation){
+	
+	if (observation.dt <= cur.dt)
+	{
+		return;
+	}
 
 	var sunriseEpoch = new Date(0);
 	var sunsetEpoch = new Date(0);
@@ -231,6 +238,7 @@ function parseOW(observation){
 	cur.curDesc = observation.weather[0].main;
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
+	cur.dt = observation.dt;
 }
 
 function parseMoonPhase(observation) {
