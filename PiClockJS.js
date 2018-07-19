@@ -233,7 +233,7 @@ function parseOW(observation){
 		var diffCur = (current - update);
 		var diffCurMins = (diffCur / 1000 / 60);
 		
-		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by ; " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
 
@@ -256,9 +256,9 @@ function parseOW(observation){
 }
 
 function parseMoonPhase(observation) {
-	cur.moonPhase = observation.curphase;
-	if (cur.moonPhase == "") {
-		cur.moonPhase = observation.closestphase.phase;
+	cur.moonPhase = observation.closestphase.phase;
+	if (typeof observation.curphase != "undefined") {
+		cur.moonPhase = observation.curphase;  //use more accurate phase string
 	}
 }
 
