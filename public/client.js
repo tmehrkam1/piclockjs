@@ -77,7 +77,11 @@ function initMap() {
 		opacity:0.60,
 		name : 'GOES East Vis',
 		isPng: true
-	});
+		});
+	
+	updateRadar();
+	setInterval(updateRadar,300000); //udate radar every 5 minutes
+	
 	function updateRadar() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",goes);
@@ -101,13 +105,11 @@ if (backgroundImg !="") {
 updateClock();
 updateCur();
 updateForecast();
-updateRadar();
 updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
 setInterval(updateForecast, 600000) //update the forecast every 10 min
-setInterval(updateRadar,300000); //udate radar every 5 minutes
 setInterval(updateAlerts,60000);  //update alerts every minute
 
 function updateClock() {
