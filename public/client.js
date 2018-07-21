@@ -32,8 +32,6 @@ addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
 
-var map;
-var mapLocal;
 function initMap() {
 
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
@@ -80,6 +78,17 @@ function initMap() {
 		name : 'GOES East Vis',
 		isPng: true
 	});
+	function updateRadar() {
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("0",goes);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("1",tileNEX);
+
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("0",goes);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("1",tileNEX);
+	}
 }
 
 if (backgroundImg !="") {
@@ -273,25 +282,13 @@ function updateBackground(temp) {
 	}
 }
 
-
-function updateRadar() {
-	map.overlayMapTypes.push(null); // create empty overlay entry
-	map.overlayMapTypes.setAt("0",goes);
-	map.overlayMapTypes.push(null); // create empty overlay entry
-	map.overlayMapTypes.setAt("1",tileNEX);
-
-	mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-	mapLocal.overlayMapTypes.setAt("0",goes);
-	mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-	mapLocal.overlayMapTypes.setAt("1",tileNEX);
-}
-
 function toggleNight(){
+	var mainDiv = document.getElementById("main");
+	var radarDiv = document.getElementById("rdrStack");
+	var iconDiv = document.getElementById("curIcon");
+	
 	if (nightMode == true) {
 		nightMode = false;
-		var mainDiv = document.getElementById("main");
-		var radarDiv = document.getElementById("rdrStack");
-		var iconDiv = document.getElementById("curIcon");
 
 		mainDiv.style.backgroundColor = '';
 		if (backgroundImg == "") {
@@ -314,9 +311,7 @@ function toggleNight(){
 
 	} else {
 		nightMode = true;
-		mainDiv = document.getElementById("main");
-		radarDiv = document.getElementById("rdrStack");
-
+		
 		mainDiv.style.backgroundColor = 'black';
 		mainDiv.style.backgroundImage ='';
 		mainDiv.style.color = 'darkgray';
