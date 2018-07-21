@@ -31,8 +31,11 @@ addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
+
+var map;
+var mapLocal;
 function initMap() {
-	var map;
+
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
 		center: {lat: lat, lng: lon},
 		zoom: 7,
