@@ -58,7 +58,7 @@ function initMap() {
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid'
 	});
-	
+
 	tileNEX = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -68,7 +68,7 @@ function initMap() {
 		name : 'NEXRAD',
 		isPng: true
 	});
-	
+
 	tileNEX5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -78,7 +78,7 @@ function initMap() {
 		name : 'NEXRAD',
 		isPng: true
 	});
-	
+
 	tileNEX10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -88,7 +88,7 @@ function initMap() {
 		name : 'NEXRAD',
 		isPng: true
 	});
-	
+
 	tileNEX15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -98,7 +98,7 @@ function initMap() {
 		name : 'NEXRAD',
 		isPng: true
 	});
-	
+
 	tileNEX20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -117,12 +117,12 @@ function initMap() {
 		opacity:0.60,
 		name : 'GOES East Vis',
 		isPng: true
-		});
-	
+	});
+
 	updateRadar();
-	
+
 	function updateRadar() {
-		
+
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",goes);
 		map.overlayMapTypes.push(null); // create empty overlay entry
@@ -135,18 +135,22 @@ function initMap() {
 		map.overlayMapTypes.setAt("4",tileNEX15);
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("5",tileNEX20);
-		
-		map.overlayMapTypes.getAt(1).setOpacity(0);
-		map.overlayMapTypes.getAt(2).setOpacity(0);
-		map.overlayMapTypes.getAt(3).setOpacity(0);
-		map.overlayMapTypes.getAt(4).setOpacity(0);
-		map.overlayMapTypes.getAt(5).setOpacity(0);
-		
+
+		timerId = window.setInterval(function () {
+			map.overlayMapTypes.getAt(index).setOpacity(0.00);
+
+			index--;
+			if (index < 0) {
+				index = map.overlayMapTypes.getLength() - 1;
+			}
+			map.overlayMapTypes.getAt(index).setOpacity(0.60);
+		}, 400);
+
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("0",goes);
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("1",tileNEX);
-		
+
 	}
 }
 
@@ -341,7 +345,7 @@ function toggleNight(){
 	var mainDiv = document.getElementById("main");
 	var radarDiv = document.getElementById("rdrStack");
 	var iconDiv = document.getElementById("curIcon");
-	
+
 	if (nightMode == true) {
 		nightMode = false;
 
@@ -366,7 +370,7 @@ function toggleNight(){
 
 	} else {
 		nightMode = true;
-		
+
 		mainDiv.style.backgroundColor = 'black';
 		mainDiv.style.backgroundImage ='';
 		mainDiv.style.color = 'darkgray';
