@@ -136,8 +136,11 @@ function initMap() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("5",tileNEX20);
 		
-		map.overlayMapTypes[1].setOpacity(0);
-		map.overlayMapTypes[2].setOpacity(0);
+		map.overlayMapTypes.getAt(1).setOpacity(0);
+		map.overlayMapTypes.getAt(2).setOpacity(0);
+		map.overlayMapTypes.getAt(3).setOpacity(0);
+		map.overlayMapTypes.getAt(4).setOpacity(0);
+		map.overlayMapTypes.getAt(5).setOpacity(0);
 		
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("0",goes);
