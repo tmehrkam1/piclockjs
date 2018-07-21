@@ -58,6 +58,7 @@ function initMap() {
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid'
 	});
+	
 	tileNEX = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
@@ -67,31 +68,76 @@ function initMap() {
 		name : 'NEXRAD',
 		isPng: true
 	});
-
-
-	goes = new google.maps.ImageMapType({
+	
+	tileNEX5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'GOES East Vis',
+		name : 'NEXRAD',
 		isPng: true
-		});
+	});
 	
+	tileNEX10 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0.60,
+		name : 'NEXRAD',
+		isPng: true
+	});
+	
+	tileNEX15 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0.60,
+		name : 'NEXRAD',
+		isPng: true
+	});
+	
+	tileNEX20 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0.60,
+		name : 'NEXRAD',
+		isPng: true
+	});
+
+
 	updateRadar();
-	setInterval(updateRadar,300000); //udate radar every 5 minutes
 	
 	function updateRadar() {
-		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("0",goes);
-		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("1",tileNEX);
+		var index = map.overlayMapTypes.getLength() - 1;
 
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("0",goes);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("1",tileNEX);
+	    window.setInterval(function(){
+
+	        map.overlayMapTypes.getAt(index).setOpacity(0.00);
+
+	        index--;
+	        if(index < 0){
+	            index = map.overlayMapTypes.getLength() - 1;
+	        }
+	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
+	    }, 400);
+	    
+	    var index = map.overlayMapTypes.getLength() - 1;
+
+	    window.setInterval(function(){
+
+	        mapLocal.overlayMapTypes.getAt(index).setOpacity(0.00);
+
+	        index--;
+	        if(index < 0){
+	            index = map.overlayMapTypes.getLength() - 1;
+	        }
+	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
+	    }, 400);
 	}
 }
 
