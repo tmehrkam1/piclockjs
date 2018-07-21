@@ -119,7 +119,6 @@ function updateClock() {
 	document.getElementById("date").textContent = date;
 
 	//depending on analog vs digital, update clock
-	console.log(clockType);
 	if (clockType=="digital") {
 		var timeStamp = new Date();
 		var time = new Date().toLocaleTimeString("en-us", {
@@ -236,7 +235,6 @@ function updateAlerts(){
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
-		console.log(data.features.length);
 		for (var i=0;i < data.features.length;i++) {		
 			//create a container for the forecast
 			var alertBlock = document.createElement("div");
