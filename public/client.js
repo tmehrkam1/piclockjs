@@ -126,19 +126,6 @@ function initMap() {
 	        }
 	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
 	    }, 400);
-	    
-	    localIndex = mapLocal.overlayMapTypes.getLength() - 1;
-
-	    window.setInterval(function(){
-
-	        mapLocal.overlayMapTypes.getAt(index).setOpacity(0.00);
-
-	        index--;
-	        if(index < 0){
-	            index = mapLocal.overlayMapTypes.getLength() - 1;
-	        }
-	        mapLocal.overlayMapTypes.getAt(index).setOpacity(0.60);
-	    }, 400);
 	}
 }
 
