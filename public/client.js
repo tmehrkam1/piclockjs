@@ -136,6 +136,7 @@ function initMap() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("5",tileNEX20);
 
+		var index = 5;
 		timerId = window.setInterval(function () {
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
