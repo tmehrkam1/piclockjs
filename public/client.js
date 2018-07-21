@@ -114,6 +114,7 @@ function initMap() {
 	
 	function updateRadar() {
 		var index = map.overlayMapTypes.getLength() - 1;
+		console.log(index);
 
 	    window.setInterval(function(){
 
