@@ -109,23 +109,38 @@ function initMap() {
 		isPng: true
 	});
 
-
+	goes = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0.60,
+		name : 'GOES East Vis',
+		isPng: true
+		});
+	
 	updateRadar();
 	
 	function updateRadar() {
-		var index = map.overlayMapTypes.getLength() - 1;
-		console.log(index);
-
-	    window.setInterval(function(){
-
-	        map.overlayMapTypes.getAt(index).setOpacity(0.00);
-
-	        index--;
-	        if(index < 0){
-	            index = map.overlayMapTypes.getLength() - 1;
-	        }
-	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
-	    }, 400);
+		
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("0",goes);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("1",tileNEX);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("2",tileNEX5);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("3",tileNEX10);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("4",tileNEX15);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("5",tileNEX20);
+		
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("0",goes);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("1",tileNEX);
+		
 	}
 }
 
