@@ -126,7 +126,7 @@ function initMap() {
 	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
 	    }, 400);
 	    
-	    var index = map.overlayMapTypes.getLength() - 1;
+	    localIndex = mapLocal.overlayMapTypes.getLength() - 1;
 
 	    window.setInterval(function(){
 
@@ -134,9 +134,9 @@ function initMap() {
 
 	        index--;
 	        if(index < 0){
-	            index = map.overlayMapTypes.getLength() - 1;
+	            index = mapLocal.overlayMapTypes.getLength() - 1;
 	        }
-	        map.overlayMapTypes.getAt(index).setOpacity(0.60);
+	        mapLocal.overlayMapTypes.getAt(index).setOpacity(0.60);
 	    }, 400);
 	}
 }
