@@ -120,23 +120,22 @@ function initMap() {
 	});
 
 	updateRadar();
+	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
 
 	function updateRadar() {
 
 		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("0",goes);
+		map.overlayMapTypes.setAt("0",tileNEX);
 		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("1",tileNEX);
+		map.overlayMapTypes.setAt("1",tileNEX5);
 		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("2",tileNEX5);
+		map.overlayMapTypes.setAt("2",tileNEX10);
 		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("3",tileNEX10);
+		map.overlayMapTypes.setAt("3",tileNEX15);
 		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("4",tileNEX15);
-		map.overlayMapTypes.push(null); // create empty overlay entry
-		map.overlayMapTypes.setAt("5",tileNEX20);
+		map.overlayMapTypes.setAt("4",tileNEX20);
 
-		var index = 5;
+		var index = 4;
 		timerId = window.setInterval(function () {
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
