@@ -31,8 +31,8 @@ addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
-var map;
 function initMap() {
+	var map;
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
 		center: {lat: lat, lng: lon},
 		zoom: 7,
@@ -286,9 +286,9 @@ function updateRadar() {
 function toggleNight(){
 	if (nightMode == true) {
 		nightMode = false;
-		mainDiv = document.getElementById("main");
-		radarDiv = document.getElementById("rdrStack");
-		iconDiv = document.getElementById("curIcon");
+		var mainDiv = document.getElementById("main");
+		var radarDiv = document.getElementById("rdrStack");
+		var iconDiv = document.getElementById("curIcon");
 
 		mainDiv.style.backgroundColor = '';
 		if (backgroundImg == "") {
