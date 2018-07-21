@@ -79,18 +79,18 @@ function initMap() {
 	});
 }
 
-updateClock();
-updateCur();
-updateForecast();
-updateRadar();
-updateAlerts();
-
 if (backgroundImg !="") {
 	mainDiv = document.getElementById("main");
 	mainDiv.style.backgroundImage = "url("+backgroundImg+")";
 	mainDiv.style.backgroundSize ="cover";
 	mainDiv.style.color = imgFontColor;
 }
+
+updateClock();
+updateCur();
+updateForecast();
+updateRadar();
+updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
