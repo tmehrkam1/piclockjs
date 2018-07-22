@@ -109,13 +109,13 @@ function initMap() {
 		isPng: true
 	});
 
-	goes = new google.maps.ImageMapType({
+	tilePrecip = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'GOES East Vis',
+		name : '1hr Precipitation',
 		isPng: true
 	});
 
@@ -157,6 +157,8 @@ function initMap() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",tileNEX20);
 
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("5",tilePrecip);
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("4",tileNEX);
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
