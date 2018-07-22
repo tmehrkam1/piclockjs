@@ -137,12 +137,14 @@ function initMap() {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
+			
+			radarFrame++;
+			
 			if (radarFrame >= 5) {
 				console.log("reset radar frame")
 				radarFrame = 0;
 			} else {
 				console.log("increment radar frame");
-				radarFrame++;
 			}
 		}, 400);
 	}
