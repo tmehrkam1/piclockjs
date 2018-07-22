@@ -123,6 +123,10 @@ function initMap() {
 	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
 
 	function updateRadar() {
+		
+		for (var i; i <= map.overlayMapTypes.getLength() - 1; i--) {
+			map.overlayMapTypes.getAt(i).setMap(null);
+		}
 
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",tileNEX);
