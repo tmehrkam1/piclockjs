@@ -156,15 +156,21 @@ function initMap() {
 	}
 	
 	function updateRadar(){
-		console.log('begin update');
-		for (var i=0; i <= map.overlayMapTypes.getLength() - 1; i++) {
-			console.log("radar index " + i + " updated")
-			map.overlayMapTypes.getAt(i).getTile();
-		}
-		for (var i=0; i <= mapLocal.overlayMapTypes.getLength() - 1; i++) {
-			console.log("Local radar index " + i + " updated")
-			mapLocal.overlayMapTypes.getAt(i).getTile();
-		}
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("0",tileNEX);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("1",tileNEX5);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("2",tileNEX10);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("3",tileNEX15);
+		map.overlayMapTypes.push(null); // create empty overlay entry
+		map.overlayMapTypes.setAt("4",tileNEX20);
+		
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("0",goes);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("1",tileNEX);
 	}
 }
 
