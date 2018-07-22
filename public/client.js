@@ -124,10 +124,6 @@ function initMap() {
 
 	function initRadar() {
 		
-		for (var i; i <= map.overlayMapTypes.getLength() - 1; i++) {
-			map.overlayMapTypes.getAt(i).setMap(null);
-		}
-
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",tileNEX);
 		map.overlayMapTypes.push(null); // create empty overlay entry
