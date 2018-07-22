@@ -155,6 +155,7 @@ function initMap() {
 	
 	function updateRadar(){
 		for (var i; i <= map.overlayMapTypes.getLength() - 1; i++) {
+			console.log("radar index " + i + " updated")
 			map.overlayMapTypes.getAt(i).getTile();
 		}
 	}
