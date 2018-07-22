@@ -131,7 +131,6 @@ function initMap() {
 			for (var i=0;i < map.overlayMapTypes.getLength();i++) {
 				if (i == radarFrame) {
 					map.overlayMapTypes.getAt(i).setOpacity(.6);
-					radarFrame++;
 					console.log("show " + i);
 				} else {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
@@ -141,6 +140,9 @@ function initMap() {
 				if (radarFrame >= map.overlayMapTypes.getLength()) {
 					console.log("reset radar frame")
 					radarFrame = 0;
+				} else {
+					console.log("increment radar frame");
+					radarFrame++;
 				}
 			}
 		}, 400);
