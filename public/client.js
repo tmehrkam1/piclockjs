@@ -135,30 +135,33 @@ function initMap() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("4",tileNEX20);
 		
-		var index = 4;
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("0",goes);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("1",tileNEX);
+		
+		var index = 5;
 		timerId = window.setInterval(function () {
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
 			index--;
 			if (index < 0) {
 				index = map.overlayMapTypes.getLength() - 1;
+			} else { 
+				map.overlayMapTypes.getAt(index).setOpacity(0.60);
 			}
-			map.overlayMapTypes.getAt(index).setOpacity(0.60);
 		}, 400);
 
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("0",goes);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("1",tileNEX);
 
 	}
 	
 	function updateRadar(){
-		for (var i; i <= map.overlayMapTypes.getLength() - 1; i++) {
+		console.log('begin update');
+		for (var i=0; i <= map.overlayMapTypes.getLength() - 1; i++) {
 			console.log("radar index " + i + " updated")
 			map.overlayMapTypes.getAt(i).getTile();
 		}
-		for (var i; i <= mapLocal.overlayMapTypes.getLength() - 1; i++) {
+		for (var i=0; i <= mapLocal.overlayMapTypes.getLength() - 1; i++) {
 			console.log("Local radar index " + i + " updated")
 			mapLocal.overlayMapTypes.getAt(i).getTile();
 		}
