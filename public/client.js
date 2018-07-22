@@ -120,7 +120,9 @@ function initMap() {
 	});
 
 	updateRadar();
+	initRadar();
 	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
+	
 
 	function initRadar() {
 		var index = map.overlayMapTypes.getLength() - 1;
