@@ -142,6 +142,7 @@ function initMap() {
 		
 		var index = 5;
 		timerId = window.setInterval(function () {
+			console.log(index);
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
 			index--;
