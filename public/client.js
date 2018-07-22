@@ -127,15 +127,19 @@ function initMap() {
 
 	function animateRadar() {
 		timerId = window.setInterval(function () {
+			console.log("update radar frame");
 			for (var i;i < map.overlayMapTypes.getLength();i++) {
 				if (i == radarFrame) {
 					map.overlayMapTypes.getAt(i).setOpacity(.6);
 					radarFrame++;
+					console.log("show " + i);
 				} else {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
+					console.log("hide " + i);
 				}
 				
 				if (radarFrame >= map.overlayMapTypes.getLength()) {
+					console.log("reset radar frame")
 					radarFrame = 0;
 				}
 			}
