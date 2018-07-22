@@ -130,11 +130,11 @@ function initMap() {
 			console.log("update radar frame");
 			for (var i=0;i < map.overlayMapTypes.getLength();i++) {
 				if (i == radarFrame) {
-					map.overlayMapTypes.getAt(i).setOpacity(.6);
 					console.log("show " + i);
+					map.overlayMapTypes.getAt(i).setOpacity(.6);
 				} else {
-					map.overlayMapTypes.getAt(i).setOpacity(0);
 					console.log("hide " + i);
+					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
 			if (radarFrame >= map.overlayMapTypes.getLength()) {
