@@ -123,35 +123,29 @@ function initMap() {
 	var timerId;
 	updateRadar();
 	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
-	
+
 
 	function animateRadar() {
 		timerId = window.setInterval(function () {
-			console.log("update radar frame " + radarFrame);
 			for (i = 0;i < 5;i++) {
 				if (i == radarFrame) {
-					console.log("show " + i);
 					map.overlayMapTypes.getAt(i).setOpacity(.6);
 				} else {
-					console.log("hide " + i);
 					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
-			
+
 			radarFrame++;
-			
+
 			if (radarFrame >= 5) {
-				console.log("reset radar frame")
 				radarFrame = 0;
-			} else {
-				console.log("increment radar frame");
-			}
+			} 
 		}, 400);
 	}
-	
+
 	function updateRadar(){
 		clearInterval(timerId);
-		
+
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("4",tileNEX);
 		map.overlayMapTypes.push(null); // create empty overlay entry
@@ -162,11 +156,18 @@ function initMap() {
 		map.overlayMapTypes.setAt("1",tileNEX15);
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",tileNEX20);
+
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("4",tileNEX);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("3",tileNEX5);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("2",tileNEX10);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("1",tileNEX15);
+		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
+		mapLocal.overlayMapTypes.setAt("0",tileNEX20);
 		
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("0",goes);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
-		mapLocal.overlayMapTypes.setAt("1",tileNEX);
 		animateRadar();
 	}
 }
