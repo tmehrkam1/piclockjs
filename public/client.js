@@ -139,7 +139,7 @@ function initMap() {
 		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("4",tileNEX20);
 
-		var index = 4;
+		var index = map.overlayMapTypes.getLength() - 1;
 		timerId = window.setInterval(function () {
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
