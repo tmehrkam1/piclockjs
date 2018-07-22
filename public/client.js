@@ -119,24 +119,20 @@ function initMap() {
 		isPng: true
 	});
 
+	var radarFrame;
 	updateRadar();
-	initRadar();
+	animateRadar();
 	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
 	
 
-	function initRadar() {
-		var index = map.overlayMapTypes.getLength() - 1;
+	function animateRadar() {
 		timerId = window.setInterval(function () {
-			if (map.overlayMapTypes.getLength() == 0) {
-				return;
-			}
-			map.overlayMapTypes.getAt(index).setOpacity(0.00);
-
-			index--;
-			if (index < 0) {
-				index = map.overlayMapTypes.getLength() - 1;
-			} else { 
-				map.overlayMapTypes.getAt(index).setOpacity(0.60);
+			map.overlayMapTypes.getAt(radarFrame).setOpacity(0.00)
+			if (radarFrame < map.overlayMapTypes.getLength()) {
+				map.overlyMapTypes.getAt(radarFrame).setOpacity(.6);
+				radarFrame++;
+			} else {
+				radarFrame = 0;
 			}
 		}, 400);
 
