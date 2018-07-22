@@ -158,6 +158,10 @@ function initMap() {
 			console.log("radar index " + i + " updated")
 			map.overlayMapTypes.getAt(i).getTile();
 		}
+		for (var i; i <= mapLocal.overlayMapTypes.getLength() - 1; i++) {
+			console.log("Local radar index " + i + " updated")
+			mapLocal.overlayMapTypes.getAt(i).getTile();
+		}
 	}
 }
 
