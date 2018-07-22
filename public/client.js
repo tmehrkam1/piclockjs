@@ -119,7 +119,7 @@ function initMap() {
 		isPng: true
 	});
 
-	var radarFrame;
+	var radarFrame = 0;
 	updateRadar();
 	animateRadar();
 	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
