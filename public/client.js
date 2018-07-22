@@ -140,7 +140,7 @@ function initMap() {
 			if (radarFrame >= 5) {
 				radarFrame = 0;
 			} 
-		}, 400);
+		}, 5000);
 	}
 
 	function updateRadar(){
