@@ -146,8 +146,9 @@ function initMap() {
 			index--;
 			if (index < 0) {
 				index = map.overlayMapTypes.getLength() - 1;
+			} else {
+				map.overlayMapTypes.getAt(index).setOpacity(0.60);
 			}
-			map.overlayMapTypes.getAt(index).setOpacity(0.60);
 		}, 400);
 
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
