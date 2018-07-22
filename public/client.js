@@ -124,7 +124,7 @@ function initMap() {
 
 	function updateRadar() {
 		
-		for (var i; i <= map.overlayMapTypes.getLength() - 1; i--) {
+		for (var i; i <= map.overlayMapTypes.getLength() - 1; i++) {
 			map.overlayMapTypes.getAt(i).setMap(null);
 		}
 
