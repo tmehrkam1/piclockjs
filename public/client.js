@@ -140,9 +140,8 @@ function initMap() {
 		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("1",tileNEX);
 		
-		var index = 4;
+		var index = map.overlayMapTypes.getLength() - 1;
 		timerId = window.setInterval(function () {
-			console.log(index);
 			map.overlayMapTypes.getAt(index).setOpacity(0.00);
 
 			index--;
