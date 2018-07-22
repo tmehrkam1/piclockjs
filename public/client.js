@@ -127,12 +127,17 @@ function initMap() {
 
 	function animateRadar() {
 		timerId = window.setInterval(function () {
-			map.overlayMapTypes.getAt(radarFrame).setOpacity(0.00)
-			if (radarFrame < map.overlayMapTypes.getLength()) {
-				map.overlyMapTypes.getAt(radarFrame).setOpacity(.6);
-				radarFrame++;
-			} else {
-				radarFrame = 0;
+			for (var i;i < map.overlayMapTypes.getLength();i++) {
+				if (i == radarFrame) {
+					map.overlayMapTypes.getAt(i).setOpacity(.6);
+					radarFrame++;
+				} else {
+					map.overlayMapTypes.getAt(i).setOpacity(0);
+				}
+				
+				if (radarFrame >= map.overlayMapTypes.getLength()) {
+					radarFrame = 0;
+				}
 			}
 		}, 400);
 
