@@ -128,7 +128,7 @@ function initMap() {
 	function animateRadar() {
 		timerId = window.setInterval(function () {
 			console.log("update radar frame " + radarFrame);
-			for (i = 0;i < map.overlayMapTypes.getLength();i++) {
+			for (i = 0;i < map.overlayMapTypes.getLength() - 1;i++) {
 				if (i == radarFrame) {
 					console.log("show " + i);
 					map.overlayMapTypes.getAt(i).setOpacity(.6);
