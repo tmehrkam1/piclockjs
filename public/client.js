@@ -147,28 +147,17 @@ function initMap() {
 	function updateRadar(){
 		clearInterval(timerId);
 
-		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("4",tileNEX);
-		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("3",tileNEX5);
-		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("2",tileNEX10);
-		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("1",tileNEX15);
-		map.overlayMapTypes.push(null); // create empty overlay entry
 		map.overlayMapTypes.setAt("0",tileNEX20);
 
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("5",tilePrecip);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("4",tileNEX);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("3",tileNEX5);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("2",tileNEX10);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("1",tileNEX15);
-		mapLocal.overlayMapTypes.push(null); // create empty overlay entry
 		mapLocal.overlayMapTypes.setAt("0",tileNEX20);
 		
 		animateRadar();
