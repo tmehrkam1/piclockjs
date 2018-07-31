@@ -6,7 +6,7 @@
   "bugs": {
     "url": "https://github.com/merky1/PiClock/issues"
   },
-  "license": "ISC",
+  "license": "MIT",
   "main": "PiClockJS.js",
   "repository": {
     "type": "git",
