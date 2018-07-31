@@ -262,6 +262,7 @@ function parseOW(observation){
 	}
 	
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
+	logger.info("pressure direction : " + cur.pressureTrend + " on array : " + pressureTrend.toString());
 }
 
 function parseMoonPhase(observation) {
