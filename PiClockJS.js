@@ -8,6 +8,7 @@ var fs = require("fs");
 var path = require('path');
 var d2d = require('degrees-to-direction')
 var util = require('util');
+var trend = require('trend');
 var getPromise = util.promisify(request.get);
 
 //Read settings
@@ -75,6 +76,7 @@ process.on('unhandledRejection', (reason, p) => {
 var cur={};
 var forecasts = {};
 var alerts = {};
+var pressureTrend = [];
 
 cur.dt=0;
 
@@ -253,6 +255,13 @@ function parseOW(observation){
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 	cur.dt = observation.dt;
+	
+	pressureTrend.push(cur.pressure);
+	if (presureTrend > 15) {
+		pressureTrend.shift;
+	}
+	
+	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
 }
 
 function parseMoonPhase(observation) {
