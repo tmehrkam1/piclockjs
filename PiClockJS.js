@@ -123,8 +123,12 @@ setInterval(function() {
 //update forecast every 6 hrs
 setInterval(function() {
 	getWgovGridP();
-	moonPhase();
 }, settings.forecastInterval * 1000);
+
+//update moon phase every 12 hrs
+setInterval(function(){
+	moonPhase();
+}, 43200000);
 
 //fire up the electron broswer.
 const {app, BrowserWindow} = require('electron')
