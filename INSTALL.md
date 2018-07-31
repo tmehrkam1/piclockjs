@@ -11,9 +11,11 @@ npm install
 
 (https://www.raspberrypi.org/forums/viewtopic.php?t=42888)  
 
-vi .xinitrc  
+vi .xinitrc 
+``` 
   #!/bin/sh  
   xset s off  
   xset -dpms  
   xset s noblank  
-  exec /home/pi/kiosk.sh  
+  exec /home/pi/kiosk.sh
+```  
