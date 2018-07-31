@@ -224,11 +224,19 @@ function updateCur() {
 			minute : '2-digit',
 			hour12 : 'true'
 		});
+		
+		if (data.pressureTrend == 1 || data.pressureTrend == null) {
+			presTrendIcon = "0";
+		} else if (data.pressureTrend < 1) {
+			presTrendIcon = "-";
+		} else {
+			presTrendIcon = "+";
+		}
 		document.getElementById("curIcon").src = data.curIcon;
 		document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
 		document.getElementById("curTemp").innerHTML = data.tempF + ' &deg;F';
 		document.getElementById("curDesc").innerHTML = data.curDesc;
-		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar';
+		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
 		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 		updateBackground(data.tempF.toString());
