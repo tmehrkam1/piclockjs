@@ -226,11 +226,11 @@ function updateCur() {
 		});
 		
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
-			presTrendIcon = "0";
+			presTrendIcon = "<i class="fas fa-circle"></i>";
 		} else if (data.pressureTrend < 1) {
-			presTrendIcon = "-";
+			presTrendIcon = "<i class="fas fa-chevron-circle-down"></i>";
 		} else {
-			presTrendIcon = "+";
+			presTrendIcon = "<i class="fas fa-chevron-circle-up"></i>";
 		}
 		document.getElementById("curIcon").src = data.curIcon;
 		document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
