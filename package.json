@@ -2,15 +2,15 @@
   "name": "piclock",
   "version": "1.0.0",
   "description": "A Fancy Clock built around a monitor and a Raspberry Pi",
-  "homepage": "https://github.com/ScottChapman/PiClock#readme",
+  "homepage": "https://github.com/merky1/PiClock#readme",
   "bugs": {
-    "url": "https://github.com/ScottChapman/PiClock/issues"
+    "url": "https://github.com/merky1/PiClock/issues"
   },
   "license": "ISC",
   "main": "PiClockJS.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ScottChapman/PiClock.git"
+    "url": "git+https://github.com/merky1/PiClock.git"
   },
   "scripts": {
     "start": "electron ."
