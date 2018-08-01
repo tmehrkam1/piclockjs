@@ -293,9 +293,15 @@ function parseWgAlert(data) {
 	var array = [];
 	for (var i =0; i < data.features.length; i++) {
 		var alert ={};
+		
+		if (data.features[i].properties.event == "Special Weather Statement") {
+			alert.headline = data.features[i].properties.parameters.NWSheadline[0];
+		} else {
+			alert.headline = data.features[i].properties.headline;
+		}
 		alert.areaDesc = data.features[i].properties.areaDesc;
 		alert.severity = data.features[i].properties.severity;
-		alert.headline = data.features[i].properties.headline;
+		
 		alert.description - data.features[i].properties.description;
 		array.push(alert);
 	}
