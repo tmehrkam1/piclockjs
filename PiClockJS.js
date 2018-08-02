@@ -262,7 +262,7 @@ function parseOW(observation){
 	
 	pressureTrend.push(cur.pressure);
 	if (pressureTrend.length > 15) {
-		pressureTrend.shift;
+		pressureTrend.shift();
 	}
 	
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
