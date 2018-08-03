@@ -261,12 +261,14 @@ function parseOW(observation){
 	cur.dt = observation.dt;
 	
 	pressureTrend.push(cur.pressure);
+	
 	if (pressureTrend.length > 15) {
+		logger.info("shift array at length  " + pressureTrend.length)
 		pressureTrend.shift();
 	}
 	
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
-	logger.info("pressure direction : " + cur.pressureTrend + " on array : " + pressureTrend.toString());
+	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend + " on array : " + pressureTrend.toString());
 }
 
 function parseMoonPhase(observation) {
