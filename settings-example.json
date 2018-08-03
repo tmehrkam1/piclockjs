@@ -8,5 +8,6 @@
   "forecastInterval": 21600,
   "clock":"digital",
   "backgroundImg":"",
-  "imgFontColor":""
+  "imgFontColor":"",
+  "mode":"local"
 }
