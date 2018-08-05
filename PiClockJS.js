@@ -80,70 +80,84 @@ var pressureTrend = [];
 
 cur.dt=0;
 
-currentOwObs();
-moonPhase();
-getWgovGridP();
-wgAlerts();
-
-appl.get("/current", (req,res) => {
-	res.status(200).json(cur);
-});
-
-appl.get("/forecast", (req,res) => {
-	res.status(200).json(forecasts);
-});
-
-appl.get("/alerts", (req,res) => {
-	res.status(200).json(alerts);
-});
-
-appl.get("/coords", (req,res) => {
-	res.status(200).json({
-		lat: settings.lat,
-		lon: settings.lon,
-		clock: settings.clock,
-		gMapKey: settings.gMapKey,
-		backgroundImg : settings.backgroundImg,
-		imgFontColor : settings.imgFontColor
-	})
-});
-
-appl.get('/', (req,res) => {
-	res.sendFile(__dirname + '/public/index.html');
-})
-
-appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
-
-//update current observations every 2 min
-setInterval(function() {
+if (settings.mode == "local" || settings.mode == "server") {
+	//start server backend
+	
 	currentOwObs();
-	wgAlerts();
-}, settings.currentConditionsInterval * 1000);
-
-//update forecast every 6 hrs
-setInterval(function() {
-	getWgovGridP();
-}, settings.forecastInterval * 1000);
-
-//update moon phase every 12 hrs
-setInterval(function(){
 	moonPhase();
-}, 43200000);
+	getWgovGridP();
+	wgAlerts();
+	
+	appl.get("/current", (req,res) => {
+		res.status(200).json(cur);
+	});
 
-//fire up the electron broswer.
-const {app, BrowserWindow} = require('electron')
+	appl.get("/forecast", (req,res) => {
+		res.status(200).json(forecasts);
+	});
 
+	appl.get("/alerts", (req,res) => {
+		res.status(200).json(alerts);
+	});
 
-function createWindow () {
-  // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600, frame: false})
+	appl.get("/coords", (req,res) => {
+		res.status(200).json({
+			lat: settings.lat,
+			lon: settings.lon,
+			clock: settings.clock,
+			gMapKey: settings.gMapKey,
+			backgroundImg : settings.backgroundImg,
+			imgFontColor : settings.imgFontColor
+		})
+	});
 
-  // and load the index.html of the app.
-  win.loadURL('http://127.0.0.1:8081')
-  win.maximize()
+	appl.get('/', (req,res) => {
+		res.sendFile(__dirname + '/public/index.html');
+	})
+
+	appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
+
+	//update current observations every 2 min
+	setInterval(function() {
+		currentOwObs();
+		wgAlerts();
+	}, settings.currentConditionsInterval * 1000);
+
+	//update forecast every 6 hrs
+	setInterval(function() {
+		getWgovGridP();
+	}, settings.forecastInterval * 1000);
+
+	//update moon phase every 12 hrs
+	setInterval(function(){
+		moonPhase();
+	}, 43200000);
+	
 }
 
-app.on('ready', createWindow)
+if (settings.mode =="local") {
+	settings.servIP = "http://127.0.0.1:8081"
+}
+
+if (settings.mode == "local" || settings.mode == "client") {
+	
+	//fire up the electron broswer.
+	const {app, BrowserWindow} = require('electron')
+
+
+	function createWindow () {
+	  // Create the browser window.
+	  win = new BrowserWindow({width: 800, height: 600, frame: false})
+
+	  // and load the index.html of the app.
+	  win.loadURL(settings.servIP)
+	  win.maximize()
+	}
+
+	app.on('ready', createWindow)	
+}
+
+
 
 
 async function currentOwObs(){
@@ -268,7 +282,7 @@ function parseOW(observation){
 	}
 	
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
-	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend + " on array : " + pressureTrend.toString());
+	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
 }
 
 function parseMoonPhase(observation) {
