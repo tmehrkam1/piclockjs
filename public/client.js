@@ -363,6 +363,9 @@ function toggleNight(){
 	var mainDiv = document.getElementById("main");
 	var radarDiv = document.getElementById("rdrStack");
 	var iconDiv = document.getElementById("curIcon");
+	var col3Div = document.getElementById("col_3");
+	var col2Div = document.getElementById("col_2");
+	var timeDiv = document.getElementById("time");
 
 	if (nightMode == true) {
 		nightMode = false;
@@ -379,12 +382,10 @@ function toggleNight(){
 
 		radarDiv.style.opacity = '1';
 		iconDiv.style.opacity = '1';
+		col3Div.style.visibility = "";
+		col2Div.style.width = "48vw";
+		timeDiv.style.fontSize  = "15vh";
 
-		var y = mainDiv.getElementsByClassName("forecastImage");
-
-		for (var i = 0; i < y.length; i++) {
-			y[i].style.opacity = "1";
-		} 
 
 	} else {
 		nightMode = true;
@@ -393,14 +394,11 @@ function toggleNight(){
 		mainDiv.style.backgroundImage ='';
 		mainDiv.style.color = 'darkgray';
 
-		radarDiv.style.opacity ='.5';
+		radarDiv.style.opacity ='.2';
 		iconDiv.style.opacity = '.5';
-
-		var y = mainDiv.getElementsByClassName("forecastImage");
-
-		for (var i = 0; i < y.length; i++) {
-			y[i].style.opacity = ".5";
-		} 
+		col3Div.style.visibility = "hidden";
+		col2Div.style.width = "79vw";
+		timeDiv.style.fontSize  = "27vh";
 	}
 
 }
