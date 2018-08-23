@@ -7,11 +7,11 @@ var nightMode;
 var backgroundImg;
 var imgFontColor;
 
-updateCoords();  //grab map coords from backend.
+updateCoords();  // grab map coords from backend.
 
 function updateCoords() {
 	url="coords";
-	var xhr = new XMLHttpRequest();  //need a sync call to initialize Maps
+	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
@@ -23,7 +23,7 @@ function updateCoords() {
 	imgFontColor = obj.imgFontColor;
 }
 
-//used to load the script and variablize the mapkey
+// used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
@@ -122,7 +122,7 @@ function initMap() {
 	var radarFrame = 0;
 	var timerId;
 	updateRadar();
-	setInterval(updateRadar, 300000);  //update radar loop every 5 minutes
+	setInterval(updateRadar, 300000);  // update radar loop every 5 minutes
 
 
 	function animateRadar() {
@@ -176,18 +176,21 @@ updateCur();
 updateForecast();
 updateAlerts();
 
-if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the clock every second
-setInterval(updateCur, 10000); // every ten seconds update current conditions from cache
-setInterval(updateForecast, 600000) //update the forecast every 10 min
-setInterval(updateAlerts,60000);  //update alerts every minute
+if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the
+																// clock every
+																// second
+setInterval(updateCur, 10000); // every ten seconds update current conditions
+								// from cache
+setInterval(updateForecast, 600000) // update the forecast every 10 min
+setInterval(updateAlerts,60000);  // update alerts every minute
 
 function updateClock() {
-	//update date string
+	// update date string
 	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 	var date = new Intl.DateTimeFormat('en-us',options).format(timeStamp);
 	document.getElementById("date").textContent = date;
 
-	//depending on analog vs digital, update clock
+	// depending on analog vs digital, update clock
 	if (clockType=="digital") {
 		var timeStamp = new Date();
 		var time = new Date().toLocaleTimeString("en-us", {
@@ -197,7 +200,8 @@ function updateClock() {
 		});
 		document.getElementById("time").textContent = time;
 	} else {
-		//insert analog script here.  Thinking I might move that off of index.html for sanity
+		// insert analog script here. Thinking I might move that off of
+		// index.html for sanity
 		var clock = document.createElement('iframe');
 		clock.src = "clock.html";
 		clock.setAttribute("id","analogClock");
@@ -249,20 +253,21 @@ function updateCur() {
 }
 
 function updateForecast() {
-	//setup a container for the entire forcast contents
+	// setup a container for the entire forcast contents
 	var content = document.createElement("div");
 
 	url="forecast";
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
+		if (typeof data !=="undefined") {
 		for (var i=0;i < data.list.length;i++) {		
-			//create a container for the forecast
+			// create a container for the forecast
 			var forecastBlock = document.createElement("div");
 			forecastBlock.setAttribute("class","forecastBlock");
 			forecastBlock.setAttribute("id","block"+i);
 
-			//create the image container
+			// create the image container
 			var forecastImage = document.createElement("div");
 			forecastImage.setAttribute("class","forecastImage");
 			forecastImage.setAttribute("id","imgDiv"+i);
@@ -270,31 +275,32 @@ function updateForecast() {
 				forecastImage.style.opacity = '.5';
 			}
 
-			//create the text container
+			// create the text container
 			var forecastText = document.createElement("div");
 			forecastText.setAttribute("class","forecastText");
 			forecastText.setAttribute("id","forecast"+i);
 
-			//populate the forecast icon with the image
+			// populate the forecast icon with the image
 			var image = document.createElement("img");
 			image.setAttribute("src",data.list[i].icon);
 			image.setAttribute("style","height:100%;");
 
-			//populate the forecast text
+			// populate the forecast text
 			forecastText.innerHTML=data.list[i].name + '<br />' + data.list[i].temp + '<br />' + data.list[i].short;
 
-			//put the image in the div
+			// put the image in the div
 			forecastImage.appendChild(image);
 
-			//put the image + text into the block
+			// put the image + text into the block
 			forecastBlock.appendChild(forecastImage);
 			forecastBlock.appendChild(forecastText);
 
-			//put the block into the parent div
+			// put the block into the parent div
 			content.appendChild(forecastBlock);
+		}
 
 		};
-		//put populated block into the column	
+		// put populated block into the column
 		document.getElementById("col_3").innerHTML = "";
 		document.getElementById("col_3").appendChild(content);
 	})
@@ -313,15 +319,15 @@ function updateAlerts(){
 	.then((resp) => resp.json())
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
-			//create a container for the forecast
+			// create a container for the forecast
 			var alertBlock = document.createElement("div");
 			alertBlock.setAttribute("class","alertBlock");
 			alertBlock.setAttribute("id","alert"+i);
 
-			//populate the forecast text
+			// populate the forecast text
 			alertBlock.innerHTML=data.features[i].headline;
 
-			//put the block into the parent div
+			// put the block into the parent div
 			alertDiv.appendChild(alertBlock);				
 		};
 
@@ -330,7 +336,7 @@ function updateAlerts(){
 		alert(error);
 	});
 }
-//change background color based on temp
+// change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#00A4E8";
