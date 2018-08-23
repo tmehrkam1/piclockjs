@@ -260,7 +260,9 @@ function updateForecast() {
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
-		if (typeof data !=="undefined") {
+		if (typeof data ==="undefined") {
+			data = [];
+		}
 		for (var i=0;i < data.list.length;i++) {		
 			// create a container for the forecast
 			var forecastBlock = document.createElement("div");
@@ -297,7 +299,6 @@ function updateForecast() {
 
 			// put the block into the parent div
 			content.appendChild(forecastBlock);
-		}
 
 		};
 		// put populated block into the column
