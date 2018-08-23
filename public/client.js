@@ -260,8 +260,8 @@ function updateForecast() {
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
-		if (typeof data ==="undefined") {
-			data = [];
+		if (typeof data.list ==="undefined") {
+			data.list = [];
 		}
 		for (var i=0;i < data.list.length;i++) {		
 			// create a container for the forecast
