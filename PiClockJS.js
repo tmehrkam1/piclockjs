@@ -268,7 +268,7 @@ function parseOW(observation){
 	cur.humidity = observation.main.humidity;
 	cur.windSpeed = observation.wind.speed;
 	cur.windDir = d2d(observation.wind.deg);
-	cur.curIcon = 'http://openweathermap.org/img/w/'+observation.weather[0].icon+'.png';
+	cur.curIcon = '<i class="wi wi-owm-' + observation.weather[0].id +'"></i>';
 	cur.curDesc = observation.weather[0].main;
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();

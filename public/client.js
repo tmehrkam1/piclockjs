@@ -232,7 +232,7 @@ function updateCur() {
 		} else {
 			presTrendIcon = '<i class="fas fa-chevron-circle-up"></i>';
 		}
-		document.getElementById("curIcon").src = data.curIcon;
+		document.getElementById("curIcon").innerHTML = data.curIcon;
 		document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
 		document.getElementById("curTemp").innerHTML = data.tempF + ' &deg;F';
 		document.getElementById("curDesc").innerHTML = data.curDesc;
