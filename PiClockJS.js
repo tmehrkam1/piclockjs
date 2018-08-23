@@ -237,10 +237,10 @@ async function wgAlerts(){
 }
 
 function parseOW(observation){
-	
+	var now = new Date();
+		
 	if (observation.dt <= cur.dt)
 	{
-		var now = new Date();
 		var update = new Date(0);
 		var current = new Date(0);
 		
@@ -260,15 +260,22 @@ function parseOW(observation){
 	var sunriseEpoch = new Date(0);
 	var sunsetEpoch = new Date(0);
 
+
+	
 	sunriseEpoch.setUTCSeconds(observation.sys.sunrise);
 	sunsetEpoch.setUTCSeconds(observation.sys.sunset);
 
+	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
+		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
+	} else {
+		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
+	}
+	
 	cur.tempF = observation.main.temp;
 	cur.pressure = observation.main.pressure;
 	cur.humidity = observation.main.humidity;
 	cur.windSpeed = observation.wind.speed;
 	cur.windDir = d2d(observation.wind.deg);
-	cur.curIcon = '<i class="wi wi-owm-' + observation.weather[0].id +'"></i>';
 	cur.curDesc = observation.weather[0].main;
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
