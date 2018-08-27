@@ -93,9 +93,14 @@ if (settings.mode == "local" || settings.mode == "server") {
 	appl.get("/togglenight",(req,res) => {
 		if (nightMode = false) {
 			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
+			nightMode = true;
+			res.status(200);
 		} else {
 			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
+			nightMode = false;
+			res.status(200);
 		}
+		logger.info("toggle night mode : "+ nightMode);
 	});
 	
 	
