@@ -1,6 +1,5 @@
 /**
- * replacement for piclock using node and html
- * tmehrkam@gmail.com
+ * replacement for piclock using node and html tmehrkam@gmail.com
  */
 var http = require('http');
 var request = require('request');
@@ -32,7 +31,8 @@ const logger = winston.createLogger({
 	level: NODE_ENV === "production" ? 'warn' : 'info',
 			transports: [
 				//
-				// - Write to all logs with level `info` and below to `PiClock.log`
+				// - Write to all logs with level `info` and below to
+				// `PiClock.log`
 				//
 				new winston.transports.File({
 					format: winston.format.combine(
@@ -83,29 +83,30 @@ var nightMode = false;
 cur.dt=0;
 
 if (settings.mode == "local" || settings.mode == "server") {
-	//start server backend
-	
+	// start server backend
+
 	currentOwObs();
 	moonPhase();
 	getWgovGridP();
 	wgAlerts();
-	
-	appl.get("/togglenight",(req,res) => {
-		if (nightMode == false || req.ip == '::ffff:127.0.0.1') {
-			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
-			nightMode = true;
-			res.status(200);
-			logger.info(req.ip + " toggle night mode : "+ nightMode);
-		} else if (req.ip == '::ffff:127.0.0.1') {
+
+	appl.get("/day",(req,res) => {
+		if (req.ip == '::ffff:127.0.0.1') {
 			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
 			nightMode = false;
 			res.status(200);
 			logger.info(req.ip + " toggle day mode : "+ nightMode);
-		}
-		
+		};
 	});
-	
-	
+
+	appl.get("/night", (req,res) => {
+		if (req.ip == '::ffff:127.0.0.1') {
+			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
+			nightMode = true;
+			res.status(200);
+			logger.info(req.ip + " toggle night mode : "+ nightMode);
+		}
+	})
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
 	});
@@ -135,22 +136,22 @@ if (settings.mode == "local" || settings.mode == "server") {
 
 	appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
 
-	//update current observations every 2 min
+	// update current observations every 2 min
 	setInterval(function() {
 		currentOwObs();
 		wgAlerts();
 	}, settings.currentConditionsInterval * 1000);
 
-	//update forecast every 6 hrs
+	// update forecast every 6 hrs
 	setInterval(function() {
 		getWgovGridP();
 	}, settings.forecastInterval * 1000);
 
-	//update moon phase every 12 hrs
+	// update moon phase every 12 hrs
 	setInterval(function(){
 		moonPhase();
 	}, 43200000);
-	
+
 }
 
 if (settings.mode =="local") {
@@ -158,18 +159,18 @@ if (settings.mode =="local") {
 }
 
 if (settings.mode == "local" || settings.mode == "client") {
-	
-	//fire up the electron broswer.
+
+	// fire up the electron broswer.
 	const {app, BrowserWindow} = require('electron')
 
 
 	function createWindow () {
-	  // Create the browser window.
-	  win = new BrowserWindow({width: 800, height: 600, frame: false})
+		// Create the browser window.
+		win = new BrowserWindow({width: 800, height: 600, frame: false})
 
-	  // and load the index.html of the app.
-	  win.loadURL(settings.servIP)
-	  win.maximize()
+		// and load the index.html of the app.
+		win.loadURL(settings.servIP)
+		win.maximize()
 	}
 
 	app.on('ready', createWindow)	
@@ -191,7 +192,7 @@ async function currentOwObs(){
 }
 
 async function moonPhase () {
-	//fugly date mangling
+	// fugly date mangling
 	var url = 'http://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
 	logger.info(url);
 	try {
@@ -256,21 +257,21 @@ async function wgAlerts(){
 
 function parseOW(observation){
 	var now = new Date();
-		
+
 	if (observation.dt <= cur.dt)
 	{
 		var update = new Date(0);
 		var current = new Date(0);
-		
+
 		update.setUTCSeconds(observation.dt);
 		current.setUTCSeconds(cur.dt);
-		
-		var diffMs = (now - update); //diff in MS
+
+		var diffMs = (now - update); // diff in MS
 		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-		
+
 		var diffCur = (current - update);
 		var diffCurMins = (diffCur / 1000 / 60);
-		
+
 		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
@@ -279,7 +280,7 @@ function parseOW(observation){
 	var sunsetEpoch = new Date(0);
 
 
-	
+
 	sunriseEpoch.setUTCSeconds(observation.sys.sunrise);
 	sunsetEpoch.setUTCSeconds(observation.sys.sunset);
 
@@ -288,7 +289,7 @@ function parseOW(observation){
 	} else {
 		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
 	}
-	
+
 	cur.tempF = observation.main.temp;
 	cur.pressure = observation.main.pressure;
 	cur.humidity = observation.main.humidity;
@@ -298,14 +299,14 @@ function parseOW(observation){
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 	cur.dt = observation.dt;
-	
+
 	pressureTrend.push(cur.pressure);
-	
+
 	if (pressureTrend.length > 15) {
 		logger.info("shift array at length  " + pressureTrend.length)
 		pressureTrend.shift();
 	}
-	
+
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
 	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
 }
@@ -313,14 +314,15 @@ function parseOW(observation){
 function parseMoonPhase(observation) {
 	cur.moonPhase = observation.closestphase.phase;
 	if (typeof observation.curphase != "undefined") {
-		cur.moonPhase = observation.curphase;  //use more accurate phase string
+		cur.moonPhase = observation.curphase;  // use more accurate phase
+		// string
 	}
 }
 
 function parseWgForecast(data) {
 	var array = []
 	for (var i =0; i < 9; i++) {
-		var forecast ={};  //temp object to build json
+		var forecast ={};  // temp object to build json
 		forecast.name = data.properties.periods[i].name;
 		forecast.temp = data.properties.periods[i].temperature;
 		forecast.short = data.properties.periods[i].shortForecast;
@@ -334,7 +336,7 @@ function parseWgAlert(data) {
 	var array = [];
 	for (var i =0; i < data.features.length; i++) {
 		var alert ={};
-		
+
 		if (data.features[i].properties.event == "Special Weather Statement") {
 			alert.headline = data.features[i].properties.parameters.NWSheadline[0];
 		} else {
@@ -342,7 +344,7 @@ function parseWgAlert(data) {
 		}
 		alert.areaDesc = data.features[i].properties.areaDesc;
 		alert.severity = data.features[i].properties.severity;
-		
+
 		alert.description - data.features[i].properties.description;
 		array.push(alert);
 	}
