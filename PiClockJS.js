@@ -10,6 +10,7 @@ var d2d = require('degrees-to-direction')
 var util = require('util');
 var trend = require('trend');
 var getPromise = util.promisify(request.get);
+const { exec } = require('child_process');
 
 //Read settings
 const settings = JSON.parse(fs.readFileSync('./settings.json'))
@@ -77,6 +78,7 @@ var cur={};
 var forecasts = {};
 var alerts = {};
 var pressureTrend = [];
+var nightMode = false;
 
 cur.dt=0;
 
@@ -87,6 +89,15 @@ if (settings.mode == "local" || settings.mode == "server") {
 	moonPhase();
 	getWgovGridP();
 	wgAlerts();
+	
+	appl.get("/togglenight",(req,res) => {
+		if (nightMode = false) {
+			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
+		} else {
+			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
+		}
+	});
+	
 	
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
