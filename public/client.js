@@ -404,7 +404,7 @@ function toggleNight(){
 		mainDiv.style.backgroundImage ='';
 		mainDiv.style.color = 'darkgray';
 
-		radarDiv.style.opacity ='.2';
+		radarDiv.style.opacity ='.5';
 		iconDiv.style.opacity = '.5';
 		col3Div.style.visibility = "hidden";
 		col2Div.style.width = "79vw";
