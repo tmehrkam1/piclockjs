@@ -94,18 +94,18 @@ if (settings.mode == "local" || settings.mode == "server") {
 		if (req.ip == '::ffff:127.0.0.1') {
 			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
 			nightMode = false;
-			res.status(200);
 			logger.info(req.ip + " toggle day mode : "+ nightMode);
 		};
+		res.status(200);
 	});
 
 	appl.get("/night", (req,res) => {
 		if (req.ip == '::ffff:127.0.0.1') {
 			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
 			nightMode = true;
-			res.status(200);
 			logger.info(req.ip + " toggle night mode : "+ nightMode);
 		}
+		res.status(200);
 	})
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
