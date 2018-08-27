@@ -411,7 +411,9 @@ function toggleNight(){
 		timeDiv.style.fontSize  = "27vh";
 		
 		url="night";
-		fetch(url);
+	    var xhttp = new XMLHttpRequest();
+	    xhttp.open("GET", url, true);
+	    xhttp.send();
 	}
 
 }
