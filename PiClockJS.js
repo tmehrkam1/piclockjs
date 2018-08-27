@@ -100,7 +100,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
 			nightMode = false;
 			res.status(200);
-			logger.info(req.ip + " toggle night mode : "+ nightMode);
+			logger.info(req.ip + " toggle day mode : "+ nightMode);
 		}
 		
 	});
