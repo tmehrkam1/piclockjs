@@ -392,6 +392,9 @@ function toggleNight(){
 		col3Div.style.visibility = "";
 		col2Div.style.width = "48vw";
 		timeDiv.style.fontSize  = "15vh";
+		
+		url="togglenight";
+		fetch(url);
 
 
 	} else {
@@ -406,6 +409,9 @@ function toggleNight(){
 		col3Div.style.visibility = "hidden";
 		col2Div.style.width = "79vw";
 		timeDiv.style.fontSize  = "27vh";
+		
+		url="togglenight";
+		fetch(url);
 	}
 
 }
