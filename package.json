@@ -19,6 +19,7 @@
     "degrees-to-direction": "^1.1.1",
     "electron": "^2.0.4",
     "express": "^4.16.3",
+    "geo-tz": "^4.0.1",
     "npm": "^6.2.0",
     "request": "^2.87.0",
     "trend": "^0.3.0",
