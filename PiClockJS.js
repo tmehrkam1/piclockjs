@@ -9,6 +9,7 @@ var d2d = require('degrees-to-direction')
 var util = require('util');
 var trend = require('trend');
 var getPromise = util.promisify(request.get);
+var DOMParser = require('xmldom').DOMParser;
 const { exec } = require('child_process');
 
 //Read settings
