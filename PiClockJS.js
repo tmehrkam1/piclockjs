@@ -79,6 +79,7 @@ var forecasts = {};
 var alerts = {};
 var pressureTrend = [];
 var nightMode = false;
+var wgovObsSta;
 
 cur.dt=0;
 
@@ -218,6 +219,22 @@ async function getWgovGridP(){
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		wgForecast(body.properties.forecast);
+		wgovObsSta = body.observationStations;
+	}
+	catch(e) {
+		logger.error(e)
+	}
+}
+
+async function getWgovObs(){
+	try {
+		var { body } = await getPromise({
+			url: wgovObsSta,
+			json: true,
+			headers: {'User-Agent': 'piclockjs'}
+		});
+		var stationId = body.features[0].properties.stationIdentifier;
+		logger.info(stationId);
 	}
 	catch(e) {
 		logger.error(e)
