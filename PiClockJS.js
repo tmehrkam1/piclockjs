@@ -275,6 +275,8 @@ async function wgAlerts(){
 async function wgCurrent(staId) {
 	var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
 	logger.info(url);
+	cur.heatIndex = null;
+	
 	try {
 		var { body } = await getPromise({
 			url: url,
@@ -288,8 +290,6 @@ async function wgCurrent(staId) {
 		var y = x.childNodes[0];
 			logger.info("heat index : " + y.nodeValue);
 			cur.heatIndex = y.nodeValue;
-		} else {
-			cur.heatIndex = null;
 		}
 		
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
