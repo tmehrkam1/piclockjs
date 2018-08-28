@@ -22,7 +22,8 @@
     "npm": "^6.2.0",
     "request": "^2.87.0",
     "trend": "^0.3.0",
-    "winston": "^3.0.0"
+    "winston": "^3.0.0",
+    "xmldom": "^0.1.27"
   },
   "devDependencies": {},
   "author": ""
