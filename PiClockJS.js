@@ -272,7 +272,7 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
-	var url = "view-source:https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
+	var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
 	logger.info(url);
 	try {
 		var { body } = await getPromise({
