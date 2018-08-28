@@ -6,6 +6,7 @@ var clockType;
 var nightMode;
 var backgroundImg;
 var imgFontColor;
+var tz;
 
 updateCoords();  // grab map coords from backend.
 
@@ -21,7 +22,7 @@ function updateCoords() {
 	clockType = obj.clock;
 	backgroundImg = obj.backgroundImg;
 	imgFontColor = obj.imgFontColor;
-	moment.tz.setDefault(obj.tz);;
+	tz = obj.tz;
 }
 
 //used to load the script and variablize the mapkey
@@ -187,7 +188,7 @@ setInterval(updateAlerts,60000);  // update alerts every minute
 
 function updateClock() {
 	// update date string
-	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+	var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: tz };
 	var date = new Intl.DateTimeFormat('en-us',options).format(timeStamp);
 	document.getElementById("date").textContent = date;
 
