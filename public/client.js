@@ -23,7 +23,7 @@ function updateCoords() {
 	imgFontColor = obj.imgFontColor;
 }
 
-// used to load the script and variablize the mapkey
+//used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
@@ -159,7 +159,7 @@ function initMap() {
 		mapLocal.overlayMapTypes.setAt("2",tileNEX10);
 		mapLocal.overlayMapTypes.setAt("1",tileNEX15);
 		mapLocal.overlayMapTypes.setAt("0",tileNEX20);
-		
+
 		animateRadar();
 	}
 }
@@ -177,10 +177,10 @@ updateForecast();
 updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the
-																// clock every
-																// second
+// clock every
+// second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
-								// from cache
+// from cache
 setInterval(updateForecast, 600000) // update the forecast every 10 min
 setInterval(updateAlerts,60000);  // update alerts every minute
 
@@ -228,7 +228,7 @@ function updateCur() {
 			minute : '2-digit',
 			hour12 : 'true'
 		});
-		
+
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
 			presTrendIcon = '<i class="fas fa-circle"></i>';
 		} else if (data.pressureTrend < 1) {
@@ -242,10 +242,14 @@ function updateCur() {
 		document.getElementById("curDesc").innerHTML = data.curDesc;
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
-		document.getElementById("curFeels").innerHTML = 'Feels like ' + data.heatIndex + ' &deg;F';
 		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 		updateBackground(data.tempF.toString());
 
+		if (data.heatIndex != null) {
+			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.heatIndex + ' &deg;F';
+		} else {
+			document.getElementById("curFeels").innerHTML = null;
+		}
 
 	})
 	.catch(function(error){
@@ -338,7 +342,7 @@ function updateAlerts(){
 		alert(error);
 	});
 }
-// change background color based on temp
+//change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#00A4E8";
@@ -393,11 +397,11 @@ function toggleNight(){
 		col3Div.style.visibility = "";
 		col2Div.style.width = "48vw";
 		timeDiv.style.fontSize  = "15vh";
-		
+
 		url="day";
-	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("GET", url, true);
-	    xhttp.send();
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", url, true);
+		xhttp.send();
 
 
 	} else {
@@ -412,11 +416,11 @@ function toggleNight(){
 		col3Div.style.visibility = "hidden";
 		col2Div.style.width = "79vw";
 		timeDiv.style.fontSize  = "27vh";
-		
+
 		url="night";
-	    var xhttp = new XMLHttpRequest();
-	    xhttp.open("GET", url, true);
-	    xhttp.send();
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", url, true);
+		xhttp.send();
 	}
 
 }
