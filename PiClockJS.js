@@ -300,7 +300,7 @@ async function wgCurrent(staId) {
 		if (update > current) {
 			logger.info("wg update is fresher " + update);
 		} else {
-			logger.info("wg update is older" + current);
+			logger.info("wg update is older " + current);
 		}
 	}
 	catch(e) {
