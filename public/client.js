@@ -198,7 +198,8 @@ function updateClock() {
 		var time = new Date().toLocaleTimeString("en-us", {
 			hour : '2-digit',
 			minute : '2-digit',
-			hour12 : 'true'
+			hour12 : 'true',
+			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
 	} else {
