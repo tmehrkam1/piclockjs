@@ -226,6 +226,7 @@ async function getWgovGridP(){
 }
 
 async function getWgovObs(wgovObsSta){
+	logger.info(wgovObsSta);
 	try {
 		var { body } = await getPromise({
 			url: wgovObsSta,
