@@ -79,7 +79,6 @@ var forecasts = {};
 var alerts = {};
 var pressureTrend = [];
 var nightMode = false;
-var wgovObsSta;
 
 cur.dt=0;
 
@@ -219,14 +218,14 @@ async function getWgovGridP(){
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		wgForecast(body.properties.forecast);
-		wgovObsSta = body.observationStations;
+		getWgovObs(body.observationStations);
 	}
 	catch(e) {
 		logger.error(e)
 	}
 }
 
-async function getWgovObs(){
+async function getWgovObs(wgovObsSta){
 	try {
 		var { body } = await getPromise({
 			url: wgovObsSta,
