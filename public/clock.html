@@ -1,16 +1,16 @@
 <head>
-<link rel = "stylesheet" type = "text/css" href = "css/clock.css" />
+<link rel="stylesheet" type="text/css" href="css/clock.css" />
 </head>
 <article class="clock">
-  <div class="hours-container">
-    <div class="hours"></div>
-  </div>
-  <div class="minutes-container">
-    <div class="minutes"></div>
-  </div>
-  <div class="seconds-container">
-    <div class="seconds"></div>
-  </div>
+	<div class="hours-container">
+		<div class="hours"></div>
+	</div>
+	<div class="minutes-container">
+		<div class="minutes"></div>
+	</div>
+	<div class="seconds-container">
+		<div class="seconds"></div>
+	</div>
 </article>
 <script>
 /*
@@ -21,7 +21,17 @@
  
 function initLocalClocks() {
   // Get the local time using JS
+  url="coords";
+  var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
+  xhr.open("GET",url,false);
+  xhr.send(null);
+  var obj = JSON.parse(xhr.responseText);
+  var tz = obj.tz; 
+	
   var date = new Date;
+  var time = new Date().toLocaleTimeString("en-us", {
+		timeZone : tz
+	});
   var seconds = date.getSeconds();
   var minutes = date.getMinutes();
   var hours = date.getHours();
