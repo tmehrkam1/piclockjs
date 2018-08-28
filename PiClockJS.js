@@ -277,10 +277,11 @@ async function wgCurrent(staId) {
 	try {
 		var { body } = await getPromise({
 			url: url,
-			json: true,
+			json: false,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		logger.info(body);
+		var jsonText = JSON.stringify(xmlToJson(body));
+		logger.info(body.toString());
 	}
 	catch(e) {
 		logger.error(e);
