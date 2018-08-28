@@ -298,9 +298,9 @@ async function wgCurrent(staId) {
 		current.setUTCSeconds(cur.dt);
 		
 		if (update > current) {
-			logger.info("wg update is fresher");
+			logger.info("wg update is fresher " + update);
 		} else {
-			logger.info("wg update is older");
+			logger.info("wg update is older" + current);
 		}
 	}
 	catch(e) {
