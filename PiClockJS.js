@@ -283,7 +283,7 @@ async function wgCurrent(staId) {
 		});
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body,'text/xml');
-		var x = xmlDoc.getElementsByTagName("heat_index_q")[0];
+		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
 			logger.info("heat index : " + y.nodeValue);
