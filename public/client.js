@@ -21,7 +21,7 @@ function updateCoords() {
 	clockType = obj.clock;
 	backgroundImg = obj.backgroundImg;
 	imgFontColor = obj.imgFontColor;
-	moment().tz(obj.tz).format();
+	moment.tz.setDefault(obj.tz);;
 }
 
 //used to load the script and variablize the mapkey
