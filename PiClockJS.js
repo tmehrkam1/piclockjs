@@ -291,7 +291,13 @@ async function wgCurrent(staId) {
 		};
 		
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
-		logger.info("current wg obs time : " + obsTime);
+		var update = new Date(obsTime);
+		
+		if (update > cur.dt) {
+			logger.info("wg update is fresher");
+		} else {
+			logger.info("wg update is older");
+		}
 	}
 	catch(e) {
 		logger.error(e);
