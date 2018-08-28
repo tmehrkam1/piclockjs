@@ -291,9 +291,13 @@ async function wgCurrent(staId) {
 		};
 		
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
+		
 		var update = new Date(obsTime);
 		
-		if (update > cur.dt) {
+		var current = new Date();
+		current.setUTCSeconds(cur.dt);
+		
+		if (update > current) {
 			logger.info("wg update is fresher");
 		} else {
 			logger.info("wg update is older");
