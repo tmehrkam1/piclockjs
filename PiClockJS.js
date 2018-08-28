@@ -10,6 +10,7 @@ var util = require('util');
 var trend = require('trend');
 var getPromise = util.promisify(request.get);
 var DOMParser = require('xmldom').DOMParser;
+var geoTz = require('geo-tz');
 const { exec } = require('child_process');
 
 //Read settings
@@ -121,13 +122,16 @@ if (settings.mode == "local" || settings.mode == "server") {
 	});
 
 	appl.get("/coords", (req,res) => {
+		var tz = geoTz(settings.lat, settings.lon);
+		
 		res.status(200).json({
 			lat: settings.lat,
 			lon: settings.lon,
 			clock: settings.clock,
 			gMapKey: settings.gMapKey,
 			backgroundImg : settings.backgroundImg,
-			imgFontColor : settings.imgFontColor
+			imgFontColor : settings.imgFontColor,
+			tz: tz
 		})
 	});
 
