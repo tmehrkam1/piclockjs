@@ -233,8 +233,7 @@ async function getWgovObs(wgovObsSta){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		var stationId = body.features[0].properties.stationIdentifier;
-		logger.info(stationId);
+		wgCurrent(body.features[0].properties.stationIdentifier);
 	}
 	catch(e) {
 		logger.error(e)
@@ -269,6 +268,22 @@ async function wgAlerts(){
 	}
 	catch(e) {
 		logger.error(e)
+	}
+}
+
+async function wgCurrent(staId) {
+	var url = "view-source:https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
+	logger.info(url);
+	try {
+		var { body } = await getPromise({
+			url: url,
+			json: false,
+			headers: {'User-Agent': 'piclockjs'}
+		});
+		logger.info(body);
+	}
+	catch(e) {
+		logger.error(e);
 	}
 }
 
