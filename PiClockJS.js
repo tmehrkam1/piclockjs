@@ -284,8 +284,8 @@ async function wgCurrent(staId) {
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body,'text/xml');
 		var x = xmlDoc.getElementsByTagName("heat_index_q")[0];
+		if (x) { 
 		var y = x.childNodes[0];
-		if (y.nodeValue){
 			logger.info("heat index : " + y.nodeValue);
 			cur.heatIndex = y.nodeValue;
 		};
