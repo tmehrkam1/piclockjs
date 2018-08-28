@@ -218,7 +218,7 @@ async function getWgovGridP(){
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		wgForecast(body.properties.forecast);
-		getWgovObs(body.observationStations);
+		getWgovObs(body.properties.observationStations);
 	}
 	catch(e) {
 		logger.error(e)
