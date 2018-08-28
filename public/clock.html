@@ -28,8 +28,9 @@ function initLocalClocks() {
   var obj = JSON.parse(xhr.responseText);
   var tz = obj.tz; 
 	
-  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: tz };
-  var date = new Intl.DateTimeFormat('en-us',options);
+  var date = new Date().toLocaleTimeString("en-us", {
+		timeZone : tz
+  });
 	
   var seconds = date.getSeconds();
   var minutes = date.getMinutes();
