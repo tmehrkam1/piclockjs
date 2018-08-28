@@ -294,7 +294,7 @@ async function wgCurrent(staId) {
 		
 		var update = new Date(obsTime);
 		
-		var current = new Date();
+		var current = new Date(0);
 		current.setUTCSeconds(cur.dt);
 		
 		if (update > current) {
