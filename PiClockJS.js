@@ -289,6 +289,9 @@ async function wgCurrent(staId) {
 			logger.info("heat index : " + y.nodeValue);
 			cur.heatIndex = y.nodeValue;
 		};
+		
+		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
+		logger.info("current wg obs time : " + obsTime);
 	}
 	catch(e) {
 		logger.error(e);
