@@ -28,7 +28,7 @@ function initLocalClocks() {
   var obj = JSON.parse(xhr.responseText);
   var tz = obj.tz; 
 	
-  var date = new Date().toLocaleTimeString("en-us", {
+  var date = new Date( {
 		timeZone : tz
   });
 	
