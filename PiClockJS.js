@@ -281,7 +281,7 @@ async function wgCurrent(staId) {
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		parser = new DOMParser();
-		xmlDoc = parser.parseFromString(body,"text/xml");
+		xmlDoc = parser.parseFromString(body);
 		var jsonText = JSON.stringify(xmlToJson(xmlDoc));
 		logger.info(body.toString());
 	}
