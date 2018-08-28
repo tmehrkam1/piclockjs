@@ -284,8 +284,6 @@ async function wgCurrent(staId) {
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body);
 		logger.info(xmlDoc);
-		var jsonText = JSON.stringify(xmlToJson(xmlDoc));
-		logger.info(jsonText.toString());
 	}
 	catch(e) {
 		logger.error(e);
