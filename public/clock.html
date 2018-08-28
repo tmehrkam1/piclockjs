@@ -29,10 +29,12 @@ function initLocalClocks() {
   var tz = obj.tz; 
   console.log(tz);
 	
-  var date = new Date().toLocaleString("en-US", {timeZone: tz});
+  var now = new Date().toLocaleString("en-US", {timeZone: tz});
+  console.log(now);
+  var date = new Date(now);
   console.log(date);
 	
-  //var seconds = date.getSeconds();
+  var seconds = date.getSeconds();
   var minutes = date.getMinutes();
   var hours = date.getHours();
 
