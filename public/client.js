@@ -224,12 +224,14 @@ function updateCur() {
 		var sunrise = new Date(data.sunrise).toLocaleTimeString("en-us",{
 			hour : '2-digit',
 			minute : '2-digit',
-			hour12 : 'true'
+			hour12 : 'true',
+			timeZone : tz
 		});
 		var sunset = new Date(data.sunset).toLocaleTimeString("en-us",{
 			hour : '2-digit',
 			minute : '2-digit',
-			hour12 : 'true'
+			hour12 : 'true',
+			timeZone : tz
 		});
 
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
