@@ -237,9 +237,9 @@ function updateCur() {
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
 			presTrendIcon = '<i class="fas fa-circle"></i>';
 		} else if (data.pressureTrend < 1) {
-			presTrendIcon = '<i class="fas fa-chevron-circle-down"></i>';
+			presTrendIcon = '<i class="fas fa-chevron-down"></i>';
 		} else {
-			presTrendIcon = '<i class="fas fa-chevron-circle-up"></i>';
+			presTrendIcon = '<i class="fas fa-chevron-up"></i>';
 		}
 		document.getElementById("curIcon").innerHTML = data.curIcon;
 		document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
