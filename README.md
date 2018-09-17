@@ -22,7 +22,9 @@ takes feeds from openweather for current conditions and US NWS for forecast.  Th
 
 The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.  Clicking the interface switches from day to night modes.  If you are using the PI 7" LCD, it also dims the display in night mode.
 
-![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)  
+![daymodeus](https://user-images.githubusercontent.com/8691286/45634385-4619ce80-ba70-11e8-8213-bf31db8317a4.png)
+![nightmode](https://user-images.githubusercontent.com/8691286/45634388-47e39200-ba70-11e8-851a-61ca9face4c8.png)
+
 
 Install doc is still a work in progress, but this is a start :  
 (https://github.com/merky1/PiClock/blob/master/INSTALL.md)  
