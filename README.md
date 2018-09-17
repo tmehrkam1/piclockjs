@@ -16,14 +16,11 @@ The early days and evolution of it are chronicled on my blog http://n0bel.net/v1
 
 Due to changes in Weather Underground, PiClock needed a new provider for weather information.  I use JS during my day job, so I went from writing a few test scripts to a full blown backend.  Once I had the backend in place, I built a simple HTML front end to lay on top of it.
 
-Ok - no warranty, may cause universe implosion.  Use at your own risk.  standard GPL.  
-
-"should work"
-
-radar images are CONUS only as far as I can tell.  
+radar images are US only as far as I can tell.  
 Background color changes depending on the temp.  
-takes feeds from openweather for current conditions and US NWS for forecast.  This may limit the forecast to CONUS only.  
-The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.  
+takes feeds from openweather for current conditions and US NWS for forecast.  This currently limits the forecast to US only.  
+
+The design allows you to view the interface from either a directly attached monitor, or any browser like an iPad.  Clicking the interface switches from day to night modes.  If you are using the PI 7" LCD, it also dims the display in night mode.
 
 ![2018-06-19-155046_800x480_scrot](https://user-images.githubusercontent.com/8691286/41620765-b491af4c-73d8-11e8-8f87-5b3ecf280aad.png)  
 
