@@ -19,16 +19,33 @@
  */
  initLocalClocks();
  
-function initLocalClocks() {
-  // Get the local time using JS
-  url="coords";
-  var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
-  xhr.open("GET",url,false);
-  xhr.send(null);
-  var obj = JSON.parse(xhr.responseText);
-  var tz = obj.tz; 
-  console.log(tz);
-	
+ var imgFontColor;
+ var tz;
+ updateCoords();  // grab map coords from backend.
+
+ function updateCoords() {
+ 	url="coords";
+ 	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
+ 	xhr.open("GET",url,false);
+ 	xhr.send(null);
+ 	var obj = JSON.parse(xhr.responseText);
+  	imgFontColor = obj.imgFontColor;
+ 	tz = obj.tz;
+ }
+ 
+ var mainHr = document.getElementById("hours");
+ var mainMin = document.getElementById("minutes");
+ var mainSec = document.getElementById("seconds");
+ 
+ if (imgFontColor > "" ) {
+	 mainHr.style.backgroundColor = imgFontColor;
+	 mainMin.style.backgroundColor = imgFontColor;
+	 mainSec.style.backgroundColor = imgFontColor;
+ }
+ 
+ 
+ 
+function initLocalClocks() {	
   var now = new Date().toLocaleString("en-US", {timeZone: tz});
   console.log(now);
   var date = new Date(now);
