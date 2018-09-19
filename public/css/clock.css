@@ -10,6 +10,7 @@
   bottom: 0;
   left: 0;
   margin: auto;
+  fill: #bef;
 }
 
 .clock.simple:after {
