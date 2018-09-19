@@ -10,9 +10,11 @@
   bottom: 0;
   left: 0;
   margin: auto;
-  fill: #bef;
 }
 
+.clock path {
+  fill: #bef;
+}
 .clock.simple:after {
   border-radius: 50%;
   content: "";
