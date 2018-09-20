@@ -197,7 +197,6 @@ async function currentOwObs(){
 }
 
 async function moonPhase () {
-	// fugly date mangling
 	var url = 'http://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
 	logger.info(url);
 	try {
