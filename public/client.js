@@ -363,7 +363,7 @@ function updateBackground(temp) {
 		document.body.style.color = "#D2CC76";
 	} else if(temp>=50 && temp<60){
 		document.body.style.backgroundColor = "#128A43";
-		document.body.style.color = "#ED75BC";
+		document.body.style.color = "lightgray";
 	} else if (temp>=60 && temp<70){
 		document.body.style.backgroundColor = "#76BD43";
 		document.body.style.color = "#002B49";
