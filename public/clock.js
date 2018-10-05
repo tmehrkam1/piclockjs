@@ -1,5 +1,3 @@
-initLocalClocks();
-
 var imgFontColor;
 var tz;
 updateCoords();  // grab map coords from backend.
