@@ -1,3 +1,22 @@
+initLocalClocks();
+
+var imgFontColor;
+var tz;
+updateCoords();  // grab map coords from backend.
+
+
+function updateCoords() {
+	url="coords";
+	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
+	xhr.open("GET",url,false);
+	xhr.send(null);
+	var obj = JSON.parse(xhr.responseText);
+	imgFontColor = obj.imgFontColor;
+	tz = obj.tz;
+}
+
+document.body.style.color = imgFontColor;
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 var radius = canvas.height / 2;
@@ -34,7 +53,9 @@ function drawNumbers(ctx, radius) {
 }
 
 function drawTime(ctx, radius){
-	var now = new Date();
+	var now = new Date().toLocaleTimeString("en-us", {
+		timeZone : tz
+	});
 	var hour = now.getHours();
 	var minute = now.getMinutes();
 	var second = now.getSeconds();
