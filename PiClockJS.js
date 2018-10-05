@@ -83,6 +83,7 @@ var pressureTrend = [];
 var nightMode = false;
 
 cur.dt=0;
+alerts.features =[];
 
 if (settings.mode == "local" || settings.mode == "server") {
 	// start server backend
