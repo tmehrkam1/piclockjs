@@ -54,7 +54,7 @@ function drawTime(ctx, radius){
 	var zoneTime = new Date().toLocaleTimeString("en-us", {
 		timeZone : tz
 	});
-	var now = new Date(now);
+	var now = new Date(zoneTime);
 	var hour = now.getHours();
 	var minute = now.getMinutes();
 	var second = now.getSeconds();
