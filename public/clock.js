@@ -36,6 +36,7 @@ function drawNumbers(ctx, radius) {
 	var ang;
 	var num;
 	ctx.font = radius*0.15 + "px arial";
+	ctx.color = imgFontColor;
 	ctx.textBaseline="middle";
 	ctx.textAlign="center";
 	for(num = 1; num < 13; num++){
