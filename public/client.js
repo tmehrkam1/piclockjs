@@ -350,20 +350,20 @@ function updateAlerts(){
 //change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
-		document.body.style.backgroundColor = "#00A4E8";
-		document.body.style.color = "#FF5B17";
+		document.body.style.backgroundColor = "#afdcfa";
+		document.body.style.color = "#786052";
 	} else if (temp>=90) {
 		document.body.style.backgroundColor = "#E91E24";
 		document.body.style.color = "#ffffff";
 	} else if (temp>=30 && temp<40){
 		document.body.style.backgroundColor = "#00A4E8";
-		document.body.style.color = "#FF5B17";
+		document.body.style.color = "#e84900";
 	} else if (temp>=40 && temp<50){
 		document.body.style.backgroundColor = "#2D3389";
-		document.body.style.color = "#D2CC76";
+		document.body.style.color = "#895a2d";
 	} else if(temp>=50 && temp<60){
 		document.body.style.backgroundColor = "#128A43";
-		document.body.style.color = "lightgray";
+		document.body.style.color = "#8a1e12";
 	} else if (temp>=60 && temp<70){
 		document.body.style.backgroundColor = "#76BD43";
 		document.body.style.color = "#002B49";
