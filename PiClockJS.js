@@ -289,12 +289,22 @@ async function wgCurrent(staId) {
 		});
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body,'text/xml');
+		//get heat index temp
 		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
 			logger.info("heat index : " + y.nodeValue);
 			cur.heatIndex = y.nodeValue;
 		}
+		
+		//get wind chill temp
+		x = xmlDoc.getElementsByTagName("windchill_f")[0];
+		if (x) { 
+		var y = x.childNodes[0];
+			logger.info("windchill : " + y.nodeValue);
+			cur.windChill = y.nodeValue;
+		}
+		
 		
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
 		
