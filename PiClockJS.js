@@ -280,6 +280,7 @@ async function wgCurrent(staId) {
 	var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
 	logger.info(url);
 	cur.heatIndex = null;
+	cur.windChill = null;
 	
 	try {
 		var { body } = await getPromise({

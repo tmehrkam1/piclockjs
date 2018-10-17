@@ -252,6 +252,8 @@ function updateCur() {
 
 		if (data.heatIndex != null) {
 			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.heatIndex + ' &deg;F';
+		} else if (data.windChill != null){
+			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.windChill + ' &deg;F';
 		} else {
 			document.getElementById("curFeels").innerHTML = null;
 		}
