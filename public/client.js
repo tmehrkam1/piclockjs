@@ -353,16 +353,16 @@ function updateAlerts(){
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#afdcfa";
-		document.body.style.color = "#786052";
+		document.body.style.color = "#fce8dd";
 	} else if (temp>=90) {
 		document.body.style.backgroundColor = "#E91E24";
 		document.body.style.color = "#ffffff";
 	} else if (temp>=30 && temp<40){
 		document.body.style.backgroundColor = "#00A4E8";
-		document.body.style.color = "#e84900";
+		document.body.style.color = "#ffe3df";
 	} else if (temp>=40 && temp<50){
 		document.body.style.backgroundColor = "#2D3389";
-		document.body.style.color = "#895a2d";
+		document.body.style.color = "#ffe3cc";
 	} else if(temp>=50 && temp<60){
 		document.body.style.backgroundColor = "#128A43";
 		document.body.style.color = "#8a1e12";
