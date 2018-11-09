@@ -18,6 +18,8 @@ function updateCoords() {
 	var obj = JSON.parse(xhr.responseText);
 	lat = obj.lat;
 	lon = obj.lon;
+	lat = parseFloat(lat);
+	lon = parseFloat(lon);
 	gMapKey = obj.gMapKey;
 	clockType = obj.clock;
 	backgroundImg = obj.backgroundImg;
