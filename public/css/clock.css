@@ -1,6 +1,5 @@
 .clock {
   border-radius: 50%;
-  background: url(/ios_clock.svg) no-repeat center;
   background-size: 50%;
   padding-bottom: 31%;
   
@@ -10,6 +9,7 @@
   bottom: 0;
   left: 0;
   margin: auto;
+  transform-origin: bottom center;
 }
 
 .clock path {
