@@ -38,6 +38,7 @@ article.clock span {
 #char12 { transform: rotate(360deg); }
 
 .clock.simple:after {
+  background: #000;
   border-radius: 50%;
   content: "";
   position: absolute;
