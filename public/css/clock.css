@@ -17,6 +17,11 @@
 	font-size: 5vh
 }
 
+article span {
+  position: absolute;
+  transform-origin: bottom center;
+}
+
 #char1 { transform: rotate(30deg); }
 #char2 { transform: rotate(60deg); }
 #char3 { transform: rotate(90deg); }
