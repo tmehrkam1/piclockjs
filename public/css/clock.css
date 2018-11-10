@@ -20,6 +20,8 @@
 article.clock span {
   position: absolute;
   transform-origin: bottom center;
+  left: 0;
+  top: 0;
 }
 
 #char1 { transform: rotate(30deg); }
