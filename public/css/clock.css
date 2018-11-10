@@ -17,7 +17,7 @@
 	font-size: 5vh
 }
 
-article span {
+article.clock span {
   position: absolute;
   transform-origin: bottom center;
 }
@@ -35,10 +35,6 @@ article span {
 #char11 { transform: rotate(330deg); }
 #char12 { transform: rotate(360deg); }
 
-
-.clock path {
-  fill: #bef;
-}
 .clock.simple:after {
   border-radius: 50%;
   content: "";
