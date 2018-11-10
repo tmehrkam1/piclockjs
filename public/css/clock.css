@@ -17,7 +17,7 @@
 	font-size: 5vh
 }
 
-article.clock span {
+div.clock span {
   position: absolute;
   transform-origin: bottom center;
 }
