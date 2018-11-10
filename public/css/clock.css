@@ -12,6 +12,11 @@
   transform-origin: bottom center;
 }
 
+.numerals {
+	font: orbitron;
+	font-size: 2vh
+}
+
 .clock path {
   fill: #bef;
 }
