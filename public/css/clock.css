@@ -17,6 +17,20 @@
 	font-size: 5vh
 }
 
+#char1 { transform: rotate(30deg); }
+#char2 { transform: rotate(60deg); }
+#char3 { transform: rotate(90deg); }
+#char4 { transform: rotate(120deg); }
+#char5 { transform: rotate(150deg); }
+#char6 { transform: rotate(180deg); }
+#char7 { transform: rotate(210deg); }
+#char8 { transform: rotate(240deg); }
+#char9 { transform: rotate(270deg); }
+#char10 { transform: rotate(300deg); }
+#char11 { transform: rotate(330deg); }
+#char12 { transform: rotate(360deg); }
+
+
 .clock path {
   fill: #bef;
 }
