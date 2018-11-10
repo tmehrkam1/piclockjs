@@ -15,10 +15,12 @@ updateCoords();  // grab map coords from backend.
  var hrDiv = document.getElementsByClassName('hours')[0];
  var minDiv = document.getElementsByClassName('minutes')[0];
  var secDiv = document.getElementsByClassName('seconds')[0];
- 
+ var clockDiv = document.getElementsByClassName('clock')[0];
+  
  hrDiv.style.backgroundColor = imgFontColor;
  minDiv.style.backgroundColor = imgFontColor;
  secDiv.style.backgroundColor = imgFontColor;
+ clockDiv.style.color = imgFontColor;
  
  function updateCoords() {
  	url="coords";
