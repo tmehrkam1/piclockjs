@@ -4,6 +4,10 @@
   padding-bottom: 31%;
   
   position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   margin: auto;
   transform-origin: bottom center;
 }
@@ -16,8 +20,6 @@
 article.clock span {
   position: absolute;
   transform-origin: bottom center;
-  left: 0;
-  top: 0;
 }
 
 #char1 { transform: rotate(30deg); }
