@@ -393,7 +393,7 @@ function parseOW(observation){
 
 function parseDS(body){
 	console.log(body); //debug
-	var observation = JSON.parse(body.currently);
+	var observation = body.currently;
 	console.log(observation);  //debug
 	var now = new Date();
 
