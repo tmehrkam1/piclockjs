@@ -414,6 +414,18 @@ function parseDS(body){
 		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
+	
+	var sunriseEpoch = new Date(0);
+	var sunsetEpoch = new Date(0);
+
+	sunriseEpoch.setUTCSeconds(body.daily.data[0].sunriseTime);
+	sunsetEpoch.setUTCSeconds(body.daily.data[0].sunsetTime);
+
+	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
+		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
+	} else {
+		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
+	}
 
 	cur.tempF = observation.temperature;
 	cur.pressure = observation.pressure;
