@@ -144,7 +144,8 @@ if (settings.mode == "local" || settings.mode == "server") {
 
 	// update current observations every 2 min
 	setInterval(function() {
-		currentOwObs();
+		//currentOwObs();
+		currentDsObs();
 		wgAlerts();
 	}, settings.currentConditionsInterval * 1000);
 
@@ -182,9 +183,6 @@ if (settings.mode == "local" || settings.mode == "client") {
 	app.on('ready', createWindow)	
 }
 
-
-
-
 async function currentOwObs(){
 	var url = 'http://api.openweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
 	logger.info(url);
@@ -194,7 +192,19 @@ async function currentOwObs(){
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
 	});
-	parseOW(body);
+	parseDS(body);
+}
+
+async function currentDsObs(){
+	var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lon+','+settings.lat;
+	logger.info(url);
+
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs'}
+	});
+	parseOW(body.currently);
 }
 
 async function moonPhase () {
@@ -380,6 +390,63 @@ function parseOW(observation){
 	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
 	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
 }
+
+function parseDS(observation){
+	var now = new Date();
+
+	if (observation.time <= cur.dt)
+	{
+		var update = new Date(0);
+		var current = new Date(0);
+
+		update.setUTCSeconds(observation.time);
+		current.setUTCSeconds(cur.dt);
+
+		var diffMs = (now - update); // diff in MS
+		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+
+		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		return;
+	}
+
+	var sunriseEpoch = new Date(0);
+	var sunsetEpoch = new Date(0);
+
+
+
+	sunriseEpoch.setUTCSeconds(observation.daily.data[0].sunriseTime);
+	sunsetEpoch.setUTCSeconds(observation.daily.data[0].sunsetTime);
+
+	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
+		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
+	} else {
+		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
+	}
+
+	cur.tempF = observation.currently.temperature;
+	cur.pressure = observation.currently.pressure;
+	cur.humidity = observation.currently.humidity;
+	cur.windSpeed = observation.currently.windSpeed;
+	cur.windDir = d2d(observation.currently.windBearing);
+	cur.curDesc = observation.currently.icon;
+	cur.sunrise = sunriseEpoch.toString();
+	cur.sunset = sunsetEpoch.toString();
+	cur.dt = observation.time;
+
+	pressureTrend.push(cur.pressure);
+
+	if (pressureTrend.length > 15) {
+		logger.info("shift array at length  " + pressureTrend.length)
+		pressureTrend.shift();
+	}
+
+	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
+	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
+}
+
 
 function parseMoonPhase(observation) {
 	cur.moonPhase = observation.closestphase.phase;
