@@ -192,7 +192,7 @@ async function currentOwObs(){
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
 	});
-	parseDS(body);
+	parseOW(body);
 }
 
 async function currentDsObs(){
@@ -204,7 +204,7 @@ async function currentDsObs(){
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
 	});
-	parseOW(body.currently);
+	parseDS(body.currently);
 }
 
 async function moonPhase () {
