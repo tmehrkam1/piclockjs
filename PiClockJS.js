@@ -88,7 +88,7 @@ alerts.features =[];
 if (settings.mode == "local" || settings.mode == "server") {
 	// start server backend
 
-	currentOwObs();
+	currentDsObs();
 	moonPhase();
 	getWgovGridP();
 	wgAlerts();
