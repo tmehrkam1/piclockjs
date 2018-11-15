@@ -417,7 +417,7 @@ function parseDS(body){
 
 	cur.tempF = observation.temperature;
 	cur.pressure = observation.pressure;
-	cur.humidity = observation.humidity;
+	cur.humidity = observation.humidity * 100;
 	cur.windSpeed = observation.windSpeed;
 	cur.windDir = d2d(observation.windBearing);
 	cur.curDesc = observation.icon;
