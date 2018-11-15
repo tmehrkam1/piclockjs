@@ -412,20 +412,6 @@ function parseDS(observation){
 		return;
 	}
 
-	var sunriseEpoch = new Date(0);
-	var sunsetEpoch = new Date(0);
-
-
-
-	sunriseEpoch.setUTCSeconds(observation.daily.data[0].sunriseTime);
-	sunsetEpoch.setUTCSeconds(observation.daily.data[0].sunsetTime);
-
-	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
-		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
-	} else {
-		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
-	}
-
 	cur.tempF = observation.currently.temperature;
 	cur.pressure = observation.currently.pressure;
 	cur.humidity = observation.currently.humidity;
