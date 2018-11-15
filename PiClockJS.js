@@ -420,6 +420,8 @@ function parseDS(body){
 
 	sunriseEpoch.setUTCSeconds(body.daily.data[0].sunriseTime);
 	sunsetEpoch.setUTCSeconds(body.daily.data[0].sunsetTime);
+	cur.sunrise = sunriseEpoch.toString();
+	cur.sunset = sunsetEpoch.toString();
 
 	cur.curIcon = '<i class="wi wi-forecast-io-' + observation.icon +'"></i>';
 
@@ -428,7 +430,7 @@ function parseDS(body){
 	cur.humidity = observation.humidity * 100;
 	cur.windSpeed = observation.windSpeed;
 	cur.windDir = d2d(observation.windBearing);
-	cur.curDesc = observation.icon;
+	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
 
 	pressureTrend.push(cur.pressure);
