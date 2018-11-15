@@ -204,7 +204,7 @@ async function currentDsObs(){
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
 	});
-	parseDS(body.currently);
+	parseDS(body);
 }
 
 async function moonPhase () {
@@ -391,7 +391,8 @@ function parseOW(observation){
 	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
 }
 
-function parseDS(observation){
+function parseDS(body){
+	var observation = body.currently;
 	var now = new Date();
 
 	if (observation.time <= cur.dt)
