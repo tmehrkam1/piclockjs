@@ -392,7 +392,8 @@ function parseOW(observation){
 }
 
 function parseDS(body){
-	var observation = body.currently;
+	console.log(body); //debug
+	var observation = JSON.parse(body.currently);
 	var now = new Date();
 
 	if (observation.time <= cur.dt)
