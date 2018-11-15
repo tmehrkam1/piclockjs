@@ -196,7 +196,7 @@ async function currentOwObs(){
 }
 
 async function currentDsObs(){
-	var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lon+','+settings.lat;
+	var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
 	logger.info(url);
 
 	var { body } = await getPromise({
