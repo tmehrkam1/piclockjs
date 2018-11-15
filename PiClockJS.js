@@ -431,6 +431,8 @@ function parseDS(body){
 	cur.windDir = d2d(observation.windBearing);
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
+	cur.windChill = observation.apparentTemperature;
+	cur.heatIndex = observation.apparentTemperature;
 
 	pressureTrend.push(cur.pressure);
 
