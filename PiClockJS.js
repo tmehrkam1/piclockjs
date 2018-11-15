@@ -421,11 +421,7 @@ function parseDS(body){
 	sunriseEpoch.setUTCSeconds(body.daily.data[0].sunriseTime);
 	sunsetEpoch.setUTCSeconds(body.daily.data[0].sunsetTime);
 
-	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
-		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
-	} else {
-		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
-	}
+	cur.curIcon = '<i class="wi wi-forecast-io-' + observation.icon +'"></i>';
 
 	cur.tempF = observation.temperature;
 	cur.pressure = observation.pressure;
