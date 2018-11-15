@@ -392,7 +392,7 @@ function parseOW(observation){
 }
 
 function parseDS(body){
-	console.log(body); //debug
+	
 	var observation = body.currently;
 	console.log(observation);  //debug
 	var now = new Date();
@@ -415,14 +415,12 @@ function parseDS(body){
 		return;
 	}
 
-	cur.tempF = observation.currently.temperature;
-	cur.pressure = observation.currently.pressure;
-	cur.humidity = observation.currently.humidity;
-	cur.windSpeed = observation.currently.windSpeed;
-	cur.windDir = d2d(observation.currently.windBearing);
-	cur.curDesc = observation.currently.icon;
-	cur.sunrise = sunriseEpoch.toString();
-	cur.sunset = sunsetEpoch.toString();
+	cur.tempF = observation.temperature;
+	cur.pressure = observation.pressure;
+	cur.humidity = observation.humidity;
+	cur.windSpeed = observation.windSpeed;
+	cur.windDir = d2d(observation.windBearing);
+	cur.curDesc = observation.icon;
 	cur.dt = observation.time;
 
 	pressureTrend.push(cur.pressure);
