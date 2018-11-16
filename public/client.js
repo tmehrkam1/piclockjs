@@ -244,7 +244,7 @@ function updateCur() {
 			presTrendIcon = '<i class="fas fa-chevron-up"></i>';
 		}
 		document.getElementById("curIcon").innerHTML = data.curIcon;
-		document.getElementById("curHum").innerHTML = 'Humidity : ' + data.humidity + ' %';
+		document.getElementById("curHum").innerHTML = 'Humidity : ' + parseInt(data.humidity) + ' %';
 		document.getElementById("curTemp").innerHTML = data.tempF + ' &deg;F';
 		document.getElementById("curDesc").innerHTML = data.curDesc;
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
