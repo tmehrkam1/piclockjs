@@ -214,6 +214,7 @@ async function moonPhase () {
 		var { body } = await getPromise({
 			url: url,
 			json: true,
+			rejectUnauthorized: false,
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		parseMoonPhase(body);
