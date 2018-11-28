@@ -354,7 +354,7 @@ function updateAlerts(){
 //change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
-		document.body.style.backgroundColor = "#afdcfa";
+		document.body.style.backgroundColor = "#94b7cf";
 		document.body.style.color = "#fce8dd";
 	} else if (temp>=90) {
 		document.body.style.backgroundColor = "#E91E24";
