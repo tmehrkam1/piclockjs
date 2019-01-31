@@ -427,7 +427,7 @@ function parseDS(body){
 
 	cur.tempF = Math.round(parseFloat(observation.temperature));
 	cur.pressure = Math.round(parseFloat(observation.pressure));
-	cur.humidity = Math.round(parseFloat(observation.humidity)) * 100;
+	cur.humidity = Math.round(parseFloat(observation.humidity));
 	cur.windSpeed = observation.windSpeed;
 	cur.windDir = d2d(observation.windBearing);
 	cur.curDesc = observation.summary;
