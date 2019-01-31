@@ -425,15 +425,15 @@ function parseDS(body){
 
 	cur.curIcon = '<i class="wi wi-forecast-io-' + observation.icon +'"></i>';
 
-	cur.tempF = observation.temperature;
-	cur.pressure = observation.pressure;
-	cur.humidity = observation.humidity * 100;
+	cur.tempF = Math.round(parseFloat(observation.temperature));
+	cur.pressure = Math.round(parseFloat(observation.pressure));
+	cur.humidity = Math.round(parseFloat(observation.humidity)) * 100;
 	cur.windSpeed = observation.windSpeed;
 	cur.windDir = d2d(observation.windBearing);
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
-	cur.windChill = observation.apparentTemperature;
-	cur.heatIndex = observation.apparentTemperature;
+	cur.windChill = Math.round(parseFloat(observation.apparentTemperature));
+	cur.heatIndex = Math.round(parseFloat(observation.apparentTemperature));
 
 	pressureTrend.push(cur.pressure);
 
