@@ -121,7 +121,7 @@
 	border: 2px solid black;
 	overflow: hidden;
 	position: relative;
-	animation: mymove 20s linear infinite;
+	animation: mymove 60s linear infinite;
 }
 
 @keyframes mymove {  
