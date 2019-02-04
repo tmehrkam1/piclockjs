@@ -437,12 +437,12 @@ function parseDS(body){
 
 	pressureTrend.push(cur.pressure);
 
-	if (pressureTrend.length > 60) {
+	if (pressureTrend.length > 360) {
 		logger.info("shift array at length  " + pressureTrend.length)
 		pressureTrend.shift();
 	}
 
-	cur.pressureTrend = trend(pressureTrend,{lastpoints:15});
+	cur.pressureTrend = trend(pressureTrend,{lastpoints:15,avgPoints:300});
 	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
 }
 
