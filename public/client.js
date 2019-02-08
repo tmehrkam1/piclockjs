@@ -253,7 +253,7 @@ function updateCur() {
 		updateBackground(data.tempF.toString());
 
 		if (data.feelsLike != null) {
-			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.heatIndex + ' &deg;F';
+			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.feelsLike + ' &deg;F';
 		} else {
 			document.getElementById("curFeels").innerHTML = null;
 		}
