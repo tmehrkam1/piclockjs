@@ -144,8 +144,12 @@ if (settings.mode == "local" || settings.mode == "server") {
 
 	// update current observations every 2 min
 	setInterval(function() {
-		//currentOwObs();
-		currentDsObs();
+		if (settings.curProvider=="darksky") {
+			currentDsObs();
+		} else if (settings.curProvider=="openweather"){
+			currrentOwObs();
+		}
+		//pull any US weather alerts		
 		wgAlerts();
 	}, settings.currentConditionsInterval * 1000);
 
@@ -290,9 +294,7 @@ async function wgAlerts(){
 async function wgCurrent(staId) {
 	var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
 	logger.info(url);
-	cur.heatIndex = null;
-	cur.windChill = null;
-	
+
 	try {
 		var { body } = await getPromise({
 			url: url,
@@ -306,7 +308,7 @@ async function wgCurrent(staId) {
 		if (x) { 
 		var y = x.childNodes[0];
 			logger.info("heat index : " + y.nodeValue);
-			cur.heatIndex = y.nodeValue;
+			cur.feelsLike = y.nodeValue;
 		}
 		
 		//get wind chill temp
@@ -314,7 +316,7 @@ async function wgCurrent(staId) {
 		if (x) { 
 		var y = x.childNodes[0];
 			logger.info("windchill : " + y.nodeValue);
-			cur.windChill = y.nodeValue;
+			cur.feelsLike = y.nodeValue;
 		}
 		
 		
@@ -432,8 +434,7 @@ function parseDS(body){
 	cur.windDir = d2d(observation.windBearing);
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
-	cur.windChill = Math.round(parseFloat(observation.apparentTemperature));
-	cur.heatIndex = Math.round(parseFloat(observation.apparentTemperature));
+	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
 
 	pressureTrend.push(cur.pressure);
 

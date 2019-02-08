@@ -252,10 +252,8 @@ function updateCur() {
 		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
 		updateBackground(data.tempF.toString());
 
-		if (data.heatIndex != null) {
+		if (data.feelsLike != null) {
 			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.heatIndex + ' &deg;F';
-		} else if (data.windChill != null){
-			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.windChill + ' &deg;F';
 		} else {
 			document.getElementById("curFeels").innerHTML = null;
 		}
