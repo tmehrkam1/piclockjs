@@ -102,18 +102,10 @@ function initMap() {
 	function updateRadar(){
 		clearInterval(timerId);
 
-		map.overlayMapTypes.setAt("4",tileNEX);
-		map.overlayMapTypes.setAt("3",tileNEX5);
-		map.overlayMapTypes.setAt("2",tileNEX10);
-		map.overlayMapTypes.setAt("1",tileNEX15);
-		map.overlayMapTypes.setAt("0",tileNEX20);
+		map.overlayMapTypes.setAt("4",tileAeris);
 
-		mapLocal.overlayMapTypes.setAt("5",tilePrecip);
-		mapLocal.overlayMapTypes.setAt("4",tileNEX);
-		mapLocal.overlayMapTypes.setAt("3",tileNEX5);
-		mapLocal.overlayMapTypes.setAt("2",tileNEX10);
-		mapLocal.overlayMapTypes.setAt("1",tileNEX15);
-		mapLocal.overlayMapTypes.setAt("0",tileNEX20);
+		mapLocal.overlayMapTypes.setAt("4",tileAeris);
+
 
 		animateRadar();
 	}
