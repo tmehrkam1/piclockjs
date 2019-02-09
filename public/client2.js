@@ -81,22 +81,7 @@ function initMap() {
 
 
 	function animateRadar() {
-
-		timerId = window.setInterval(function () {
-			for (i = 0;i < 5;i++) {
-				if (i == radarFrame) {
-					map.overlayMapTypes.getAt(i).setOpacity(.6);
-				} else {
-					map.overlayMapTypes.getAt(i).setOpacity(0);
-				}
-			}
-
-			radarFrame++;
-
-			if (radarFrame >= 5) {
-				radarFrame = 0;
-			} 
-		}, 1000);
+		console.log("animation place holder");
 	}
 
 	function updateRadar(){
