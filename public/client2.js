@@ -81,7 +81,7 @@ function initMap() {
 
 
 	function animateRadar() {
-		mapLocal.overlayMapTypes.getAt(5).setOpacity(.3);
+
 		timerId = window.setInterval(function () {
 			for (i = 0;i < 5;i++) {
 				if (i == radarFrame) {
