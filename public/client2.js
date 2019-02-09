@@ -65,7 +65,7 @@ function initMap() {
 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/7/"+tile.x+"/"+tile.y+"/current.png"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
