@@ -1,0 +1,52 @@
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css?family=Orbitron"
+	rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<link rel="stylesheet" type="text/css" href="css/weather-icons.css" />
+<style>
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+	height: 33%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+</style>
+
+</head>
+
+<body>
+	<div id="main" onclick="toggleNight()">
+		<div id="col_1" class="columns">
+			<div id="curConditions">
+				<span id="curIcon" ></span> <br /> 
+				<span id="curDesc" ></span> <br /> 
+				<span id="curTemp" ></span> <br /> 
+				<span id="curHum" ></span> <br /> 
+				<span id="curWind" ></span> <br /> 
+				<span id="curPres" ></span> <br />
+				<span id="curFeels"></span> <br />
+			</div>
+			<div id="rdrStack">
+				<div id="rdrRegional" class="rdrView"></div>
+				<div id="rdrLocal" class="rdrView"></div>
+			</div>
+		</div>
+		<div id="col_2" class="columns">
+			<div id="date"></div>
+			<div id="time"></div>
+			<div id="alerts"></div>
+			<div id="sun_moon"></div>
+		</div>
+		<div id="col_3" class="columns"
+			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
+	</div>
+</body>
+
+<script type="text/javascript" src="client2.js"> </script>
