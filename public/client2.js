@@ -69,7 +69,17 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : 'current',
+		isPng: true
+	});
+	
+	tileAeris5 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-5min"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-5min',
 		isPng: true
 	});
 
