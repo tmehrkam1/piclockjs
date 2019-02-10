@@ -477,7 +477,7 @@ function parseWgAlert(data) {
 		if (data.features[i].properties.event == "Special Weather Statement") {
 			alert.headline = data.features[i].properties.parameters.NWSheadline[0];
 		} else if (data.features[i].properties.event == "Winter Weather Advisory") {
-			myRegex = \* WHAT\.\.\.(.*)\* WHERE\.\.\..*\* WHEN\.\.\.(.*)\*;
+			myRegex = /\* WHAT\.\.\.(.*)\* WHERE\.\.\..*\* WHEN\.\.\.(.*)\*/g;
 			match = myRegex.exec(data.features[i].properties.description);
 			//alert.headline = data.features[i].properties.description;
 			alert.headline = match[0] + " " + match[1];
