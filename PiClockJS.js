@@ -477,7 +477,10 @@ function parseWgAlert(data) {
 		if (data.features[i].properties.event == "Special Weather Statement") {
 			alert.headline = data.features[i].properties.parameters.NWSheadline[0];
 		} else if (data.features[i].properties.event == "Winter Weather Advisory") {
-			alert.headline = data.features[i].properties.description;
+			myRegex = \* WHAT\.\.\.(.*)\* WHERE\.\.\..*\* WHEN\.\.\.(.*)\*;
+			match = myRegex.exec(data.features[i].properties.description);
+			//alert.headline = data.features[i].properties.description;
+			alert.headline = match[0] + " " + match[1];
 		} else {
 			alert.headline = data.features[i].properties.headline;
 		}
