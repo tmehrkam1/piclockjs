@@ -83,25 +83,96 @@ function initMap() {
 		isPng: true
 	});
 
+	tileAeris10 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-10min"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-5min',
+		isPng: true
+	});
+	
+	tileAeris15 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-15min"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-5min',
+		isPng: true
+	});
+	
+	tileAeris20 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-20min"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-5min',
+		isPng: true
+	});
+	
+	tileAeris25 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-25min"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-5min',
+		isPng: true
+	});
 	
 	var radarFrame = 0;
 	var timerId;
+	
+	map.overlayMapTypes.setAt("5",tileAeris25);
+	map.overlayMapTypes.setAt("4",tileAeris20);
+	map.overlayMapTypes.setAt("3",tileAeris15);
+	map.overlayMapTypes.setAt("2",tileAeris10);
+	map.overlayMapTypes.setAt("1",tileAeris5);
+	map.overlayMapTypes.setAt("0",tileAeris);
+
+	mapLocal.overlayMapTypes.setAt("5",tileAeris25);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("0",tileAeris);
+	
 	updateRadar();
 	setInterval(updateRadar, 300000);  // update radar loop every 5 minutes
 
 
 	function animateRadar() {
-		console.log("animation place holder");
+
+		timerId = window.setInterval(function () {
+			for (i = 0;i < 6;i++) {
+				if (i == radarFrame) {
+					map.overlayMapTypes.getAt(i).setOpacity(.6);
+				} else {
+					map.overlayMapTypes.getAt(i).setOpacity(0);
+				}
+			}
+
+			radarFrame++;
+
+			if (radarFrame >= 6) {
+				radarFrame = 0;
+			} 
+		}, 1000);
+	}
 	}
 
 	function updateRadar(){
 		clearInterval(timerId);
-
-		map.overlayMapTypes.setAt("4",tileAeris);
-
-		mapLocal.overlayMapTypes.setAt("4",tileAeris);
-
-
+		
+		map.overlayMapTypes.removeAt("5");
+		map.overlayMapTypes.insertAt("0",tileAeris);
+		
+		mapLocal.overlayMapTypes.removeAt("5");
+		mapLocal.overlayMapTypes.insertAt("0",tileAeris);
+		
 		animateRadar();
 	}
 }
