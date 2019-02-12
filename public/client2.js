@@ -89,7 +89,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
-		name : '-5min',
+		name : '-10min',
 		isPng: true
 	});
 	
@@ -99,7 +99,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
-		name : '-5min',
+		name : '-15min',
 		isPng: true
 	});
 	
@@ -109,7 +109,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
-		name : '-5min',
+		name : '-20min',
 		isPng: true
 	});
 	
@@ -119,13 +119,13 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
-		name : '-5min',
+		name : '-25min',
 		isPng: true
 	});
 	
 	var radarFrame = 0;
 	var timerId;
-	
+	console.log("loading radar");
 	map.overlayMapTypes.setAt("5",tileAeris25);
 	map.overlayMapTypes.setAt("4",tileAeris20);
 	map.overlayMapTypes.setAt("3",tileAeris15);
@@ -145,7 +145,6 @@ function initMap() {
 
 
 	function animateRadar() {
-
 		timerId = window.setInterval(function () {
 			for (i = 0;i < 6;i++) {
 				if (i == radarFrame) {
@@ -174,7 +173,6 @@ function initMap() {
 		mapLocal.overlayMapTypes.insertAt("0",tileAeris);
 		
 		animateRadar();
-	}
 }
 
 if (backgroundImg !="") {
