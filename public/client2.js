@@ -127,19 +127,19 @@ function initMap() {
 	var timerId;
 	
 	console.log("loading radar");
-	map.overlayMapTypes.setAt("5",tileAeris25);
-	map.overlayMapTypes.setAt("4",tileAeris20);
-	map.overlayMapTypes.setAt("3",tileAeris15);
-	map.overlayMapTypes.setAt("2",tileAeris10);
-	map.overlayMapTypes.setAt("1",tileAeris5);
-	map.overlayMapTypes.setAt("0",tileAeris);
+	map.overlayMapTypes.setAt("0",tileAeris25);
+	map.overlayMapTypes.setAt("1",tileAeris20);
+	map.overlayMapTypes.setAt("2",tileAeris15);
+	map.overlayMapTypes.setAt("3",tileAeris10);
+	map.overlayMapTypes.setAt("4",tileAeris5);
+	map.overlayMapTypes.setAt("5",tileAeris);
 
-	mapLocal.overlayMapTypes.setAt("5",tileAeris25);
-	mapLocal.overlayMapTypes.setAt("4",tileAeris20);
-	mapLocal.overlayMapTypes.setAt("3",tileAeris15);
-	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
-	mapLocal.overlayMapTypes.setAt("1",tileAeris5);
-	mapLocal.overlayMapTypes.setAt("0",tileAeris);
+	mapLocal.overlayMapTypes.setAt("0",tileAeris25);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("5",tileAeris);
 	
 	console.log("start animation");
 	animateRadar();
