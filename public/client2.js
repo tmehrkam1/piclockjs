@@ -65,7 +65,7 @@ function initMap() {
 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -75,7 +75,7 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-5min"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-5min"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -85,7 +85,7 @@ function initMap() {
 
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-10min"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-10min"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -95,7 +95,7 @@ function initMap() {
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-15min"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-15min"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -105,7 +105,7 @@ function initMap() {
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-20min"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-20min"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -115,7 +115,7 @@ function initMap() {
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_vWN3x2L3RE6TdaM4zYnhdbU9KbGHWDXKplogAo71/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-25min"; 
+			return "https://maps.aerisapi.com/wKozyXAe0yE0CUQFRmwiS_KCD0rx0SxBNijNu8zAh7bEX7NAbro8zs6MEEznIJ/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-25min"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
