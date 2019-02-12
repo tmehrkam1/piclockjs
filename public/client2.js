@@ -167,8 +167,9 @@ function initMap() {
 	}
 
 	function updateRadar(){
+		console.log("insert new frame")
 		clearInterval(timerId);
-		
+				
 		map.overlayMapTypes.removeAt("5");
 		map.overlayMapTypes.insertAt("0",tileAeris);
 		
