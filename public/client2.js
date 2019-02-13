@@ -126,6 +126,7 @@ function initMap() {
 	});
 	
 	var radarFrame = 0;
+	var timeIndex = 0;
 	var timerId;
 	
 	console.log("loading radar");
@@ -171,18 +172,15 @@ function initMap() {
 	}
 
 	function updateRadar(){
-		console.log("insert new frame");
-		console.log("regional map");
-		map.overlayMapTypes.removeAt(0);
-		console.log(map.overlayMapTypes.getLength());
-		map.overlayMapTypes.push(tileAeris);
-		console.log(map.overlayMapTypes.getLength());
 		
-		console.log("local map");
-		mapLocal.overlayMapTypes.removeAt(0);
-		console.log(mapLocal.overlayMapTypes.getLength());
-		mapLocal.overlayMapTypes.push(tileAeris);
-		console.log(mapLocal.overlayMapTypes.getLength());
+		console.log("update tile # "+timeIndex);
+		map.overlayMapTypes.setAt(timeIndex,tileAeris);
+	
+		mapLocal.overlayMapTypes.setAt(timeIndex,tileAeris);
+		timeIndex++;
+		if (timeIndex > 5) {
+			timeIndex =0;
+		}
 }
 
 if (backgroundImg !="") {
