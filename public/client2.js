@@ -160,7 +160,8 @@ function initMap() {
 			}
 
 			radarFrame++;
-
+			console.log("Animation frame :");
+			console.log(radarFrame);
 			if (radarFrame >= 6) {
 				radarFrame = 0;
 			} 
