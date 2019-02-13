@@ -169,16 +169,17 @@ function initMap() {
 	}
 
 	function updateRadar(){
-		console.log("insert new frame")
-
+		console.log("insert new frame");
+		console.log("regional map");
 		map.overlayMapTypes.removeAt(0);
+		console.log(map.overlayMapTypes.getLength());
 		map.overlayMapTypes.push(tileAeris);
-		
 		console.log(map.overlayMapTypes.getLength());
 		
+		console.log("local map");
 		mapLocal.overlayMapTypes.removeAt(0);
+		console.log(mapLocal.overlayMapTypes.getLength());
 		mapLocal.overlayMapTypes.push(tileAeris);
-
 		console.log(mapLocal.overlayMapTypes.getLength());
 }
 
