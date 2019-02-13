@@ -170,7 +170,7 @@ function initMap() {
 	}
 	}
 
-	function updateRadar(){
+	function updateRadar(timeIndex){
 		
 		console.log("update tile # " + timeIndex);
 		map.overlayMapTypes.setAt(timeIndex,tileAeris);
