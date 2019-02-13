@@ -159,8 +159,7 @@ function initMap() {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
-			console.log("Animation frame :");
-			console.log(radarFrame);
+			console.log("Animation frame : " + radarFrame);
 			
 			radarFrame++;
 
