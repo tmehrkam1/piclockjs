@@ -171,12 +171,12 @@ function initMap() {
 	function updateRadar(){
 		console.log("insert new frame")
 
-		map.overlayMapTypes.pop();
+		map.overlayMapTypes.removeAt(0);
 		map.overlayMapTypes.push(tileAeris);
 		
 		console.log(map.overlayMapTypes.getLength());
 		
-		mapLocal.overlayMapTypes.pop();
+		mapLocal.overlayMapTypes.removeAt(0);
 		mapLocal.overlayMapTypes.push(tileAeris);
 
 		console.log(mapLocal.overlayMapTypes.getLength());
