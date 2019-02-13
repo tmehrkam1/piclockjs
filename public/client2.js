@@ -171,12 +171,15 @@ function initMap() {
 	function updateRadar(){
 		console.log("insert new frame")
 
-		map.overlayMapTypes.removeAt("5");
+		map.overlayMapTypes.pop();
 		map.overlayMapTypes.setAt("0",tileAeris);
 		
-		mapLocal.overlayMapTypes.removeAt("5");
+		console.log(map.overlayMapTypes.getLength());
+		
+		mapLocal.overlayMapTypes.pop();
 		mapLocal.overlayMapTypes.setAt("0",tileAeris);
 
+		console.log(mapLocal.overlayMapTypes.getLength());
 }
 
 if (backgroundImg !="") {
