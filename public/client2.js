@@ -168,15 +168,13 @@ function initMap() {
 
 	function updateRadar(){
 		console.log("insert new frame")
-		//clearInterval(timerId);
-				
+
 		map.overlayMapTypes.removeAt("5");
-		map.overlayMapTypes.insertAt("0",tileAeris);
+		map.overlayMapTypes.setAt("0",tileAeris);
 		
 		mapLocal.overlayMapTypes.removeAt("5");
-		mapLocal.overlayMapTypes.insertAt("0",tileAeris);
-		
-		//animateRadar();
+		mapLocal.overlayMapTypes.setAt("0",tileAeris);
+
 }
 
 if (backgroundImg !="") {
