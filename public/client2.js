@@ -173,7 +173,7 @@ function initMap() {
 
 	function updateRadar(){
 		
-		console.log("update tile # "+timeIndex);
+		console.log("update tile # " + timeIndex);
 		map.overlayMapTypes.setAt(timeIndex,tileAeris);
 	
 		mapLocal.overlayMapTypes.setAt(timeIndex,tileAeris);
