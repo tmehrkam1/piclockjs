@@ -147,7 +147,7 @@ function initMap() {
 	console.log("start animation");
 	animateRadar();
 	
-	setInterval(updateRadar, 300000);  // update radar loop every 5 minutes
+	setInterval(updateRadar(timeIndex), 300000);  // update radar loop every 5 minutes
 
 
 	function animateRadar() {
