@@ -126,7 +126,7 @@ function initMap() {
 	});
 	
 	var radarFrame = 0;
-	var timeIndex = 0;
+	var tileIndex = 0;
 	var timerId;
 	
 	console.log("loading radar");
@@ -147,7 +147,7 @@ function initMap() {
 	console.log("start animation");
 	animateRadar();
 	
-	setInterval(updateRadar(timeIndex), 300000);  // update radar loop every 5 minutes
+	setInterval(updateRadar(), 300000);  // update radar loop every 5 minutes
 
 
 	function animateRadar() {
@@ -170,15 +170,15 @@ function initMap() {
 	}
 	}
 
-	function updateRadar(timeIndex){
+	function updateRadar(){
 		
-		console.log("update tile # " + timeIndex);
-		map.overlayMapTypes.setAt(timeIndex,tileAeris);
+		console.log("update tile # " + tileIndex);
+		map.overlayMapTypes.setAt(tileIndex,tileAeris);
 	
-		mapLocal.overlayMapTypes.setAt(timeIndex,tileAeris);
-		timeIndex++;
-		if (timeIndex > 5) {
-			timeIndex =0;
+		mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
+		tileIndex++;
+		if (tileIndex > 5) {
+			tileIndex=0;
 		}
 }
 
