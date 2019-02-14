@@ -7,6 +7,7 @@ var nightMode;
 var backgroundImg;
 var imgFontColor;
 var tz;
+var tileIndex = 0;
 
 updateCoords();  // grab map coords from backend.
 
@@ -126,7 +127,6 @@ function initMap() {
 	});
 	
 	var radarFrame = 0;
-	var tileIndex = 0;
 	var timerId;
 	
 	console.log("loading radar");
@@ -159,7 +159,7 @@ function initMap() {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
-			console.log("Animation frame : " + radarFrame);
+			//console.log("Animation frame : " + radarFrame);
 			
 			radarFrame++;
 
