@@ -173,9 +173,12 @@ function initMap() {
 	function updateRadar(){
 		
 		console.log("update tile # " + tileIndex);
-		map.overlayMapTypes.setAt(tileIndex,tileAeris);
+		map.overlayMapTypes.insertAt(6,tileAeris);
+		map.overlayMapTypes.removeAt(0);
 	
-		mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
+		mapLocal.overlayMapTypes.insertAt(6,tileAeris);
+		mapLocal.overlayMapTypes.removeAt(0);
+	
 		tileIndex++;
 		if (tileIndex > 5) {
 			tileIndex=0;
