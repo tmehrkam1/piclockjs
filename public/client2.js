@@ -144,11 +144,10 @@ function initMap() {
 	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
 	mapLocal.overlayMapTypes.setAt("5",tileAeris);
 	
+	setInterval(updateRadar(), 10000);  // update radar loop every 5 minutes
+	
 	console.log("start animation");
 	animateRadar();
-	
-	setInterval(updateRadar(), 10000);  // update radar loop every 5 minutes
-
 
 	function animateRadar() {
 		timerId = window.setInterval(function () {
@@ -171,7 +170,7 @@ function initMap() {
 
 
 	function updateRadar(){
-		
+		clearInterval(timerId);
 		tileAeris = new google.maps.ImageMapType({
 			getTileUrl: function(tile, zoom) {
 				return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
@@ -195,6 +194,7 @@ function initMap() {
 			tileIndex=0;
 		}
 		console.log("made it here");
+		animateRadar();
 	}
 }
 
