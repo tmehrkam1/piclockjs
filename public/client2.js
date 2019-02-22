@@ -147,7 +147,7 @@ function initMap() {
 	console.log("start animation");
 	animateRadar();
 	
-	setInterval(updateRadar(), 300000);  // update radar loop every 5 minutes
+	setInterval(updateRadar(), 10000);  // update radar loop every 5 minutes
 
 
 	function animateRadar() {
@@ -190,6 +190,7 @@ function initMap() {
 		mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
 	
 		tileIndex++;
+		console.log("tileIndex : " + tileIndex);
 		if (tileIndex > 5) {
 			tileIndex=0;
 		}
