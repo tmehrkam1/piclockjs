@@ -191,7 +191,7 @@ function initMap() {
 	
 		tileIndex++;
 		console.log("tileIndex : " + tileIndex);
-		if (tileIndex > 5) {
+		if (tileIndex >= 6) {
 			tileIndex=0;
 		}
 	}
