@@ -30,7 +30,7 @@ function updateCoords() {
 	aerisSecret = obj.aerisSecret;
 }
 
-//used to load the script and variablize the mapkey
+// used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
@@ -159,7 +159,7 @@ function initMap() {
 					map.overlayMapTypes.getAt(i).setOpacity(0);
 				}
 			}
-			//console.log("Animation frame : " + radarFrame);
+			// console.log("Animation frame : " + radarFrame);
 			
 			radarFrame++;
 
@@ -168,7 +168,7 @@ function initMap() {
 			} 
 		}, 1000);
 	}
-	}
+
 
 	function updateRadar(){
 		
@@ -183,7 +183,9 @@ function initMap() {
 		if (tileIndex > 5) {
 			tileIndex=0;
 		}
+	}
 }
+
 
 if (backgroundImg !="") {
 	mainDiv = document.getElementById("main");
@@ -366,7 +368,7 @@ function updateAlerts(){
 		alert(error);
 	});
 }
-//change background color based on temp
+// change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#94b7cf";
