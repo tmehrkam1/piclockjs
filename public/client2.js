@@ -158,7 +158,7 @@ function initMap() {
 				},
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
-				name : 'current',
+				name : 'current' + now,
 				isPng: true
 			});
 			
@@ -192,56 +192,6 @@ function initMap() {
 			radarFrame = 0;
 		} 
 	}, 1000);
-	
-	
-	
-	function animateRadar() {
-		timerId = window.setInterval(function () {
-			for (i = 0;i < 6;i++) {
-				if (i == radarFrame) {
-					map.overlayMapTypes.getAt(i).setOpacity(.6);
-				} else {
-					map.overlayMapTypes.getAt(i).setOpacity(0);
-				}
-			}
-			// console.log("Animation frame : " + radarFrame);
-			
-			radarFrame++;
-
-			if (radarFrame >= 6) {
-				radarFrame = 0;
-			} 
-		}, 1000);
-	}
-
-
-	function updateRadar(){
-		clearInterval(timerId);
-		tileAeris = new google.maps.ImageMapType({
-			getTileUrl: function(tile, zoom) {
-				return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
-			},
-			tileSize: new google.maps.Size(256, 256),
-			opacity:0.60,
-			name : 'current',
-			isPng: true
-		});
-		
-		console.log("update tile # " + tileIndex);
-		map.overlayMapTypes.setAt(tileIndex,null);
-		map.overlayMapTypes.setAt(tileIndex,tileAeris);
-	
-		mapLocal.overlayMapTypes.setAt(tileIndex,null);
-		mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
-	
-		tileIndex++;
-		console.log("tileIndex : " + tileIndex);
-		if (tileIndex >= 6) {
-			tileIndex=0;
-		}
-		console.log("made it here");
-		animateRadar();
-	}
 }
 
 
