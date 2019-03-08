@@ -170,11 +170,12 @@ function initMap() {
 			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
 		
 			tileIndex++;
+			timeStamp = now;
 			console.log("tileIndex : " + tileIndex);
 			if (tileIndex >= 6) {
 				tileIndex=0;
 			}
-			console.log("made it here");
+			
 		}
 		for (i = 0;i < 6;i++) {
 			if (i == radarFrame) {
