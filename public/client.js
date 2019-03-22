@@ -27,7 +27,7 @@ function updateCoords() {
 	tz = obj.tz;
 }
 
-//used to load the script and variablize the mapkey
+// used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
@@ -124,11 +124,11 @@ function initMap() {
 	});
 	
 	console.log("loading radar");
-	map.overlayMapTypes.setAt("1",tileNEX20);
-	map.overlayMapTypes.setAt("2",tileNEX15);
-	map.overlayMapTypes.setAt("3",tileNEX10);
-	map.overlayMapTypes.setAt("4",tileNEX5);
-	map.overlayMapTypes.setAt("5",tileNEX);
+	map.overlayMapTypes.setAt("0",tileNEX20);
+	map.overlayMapTypes.setAt("1",tileNEX15);
+	map.overlayMapTypes.setAt("2",tileNEX10);
+	map.overlayMapTypes.setAt("3",tileNEX5);
+	map.overlayMapTypes.setAt("4",tileNEX);
 
 	mapLocal.overlayMapTypes.setAt("0",tileNEX20);
 	mapLocal.overlayMapTypes.setAt("1",tileNEX15);
@@ -185,7 +185,7 @@ function initMap() {
 			}
 			
 		}
-		for (i = 0;i < 6;i++) {
+		for (i = 0;i <= 5;i++) {
 			if (i == radarFrame) {
 				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
@@ -383,7 +383,7 @@ function updateAlerts(){
 		alert(error);
 	});
 }
-//change background color based on temp
+// change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#94b7cf";
