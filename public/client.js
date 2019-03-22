@@ -74,7 +74,7 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m5m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
