@@ -139,6 +139,7 @@ function initMap() {
 
 	var radarFrame = 0;
 	var timeStamp = new Date();
+	var tileIndex = 0;
 	
 	timerId = window.setInterval(function () {
 		var now = new Date();
@@ -146,25 +147,6 @@ function initMap() {
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 		
 		if (diffM >= 5) {
-			tileNEX = new google.maps.ImageMapType({
-				getTileUrl: function(tile, zoom) {
-					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
-				},
-				tileSize: new google.maps.Size(256, 256),
-				opacity:0.60,
-				name : 'current' + now,
-				isPng: true
-			});
-			
-			tilePrecip = new google.maps.ImageMapType({
-				getTileUrl: function(tile, zoom) {
-					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
-				},
-				tileSize: new google.maps.Size(256, 256),
-				opacity:0.60,
-				name : '1hr Precipitation',
-				isPng: true
-			});
 			
 			console.log("update tile # " + tileIndex);
 			map.overlayMapTypes.setAt(tileIndex,null);
