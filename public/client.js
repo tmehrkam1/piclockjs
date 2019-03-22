@@ -124,48 +124,71 @@ function initMap() {
 	});
 
 	var radarFrame = 0;
+	var tileIndex = 0;
 	var timerId;
-	updateRadar();
-	setInterval(updateRadar, 300000);  // update radar loop every 5 minutes
-
-
-	function animateRadar() {
-		mapLocal.overlayMapTypes.getAt(5).setOpacity(.3);
-		timerId = window.setInterval(function () {
-			for (i = 0;i < 5;i++) {
-				if (i == radarFrame) {
-					map.overlayMapTypes.getAt(i).setOpacity(.6);
-				} else {
-					map.overlayMapTypes.getAt(i).setOpacity(0);
-				}
+	var timeStamp = new Date();
+	
+// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
+	
+	timerId = window.setInterval(function () {
+		var now = new Date();
+		var diffMs = now - timeStamp;
+		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
+		
+		if (diffM >= 5) {
+			tileNEX = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0.60,
+				name : 'current' + now,
+				isPng: true
+			});
+			
+			tilePrecip = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0.60,
+				name : '1hr Precipitation',
+				isPng: true
+			});
+			
+			console.log("update tile # " + tileIndex);
+			map.overlayMapTypes.setAt(tileIndex,null);
+			map.overlayMapTypes.setAt(tileIndex,tileNEX);
+		
+			mapLocal.overlayMapTypes.setAt(tileIndex,null);
+			mapLocal.overlayMapTypes.setAt(tileIndex,tileNEX);
+		
+			mapLocal.overlayMapTypes.setAt(5,null);
+			mapLocal.overlayMapTypes.setAt(5,tilePrecip);
+			
+			tileIndex++;
+			timeStamp = now;
+			console.log("tileIndex : " + tileIndex);
+			if (tileIndex >= 5) {
+				tileIndex=0;
 			}
+			
+		}
+		for (i = 0;i < 6;i++) {
+			if (i == radarFrame) {
+				map.overlayMapTypes.getAt(i).setOpacity(.6);
+			} else {
+				map.overlayMapTypes.getAt(i).setOpacity(0);
+			}
+		}
+		// console.log("Animation frame : " + radarFrame);
+		
+		radarFrame++;
 
-			radarFrame++;
-
-			if (radarFrame >= 5) {
-				radarFrame = 0;
-			} 
-		}, 1000);
-	}
-
-	function updateRadar(){
-		clearInterval(timerId);
-
-		map.overlayMapTypes.setAt("4",tileNEX);
-		map.overlayMapTypes.setAt("3",tileNEX5);
-		map.overlayMapTypes.setAt("2",tileNEX10);
-		map.overlayMapTypes.setAt("1",tileNEX15);
-		map.overlayMapTypes.setAt("0",tileNEX20);
-
-		mapLocal.overlayMapTypes.setAt("5",tilePrecip);
-		mapLocal.overlayMapTypes.setAt("4",tileNEX);
-		mapLocal.overlayMapTypes.setAt("3",tileNEX5);
-		mapLocal.overlayMapTypes.setAt("2",tileNEX10);
-		mapLocal.overlayMapTypes.setAt("1",tileNEX15);
-		mapLocal.overlayMapTypes.setAt("0",tileNEX20);
-
-		animateRadar();
-	}
+		if (radarFrame >= 6) {
+			radarFrame = 0;
+		} 
+	}, 1000);
 }
 
 if (backgroundImg !="") {
