@@ -7,8 +7,6 @@ var nightMode;
 var backgroundImg;
 var imgFontColor;
 var tz;
-var map;
-var mapLocal;
 
 updateCoords();  // grab map coords from backend.
 
@@ -37,7 +35,6 @@ addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
-
 function initMap() {
 
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
@@ -65,83 +62,85 @@ function initMap() {
 		mapTypeId: 'hybrid'
 	});
 
-	tileNEX = new google.maps.ImageMapType({
+	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
 		name : 'current',
 		isPng: true
 	});
-
-	tileNEX5 = new google.maps.ImageMapType({
+	
+	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-5min.png"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
-		opacity:0.60,
-		name : '-5m',
+		opacity:0,
+		name : '-5min',
 		isPng: true
 	});
 
-	tileNEX10 = new google.maps.ImageMapType({
+	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-10min.png"; 
 		},
 		tileSize: new google.maps.Size(256, 256),
-		opacity:0.60,
-		name : '-10m',
-		isPng: true
-	});
-
-	tileNEX15 = new google.maps.ImageMapType({
-		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
-		},
-		tileSize: new google.maps.Size(256, 256),
-		opacity:0.60,
-		name : '-15m',
-		isPng: true
-	});
-
-	tileNEX20 = new google.maps.ImageMapType({
-		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
-		},
-		tileSize: new google.maps.Size(256, 256),
-		opacity:0.60,
-		name : '-20m',
-		isPng: true
-	});
-
-	tilePrecip = new google.maps.ImageMapType({
-		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
-		},
-		tileSize: new google.maps.Size(256, 256),
-		opacity:0.60,
-		name : '1hr Precipitation',
+		opacity:0,
+		name : '-10min',
 		isPng: true
 	});
 	
-	console.log("loading radar");
-	map.overlayMapTypes.setAt("0",tileNEX20);
-	map.overlayMapTypes.setAt("1",tileNEX15);
-	map.overlayMapTypes.setAt("2",tileNEX10);
-	map.overlayMapTypes.setAt("3",tileNEX5);
-	map.overlayMapTypes.setAt("4",tileNEX);
-
-	mapLocal.overlayMapTypes.setAt("0",tileNEX20);
-	mapLocal.overlayMapTypes.setAt("1",tileNEX15);
-	mapLocal.overlayMapTypes.setAt("2",tileNEX10);
-	mapLocal.overlayMapTypes.setAt("3",tileNEX5);
-	mapLocal.overlayMapTypes.setAt("4",tileNEX);
-	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
-
+	tileAeris15 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-15min.png"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-15min',
+		isPng: true
+	});
+	
+	tileAeris20 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-20min.png"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-20min',
+		isPng: true
+	});
+	
+	tileAeris25 = new google.maps.ImageMapType({
+		getTileUrl: function(tile, zoom) {
+			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-25min.png"; 
+		},
+		tileSize: new google.maps.Size(256, 256),
+		opacity:0,
+		name : '-25min',
+		isPng: true
+	});
+	
 	var radarFrame = 0;
 	var timeStamp = new Date();
-	var tileIndex = 0;
+	
+	console.log("loading radar");
+	map.overlayMapTypes.setAt("0",tileAeris25);
+	map.overlayMapTypes.setAt("1",tileAeris20);
+	map.overlayMapTypes.setAt("2",tileAeris15);
+	map.overlayMapTypes.setAt("3",tileAeris10);
+	map.overlayMapTypes.setAt("4",tileAeris5);
+	map.overlayMapTypes.setAt("5",tileAeris);
+
+	mapLocal.overlayMapTypes.setAt("0",tileAeris25);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("5",tileAeris);
+	
+	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 	
 	timerId = window.setInterval(function () {
 		var now = new Date();
@@ -149,42 +148,48 @@ function initMap() {
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 		
 		if (diffM >= 5) {
+			tileAeris = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0.60,
+				name : 'current' + now,
+				isPng: true
+			});
 			
 			console.log("update tile # " + tileIndex);
 			map.overlayMapTypes.setAt(tileIndex,null);
-			map.overlayMapTypes.setAt(tileIndex,tileNEX);
+			map.overlayMapTypes.setAt(tileIndex,tileAeris);
 		
 			mapLocal.overlayMapTypes.setAt(tileIndex,null);
-			mapLocal.overlayMapTypes.setAt(tileIndex,tileNEX);
+			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
 		
-			mapLocal.overlayMapTypes.setAt(5,null);
-			mapLocal.overlayMapTypes.setAt(5,tilePrecip);
-			
 			tileIndex++;
 			timeStamp = now;
 			console.log("tileIndex : " + tileIndex);
-			if (tileIndex >= 5) {
+			if (tileIndex >= 6) {
 				tileIndex=0;
 			}
 			
 		}
-		for (i = 0;i <= 5;i++) {
+		for (i = 0;i < 6;i++) {
 			if (i == radarFrame) {
-				console.log("opacity frame : " + i);
 				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
 				map.overlayMapTypes.getAt(i).setOpacity(0);
 			}
 		}
-		console.log("Animation frame : " + radarFrame);
+		// console.log("Animation frame : " + radarFrame);
 		
 		radarFrame++;
 
-		if (radarFrame >= 5) {
+		if (radarFrame >= 6) {
 			radarFrame = 0;
 		} 
 	}, 1000);
 }
+
 
 if (backgroundImg !="") {
 	mainDiv = document.getElementById("main");
