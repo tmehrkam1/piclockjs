@@ -148,15 +148,6 @@ function initMap() {
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 		
 		if (diffM >= 5) {
-			tileAeris = new google.maps.ImageMapType({
-				getTileUrl: function(tile, zoom) {
-					return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
-				},
-				tileSize: new google.maps.Size(256, 256),
-				opacity:0.60,
-				name : 'current' + now,
-				isPng: true
-			});
 			
 			console.log("update tile # " + tileIndex);
 			map.overlayMapTypes.setAt(tileIndex,null);
