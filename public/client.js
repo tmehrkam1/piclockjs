@@ -135,7 +135,7 @@ function initMap() {
 	mapLocal.overlayMapTypes.setAt("2",tileNEX10);
 	mapLocal.overlayMapTypes.setAt("3",tileNEX5);
 	mapLocal.overlayMapTypes.setAt("4",tileNEX);
-	mapLocal.overlayMapTypes.setAt("5",tilePrecip)
+	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
 
 	var radarFrame = 0;
 	var timeStamp = new Date();
