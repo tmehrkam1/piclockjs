@@ -178,7 +178,7 @@ function initMap() {
 		
 		radarFrame++;
 
-		if (radarFrame >= 5) {
+		if (radarFrame >= 4) {
 			radarFrame = 0;
 		} 
 	}, 1000);
