@@ -303,9 +303,25 @@ async function wgCurrent(staId) {
 			json: false,
 			headers: {'User-Agent': 'piclockjs'}
 		});
+		
+		
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body,'text/xml');
 		//get heat index temp
+		
+		var update = new Date(obsTime);
+		
+		var current = new Date(0);
+		current.setUTCSeconds(cur.dt);
+		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
+		
+		if (obsTime > current) {
+			logger.info("wg update is fresher " + update);
+		} else {
+			logger.info("wg update is older " + current);
+			return;
+		}
+		
 		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
@@ -324,16 +340,7 @@ async function wgCurrent(staId) {
 		
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
 		
-		var update = new Date(obsTime);
-		
-		var current = new Date(0);
-		current.setUTCSeconds(cur.dt);
-		
-		if (update > current) {
-			logger.info("wg update is fresher " + update);
-		} else {
-			logger.info("wg update is older " + current);
-		}
+
 	}
 	catch(e) {
 		logger.error(e);
