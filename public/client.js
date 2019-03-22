@@ -7,6 +7,8 @@ var nightMode;
 var backgroundImg;
 var imgFontColor;
 var tz;
+var map;
+var mapLocal;
 
 updateCoords();  // grab map coords from backend.
 
