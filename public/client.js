@@ -186,6 +186,7 @@ function initMap() {
 		}
 		for (i = 0;i <= 5;i++) {
 			if (i == radarFrame) {
+				console.log("opacity frame : " + i);
 				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
 				map.overlayMapTypes.getAt(i).setOpacity(0);
