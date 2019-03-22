@@ -124,6 +124,7 @@ function initMap() {
 	
 	var radarFrame = 0;
 	var timeStamp = new Date();
+	var tileIndex =0;
 	
 	console.log("loading radar");
 	map.overlayMapTypes.setAt("0",tileAeris20);
