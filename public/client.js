@@ -112,9 +112,9 @@ function initMap() {
 		isPng: true
 	});
 	
-	tileAeris25 = new google.maps.ImageMapType({
+	tilePrecip = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m25m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -126,19 +126,18 @@ function initMap() {
 	var timeStamp = new Date();
 	
 	console.log("loading radar");
-	map.overlayMapTypes.setAt("0",tileAeris25);
-	map.overlayMapTypes.setAt("1",tileAeris20);
-	map.overlayMapTypes.setAt("2",tileAeris15);
-	map.overlayMapTypes.setAt("3",tileAeris10);
-	map.overlayMapTypes.setAt("4",tileAeris5);
-	map.overlayMapTypes.setAt("5",tileAeris);
+	map.overlayMapTypes.setAt("0",tileAeris20);
+	map.overlayMapTypes.setAt("1",tileAeris15);
+	map.overlayMapTypes.setAt("2",tileAeris10);
+	map.overlayMapTypes.setAt("3",tileAeris5);
+	map.overlayMapTypes.setAt("4",tileAeris);
 
-	mapLocal.overlayMapTypes.setAt("0",tileAeris25);
-	mapLocal.overlayMapTypes.setAt("1",tileAeris20);
-	mapLocal.overlayMapTypes.setAt("2",tileAeris15);
-	mapLocal.overlayMapTypes.setAt("3",tileAeris10);
-	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
-	mapLocal.overlayMapTypes.setAt("5",tileAeris);
+	mapLocal.overlayMapTypes.setAt("0",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris);
+	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
 	
 	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 	
@@ -164,16 +163,19 @@ function initMap() {
 		
 			mapLocal.overlayMapTypes.setAt(tileIndex,null);
 			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
+			
+			mapLocal.overlayMapTypes.setAt(5,null);
+			mapLocal.overlayMapTypes.setAt(5,tilePrecip);
 		
 			tileIndex++;
 			timeStamp = now;
 			console.log("tileIndex : " + tileIndex);
-			if (tileIndex >= 6) {
+			if (tileIndex >= 5) {
 				tileIndex=0;
 			}
 			
 		}
-		for (i = 0;i < 6;i++) {
+		for (i = 0;i < 5;i++) {
 			if (i == radarFrame) {
 				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
@@ -184,7 +186,7 @@ function initMap() {
 		
 		radarFrame++;
 
-		if (radarFrame >= 6) {
+		if (radarFrame >= 5) {
 			radarFrame = 0;
 		} 
 	}, 1000);
