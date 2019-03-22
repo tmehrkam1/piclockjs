@@ -307,21 +307,20 @@ async function wgCurrent(staId) {
 		
 		parser = new DOMParser();
 		xmlDoc = parser.parseFromString(body,'text/xml');
-		//get heat index temp
-		
-		var update = new Date(obsTime);
-		
+				
 		var current = new Date(0);
 		current.setUTCSeconds(cur.dt);
 		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
+		var update = new Date(obsTime);
 		
-		if (obsTime > current) {
+		if (update > current) {
 			logger.info("wg update is fresher " + update);
 		} else {
 			logger.info("wg update is older " + current);
 			return;
 		}
 		
+		//get heat index temp
 		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
@@ -337,10 +336,6 @@ async function wgCurrent(staId) {
 			cur.feelsLike = y.nodeValue;
 		}
 		
-		
-		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
-		
-
 	}
 	catch(e) {
 		logger.error(e);
