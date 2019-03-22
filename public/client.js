@@ -139,7 +139,6 @@ function initMap() {
 
 	var radarFrame = 0;
 	var tileIndex = 0;
-	var timerId;
 	var timeStamp = new Date();
 	
 	timerId = window.setInterval(function () {
