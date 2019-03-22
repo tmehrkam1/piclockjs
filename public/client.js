@@ -122,13 +122,25 @@ function initMap() {
 		name : '1hr Precipitation',
 		isPng: true
 	});
+	
+	console.log("loading radar");
+	map.overlayMapTypes.setAt("1",tileNEX20);
+	map.overlayMapTypes.setAt("2",tileNEX15);
+	map.overlayMapTypes.setAt("3",tileNEX10);
+	map.overlayMapTypes.setAt("4",tileNEX5);
+	map.overlayMapTypes.setAt("5",tileNEX);
+
+	mapLocal.overlayMapTypes.setAt("0",tileNEX20);
+	mapLocal.overlayMapTypes.setAt("1",tileNEX15);
+	mapLocal.overlayMapTypes.setAt("2",tileNEX10);
+	mapLocal.overlayMapTypes.setAt("3",tileNEX5);
+	mapLocal.overlayMapTypes.setAt("4",tileNEX);
+	mapLocal.overlayMapTypes.setAt("5",tilePrecip)
 
 	var radarFrame = 0;
 	var tileIndex = 0;
 	var timerId;
 	var timeStamp = new Date();
-	
-// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 	
 	timerId = window.setInterval(function () {
 		var now = new Date();
