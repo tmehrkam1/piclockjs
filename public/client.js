@@ -138,7 +138,6 @@ function initMap() {
 	mapLocal.overlayMapTypes.setAt("5",tilePrecip)
 
 	var radarFrame = 0;
-	var tileIndex = 0;
 	var timeStamp = new Date();
 	
 	timerId = window.setInterval(function () {
@@ -196,7 +195,7 @@ function initMap() {
 		
 		radarFrame++;
 
-		if (radarFrame >= 6) {
+		if (radarFrame >= 5) {
 			radarFrame = 0;
 		} 
 	}, 1000);
