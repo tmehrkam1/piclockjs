@@ -149,6 +149,26 @@ function initMap() {
 		
 		if (diffM >= 5) {
 			
+			tileAeris = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0.60,
+				name : 'current',
+				isPng: true
+			});
+			
+			tilePrecip = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0,
+				name : '-25min',
+				isPng: true
+			});
+			
 			console.log("update tile # " + tileIndex);
 			map.overlayMapTypes.setAt(tileIndex,null);
 			map.overlayMapTypes.setAt(tileIndex,tileAeris);
