@@ -69,7 +69,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : 'current',
 		isPng: true
 	});
 
@@ -79,7 +79,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : '-5m',
 		isPng: true
 	});
 
@@ -89,7 +89,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : '-10m',
 		isPng: true
 	});
 
@@ -99,7 +99,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : '-15m',
 		isPng: true
 	});
 
@@ -109,7 +109,7 @@ function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
-		name : 'NEXRAD',
+		name : '-20m',
 		isPng: true
 	});
 
