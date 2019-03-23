@@ -139,7 +139,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 	});
 
 	appl.get('/', (req,res) => {
-		res.sendFile(__dirname + '/public/index.html');
+		res.sendFile(__dirname + '/public/index2.html');
 	})
 
 	appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
