@@ -284,5 +284,5 @@ function updateBackground(temp) {
 }
 
 function reloadMain() {
-	location.href = "/";
+	window.location = "/";
 }
