@@ -40,9 +40,12 @@ addScript.defer = true;
 
 //restyle column width
 var col2Div = document.getElementById("col_2");
-col2Div.style.width = "79vw"; 
+var radarDiv = document.getElementById("radarLocal");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
+
+col2Div.style.width = "79vw"; 
+radarDiv.style.height = "75vh";
 dateDiv.style.float = "left";
 dateDiv.style.fontFamily = "orbitron";
 timeDiv.style.height = "10vh";
