@@ -40,7 +40,7 @@ addScript.defer = true;
 
 //restyle column width
 var col2Div = document.getElementById("col_2");
-var radarDiv = document.getElementById("radarLocal");
+var radarDiv = document.getElementById("rdrLocal");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
 
