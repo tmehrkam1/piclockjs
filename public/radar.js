@@ -41,6 +41,16 @@ addScript.defer = true;
 //restyle column width
 var col2Div = document.getElementById("col_2");
 col2Div.style.width = "79vw"; 
+var dateDiv = document.getElementById("date");
+var timeDiv = document.getElementById("time");
+dateDiv.style.float = "left";
+dateDiv.style.fontFamily = "orbitron";
+timeDiv.style.height = "10vh";
+timeDiv.style.fontSize = "5vh";
+timeDiv.style.lineHeight = "";
+timeDiv.style.overflow = "";
+timeDiv.style.float = "left";
+timeDiv.style.padding = "0px 0px 0px 50px";
 
 
 function initMap() {
