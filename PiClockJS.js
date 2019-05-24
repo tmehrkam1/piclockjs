@@ -54,7 +54,7 @@ const logger = winston.createLogger({
 //`${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 
 
-if (NODE_ENV !== 'production') {
+if (NODE_ENV !== 'development') {
 	logger.add(new winston.transports.Console({
 		format: winston.format.combine(
 				winston.format.timestamp({
