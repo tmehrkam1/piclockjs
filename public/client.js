@@ -474,3 +474,18 @@ function toggleNight(){
 	}
 
 }
+
+function radarPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/radar.html"
+}
