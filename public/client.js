@@ -442,7 +442,7 @@ function toggleNight(){
 		col2Div.style.width = "48vw";
 		timeDiv.style.fontSize  = "15vh";
 
-		url="day";
+		url="http://127.0.0.1:8081/day";
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
 		xhttp.send();
@@ -461,7 +461,7 @@ function toggleNight(){
 		col2Div.style.width = "79vw";
 		timeDiv.style.fontSize  = "27vh";
 
-		url="night";
+		url="http://127.0.0.1:8081/";
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
 		xhttp.send();
