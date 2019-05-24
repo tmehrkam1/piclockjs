@@ -38,6 +38,10 @@ addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
+//restyle column width
+var col2Div = document.getElementById("col_2");
+col2Div.style.width = "79vw"; 
+
 
 function initMap() {
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
