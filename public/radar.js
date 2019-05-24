@@ -2,10 +2,6 @@
 var lat;
 var lon;
 var gMapKey;
-var clockType;
-var nightMode;
-var backgroundImg;
-var imgFontColor;
 var tz;
 var tileIndex = 0;
 
@@ -190,20 +186,10 @@ function initMap() {
 	}, 1000);
 }
 
-
-if (backgroundImg !="") {
-	mainDiv = document.getElementById("main");
-	mainDiv.style.backgroundImage = "url("+backgroundImg+")";
-	mainDiv.style.backgroundSize ="cover";
-	mainDiv.style.color = imgFontColor;
-}
-
 updateClock();
 updateCur();
 
-if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the
-// clock every
-// second
+setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
 // from cache
 
@@ -213,7 +199,6 @@ function updateClock() {
 	var date = new Intl.DateTimeFormat('en-us',options).format(timeStamp);
 	document.getElementById("date").textContent = date;
 
-	// depending on analog vs digital, update clock
 		var timeStamp = new Date();
 		var time = new Date().toLocaleTimeString("en-us", {
 			hour : '2-digit',
@@ -222,9 +207,6 @@ function updateClock() {
 			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
-
-
-
 }
 
 function updateCur() {
@@ -299,58 +281,4 @@ function updateBackground(temp) {
 		document.body.style.backgroundColor = "#F58322";
 		document.body.style.color = '#002B49';
 	}
-}
-
-function toggleNight(){
-	var mainDiv = document.getElementById("main");
-	var radarDiv = document.getElementById("rdrStack");
-	var iconDiv = document.getElementById("curIcon");
-	var col3Div = document.getElementById("col_3");
-	var col2Div = document.getElementById("col_2");
-	var timeDiv = document.getElementById("time");
-
-	if (nightMode == true) {
-		nightMode = false;
-
-		mainDiv.style.backgroundColor = '';
-		if (backgroundImg == "") {
-			mainDiv.style.color = '';
-		} else {
-			mainDiv.style.backgroundImage = "url("+backgroundImg+")";
-			mainDiv.style.backgroundSize ="cover";
-			mainDiv.style.color = imgFontColor;
-		}
-
-
-		radarDiv.style.opacity = '1';
-		iconDiv.style.opacity = '1';
-		col3Div.style.visibility = "";
-		col2Div.style.width = "48vw";
-		timeDiv.style.fontSize  = "15vh";
-
-		url="day";
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", url, true);
-		xhttp.send();
-
-
-	} else {
-		nightMode = true;
-
-		mainDiv.style.backgroundColor = 'black';
-		mainDiv.style.backgroundImage ='';
-		mainDiv.style.color = 'darkgray';
-
-		radarDiv.style.opacity ='.5';
-		iconDiv.style.opacity = '.5';
-		col3Div.style.visibility = "hidden";
-		col2Div.style.width = "79vw";
-		timeDiv.style.fontSize  = "27vh";
-
-		url="night";
-		var xhttp = new XMLHttpRequest();
-		xhttp.open("GET", url, true);
-		xhttp.send();
-	}
-
 }
