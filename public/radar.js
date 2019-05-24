@@ -282,3 +282,7 @@ function updateBackground(temp) {
 		document.body.style.color = '#002B49';
 	}
 }
+
+function reloadMain() {
+	location.href = "/";
+}
