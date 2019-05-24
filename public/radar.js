@@ -183,15 +183,12 @@ if (backgroundImg !="") {
 
 updateClock();
 updateCur();
-updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the
 // clock every
 // second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
 // from cache
-setInterval(updateForecast, 600000) // update the forecast every 10 min
-setInterval(updateAlerts,60000);  // update alerts every minute
 
 function updateClock() {
 	// update date string
@@ -200,7 +197,6 @@ function updateClock() {
 	document.getElementById("date").textContent = date;
 
 	// depending on analog vs digital, update clock
-	if (clockType=="digital") {
 		var timeStamp = new Date();
 		var time = new Date().toLocaleTimeString("en-us", {
 			hour : '2-digit',
@@ -209,15 +205,6 @@ function updateClock() {
 			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
-	} else {
-		// insert analog script here. Thinking I might move that off of
-		// index.html for sanity
-		var clock = document.createElement('iframe');
-		clock.src = "clock.html";
-		clock.setAttribute("id","analogClock");
-		clock.setAttribute("scrolling","no");
-		document.getElementById("time").appendChild(clock);
-	}
 
 
 
@@ -268,65 +255,6 @@ function updateCur() {
 		alert(error);
 	})
 }
-
-function updateForecast() {
-	// setup a container for the entire forcast contents
-	var content = document.createElement("div");
-
-	url="forecast";
-	fetch(url)
-	.then((resp) => resp.json())
-	.then(function(data){
-		if (typeof data.list ==="undefined") {
-			data.list = [];
-		}
-		for (var i=0;i < data.list.length;i++) {		
-			// create a container for the forecast
-			var forecastBlock = document.createElement("div");
-			forecastBlock.setAttribute("class","forecastBlock");
-			forecastBlock.setAttribute("id","block"+i);
-
-			// create the image container
-			var forecastImage = document.createElement("div");
-			forecastImage.setAttribute("class","forecastImage");
-			forecastImage.setAttribute("id","imgDiv"+i);
-			if (nightMode == true) {
-				forecastImage.style.opacity = '.5';
-			}
-
-			// create the text container
-			var forecastText = document.createElement("div");
-			forecastText.setAttribute("class","forecastText");
-			forecastText.setAttribute("id","forecast"+i);
-
-			// populate the forecast icon with the image
-			var image = document.createElement("img");
-			image.setAttribute("src",data.list[i].icon);
-			image.setAttribute("style","height:100%;");
-
-			// populate the forecast text
-			forecastText.innerHTML=data.list[i].name + '<br />' + data.list[i].temp + '<br />' + data.list[i].short;
-
-			// put the image in the div
-			forecastImage.appendChild(image);
-
-			// put the image + text into the block
-			forecastBlock.appendChild(forecastImage);
-			forecastBlock.appendChild(forecastText);
-
-			// put the block into the parent div
-			content.appendChild(forecastBlock);
-
-		};
-		// put populated block into the column
-		document.getElementById("col_3").innerHTML = "";
-		document.getElementById("col_3").appendChild(content);
-	})
-	.catch(function(error){
-		alert(error);
-	});
-
-};
 
 // change background color based on temp
 function updateBackground(temp) {
