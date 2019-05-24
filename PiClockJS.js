@@ -93,23 +93,6 @@ if (settings.mode == "local" || settings.mode == "server") {
 	getWgovGridP();
 	wgAlerts();
 
-	appl.get("/day",(req,res) => {
-		if (req.ip == '::ffff:127.0.0.1') {
-			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
-			nightMode = false;
-			logger.info(req.ip + " toggle day mode : "+ nightMode);
-		};
-		res.status(200);
-	});
-
-	appl.get("/night", (req,res) => {
-		if (req.ip == '::ffff:127.0.0.1') {
-			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
-			nightMode = true;
-			logger.info(req.ip + " toggle night mode : "+ nightMode);
-		}
-		res.status(200);
-	})
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
 	});
@@ -139,10 +122,10 @@ if (settings.mode == "local" || settings.mode == "server") {
 	});
 
 	appl.get('/', (req,res) => {
-		res.sendFile(__dirname + '/public/index2.html');
+		res.sendFile(__dirname + '/public/index.html');
 	})
 
-	appl.listen(8081, () => logger.info('Example app listening on port 8081!'))
+	appl.listen(8081, () => logger.info('PiClock listening on port 8081 in server mode'))
 
 	// update current observations every 2 min
 	setInterval(function() {
@@ -172,6 +155,25 @@ if (settings.mode =="local") {
 }
 
 if (settings.mode == "local" || settings.mode == "client") {
+	
+	//add methods to dim display
+	appl.get("/day",(req,res) => {
+		if (req.ip == '::ffff:127.0.0.1') {
+			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
+			nightMode = false;
+			logger.info(req.ip + " toggle day mode : "+ nightMode);
+		};
+		res.status(200);
+	});
+
+	appl.get("/night", (req,res) => {
+		if (req.ip == '::ffff:127.0.0.1') {
+			exec('sudo bash -c  "echo 17 > /sys/class/backlight/rpi_backlight/brightness"');
+			nightMode = true;
+			logger.info(req.ip + " toggle night mode : "+ nightMode);
+		}
+		res.status(200);
+	})
 
 	// fire up the electron broswer.
 	const {app, BrowserWindow} = require('electron')
@@ -187,6 +189,11 @@ if (settings.mode == "local" || settings.mode == "client") {
 	}
 
 	app.on('ready', createWindow)	
+}
+
+if (settings.mode == "client") {
+	//start node app to listen for display dim event
+	appl.listen(8081, () => logger.info('PiClock listening on port 8081 in client mode'))
 }
 
 async function currentOwObs(){
