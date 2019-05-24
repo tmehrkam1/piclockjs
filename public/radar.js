@@ -50,10 +50,10 @@ dateDiv.style.float = "left";
 dateDiv.style.fontFamily = "orbitron";
 timeDiv.style.height = "10vh";
 timeDiv.style.fontSize = "5vh";
-timeDiv.style.lineHeight = "0";
-timeDiv.style.overflow = "";
+timeDiv.style.lineHeight = "5vh";
+timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
-timeDiv.style.padding = "0px 0px 0px 50px";
+timeDiv.style.padding = "5px 0px 0px 50px";
 
 
 function initMap() {
