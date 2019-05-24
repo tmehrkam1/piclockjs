@@ -25,28 +25,30 @@ appl.use(express.static("public"));
 
 //Logging
 var winston = require('winston');
+require('winston-daily-rotate-file');
 const NODE_ENV = process.env.NODE_ENV;
 const myFormat = winston.format.printf(info => {
 	return `${info.timestamp} ${info.level}: ${info.message}`;
 });
+
+
+var transport = new (winston.transports.DailyRotateFile)({
+  filename: 'PiClock-%DATE%.log',
+  datePattern: 'YYYY-MM-DD-HH',
+  zippedArchive: true,
+  maxSize: '20m',
+  maxFiles: '14d'
+});
+
+transport.on('rotate', function(oldFilename, newFilename) {
+  // do something fun
+});
+
 const logger = winston.createLogger({
 	level: NODE_ENV === "production" ? 'warn' : 'info',
 			transports: [
-				//
-				// - Write to all logs with level `info` and below to
-				// `PiClock.log`
-				//
-				new winston.transports.File({
-					format: winston.format.combine(
-							winston.format.timestamp({
-								format: 'YYYY-MM-DD hh:mm:ss A ZZ'
-							}),
-							winston.format.json()
-					),
-					handleExceptions: true,
-					filename: 'PiClock.log',
-				})
-				]
+			      transport
+			    ]
 });
 
 
