@@ -65,6 +65,12 @@ function initMap() {
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid'
 	});
+	
+    var marker = new google.maps.Marker({
+        position: {lat: lat, lng: lon},
+        map: mapLocal,
+        title: 'map center'
+      });
 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {

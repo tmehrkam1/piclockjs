@@ -62,6 +62,13 @@ function initMap() {
 		mapTypeId: 'hybrid'
 	});
 
+	
+    var marker = new google.maps.Marker({
+        position: {lat: lat, lng: lon},
+        map: mapLocal,
+        title: 'map center'
+      });
+
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
