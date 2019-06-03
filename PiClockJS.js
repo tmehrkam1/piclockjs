@@ -34,7 +34,7 @@ const myFormat = winston.format.printf(info => {
 
 var transport = new (winston.transports.DailyRotateFile)({
   filename: 'PiClock-%DATE%.log',
-  datePattern: 'YYYY-MM-DD-HH',
+  datePattern: 'YYYY-MM-DD',
   zippedArchive: true,
   maxSize: '20m',
   maxFiles: '14d'
