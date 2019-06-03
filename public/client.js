@@ -496,3 +496,19 @@ function radarPage(e) {
 	    }
 	    window.location = "/radar.html"
 }
+
+function moonPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/moon.html"
+}
+
