@@ -30,6 +30,7 @@ var col2Div = document.getElementById("col_2");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
 var moonImg = document.getElementById("moonimg");
+var moonDiv = document.getElementById("moon");
 
 col2Div.style.width = "79vw"; 
 dateDiv.style.float = "left";
@@ -41,6 +42,8 @@ timeDiv.style.lineHeight = "7vh";
 timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
+moonDiv.style.height = "90vh";
+moonDiv.style.width = "79vw";
 moonImg.style.objectFit = "contain";
 
 
