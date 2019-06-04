@@ -42,8 +42,8 @@ timeDiv.style.lineHeight = "7vh";
 timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
-moonDiv.style.height = "90vh";
-moonDiv.style.width = "79vw";
+moonImg.style.height = "90vh";
+moonImg.style.width = "79vw";
 moonImg.style.objectFit = "contain";
 
 
