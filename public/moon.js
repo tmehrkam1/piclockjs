@@ -79,7 +79,7 @@ function updateClock() {
 		document.getElementById("time").textContent = time;
 
 		//update moon image every 4 hours
-		var diffMs = now - moonTime;
+		var diffMs = timeStamp - moonTime;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
 		var diffH = parseInt(diffM / 60);
 		
