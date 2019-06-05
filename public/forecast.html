@@ -2,7 +2,10 @@
 <meta charset="utf-8" />
 <link href="https://fonts.googleapis.com/css?family=Orbitron"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
+	integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+	crossorigin="anonymous" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/weather-icons.css" />
 <style>
@@ -25,25 +28,27 @@ html, body {
 	<div id="main" onclick="toggleNight()">
 		<div id="currentBlock" class="Block">
 			<div id="curConditions">
-				<span id="curIcon" ></span> <br /> 
-				<span id="curDesc" ></span> <br /> 
-				<span id="curTemp" ></span> <br /> 
-				<span id="curHum" ></span> <br /> 
-				<span id="curWind" ></span> <br /> 
-				<span id="curPres" ></span> <br />
-				<span id="curFeels"></span> <br />
+				<div id="divTime">
+					<span id="date"></span> <span id="time"></span>
+				</div>
+
+				<div id="divIcon">
+					<span id="curIcon"></span> <br /> <span id="curDesc"></span> <br />
+					<span id="curTemp"></span> <br />
+				</div>
+				<div id="divDetails">
+					<span id="curHum"></span> <br /> <span id="curWind"></span> <br />
+					<span id="curPres"></span> <br /> <span id="curFeels"></span> <br />
+				</div>
 			</div>
 			<div id="rdrStack" onclick="radarPage(event)">
 				<div id="rdrLocal" class="rdrView"></div>
 			</div>
 		</div>
-		<div id="col_2" class="columns">
-			<div id="date"></div>
-			<div id="time"></div>
-			<div id="alerts"></div>
 			<div id="sun_moon" onclick="moonPage(event)"></div>
 		</div>
 		<div id="forecastBlock" class="Block"></div>
+		<div id="alerts"></div>
 	</div>
 </body>
 
