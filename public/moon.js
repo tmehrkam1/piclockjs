@@ -2,9 +2,19 @@ var lat;
 var lon;
 var gMapKey;
 var tz;
-var tileIndex = 0;
+var moonTime = new date();
 
 updateCoords();  // grab map coords from backend.
+
+//shift clock into day mode
+url="http://127.0.0.1:8081/day";
+var xhttp = new XMLHttpRequest();
+xhttp.open("GET", url, true);
+xhttp.onerror = function () {
+	console.log("no response on 127.0.0.1:8081");
+};
+xhttp.send();
+
 
 function updateCoords() {
 	url="coords";
@@ -46,7 +56,6 @@ moonImg.style.height = "90vh";
 moonImg.style.width = "79vw";
 moonImg.style.objectFit = "contain";
 
-
 updateClock();
 updateCur();
 
@@ -68,6 +77,16 @@ function updateClock() {
 			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
+
+		//update moon image every 4 hours
+		var diffMs = now - moonTime;
+		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
+		var diffH = parseInt(diffM / 60);
+		
+		if (diffH == 4) {
+			moonTime = new Date();
+			moonImg.src = "https://api.usno.navy.mil/imagery/moon.png?&ID=AA-URL";
+		}
 }
 
 function updateCur() {
