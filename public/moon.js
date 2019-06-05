@@ -2,7 +2,7 @@ var lat;
 var lon;
 var gMapKey;
 var tz;
-var moonTime = new date();
+var moonTime = new Date();
 
 updateCoords();  // grab map coords from backend.
 
