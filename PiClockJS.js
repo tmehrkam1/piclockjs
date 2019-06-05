@@ -477,6 +477,7 @@ function parseWgForecast(data) {
 		forecast.temp = data.properties.periods[i].temperature;
 		forecast.short = data.properties.periods[i].shortForecast;
 		forecast.icon = data.properties.periods[i].icon;
+		forecast.detailed = data.properties.periods[i].detailedForecast;
 		array.push(forecast);
 	}
 	forecasts.list = array;
