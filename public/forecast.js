@@ -7,7 +7,6 @@ var nightMode;
 var backgroundImg;
 var imgFontColor;
 var tz;
-var tileIndex = 0;
 
 updateCoords();  // grab map coords from backend.
 
@@ -26,18 +25,15 @@ function updateCoords() {
 	backgroundImg = obj.backgroundImg;
 	imgFontColor = obj.imgFontColor;
 	tz = obj.tz;
-	aerisID = obj.aerisID;
-	aerisSecret = obj.aerisSecret;
 }
 
-// used to load the script and variablize the mapkey
+//used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
 addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
-
 
 function initMap() {
 
@@ -66,19 +62,26 @@ function initMap() {
 		mapTypeId: 'hybrid'
 	});
 
+	
+    var marker = new google.maps.Marker({
+        position: {lat: lat, lng: lon},
+        map: mapLocal,
+        title: 'map center'
+      });
+
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
 		name : 'current',
 		isPng: true
 	});
-	
+
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-5min.png"; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -88,96 +91,110 @@ function initMap() {
 
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-10min.png"; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-10min',
 		isPng: true
 	});
-	
+
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-15min.png"; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-15min',
 		isPng: true
 	});
-	
+
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-20min.png"; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-20min',
 		isPng: true
 	});
-	
-	tileAeris25 = new google.maps.ImageMapType({
+
+	tilePrecip = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/-25min.png"; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-25min',
 		isPng: true
 	});
-	
+
 	var radarFrame = 0;
 	var timeStamp = new Date();
-	
-	console.log("loading radar");
-	map.overlayMapTypes.setAt("0",tileAeris25);
-	map.overlayMapTypes.setAt("1",tileAeris20);
-	map.overlayMapTypes.setAt("2",tileAeris15);
-	map.overlayMapTypes.setAt("3",tileAeris10);
-	map.overlayMapTypes.setAt("4",tileAeris5);
-	map.overlayMapTypes.setAt("5",tileAeris);
+	var tileIndex =0;
 
-	mapLocal.overlayMapTypes.setAt("0",tileAeris25);
-	mapLocal.overlayMapTypes.setAt("1",tileAeris20);
-	mapLocal.overlayMapTypes.setAt("2",tileAeris15);
-	mapLocal.overlayMapTypes.setAt("3",tileAeris10);
-	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
-	mapLocal.overlayMapTypes.setAt("5",tileAeris);
-	
+	console.log("loading radar");
+	map.overlayMapTypes.setAt("0",tileAeris20);
+	map.overlayMapTypes.setAt("1",tileAeris15);
+	map.overlayMapTypes.setAt("2",tileAeris10);
+	map.overlayMapTypes.setAt("3",tileAeris5);
+	map.overlayMapTypes.setAt("4",tileAeris);
+
+	mapLocal.overlayMapTypes.setAt("0",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris);
+	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
+
 	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
-	
+
 	timerId = window.setInterval(function () {
 		var now = new Date();
 		var diffMs = now - timeStamp;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-		
+
 		if (diffM >= 5) {
+
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
-					return "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/"+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 				},
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
-				name : 'current' + now,
+				name : 'current',
 				isPng: true
 			});
-			
+
+			tilePrecip = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0,
+				name : '-25min',
+				isPng: true
+			});
+
 			console.log("update tile # " + tileIndex);
 			map.overlayMapTypes.setAt(tileIndex,null);
 			map.overlayMapTypes.setAt(tileIndex,tileAeris);
-		
+
 			mapLocal.overlayMapTypes.setAt(tileIndex,null);
 			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
-		
+
+			mapLocal.overlayMapTypes.setAt(5,null);
+			mapLocal.overlayMapTypes.setAt(5,tilePrecip);
+
 			tileIndex++;
 			timeStamp = now;
 			console.log("tileIndex : " + tileIndex);
-			if (tileIndex >= 6) {
+			if (tileIndex >= 5) {
 				tileIndex=0;
 			}
-			
+
 		}
-		for (i = 0;i < 6;i++) {
+		for (i = 0;i < 5;i++) {
 			if (i == radarFrame) {
 				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
@@ -185,10 +202,10 @@ function initMap() {
 			}
 		}
 		// console.log("Animation frame : " + radarFrame);
-		
+
 		radarFrame++;
 
-		if (radarFrame >= 6) {
+		if (radarFrame >= 4) {
 			radarFrame = 0;
 		} 
 	}, 1000);
@@ -208,10 +225,10 @@ updateForecast();
 updateAlerts();
 
 if (clockType=="digital") { setInterval(updateClock, 1000)}; // tick the
-// clock every
-// second
+//clock every
+//second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
-// from cache
+//from cache
 setInterval(updateForecast, 600000) // update the forecast every 10 min
 setInterval(updateAlerts,60000);  // update alerts every minute
 
@@ -376,7 +393,7 @@ function updateAlerts(){
 		alert(error);
 	});
 }
-// change background color based on temp
+//change background color based on temp
 function updateBackground(temp) {
 	if (temp < 30 ){
 		document.body.style.backgroundColor = "#94b7cf";
@@ -432,9 +449,12 @@ function toggleNight(){
 		col2Div.style.width = "48vw";
 		timeDiv.style.fontSize  = "15vh";
 
-		url="day";
+		url="http://127.0.0.1:8081/day";
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
+		xhttp.onerror = function () {
+			console.log("no response on 127.0.0.1:8081");
+		};
 		xhttp.send();
 
 
@@ -451,10 +471,44 @@ function toggleNight(){
 		col2Div.style.width = "79vw";
 		timeDiv.style.fontSize  = "27vh";
 
-		url="night";
+		url="http://127.0.0.1:8081/night";
 		var xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
+		xhttp.onerror = function () {
+			console.log("no response on 127.0.0.1:8081");
+		};
 		xhttp.send();
 	}
 
 }
+
+function radarPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/radar.html"
+}
+
+function moonPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/moon.html"
+}
+

@@ -23,7 +23,7 @@ html, body {
 
 <body>
 	<div id="main" onclick="toggleNight()">
-		<div id="col_1" class="columns">
+		<div id="currentBlock" class="Block">
 			<div id="curConditions">
 				<span id="curIcon" ></span> <br /> 
 				<span id="curDesc" ></span> <br /> 
@@ -33,8 +33,7 @@ html, body {
 				<span id="curPres" ></span> <br />
 				<span id="curFeels"></span> <br />
 			</div>
-			<div id="rdrStack">
-				<div id="rdrRegional" class="rdrView"></div>
+			<div id="rdrStack" onclick="radarPage(event)">
 				<div id="rdrLocal" class="rdrView"></div>
 			</div>
 		</div>
@@ -42,11 +41,10 @@ html, body {
 			<div id="date"></div>
 			<div id="time"></div>
 			<div id="alerts"></div>
-			<div id="sun_moon"></div>
+			<div id="sun_moon" onclick="moonPage(event)"></div>
 		</div>
-		<div id="col_3" class="columns"
-			style="float: left; width: 31vw; text-align: center;height=100%;"></div>
+		<div id="forecastBlock" class="Block"></div>
 	</div>
 </body>
 
-<script type="text/javascript" src="client2.js"> </script>
+<script type="text/javascript" src="forecast.js"> </script>
