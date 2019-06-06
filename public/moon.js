@@ -199,7 +199,7 @@ function updateForecast() {
 		forecastText.setAttribute("id","forecast");
 		
 		// populate the forecast text
-		forecastText.innerHTML=data.list[0].name + '<br />' + data.list[0].temp + '<br />' + data.list[0].detailed;
+		forecastText.innerHTML=data.list[0].name + '<br />' + '<span id="curTemp" >' + data.list[0].temp + '</span><br />' + data.list[0].detailed;
 		
 		// put the image in the div
 		forecastImage.appendChild(image);
