@@ -42,7 +42,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : timestampArray,tempArray
+		data : tempArray,timestampArray
 	} ];
 
 	var json = {};
