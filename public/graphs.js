@@ -13,12 +13,12 @@ function updateValues() {
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
-	tempArray=obj.temp;
+	//tempArray=obj.temp;
 	pressureArray=obj.pressure;
 	humidityArray=obj.humidity;
 	
 	obj.timestamp.forEach(function(element, i) {
-		timestampArray.push(element * 1000);
+		tempArray[i]=[element*1000,obj.temp[i]];
 		});
 }
 
@@ -49,7 +49,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : [timestampArray,tempArray],
+		data : tempArray,
 		pointInterval: 3 * 3600 * 1000 // every 3 hours
 	} ];
 
