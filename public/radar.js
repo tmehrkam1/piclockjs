@@ -204,10 +204,11 @@ function initMap() {
 
 updateClock();
 updateCur();
+updateForecast();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
-// from cache
+setInterval(updateForecast,4*60*60*1000) //update forcast block every 4 hours
 
 function updateClock() {
 	// update date string
