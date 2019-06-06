@@ -503,7 +503,7 @@ function parseWgAlert(data) {
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
-	logger.info('storing values : ' + timestamp + temp + pressure + humidity);
+	logger.info('storing values : ' + timestamp + ':' + temp + ':' + pressure + ':' + humidity);
 
 	if (store.timestamp.length > 360 ) {
 		logger.info("shift array at length  " + store.timestamp.length);
@@ -513,12 +513,12 @@ function storeValues(timestamp,temp,pressure,humidity) {
 		store.humidity.shift();
 	}
 	
-	logger.info('store has value count of :' + store.timestamp.length);
-
 	store.timestamp.push(timestamp);
 	store.temp.push(temp);
 	store.pressure.push(pressure);
 	store.humidity.push(humidity);
+	
+	logger.info('store has value count of :' + store.timestamp.length);
 	
 	cur.pressureTrend = trend(store.pressure,{lastpoints:3});
 }
