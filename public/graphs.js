@@ -12,10 +12,13 @@ function updateValues() {
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
-	timestampArray=obj.timestamp;
 	tempArray=obj.temp;
 	pressureArray=obj.pressure;
 	humidityArray=obj.humidity;
+	
+	timestampArray.forEach(function(element, i) {
+		  timeArray.push(element * 1000);
+		});
 }
 
 function tempGraph(){
@@ -45,7 +48,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : tempArray,
+		data : [timeArray,tempArray],
 		pointInterval: 3 * 3600 * 1000 // every 3 hours
 	} ];
 
