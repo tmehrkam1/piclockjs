@@ -166,3 +166,55 @@ function updateBackground(temp) {
 function reloadMain() {
 	window.location = "/";
 }
+
+function updateForecast() {
+	// setup a container for the entire forcast contents
+	var content = document.createElement("div");
+
+	url="forecast";
+	fetch(url)
+	.then((resp) => resp.json())
+	.then(function(data){
+		if (typeof data.list ==="undefined") {
+			data.list = [];
+		}
+		// create a container for the forecast
+		var forecastBlock = document.createElement("div");
+		forecastBlock.setAttribute("class","forecastBlock");
+		forecastBlock.setAttribute("id","block"+i);
+		
+		var forecastImage = document.createElement("div");
+		forecastImage.setAttribute("class","forecastImage");
+		forecastImage.setAttribute("id","imgDiv");
+		
+		// populate the forecast icon with the image
+		var image = document.createElement("img");
+		image.setAttribute("src",data.list[0].icon);
+		image.setAttribute("style","height:100%;");
+		
+		// populate the forecast text
+		forecastText.innerHTML=data.list[0].name + '<br />' + data.list[0].temp + '<br />' + data.list[0].detailed;
+
+		var forecastText = document.createElement("div");
+		forecastText.setAttribute("class","forecastText");
+		forecastText.setAttribute("id","forecast"+i);
+		
+		// put the image in the div
+		forecastImage.appendChild(image);
+
+		// put the image + text into the block
+		forecastBlock.appendChild(forecastImage);
+		forecastBlock.appendChild(forecastText);
+
+		// put the block into the parent div
+		content.appendChild(forecastBlock);
+		
+		// put populated block into the column
+		document.getElementById("curForecast").innerHTML = "";
+		document.getElementById("curForecast").appendChild(content);
+	})
+	.catch(function(error){
+		alert(error);
+	});
+
+}
