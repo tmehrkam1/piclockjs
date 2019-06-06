@@ -128,6 +128,10 @@ if (settings.mode == "local" || settings.mode == "server") {
 		})
 	});
 
+	appl.get("/store", (req,res) => {
+		res.status(200).json(store);
+	})
+	
 	appl.get('/', (req,res) => {
 		res.sendFile(__dirname + '/public/index.html');
 	})
