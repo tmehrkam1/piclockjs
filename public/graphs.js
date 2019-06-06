@@ -19,7 +19,7 @@ function updateValues() {
 }
 
 function tempGraph(){
-	var tempDiv=getElementById("temp");
+	var tempDiv=document.getElementById("temp");
 	
 	var chart = {
 		zoomType : 'x'
