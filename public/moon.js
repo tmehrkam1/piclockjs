@@ -58,9 +58,11 @@ moonImg.style.objectFit = "contain";
 
 updateClock();
 updateCur();
+updateForcast();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
+setInterval(updateForcast,4*60*60*1000) //update forcast block every 4 hours
 // from cache
 
 function updateClock() {
