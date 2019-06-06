@@ -269,6 +269,7 @@ function updateCur() {
 	.catch(function(error){
 		alert(error);
 	})
+	updateAlerts();
 }
 
 // change background color based on temp
@@ -354,4 +355,31 @@ function updateForecast() {
 		alert(error);
 	});
 
+}
+
+function updateAlerts(){
+	var alertDiv = document.getElementById("alerts");
+	alertDiv.textContent="";
+
+	url="alerts";
+	fetch(url)
+	.then((resp) => resp.json())
+	.then(function(data){
+		for (var i=0;i < data.features.length;i++) {		
+			// create a container for the forecast
+			var alertBlock = document.createElement("div");
+			alertBlock.setAttribute("class","alertBlock");
+			alertBlock.setAttribute("id","alert"+i);
+
+			// populate the forecast text
+			alertBlock.innerHTML=data.features[i].headline;
+
+			// put the block into the parent div
+			alertDiv.appendChild(alertBlock);				
+		};
+
+	})
+	.catch(function(error){
+		alert(error);
+	});
 }
