@@ -199,7 +199,7 @@ function updateForecast() {
 
 		var forecastText = document.createElement("div");
 		forecastText.setAttribute("class","forecastText");
-		forecastText.setAttribute("id","forecast"+i);
+		forecastText.setAttribute("id","forecast");
 		
 		// put the image in the div
 		forecastImage.appendChild(image);
