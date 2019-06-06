@@ -183,7 +183,7 @@ function updateForecast() {
 		// create a container for the forecast
 		var forecastBlock = document.createElement("div");
 		forecastBlock.setAttribute("class","forecastBlock");
-		forecastBlock.setAttribute("id","block"+i);
+		forecastBlock.setAttribute("id","block");
 		
 		var forecastImage = document.createElement("div");
 		forecastImage.setAttribute("class","forecastImage");
