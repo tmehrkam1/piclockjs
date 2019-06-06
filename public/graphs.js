@@ -30,6 +30,9 @@ function tempGraph(){
 
 	var xAxis = {
 		type : 'datetime',
+		dateTimeLabelFormats: {
+            day: '%e %b - %H'
+        }
 	};
 	var yAxis = {
 		title : {
