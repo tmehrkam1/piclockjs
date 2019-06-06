@@ -507,9 +507,7 @@ function parseWgAlert(data) {
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
-	logger.info('storing values : ' + timestamp + ':' + temp + ':' + pressure + ':' + humidity);
-
-	if (store.timestamp.length > 360 ) {
+	if (store.timestamp.length > 1440 ) {
 		logger.info("shift array at length  " + store.timestamp.length);
 		store.timestamp.shift();
 		store.temp.shift();
