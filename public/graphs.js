@@ -25,13 +25,11 @@ function tempGraph(){
 		zoomType : 'x'
 	};
 	var title = {
-		text : 'Temperature over the last 24 hours'
+		text : 'Temperature over the last 48 hours'
 	};
 
 	var xAxis = {
 		type : 'datetime',
-		minRange : 14 * 24 * 3600000
-	// fourteen days
 	};
 	var yAxis = {
 		title : {
@@ -44,7 +42,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : tempArray
+		data : timestampArray,tempArray
 	} ];
 
 	var json = {};
