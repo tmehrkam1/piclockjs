@@ -46,6 +46,7 @@ function tempGraph(){
 		type : 'line',
 		name : 'temp',
 		data : tempArray,timestampArray
+		pointInterval: 3 * 3600 * 1000 // every 3 hours
 	} ];
 
 	var json = {};
