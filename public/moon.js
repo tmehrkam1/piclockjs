@@ -193,13 +193,13 @@ function updateForecast() {
 		var image = document.createElement("img");
 		image.setAttribute("src",data.list[0].icon);
 		image.setAttribute("style","height:100%;");
-		
-		// populate the forecast text
-		forecastText.innerHTML=data.list[0].name + '<br />' + data.list[0].temp + '<br />' + data.list[0].detailed;
-
+				
 		var forecastText = document.createElement("div");
 		forecastText.setAttribute("class","forecastText");
 		forecastText.setAttribute("id","forecast");
+		
+		// populate the forecast text
+		forecastText.innerHTML=data.list[0].name + '<br />' + data.list[0].temp + '<br />' + data.list[0].detailed;
 		
 		// put the image in the div
 		forecastImage.appendChild(image);
