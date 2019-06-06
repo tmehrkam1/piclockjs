@@ -79,9 +79,14 @@ process.on('unhandledRejection', (reason, p) => {
 
 //get current weather conditions
 var cur={};
+//initialize json of arrays
+var store={};
+store.timestamp=[];
+store.temp=[];
+store.pressure=[];
+store.humidity=[];
 var forecasts = {};
 var alerts = {};
-var pressureTrend = [];
 var nightMode = false;
 
 cur.dt=0;
@@ -395,16 +400,8 @@ function parseOW(observation){
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 	cur.dt = observation.dt;
-
-	pressureTrend.push(cur.pressure);
-
-	if (pressureTrend.length > 15) {
-		logger.info("shift array at length  " + pressureTrend.length)
-		pressureTrend.shift();
-	}
-
-	cur.pressureTrend = trend(pressureTrend,{lastpoints:3});
-	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
+	
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseDS(body){
@@ -448,16 +445,8 @@ function parseDS(body){
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
 	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
-
-	pressureTrend.push(cur.pressure);
-
-	if (pressureTrend.length > 360) {
-		logger.info("shift array at length  " + pressureTrend.length)
-		pressureTrend.shift();
-	}
-
-	cur.pressureTrend = trend(pressureTrend,{lastpoints:15,avgPoints:300});
-	logger.info(pressureTrend.length + " elements in array. pressure direction : " + cur.pressureTrend);
+	
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 
@@ -511,4 +500,25 @@ function parseWgAlert(data) {
 		array.push(alert);
 	}
 	alerts.features = array;
+}
+
+function storeValues(timestamp,temp,pressure,humidity) {
+	logger.info('storing values : ' + timestamp + temp + pressure + humidity);
+
+	if (store.timestamp.length > 360 ) {
+		logger.info("shift array at length  " + store.timestamp.length);
+		store.timestamp.shift();
+		store.temp.shift();
+		store.pressure.shift();
+		store.humidity.shift();
+	}
+	
+	logger.info('store has value count of :' + store.timestamp.length);
+
+	store.timestamp.push(timestamp);
+	store.temp.push(temp);
+	store.pressure.push(pressure);
+	store.humidity.push(humidity);
+	
+	cur.pressureTrend = trend(store.pressure,{lastpoints:3});
 }
