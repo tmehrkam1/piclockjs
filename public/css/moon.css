@@ -1,0 +1,126 @@
+#main {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+#col_1 {
+	float: left; 
+	width: 20vw; 
+	text-align: center;
+}
+
+#col_2 {
+	float: left; 
+	width: 48vw; 
+	text-align: center;
+}
+
+#col_3 {
+	float: left; 
+	width: 31vw; 
+	text-align: center;
+}
+
+#curConditions {
+	height: 33vh;
+	margin-top: 10px;
+}
+
+#curIcon {
+	font-size: 7vh;
+}
+
+#curDesc {
+	font-size: 3vh;
+}
+
+#curTemp {
+	font-size: 5vh;
+	font-family: 'Orbitron'; 
+}
+
+#curHum {
+	font-size: 3vh;
+}
+
+#curWind {
+	font-size: 2vh;
+}
+
+#curPres {
+	font-size: 2vh;
+}
+
+#curFeels {
+	font-size: 3vh;
+}
+
+#rdrRegional {
+	height: 33vh;
+}
+
+#rdrLocal {
+	height: 33vh;
+}
+
+#date {
+	height: 10vh; 
+	font-size: 5vh;
+}
+
+#time {
+	height: 60vh; 
+	font-size: 15vh; 
+	font-family: 'Orbitron'; 
+	line-height: 60vh;
+	overflow: hidden
+}
+
+#analogClock {
+	height:60vh;
+	width:100%;
+	overflow: hidden;
+	border: transparent
+}
+
+#alerts {
+	height: 20vh;
+	font-size: 3vh;
+	overflow: hidden;
+}
+
+#sun_moon {
+	height: 10vh; 
+	font-size: 2vh;
+}
+
+.forecastBlock {
+	display: inline-block;
+	width: 100%;
+	overflow: hidden;
+}
+
+.forecastImage {
+	height: 100%;
+	width: auto;
+}
+
+.forecastText {
+	float:left;
+	font-size:3vh;
+}
+
+.alertBlock {
+	display: inline-block;
+	width: 100%;
+	border: 2px solid black;
+	overflow: hidden;
+	position: relative;
+	animation: mymove 60s linear infinite;
+}
+
+@keyframes mymove {  
+	from {top: 100%;}
+	to {top: -150%;}
+}
