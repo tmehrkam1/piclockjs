@@ -45,7 +45,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : [timestampArray,tempArray],
+		data : [tempArray],
 		pointInterval: 3 * 3600 * 1000 // every 3 hours
 	} ];
 
