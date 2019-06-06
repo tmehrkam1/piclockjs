@@ -6,7 +6,7 @@ var humidityArray = [];
 updateCoords();  // grab map coords from backend.
 updateValues(); // grab stored values from backend.
 tempGraph();
-pressureGraph();
+pressGraph();
 humidityGraph();
 
 function updateCoords() {
