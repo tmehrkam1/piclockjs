@@ -1,4 +1,5 @@
 updateValues();  // grab map coords from backend.
+tempGraph();
 
 function updateValues() {
 	url="store";
@@ -36,8 +37,6 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		pointInterval : 24 * 3600 * 1000,
-		//pointStart: Date.UTC(2006, 0, 1),
 		data : tempArray
 	} ];
 
