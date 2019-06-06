@@ -1,30 +1,50 @@
-var timestampArray=[];
-var tempArray=[];
-var pressureArray=[];
-var humidityArray=[];
+var timestampArray = [];
+var tempArray = [];
+var pressureArray = [];
+var humidityArray = [];
 
-updateValues();  // grab map coords from backend.
+updateCoords();  // grab map coords from backend.
+updateValues(); // grab stored values from backend.
 tempGraph();
 
-
-function updateValues() {
-	url="store";
+function updateCoords() {
+	url="coords";
 	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
-	//tempArray=obj.temp;
-	pressureArray=obj.pressure;
-	humidityArray=obj.humidity;
-	
-	obj.timestamp.forEach(function(element, i) {
-		tempArray[i]=[element*1000,obj.temp[i]];
-		});
+	lat = obj.lat;
+	lon = obj.lon;
+	lat = parseFloat(lat);
+	lon = parseFloat(lon);
+	gMapKey = obj.gMapKey;
+	clockType = obj.clock;
+	backgroundImg = obj.backgroundImg;
+	imgFontColor = obj.imgFontColor;
+	tz = obj.tz;
 }
 
-function tempGraph(){
-	//var tempDiv=document.getElementById("temp");
-	
+function updateValues() {
+	url = "store";
+	var xhr = new XMLHttpRequest(); // need a sync call to initialize Maps
+	xhr.open("GET", url, false);
+	xhr.send(null);
+	var obj = JSON.parse(xhr.responseText);
+
+	obj.timestamp.forEach(function(element, i) {
+		tempArray[i] = [ element * 1000, obj.temp[i] ];
+		pressureArray[i] = [ element * 1000, obj.pressure[i] ];
+		humidityArray[i] = [ element * 1000, obj.humidity[i] ];
+	});
+}
+
+function tempGraph() {
+	Highcharts.setOptions({
+	    time: {
+	        timezone: tz
+	   }
+	});
+
 	var chart = {
 		zoomType : 'x'
 	};
@@ -34,9 +54,9 @@ function tempGraph(){
 
 	var xAxis = {
 		type : 'datetime',
-		dateTimeLabelFormats: {
-            day: '%e %b - %H'
-        }
+		dateTimeLabelFormats : {
+			day : '%e %b - %H'
+		}
 	};
 	var yAxis = {
 		title : {
@@ -50,7 +70,8 @@ function tempGraph(){
 		type : 'line',
 		name : 'temp',
 		data : tempArray,
-		pointInterval: 3 * 3600 * 1000 // every 3 hours
+		pointInterval : 3 * 3600 * 1000
+	// every 3 hours
 	} ];
 
 	var json = {};
