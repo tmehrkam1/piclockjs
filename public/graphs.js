@@ -16,8 +16,8 @@ function updateValues() {
 	pressureArray=obj.pressure;
 	humidityArray=obj.humidity;
 	
-	timestampArray.forEach(function(element, i) {
-		  timeArray.push(element * 1000);
+	obj.timestamp.forEach(function(element, i) {
+		timestampArray.push(element * 1000);
 		});
 }
 
@@ -48,7 +48,7 @@ function tempGraph(){
 	var series = [ {
 		type : 'line',
 		name : 'temp',
-		data : [timeArray,tempArray],
+		data : [timestampArray,tempArray],
 		pointInterval: 3 * 3600 * 1000 // every 3 hours
 	} ];
 
