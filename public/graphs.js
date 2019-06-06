@@ -19,7 +19,7 @@ function updateValues() {
 }
 
 function tempGraph(){
-	var tempDiv=document.getElementById("temp");
+	//var tempDiv=document.getElementById("temp");
 	
 	var chart = {
 		zoomType : 'x'
@@ -54,5 +54,5 @@ function tempGraph(){
 	json.xAxis = xAxis;
 	json.yAxis = yAxis;
 	json.series = series;
-	tempDiv.highcharts(json);
+	$('#temp').highcharts(json);
 }
