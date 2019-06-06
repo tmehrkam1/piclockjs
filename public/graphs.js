@@ -1,16 +1,21 @@
 updateValues();  // grab map coords from backend.
 tempGraph();
 
+var timestampArray=[];
+var tempArray=[];
+var pressureArray=[];
+var humidityArray=[];
+
 function updateValues() {
 	url="store";
 	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
-	var timestampArray=obj.timestamp;
-	var tempArray=obj.temp;
-	var pressureArray=obj.pressure;
-	var humidityArray=obj.humidity;
+	timestampArray=obj.timestamp;
+	tempArray=obj.temp;
+	pressureArray=obj.pressure;
+	humidityArray=obj.humidity;
 }
 
 function tempGraph(){
