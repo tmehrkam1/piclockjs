@@ -3,6 +3,9 @@ var tempArray = [];
 var pressureArray = [];
 var humidityArray = [];
 
+window.moment = Moment
+MomentTimeZone();
+
 updateCoords();  // grab map coords from backend.
 updateValues(); // grab stored values from backend.
 tempGraph();
