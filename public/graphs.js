@@ -1,10 +1,11 @@
-updateValues();  // grab map coords from backend.
-tempGraph();
-
 var timestampArray=[];
 var tempArray=[];
 var pressureArray=[];
 var humidityArray=[];
+
+updateValues();  // grab map coords from backend.
+tempGraph();
+
 
 function updateValues() {
 	url="store";
