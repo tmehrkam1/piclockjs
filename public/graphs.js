@@ -37,9 +37,10 @@ function updateValues() {
 		var date = new Date(element).toLocaleTimeString("en-us", {
 			timeZone : tz
 		});
-		tempArray[i] = [ date, obj.temp[i] ];
-		pressureArray[i] = [ date, obj.pressure[i] ];
-		humidityArray[i] = [ date, obj.humidity[i] ];
+		console.log(date);
+		tempArray[i] = [ date * 1000, obj.temp[i] ];
+		pressureArray[i] = [ date * 1000, obj.pressure[i] ];
+		humidityArray[i] = [ date * 1000, obj.humidity[i] ];
 	});
 }
 
