@@ -3,7 +3,7 @@ var tempArray = [];
 var pressureArray = [];
 var humidityArray = [];
 
-moment = win.moment;
+moment = window.moment;
 
 updateCoords(); // grab map coords from backend.
 updateValues(); // grab stored values from backend.
