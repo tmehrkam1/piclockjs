@@ -1,16 +1,37 @@
 <html>
 <head>
 <title>Highcharts Test</title>
-      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-      <script src= "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-      <script src= "https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.25/moment-timezone-with-data.js"></script>  
-      <script src = "https://code.highcharts.com/highcharts.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.25/moment-timezone-with-data.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 
 <body>
- <div id = "temp" style = "width: 79vw; height: 33vh; margin: 0 auto"></div>
- <div id = "pressure" style = "width: 79vw; height: 33vh; margin: 0 auto"></div>
- <div id = "humidity" style = "width: 79vw; height: 33vh; margin: 0 auto"></div>
+	<div id="main" onclick="reloadMain()">
+		<div id="col_1" class="columns">
+			<div id="curConditions">
+				<span id="curIcon"></span> <br /> <span id="curDesc"></span> <br />
+				<span id="curTemp"></span> <br /> <span id="curHum"></span> <br />
+				<span id="curWind"></span> <br /> <span id="curPres"></span> <br />
+				<span id="curFeels"></span> <br />
+			</div>
+			<div id="curForecast"></div>
+		</div>
+		<div id="col_2" class="columns">
+			<div id="date"></div>
+			<div id="time"></div>
+			<div id="alerts"></div>
+			<div id="graphs">
+				<div id="temp"></div>
+				<div id="pressure"></div>
+				<div id="humidity"></div>
+			</div>
+		</div>
+	</div>
 </body>
 <script type="text/javascript" src="graphs.js"> </script>
 </html>
