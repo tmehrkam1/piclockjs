@@ -42,6 +42,12 @@ function updateValues() {
 }
 
 function tempGraph() {
+	Highcharts.setOptions({
+		time : {
+			timezone : tz
+		}
+	});
+	
 	var chart = {
 		zoomType : 'x'
 	};
