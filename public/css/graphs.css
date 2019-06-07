@@ -69,6 +69,16 @@
 	overflow: hidden;
 }
 
+#graphs {
+	height: auto;
+	width: 79vw;
+}
+
+.graph {
+	height: 33%;
+	width: 100%;
+}
+
 .forecastBlock {
 	display: inline-block;
 	width: 100%;
