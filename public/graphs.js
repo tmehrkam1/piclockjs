@@ -3,16 +3,16 @@ var tempArray = [];
 var pressureArray = [];
 var humidityArray = [];
 
-updateCoords();  // grab map coords from backend.
+updateCoords(); // grab map coords from backend.
 updateValues(); // grab stored values from backend.
 tempGraph();
 pressGraph();
 humidityGraph();
 
 function updateCoords() {
-	url="coords";
-	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
-	xhr.open("GET",url,false);
+	url = "coords";
+	var xhr = new XMLHttpRequest(); // need a sync call to initialize Maps
+	xhr.open("GET", url, false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
 	lat = obj.lat;
@@ -34,10 +34,7 @@ function updateValues() {
 	var obj = JSON.parse(xhr.responseText);
 
 	obj.timestamp.forEach(function(element, i) {
-		var date = new Date(element).toLocaleTimeString("en-us",{
-			hour : '2-digit',
-			minute : '2-digit',
-			hour12 : 'true',
+		var date = new Date(element).toLocaleTimeString("en-us", {
 			timeZone : tz
 		});
 		tempArray[i] = [ date, obj.temp[i] ];
@@ -47,12 +44,6 @@ function updateValues() {
 }
 
 function tempGraph() {
-	Highcharts.setOptions({
-	    time: {
-	        timezone: tz
-	   }
-	});
-
 	var chart = {
 		zoomType : 'x'
 	};
@@ -94,9 +85,9 @@ function tempGraph() {
 
 function pressGraph() {
 	Highcharts.setOptions({
-	    time: {
-	        timezone: tz
-	   }
+		time : {
+			timezone : tz
+		}
 	});
 
 	var chart = {
@@ -140,9 +131,9 @@ function pressGraph() {
 
 function humidityGraph() {
 	Highcharts.setOptions({
-	    time: {
-	        timezone: tz
-	   }
+		time : {
+			timezone : tz
+		}
 	});
 
 	var chart = {
