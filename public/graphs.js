@@ -36,12 +36,13 @@ function updateValues() {
 	obj.timestamp.forEach(function(element, i) {
 		var date = new Date(element * 1000).toLocaleTimeString("en-us", {
 			timeZone : tz
-		}).getTime();
+		});
+		var timestamp = new Date(date).getTime;
 		
 		console.log(date);
-		tempArray[i] = [ date * 1000, obj.temp[i] ];
-		pressureArray[i] = [ date, obj.pressure[i] ];
-		humidityArray[i] = [ date, obj.humidity[i] ];
+		tempArray[i] = [ timestamp, obj.temp[i] ];
+		pressureArray[i] = [ timestamp, obj.pressure[i] ];
+		humidityArray[i] = [ timestamp, obj.humidity[i] ];
 	});
 }
 
@@ -115,7 +116,7 @@ function pressGraph() {
 	};
 	var series = [ {
 		type : 'line',
-		name : 'temp',
+		name : 'mbar',
 		data : pressureArray,
 		pointInterval : 3 * 3600 * 1000
 	// every 3 hours
@@ -161,7 +162,7 @@ function humidityGraph() {
 	};
 	var series = [ {
 		type : 'line',
-		name : 'temp',
+		name : 'humidity',
 		data : humidityArray,
 		pointInterval : 3 * 3600 * 1000
 	// every 3 hours
