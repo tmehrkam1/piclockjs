@@ -37,7 +37,7 @@ function updateValues() {
 		var date = new Date(element * 1000).toLocaleTimeString("en-us", {
 			timeZone : tz
 		});
-		var timestamp = new Date(date).getTime();
+		var timestamp = new Date(date);
 		
 		console.log(timestamp);
 		tempArray[i] = [ timestamp * 1000, obj.temp[i] ];
