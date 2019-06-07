@@ -512,3 +512,17 @@ function moonPage(e) {
 	    window.location = "/moon.html"
 }
 
+function graphPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/graphs.html"
+}
