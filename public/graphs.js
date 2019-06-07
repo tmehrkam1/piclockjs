@@ -7,9 +7,6 @@ window.moment = moment;
 
 updateCoords(); // grab map coords from backend.
 updateValues(); // grab stored values from backend.
-tempGraph();
-pressGraph();
-humidityGraph();
 
 //restyle column width
 var col2Div = document.getElementById("col_2");
@@ -35,6 +32,7 @@ updateForecast();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
+setInterval(updateValues, 2 * 60 *1000); //update values every 2 minutes
 setInterval(updateForecast,4*60*60*1000) //update forcast block every 4 hours
 // from cache
 
@@ -58,7 +56,7 @@ function updateCoords() {
 
 function updateValues() {
 	url = "store";
-	var xhr = new XMLHttpRequest(); // need a sync call to initialize Maps
+	var xhr = new XMLHttpRequest(); // need a sync call
 	xhr.open("GET", url, false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
@@ -69,6 +67,9 @@ function updateValues() {
 		pressureArray[i] = [ element * 1000, obj.pressure[i] ];
 		humidityArray[i] = [ element * 1000, obj.humidity[i] ];
 	});
+	tempGraph();
+	pressGraph();
+	humidityGraph();
 }
 
 function tempGraph() {
