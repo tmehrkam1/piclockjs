@@ -44,7 +44,6 @@ function updateValues() {
 }
 
 function tempGraph() {
-	console.log(tz);
 	Highcharts.setOptions({
 		time : {
 			timezone : tz
