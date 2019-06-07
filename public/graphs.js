@@ -37,6 +37,7 @@ function updateValues() {
 		var date = new Date(element * 1000).toLocaleTimeString("en-us", {
 			timeZone : tz
 		});
+		date.getTime();
 		console.log(date);
 		tempArray[i] = [ date * 1000, obj.temp[i] ];
 		pressureArray[i] = [ date, obj.pressure[i] ];
