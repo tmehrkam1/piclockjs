@@ -39,10 +39,10 @@ function updateValues() {
 		});
 		var timestamp = new Date(date).getTime;
 		
-		console.log(date);
-		tempArray[i] = [ timestamp, obj.temp[i] ];
-		pressureArray[i] = [ timestamp, obj.pressure[i] ];
-		humidityArray[i] = [ timestamp, obj.humidity[i] ];
+		console.log(timestamp);
+		tempArray[i] = [ timestamp * 1000, obj.temp[i] ];
+		pressureArray[i] = [ timestamp * 1000, obj.pressure[i] ];
+		humidityArray[i] = [ timestamp * 1000, obj.humidity[i] ];
 	});
 }
 
