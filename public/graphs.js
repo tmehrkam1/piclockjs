@@ -223,16 +223,6 @@ function updateClock() {
 			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
-
-		//update moon image every 4 hours
-		var diffMs = timeStamp - moonTime;
-		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
-		var diffH = parseInt(diffM / 60);
-		
-		if (diffH == 4) {
-			moonTime = new Date();
-			moonImg.src = "https://api.usno.navy.mil/imagery/moon.png?&ID=AA-URL";
-		}
 }
 
 function updateCur() {
