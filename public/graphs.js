@@ -34,8 +34,12 @@ function updateValues() {
 	var obj = JSON.parse(xhr.responseText);
 
 	obj.timestamp.forEach(function(element, i) {
-		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: tz };
-		var date = new Intl.DateTimeFormat('en-us',options).format(element);
+		var date = new Date(element).toLocaleTimeString("en-us",{
+			hour : '2-digit',
+			minute : '2-digit',
+			hour12 : 'true',
+			timeZone : tz
+		});
 		tempArray[i] = [ date, obj.temp[i] ];
 		pressureArray[i] = [ date, obj.pressure[i] ];
 		humidityArray[i] = [ date, obj.humidity[i] ];
