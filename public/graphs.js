@@ -34,13 +34,13 @@ function updateValues() {
 	var obj = JSON.parse(xhr.responseText);
 
 	obj.timestamp.forEach(function(element, i) {
-		var date = new Date(element).toLocaleTimeString("en-us", {
+		var date = new Date(element * 1000).toLocaleTimeString("en-us", {
 			timeZone : tz
 		});
 		console.log(date);
 		tempArray[i] = [ date * 1000, obj.temp[i] ];
-		pressureArray[i] = [ date * 1000, obj.pressure[i] ];
-		humidityArray[i] = [ date * 1000, obj.humidity[i] ];
+		pressureArray[i] = [ date, obj.pressure[i] ];
+		humidityArray[i] = [ date, obj.humidity[i] ];
 	});
 }
 
