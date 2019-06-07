@@ -70,13 +70,13 @@
 }
 
 #graphs {
-	height: 76%;
-	width: 78vw;
+	height: 77vh;
+	width: 79vw;
 }
 
 .graph {
-	height: 32%;
-	width: 100%;
+	height: 32vh;
+	width: 78vw;
 }
 
 .forecastBlock {
