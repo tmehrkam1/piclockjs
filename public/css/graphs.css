@@ -56,10 +56,9 @@
 }
 
 #time {
-	height: 60vh; 
+	height: 10vh;
 	font-size: 15vh; 
 	font-family: 'Orbitron'; 
-	line-height: 60vh;
 	overflow: hidden
 }
 
@@ -70,12 +69,12 @@
 }
 
 #graphs {
-	height: 77vh;
+	height: 90vh;
 	width: 79vw;
 }
 
 .graph {
-	height: 32vh;
+	height: 30vh;
 	width: 78vw;
 }
 
