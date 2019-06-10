@@ -526,3 +526,19 @@ function graphPage(e) {
 	    }
 	    window.location = "/graphs.html"
 }
+
+function forecastPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/forecast.html"
+}
+
