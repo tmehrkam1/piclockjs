@@ -1,46 +1,17 @@
-var lat;
-var lon;
-var gMapKey;
-var tz;
-var moonTime = new Date();
+var timestampArray = [];
+var tempArray = [];
+var pressureArray = [];
+var humidityArray = [];
 
-updateCoords();  // grab map coords from backend.
+window.moment = moment;
 
-//shift clock into day mode
-url="http://127.0.0.1:8081/day";
-var xhttp = new XMLHttpRequest();
-xhttp.open("GET", url, true);
-xhttp.onerror = function () {
-	console.log("no response on 127.0.0.1:8081");
-};
-xhttp.send();
+updateCoords(); // grab map coords from backend.
 
-
-function updateCoords() {
-	url="coords";
-	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
-	xhr.open("GET",url,false);
-	xhr.send(null);
-	var obj = JSON.parse(xhr.responseText);
-	lat = obj.lat;
-	lon = obj.lon;
-	lat = parseFloat(lat);
-	lon = parseFloat(lon);
-	gMapKey = obj.gMapKey;
-	clockType = obj.clock;
-	backgroundImg = obj.backgroundImg;
-	imgFontColor = obj.imgFontColor;
-	tz = obj.tz;
-	aerisID = obj.aerisID;
-	aerisSecret = obj.aerisSecret;
-}
-
-//restyle column width
+// restyle column width
 var col2Div = document.getElementById("col_2");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
-var moonImg = document.getElementById("moonimg");
-var moonDiv = document.getElementById("moon");
+
 
 col2Div.style.width = "79vw"; 
 dateDiv.style.float = "left";
@@ -52,9 +23,7 @@ timeDiv.style.lineHeight = "7vh";
 timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
-moonImg.style.height = "90vh";
-moonImg.style.width = "79vw";
-moonImg.style.objectFit = "contain";
+
 
 updateClock();
 updateCur();
@@ -62,8 +31,28 @@ updateForecast();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
-setInterval(updateForecast,4*60*60*1000) //update forcast block every 4 hours
+setInterval(updateForecast,1*60*60*1000) // update forcast block every 1
+											// hours
 // from cache
+
+
+function updateCoords() {
+	url = "coords";
+	var xhr = new XMLHttpRequest(); // need a sync call to initialize Maps
+	xhr.open("GET", url, false);
+	xhr.send(null);
+	var obj = JSON.parse(xhr.responseText);
+	lat = obj.lat;
+	lon = obj.lon;
+	lat = parseFloat(lat);
+	lon = parseFloat(lon);
+	gMapKey = obj.gMapKey;
+	clockType = obj.clock;
+	backgroundImg = obj.backgroundImg;
+	imgFontColor = obj.imgFontColor;
+	tz = obj.tz;
+}
+
 
 function updateClock() {
 	// update date string
@@ -79,16 +68,6 @@ function updateClock() {
 			timeZone : tz
 		});
 		document.getElementById("time").textContent = time;
-
-		//update moon image every 4 hours
-		var diffMs = timeStamp - moonTime;
-		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
-		var diffH = parseInt(diffM / 60);
-		
-		if (diffH == 4) {
-			moonTime = new Date();
-			moonImg.src = "https://api.usno.navy.mil/imagery/moon.png?&ID=AA-URL";
-		}
 }
 
 function updateCur() {
