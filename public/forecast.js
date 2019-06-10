@@ -190,8 +190,8 @@ function updateForecast() {
 		content.appendChild(forecastBlock);
 		
 		// put populated block into the column
-		document.getElementById("curForecast").innerHTML = "";
-		document.getElementById("curForecast").appendChild(content);
+		document.getElementById("forecastDiv").innerHTML = "";
+		document.getElementById("forecastDiv").appendChild(content);
 	})
 	.catch(function(error){
 		alert(error);
