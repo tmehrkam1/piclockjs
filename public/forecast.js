@@ -3,8 +3,6 @@ var tempArray = [];
 var pressureArray = [];
 var humidityArray = [];
 
-window.moment = moment;
-
 updateCoords(); // grab map coords from backend.
 
 // restyle column width
