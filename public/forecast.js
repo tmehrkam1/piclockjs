@@ -158,14 +158,15 @@ function updateForecast() {
 		if (typeof data.list ==="undefined") {
 			data.list = [];
 		}
+		for (i = 0; i < 5; i++) {
 		// create a container for the forecast
 		var forecastBlock = document.createElement("div");
 		forecastBlock.setAttribute("class","forecastBlock");
-		forecastBlock.setAttribute("id","block");
+		forecastBlock.setAttribute("id","block" + i);
 		
 		var forecastImage = document.createElement("div");
 		forecastImage.setAttribute("class","forecastImage");
-		forecastImage.setAttribute("id","imgDiv");
+		forecastImage.setAttribute("id","imgDiv"+i);
 		
 		// populate the forecast icon with the image
 		var image = document.createElement("img");
@@ -177,7 +178,7 @@ function updateForecast() {
 		forecastText.setAttribute("id","forecast");
 		
 		// populate the forecast text
-		forecastText.innerHTML=data.list[0].name + '<br />' + '<span id="curTemp" >' + data.list[0].temp + ' &deg;F</span><br />' + data.list[0].detailed;
+		forecastText.innerHTML=data.list[i].name + '<br />' + '<span id="curTemp" >' + data.list[i].temp + ' &deg;F</span><br />' + data.list[i].detailed;
 		
 		// put the image in the div
 		forecastImage.appendChild(image);
@@ -188,7 +189,7 @@ function updateForecast() {
 
 		// put the block into the parent div
 		content.appendChild(forecastBlock);
-		
+		}
 		// put populated block into the column
 		document.getElementById("forecastDiv").innerHTML = "";
 		document.getElementById("forecastDiv").appendChild(content);
