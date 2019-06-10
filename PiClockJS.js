@@ -522,5 +522,5 @@ function storeValues(timestamp,temp,pressure,humidity) {
 	
 	logger.info('store has value count of :' + store.timestamp.length);
 	
-	cur.pressureTrend = trend(store.pressure,{lastpoints:3});
+	cur.pressureTrend = trend(store.pressure,{lastpoints:5,avgPoints:60});
 }
