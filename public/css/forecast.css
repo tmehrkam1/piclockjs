@@ -72,7 +72,8 @@
 	display: inline-block;
 	width: 20%;
 	overflow: hidden;
-	float: left
+	float: left;
+	border: 2px solid
 }
 
 .forecastImage {
