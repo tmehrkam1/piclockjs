@@ -145,6 +145,7 @@ function tempGraph() {
 	var series = [ {
 		type : 'line',
 		name : 'temp',
+		color : '#000000',
 		data : tempArray,
 		pointInterval : 3 * 3600 * 1000
 	// every 3 hours
