@@ -8,7 +8,7 @@ window.moment = moment;
 updateCoords(); // grab map coords from backend.
 updateValues(); // grab stored values from backend.
 
-//restyle column width
+// restyle column width
 var col2Div = document.getElementById("col_2");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
@@ -32,8 +32,9 @@ updateForecast();
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
-setInterval(updateValues, 2 * 60 *1000); //update values every 2 minutes
-setInterval(updateForecast,4*60*60*1000) //update forcast block every 4 hours
+setInterval(updateValues, 2 * 60 *1000); // update values every 2 minutes
+setInterval(updateForecast,4*60*60*1000) // update forcast block every 4
+											// hours
 // from cache
 
 
@@ -96,46 +97,47 @@ function tempGraph() {
 		title : {
 			text : 'Temperature'
 		},
-		plotBands : {
+		plotBands : [{
 			color : '#94b7cf',
-			from : '-210',  //arbitrary low.  not sure if there is an auto option
+			from : '-210',  // arbitrary low. not sure if there is an auto
+							// option
 			to : '29'
 		},
-		plotBands : {
+		{
 			color : '#00A4E8',
 			from : '30',
 			to : '39'
 		},
-		plotBands : {
+		{
 			color : '#2D3389',
 			from : '40',
 			to : '49'
 		},
-		plotBands : {
+		{
 			color : '#128A43',
 			from : '50',
 			to : '59'
 		},
-		plotBands : {
+		{
 			color : '#76BD43',
 			from : '60',
 			to : '69'
 		},
-		plotBands : {
+		{
 			color : '#FBD905',
 			from : '70',
 			to : '79'
 		},
-		plotBands : {
+		{
 			color : '#F58322',
 			from : '80',
 			to : '89'
 		},
-		plotBands : {
+		{
 			color : '#E91E24',
 			from : '90',
-			to : '210'  //arbitrary high.  not sure if there is an auto option
-		}
+			to : '210'  // arbitrary high. not sure if there is an auto option
+		}]
 	};
 	var legend = {
 		enabled : false
