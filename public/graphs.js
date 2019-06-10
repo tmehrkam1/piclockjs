@@ -229,7 +229,9 @@ function humidityGraph() {
 	};
 	var yAxis = {
 		title : {
-			text : 'Humidity'
+			text : 'Humidity',
+			min : 0,
+			max : 100,
 		}
 	};
 	var legend = {
