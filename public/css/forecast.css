@@ -70,7 +70,7 @@
 
 .forecastBlock {
 	display: inline-block;
-	width: 100%;
+	width: 20%;
 	overflow: hidden;
 	float: left
 }
