@@ -150,6 +150,8 @@ function reloadMain() {
 function updateForecast() {
 	// setup a container for the entire forcast contents
 	var content = document.createElement("div");
+	content.style.display = "inline-block"; //allows forecastes to line up
+	content.style.padding = "10vh 0px 0px 0px;" //adding space
 
 	url="forecast";
 	fetch(url)
