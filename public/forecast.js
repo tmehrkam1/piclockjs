@@ -172,7 +172,7 @@ function updateForecast() {
 		
 		// populate the forecast icon with the image
 		var image = document.createElement("img");
-		image.setAttribute("src",data.list[0].icon);
+		image.setAttribute("src",data.list[i].icon);
 		image.setAttribute("style","height:100%;");
 				
 		var forecastText = document.createElement("div");
