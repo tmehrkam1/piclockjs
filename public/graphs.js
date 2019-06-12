@@ -101,37 +101,37 @@ function tempGraph() {
 			color : '#94b7cf',
 			from : '-210',  // arbitrary low. not sure if there is an auto
 							// option
-			to : '29'
+			to : '30'
 		},
 		{
 			color : '#00A4E8',
 			from : '30',
-			to : '39'
+			to : '40'
 		},
 		{
 			color : '#2D3389',
 			from : '40',
-			to : '49'
+			to : '50'
 		},
 		{
 			color : '#128A43',
 			from : '50',
-			to : '59'
+			to : '60'
 		},
 		{
 			color : '#76BD43',
 			from : '60',
-			to : '69'
+			to : '70'
 		},
 		{
 			color : '#FBD905',
 			from : '70',
-			to : '79'
+			to : '80'
 		},
 		{
 			color : '#F58322',
 			from : '80',
-			to : '89'
+			to : '90'
 		},
 		{
 			color : '#E91E24',
