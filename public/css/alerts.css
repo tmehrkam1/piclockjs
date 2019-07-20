@@ -1,0 +1,109 @@
+#main {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+#col_1 {
+	float: left; 
+	width: 20vw; 
+	text-align: center;
+}
+
+#col_2 {
+	float: left; 
+	width: 79vw; 
+	text-align: center;
+}
+
+#curConditions {
+	height: 33vh;
+	margin-top: 10px;
+}
+
+#curIcon {
+	font-size: 7vh;
+}
+
+#curDesc {
+	font-size: 3vh;
+}
+
+#curTemp {
+	font-size: 5vh;
+	font-family: 'Orbitron'; 
+}
+
+#curHum {
+	font-size: 3vh;
+}
+
+#curWind {
+	font-size: 2vh;
+}
+
+#curPres {
+	font-size: 2vh;
+}
+
+#curFeels {
+	font-size: 3vh;
+}
+
+#date {
+	height: 10vh; 
+	font-size: 5vh;
+}
+
+#time {
+	height: 10vh;
+	font-size: 15vh; 
+	font-family: 'Orbitron'; 
+	overflow: hidden
+}
+
+#alerts {
+	height: 10vh;
+	font-size: 3vh;
+	overflow: hidden;
+}
+
+#graphs {
+	height: 90vh;
+	width: 79vw;
+}
+
+.graph {
+	height: 29vh;
+	width: 78vw;
+}
+
+.forecastBlock {
+	display: inline-block;
+	width: 100%;
+	overflow: hidden;
+}
+
+.forecastImage {
+	height: 15vh;
+	width: auto;
+}
+
+.forecastText {
+	float:left;
+	font-size:3vh;
+}
+
+.alertBlock {
+	display: inline-block;
+	width: 100%;
+	border: 2px solid black;
+	overflow: hidden;
+	position: relative;
+	animation: mymove 60s linear infinite;
+}
+
+@keyframes mymove {  
+	from {top: 100%;}
+	to {top: -150%;}
+}
