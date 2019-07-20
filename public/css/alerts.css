@@ -66,16 +66,7 @@
 	height: 10vh;
 	font-size: 3vh;
 	overflow: hidden;
-}
-
-#graphs {
-	height: 90vh;
-	width: 79vw;
-}
-
-.graph {
-	height: 29vh;
-	width: 78vw;
+	position: absolute;
 }
 
 .forecastBlock {
