@@ -217,6 +217,7 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
+	getWgovObs(settings.wgStaID);
 }
 
 async function currentDsObs(){
@@ -258,7 +259,7 @@ async function getWgovGridP(){
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		wgForecast(body.properties.forecast);
-		getWgovObs(body.properties.observationStations);
+		settings.wgStaID = body.properties.observationStations;
 	}
 	catch(e) {
 		logger.error(e)
