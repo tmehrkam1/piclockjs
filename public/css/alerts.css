@@ -13,6 +13,7 @@
 #col_2 {
 	float: left; 
 	width: 79vw; 
+	height: 100vh;
 	text-align: center;
 }
 
@@ -66,7 +67,7 @@
 	height: 10vh;
 	font-size: 3vh;
 	overflow: hidden;
-	position: absolute;
+	float: bottom;
 }
 
 .forecastBlock {
