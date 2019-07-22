@@ -64,10 +64,10 @@
 }
 
 #alerts {
-	height: 10vh;
+	height: 80vh;
 	font-size: 3vh;
 	overflow: hidden;
-	float: bottom;
+	float: left;
 }
 
 .forecastBlock {
