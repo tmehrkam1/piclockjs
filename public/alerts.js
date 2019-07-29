@@ -208,8 +208,8 @@ function updateAlerts(){
 			alertBlock.setAttribute("class","alertBlock");
 			alertBlock.setAttribute("id","alert"+i);
 
-			// populate the forecast text
-			alertBlock.innerHTML=data.features[i].headline;
+			// populate the alert text
+			alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
 
 			// put the block into the parent div
 			alertDiv.appendChild(alertBlock);				
