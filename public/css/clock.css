@@ -16,6 +16,7 @@
 	font-family: 'Orbitron';
 	font-size: 5vh;
 	position: absolute;
+	text-align: center;
 }
 
 div.clock span {
