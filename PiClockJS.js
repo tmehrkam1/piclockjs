@@ -479,19 +479,19 @@ function generateMoonPhase() {
 	
 if (phase == 0)	{
 		cur.moonPhase = "New Moon";
-	} else (phase>0 && phase <.25) {
+	} else if (phase>0 && phase <.25) {
 		cur.moonPhase ="Waxing Crescent";
-	} else (phase == 0.25) {
+	} else if (phase == 0.25) {
 		cur.moonPhase ="First Quarter";
-	} else (phase>.25&&phase<.5) {
+	} else if (phase>.25&&phase<.5) {
 		cur.moonPhase = "Waxing Gibbous";
-	} else (phase==0.5) {
+	} else if (phase==0.5) {
 		cur.moonPhase ="Full Moon";
-	} else (phase>.5&&phase<.75) {
+	} else if (phase>.5&&phase<.75) {
 		cur.moonPhase = "Waning Gibbous";
-	} else (phase==0.75) {
+	} else if (phase==0.75) {
 		cur.moonPhase ="Last Quarter";
-	} else (phase>.75) {
+	} else if (phase>.75) {
 		cur.moonPhase ="Waning Crescent";
 	} else {
 		cur.moonPhase = "error calculating phase";
