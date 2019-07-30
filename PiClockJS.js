@@ -11,6 +11,7 @@ var trend = require('trend');
 var getPromise = util.promisify(request.get);
 var DOMParser = require('xmldom').DOMParser;
 var geoTz = require('geo-tz');
+var SunCalc = require('suncalc');
 const { exec } = require('child_process');
 
 //Read settings
@@ -254,6 +255,7 @@ async function moonPhase () {
 	}
 	catch(e) {
 		logger.error(e);
+		generateMoonPhase();
 	}
 }
 
@@ -468,6 +470,31 @@ function parseMoonPhase(observation) {
 	if (typeof observation.curphase != "undefined") {
 		cur.moonPhase = observation.curphase;  // use more accurate phase
 		// string
+	}
+}
+
+function generateMoonPhase() {
+	timeAndDate = new Date();
+	phase = SunCalc.getMoonIllumination(timeAndDate);
+	
+if (phase == 0)	{
+		cur.moonPhase = "New Moon";
+	} else (phase>0 && phase <.25) {
+		cur.moonPhase ="Waxing Crescent";
+	} else (phase == 0.25) {
+		cur.moonPhase ="First Quarter";
+	} else (phase>.25&&phase<.5) {
+		cur.moonPhase = "Waxing Gibbous";
+	} else (phase==0.5) {
+		cur.moonPhase ="Full Moon";
+	} else (phase>.5&&phase<.75) {
+		cur.moonPhase = "Waning Gibbous";
+	} else (phase==0.75) {
+		cur.moonPhase ="Last Quarter";
+	} else (phase>.75) {
+		cur.moonPhase ="Waning Crescent";
+	} else {
+		cur.moonPhase = "error calculating phase";
 	}
 }
 
