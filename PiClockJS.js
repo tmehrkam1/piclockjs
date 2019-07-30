@@ -49,7 +49,14 @@ const logger = winston.createLogger({
 			transports: [
 			      transport
 			    ],
-			 format: myFormat
+			 format: format: winston.format.combine(
+				winston.format.timestamp({
+					format: 'YYYY-MM-DD hh:mm:ss A ZZ'
+				}),
+				winston.format.colorize({ all: true }),
+				winston.format.simple(),
+				myFormat
+		),
 });
 
 
