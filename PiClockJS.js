@@ -48,7 +48,8 @@ const logger = winston.createLogger({
 	level: NODE_ENV === "production" ? 'warn' : 'info',
 			transports: [
 			      transport
-			    ]
+			    ],
+			 format: myFormat
 });
 
 
@@ -56,7 +57,7 @@ const logger = winston.createLogger({
 //`${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 
 
-if (NODE_ENV !== 'development') {
+if (NODE_ENV == 'development') {
 	logger.add(new winston.transports.Console({
 		format: winston.format.combine(
 				winston.format.timestamp({
