@@ -242,7 +242,7 @@ async function currentDsObs(){
 }
 
 async function moonPhase () {
-	var url = 'http://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
+	var url = 'https://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
 	logger.info(url);
 	try {
 		var { body } = await getPromise({
