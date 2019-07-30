@@ -28,13 +28,13 @@ div.clock span {
 #char3 { transform: rotate(90deg); }
 #char4 { transform: rotate(120deg); }
 #char5 { transform: rotate(150deg); }
-#char6 { transform: rotate(180deg);  right: 50%; }
+#char6 { transform: rotate(180deg); }
 #char7 { transform: rotate(210deg); }
 #char8 { transform: rotate(240deg); }
 #char9 { transform: rotate(270deg); }
 #char10 { transform: rotate(300deg); }
 #char11 { transform: rotate(330deg); }
-#char12 { transform: rotate(360deg);  right: 50%; }
+#char12 { transform: rotate(360deg); }
 
 .clock.simple:after {
   background: #000;
