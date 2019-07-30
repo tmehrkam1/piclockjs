@@ -49,11 +49,11 @@ function initLocalClocks() {
     },
     {
       hand: 'minutes',
-      angle: (minutes * 6)
+      angle: (minutes * 30)
     },
     {
       hand: 'seconds',
-      angle: (seconds * 6)
+      angle: (seconds * 30)
     }
   ];
   // Loop through each of these hands to set their angle
