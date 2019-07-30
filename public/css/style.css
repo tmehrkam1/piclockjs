@@ -103,6 +103,10 @@
 	overflow: hidden;
 }
 
+.forecastTemp {
+	font-family: orbitron;
+}
+
 .forecastImage {
 	float: left;
 	height: 100%;
