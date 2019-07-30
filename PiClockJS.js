@@ -476,7 +476,7 @@ function parseMoonPhase(observation) {
 function generateMoonPhase() {
 	var timeAndDate = new Date();
 	var phase = SunCalc.getMoonIllumination(timeAndDate);
-	logger.warn('generated moon phase with suncalc at '+phase);
+	logger.info('generated moon phase with suncalc at '+phase);
 	
 if (phase == 0)	{
 		cur.moonPhase = "New Moon";
