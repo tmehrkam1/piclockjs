@@ -344,7 +344,7 @@ function updateForecast() {
 			image.setAttribute("style","height:100%;");
 
 			// populate the forecast text
-			forecastText.innerHTML=data.list[i].name + '<br /><span class="forecastTemp">' + data.list[i].temp + '</span><br />' + data.list[i].short;
+			forecastText.innerHTML=data.list[i].name + '<br /><span class="forecastTemp">' + data.list[i].temp + '&deg;F</span><br />' + data.list[i].short;
 
 			// put the image in the div
 			forecastImage.appendChild(image);
