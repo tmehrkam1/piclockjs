@@ -2,7 +2,7 @@ var lat;
 var lon;
 var gMapKey;
 var tz;
-var moonTime = new Date();
+var moonTime = '';
 
 updateCoords();  // grab map coords from backend.
 
@@ -85,7 +85,7 @@ function updateClock() {
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
 		var diffH = parseInt(diffM / 60);
 		
-		if (diffH == 4) {
+		if (diffH == 4 || moonTime == '') {
 			moonTime = new Date();
 			moonImg.src = "https://api.usno.navy.mil/imagery/moon.png?&ID=AA-URL";
 		}
