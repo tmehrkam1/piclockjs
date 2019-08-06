@@ -39,8 +39,11 @@ function updateCoords() {
 var col2Div = document.getElementById("col_2");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
-var moonImg = document.getElementById("moonimg");
 var moonDiv = document.getElementById("moon");
+
+//var moonImg = document.getElementById("moonimg");
+var moonImg = document.createElement("img");
+moonDiv.appendChild(moonImg);
 
 col2Div.style.width = "79vw"; 
 dateDiv.style.float = "left";
@@ -52,9 +55,6 @@ timeDiv.style.lineHeight = "7vh";
 timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
-moonImg.style.height = "90vh";
-moonImg.style.width = "79vw";
-moonImg.style.objectFit = "contain";
 
 updateClock();
 updateCur();
@@ -88,6 +88,9 @@ function updateClock() {
 		if (diffH == 4 || moonTime == '') {
 			moonTime = new Date();
 			moonImg.src = "https://api.usno.navy.mil/imagery/moon.png?&ID=AA-URL";
+			moonImg.style.height = "90vh";
+			moonImg.style.width = "79vw";
+			moonImg.style.objectFit = "contain";
 		}
 }
 
