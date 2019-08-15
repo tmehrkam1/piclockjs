@@ -18,6 +18,14 @@ timeDiv.style.overflow = "hidden";
 timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
 
+var alertDiv = document.getElementById("alerts");
+alertDiv.innerHTML="";
+
+var alertSelect = document.createElement("select");
+alertSelect.setAttribute("class","alertList");
+alertSelect.setAttribute("id","alertList");
+alertSelect.addEventListener("change", alertDetail());
+alertDiv.appendChild(alertSelect);
 
 updateClock();
 updateCur();
@@ -195,28 +203,19 @@ function updateForecast() {
 }
 
 function updateAlerts(){
-	var alertDiv = document.getElementById("alerts");
-	alertDiv.innerHTML="";
-	
-	var alertSelect = document.createElement("select");
-	alertSelect.setAttribute("class","alertList");
-	alertSelect.setAttribute("id","alertList");
-	alertSelect.addEventListener("change", alertDetail());
+
 	
 	url="alerts";
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
-			var option = document.createElement("option");
-			option.text = data.features[i].headline
-			alertSelect.add(option,i);
+			select.options[i] = data.features[i].headline;
 			
 			
 			// populate the alert text
 			//alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
 		};
-	alertDiv.appendChild(alertSelect);
 
 	})
 	.catch(function(error){
