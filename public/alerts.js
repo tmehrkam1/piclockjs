@@ -201,6 +201,7 @@ function updateAlerts(){
 	var alertSelect = document.createElement("select");
 	alertSelect.setAttribute("class","alertList");
 	alertSelect.setAttribute("id","alertList");
+	alertSelect.addEventListener("select", alertDetail());
 	
 	url="alerts";
 	fetch(url)
@@ -210,6 +211,7 @@ function updateAlerts(){
 			var option = document.createElement("option");
 			option.text = data.features[i].headline
 			alertSelect.add(option,i);
+			
 			
 			// populate the alert text
 			//alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
@@ -221,3 +223,6 @@ function updateAlerts(){
 		alert(error);
 	});
 }
+
+function alertDetail() {}
+
