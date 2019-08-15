@@ -26,6 +26,7 @@ alertSelect.setAttribute("class","alertList");
 alertSelect.setAttribute("id","alertList");
 alertSelect.addEventListener("change", alertDetail());
 alertDiv.appendChild(alertSelect);
+alertDiv.style.float = "left";
 
 
 updateClock();
