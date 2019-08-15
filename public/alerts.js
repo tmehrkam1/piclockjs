@@ -201,7 +201,7 @@ function updateAlerts(){
 	var alertSelect = document.createElement("select");
 	alertSelect.setAttribute("class","alertList");
 	alertSelect.setAttribute("id","alertList");
-	alertSelect.addEventListener("select", alertDetail());
+	alertSelect.addEventListener("onchange", alertDetail());
 	
 	url="alerts";
 	fetch(url)
