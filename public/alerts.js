@@ -5,6 +5,7 @@ updateCoords(); // grab map coords from backend.
 var col2Div = document.getElementById("col_2");
 var dateDiv = document.getElementById("date");
 var timeDiv = document.getElementById("time");
+var alertDetails = [];
 
 
 col2Div.style.width = "79vw"; 
@@ -26,7 +27,9 @@ alertSelect.setAttribute("class","alertList");
 alertSelect.setAttribute("id","alertList");
 alertSelect.addEventListener("change", alertDetail());
 alertDiv.appendChild(alertSelect);
-alertDiv.style.float = "left";
+
+var alertText = document.createElement("div");
+alertDiv.appendChild(alertText);
 
 
 updateClock();
@@ -215,10 +218,7 @@ function updateAlerts(){
 			var option = document.createElement("option");
 			option.text = data.features[i].headline
 			alertSelect.add(option,i);
-			
-			
-			// populate the alert text
-			//alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
+			alertDetails[i] = (data.features[i].description);
 		};
 	})
 	.catch(function(error){
@@ -227,6 +227,6 @@ function updateAlerts(){
 }
 
 function alertDetail() {
-	alert("alert detail");
+	alertText = alertDetails[alertSelect.selectedIndex];
 }
 
