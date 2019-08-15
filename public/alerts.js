@@ -227,6 +227,8 @@ function updateAlerts(){
 }
 
 function alertDetail() {
-	alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
+	if (alertSelect.selectedIndex >= 0){ 
+		alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
+	}
 }
 
