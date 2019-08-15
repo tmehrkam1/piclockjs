@@ -27,6 +27,7 @@ alertSelect.setAttribute("id","alertList");
 alertSelect.addEventListener("change", alertDetail());
 alertDiv.appendChild(alertSelect);
 
+
 updateClock();
 updateCur();
 updateForecast();
@@ -210,13 +211,14 @@ function updateAlerts(){
 	.then((resp) => resp.json())
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
-			alertSelect.options[i] = data.features[i].headline;
+			var option = document.createElement("option");
+			option.text = data.features[i].headline
+			alertSelect.add(option,i);
 			
 			
 			// populate the alert text
 			//alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
 		};
-
 	})
 	.catch(function(error){
 		alert(error);
