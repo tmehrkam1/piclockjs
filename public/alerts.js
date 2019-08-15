@@ -210,7 +210,7 @@ function updateAlerts(){
 	.then((resp) => resp.json())
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
-			select.options[i] = data.features[i].headline;
+			alertSelect.options[i] = data.features[i].headline;
 			
 			
 			// populate the alert text
