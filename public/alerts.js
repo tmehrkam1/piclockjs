@@ -227,6 +227,6 @@ function updateAlerts(){
 }
 
 function alertDetail() {
-	alertText = alertDetails[alertSelect.selectedIndex];
+	alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
 }
 
