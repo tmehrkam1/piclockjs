@@ -224,5 +224,7 @@ function updateAlerts(){
 	});
 }
 
-function alertDetail() {}
+function alertDetail() {
+	alert("alert detail");
+}
 
