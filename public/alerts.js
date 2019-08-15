@@ -196,7 +196,7 @@ function updateForecast() {
 
 function updateAlerts(){
 	var alertDiv = document.getElementById("alerts");
-	alertDiv.innterHTML="";
+	alertDiv.innerHTML="";
 	
 	var alertSelect = document.createElement("select");
 	alertSelect.setAttribute("class","alertList");
