@@ -196,24 +196,25 @@ function updateForecast() {
 
 function updateAlerts(){
 	var alertDiv = document.getElementById("alerts");
-	alertDiv.textContent="";
-
+	alertDiv.innterHTML="";
+	
+	var alertSelect = document.createElement("select");
+	alertSelect.setAttribute("class","alertList");
+	alertSelect.setAttribute("id","alertList");
+	
 	url="alerts";
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
-			// create a container for the forecast
-			var alertBlock = document.createElement("div");
-			alertBlock.setAttribute("class","alertBlock");
-			alertBlock.setAttribute("id","alert"+i);
-
+			var option = document.createElement("option");
+			option.text = data.features[i].headline
+			alertSelect.add(option,i);
+			
 			// populate the alert text
-			alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
-
-			// put the block into the parent div
-			alertDiv.appendChild(alertBlock);				
+			//alertBlock.innerHTML=data.features[i].headline + data.features[i].description;
 		};
+	alertDiv.appendChild(alertSelect);
 
 	})
 	.catch(function(error){
