@@ -29,6 +29,8 @@ alertSelect.addEventListener("change", alertDetail());
 alertDiv.appendChild(alertSelect);
 
 var alertText = document.createElement("div");
+alertText.setAttribute("class","alertText");
+alertText.setAttribute("id","alertText");
 alertDiv.appendChild(alertText);
 
 
