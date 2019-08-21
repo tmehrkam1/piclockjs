@@ -229,6 +229,7 @@ function updateAlerts(){
 function alertDetail() {
 	if (alertSelect.selectedIndex >= 0){ 
 		alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
+		alertDiv.appendChild(alertText);
 	}
 }
 
