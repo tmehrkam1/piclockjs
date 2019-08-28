@@ -198,25 +198,15 @@ if (settings.mode == "local" || settings.mode == "client") {
 	// fire up the electron broswer.
 	
 	const electron = require('electron')
-    const { app, BrowserWindow } = electron
-	//const {app, BrowserWindow} = require('electron')
+    const { app, BrowserWindow } = electron	
+	let win
 
-	const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
+	app.on('ready', () => {
+  	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+  	win = new BrowserWindow({ width, height })
+  	win.loadURL(settings.servIP)
+})
    
-	function createWindow () {
-		// Create the browser window.
-		win = new BrowserWindow({ 
-			width,
-			height,
-			frame: false,
-			webPreferences: {nodeIntegration: false}
-		});
-		win.maximize();
-		// and load the index.html of the app.
-		win.loadURL(settings.servIP);
-	}
-
-	app.on('ready', createWindow)	
 }
 
 if (settings.mode == "client") {
