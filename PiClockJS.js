@@ -196,9 +196,12 @@ if (settings.mode == "local" || settings.mode == "client") {
 	})
 
 	// fire up the electron broswer.
-	const {app, BrowserWindow} = require('electron')
+	
+	const electron = require('electron')
+    const { app, BrowserWindow } = electron
+	//const {app, BrowserWindow} = require('electron')
 
-	const {width, height} = app.screen.getPrimaryDisplay().workAreaSize
+	const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
    
 	function createWindow () {
 		// Create the browser window.
