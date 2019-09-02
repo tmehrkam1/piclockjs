@@ -203,7 +203,7 @@ if (settings.mode == "local" || settings.mode == "client") {
 
 	app.on('ready', () => {
   	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
-  	win = new BrowserWindow({ width, height, frame: false })
+  	win = new BrowserWindow({ width, height, frame: false , nodeIntegration: false})
   	win.loadURL(settings.servIP)
 })
    
