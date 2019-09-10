@@ -202,7 +202,7 @@ if (settings.mode == "local" || settings.mode == "client") {
 	function createWindow () {
 		// Create the browser window.
 		win = new BrowserWindow({ 
-			useContentSize: true,
+			show: false,
 			frame: false,
 			webPreferences: {nodeIntegration: false}
 		});
