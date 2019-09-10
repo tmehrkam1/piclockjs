@@ -87,10 +87,16 @@ function initMap() {
         map: mapLocal,
         title: 'map center'
       });
+    
+	if (aerisID !=""){
+		radarURLsuffix = "/current.png"
+	} else {
+		radarURLsuffix = "";
+	}
 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL+zoom+"/"+tile.x+"/"+tile.y+"/current.png?bogus="+Date(); 
+			return radarURL + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -99,14 +105,16 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL5 = radarURL + tile.z + "/"+tile.x+"/"+tile.y+"/-5min.png";
+		radarURL5 = radarURL;
+		radarURL5suffix = "/-5min.png";
 	} else {
-		radarURL5 = radarURL + "-m05m/" + tile.z + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL5 = radarURL + "-m05m/";
+		radarURL5suffix = "";
 	}
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL5; 
+			return radarURL5 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -115,14 +123,16 @@ function initMap() {
 	});
 
 	if (aerisID !=""){
-		radarURL10 = radarURL + zoom+"/"+tile.x+"/"+tile.y+"/-10min.png";
+		radarURL10 = radarURL;
+		radarURL10suffix = "/-10min.png";
 	} else {
-		radarURL10 = radarURL + "-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL10 = radarURL + "-m10m/";
+		radarURL10suffix = "";
 	}
 	
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL10; 
+			return radarURL10 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -131,14 +141,16 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL15 = radarURL + zoom+"/"+tile.x+"/"+tile.y+"/-15min.png";
+		radarURL15 = radarURL;
+		radarURL15suffix = "/-15min.png";
 	} else {
-		radarURL15 = radarURL + "-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL15 = radarURL + "-m15m/";
+		radarURL15suffix = "";
 	}
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL15; 
+			return radarURL15 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -147,14 +159,16 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL20 = radarURL + zoom+"/"+tile.x+"/"+tile.y+"/-20min.png";
+		radarURL20 = radarURL;
+		radarURL20suffix = "/-20min.png";
 	} else {
-		radarURL20 = radarURL + "-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL20 = radarURL + "-m20m/";
+		radarURL20suffix = "";
 	}
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL20; 
+			return radarURL20 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -163,14 +177,16 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL25 = radarURL + zoom+"/"+tile.x+"/"+tile.y+"/-25min.png";
+		radarURL25 = radarURL;
+		radarURL25suffix = "/-25min.png";
 	} else {
-		radarURL25 = radarURL + "-m25m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL25 = radarURL + "-m25m/";
+		radarURL25suffix = "";
 	}
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL25; 
+			return radarURL25 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
