@@ -10,7 +10,7 @@ updateCoords();  // grab map coords from backend.
 if (aerisID != "") {
 	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/";
 } else {
-	radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/";
+	radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
 }
 
 //shift clock into day mode
