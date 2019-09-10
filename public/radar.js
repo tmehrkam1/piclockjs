@@ -99,9 +99,9 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL5 = radarURL + zoom+"/"+tile.x+"/"+tile.y+"/-5min.png";
+		radarURL5 = radarURL + tile.z + "/"+tile.x+"/"+tile.y+"/-5min.png";
 	} else {
-		radarURL5 = radarURL + "-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
+		radarURL5 = radarURL + "-m05m/" + tile.z + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();
 	}
 	
 	tileAeris5 = new google.maps.ImageMapType({
