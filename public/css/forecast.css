@@ -68,6 +68,10 @@
 	overflow: hidden;
 }
 
+.forecastDiv {
+	height: 77vh;
+}
+
 .forecastBlock {
 	display: inline-block;
 	width: 19%;
