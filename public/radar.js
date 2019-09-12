@@ -219,7 +219,7 @@ function initMap() {
 			radarURLsuffix = "";
 		}
 		
-		console.log(radarURL + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
+		console.log(radarURL + "z/x/y" + radarURLsuffix);
 		
 		if (diffM >= 5) {
 			tileAeris = new google.maps.ImageMapType({
