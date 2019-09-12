@@ -219,6 +219,8 @@ function initMap() {
 			radarURLsuffix = "";
 		}
 		
+		console.log(radarURL + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
+		
 		if (diffM >= 5) {
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
