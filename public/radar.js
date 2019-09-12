@@ -159,7 +159,7 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL20 = radarUR +"/"L;
+		radarURL20 = radarURL +"/";
 		radarURL20suffix = "/-20min.png";
 	} else {
 		radarURL20 = radarURL + "-m20m/";
