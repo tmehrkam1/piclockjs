@@ -8,7 +8,7 @@ var tileIndex = 0;
 updateCoords();  // grab map coords from backend.
 
 if (aerisID != "") {
-	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar/";
+	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar";
 } else {
 	radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
 }
