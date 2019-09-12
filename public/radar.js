@@ -224,7 +224,7 @@ function initMap() {
 		if (diffM >= 5) {
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
-					return radarURL + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
+					return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 				},
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
