@@ -218,10 +218,11 @@ function initMap() {
 		} else {
 			radarURLsuffix = "";
 		}
-		
-		console.log(radarURL + "/z/x/y" + radarURLsuffix);
-		
+				
 		if (diffM >= 5) {
+			
+			console.log(radarURL + "/z/x/y" + radarURLsuffix);
+			
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
 					return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
