@@ -96,7 +96,7 @@ function initMap() {
 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
+			return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -105,7 +105,7 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL5 = radarURL;
+		radarURL5 = radarURL +"/";
 		radarURL5suffix = "/-5min.png";
 	} else {
 		radarURL5 = radarURL + "-m05m/";
@@ -123,7 +123,7 @@ function initMap() {
 	});
 
 	if (aerisID !=""){
-		radarURL10 = radarURL;
+		radarURL10 = radarURL +"/";
 		radarURL10suffix = "/-10min.png";
 	} else {
 		radarURL10 = radarURL + "-m10m/";
@@ -141,7 +141,7 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL15 = radarURL;
+		radarURL15 = radarURL +"/";
 		radarURL15suffix = "/-15min.png";
 	} else {
 		radarURL15 = radarURL + "-m15m/";
@@ -159,7 +159,7 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL20 = radarURL;
+		radarURL20 = radarUR +"/"L;
 		radarURL20suffix = "/-20min.png";
 	} else {
 		radarURL20 = radarURL + "-m20m/";
@@ -177,7 +177,7 @@ function initMap() {
 	});
 	
 	if (aerisID !=""){
-		radarURL25 = radarURL;
+		radarURL25 = radarURL +"/";
 		radarURL25suffix = "/-25min.png";
 	} else {
 		radarURL25 = radarURL + "-m25m/";
@@ -212,14 +212,14 @@ function initMap() {
 		var now = new Date();
 		var diffMs = now - timeStamp;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-		
-		if (aerisID !=""){
-			radarURLsuffix = "/current.png"
-		} else {
-			radarURLsuffix = "";
-		}
-				
+			
 		if (diffM >= 5) {
+
+			if (aerisID !=""){
+				radarURLsuffix = "/current.png";
+			} else {
+				radarURLsuffix = "";
+			}
 			
 			console.log(radarURL + "/z/x/y" + radarURLsuffix);
 			
