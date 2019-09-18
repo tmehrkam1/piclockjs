@@ -11,13 +11,4 @@ git clone https://github.com/merky1/PiClock.git
 npm install   
 ```
 
-(https://www.raspberrypi.org/forums/viewtopic.php?t=42888)  
-
-vi .xinitrc 
-``` 
-  #!/bin/sh  
-  xset s off  
-  xset -dpms  
-  xset s noblank  
-  exec /home/pi/kiosk.sh
-```  
+(https://pimylifeup.com/raspberry-pi-kiosk/)   
