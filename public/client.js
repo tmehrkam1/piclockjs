@@ -304,7 +304,7 @@ function updateCur() {
 
 	})
 	.catch(function(error){
-		alert(error);
+		console.log(error);
 	})
 }
 
@@ -362,7 +362,7 @@ function updateForecast() {
 		document.getElementById("col_3").appendChild(content);
 	})
 	.catch(function(error){
-		alert(error);
+		console.log(error);
 	});
 
 };
@@ -390,7 +390,7 @@ function updateAlerts(){
 
 	})
 	.catch(function(error){
-		alert(error);
+		console.log(error);
 	});
 }
 //change background color based on temp
