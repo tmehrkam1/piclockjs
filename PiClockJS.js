@@ -152,7 +152,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 		if (settings.curProvider=="darksky") {
 			currentDsObs();
 		} else if (settings.curProvider=="openweather"){
-			currrentOwObs();
+			currentOwObs();
 		}
 		//pull any US weather alerts		
 		wgAlerts();
