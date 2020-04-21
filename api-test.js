@@ -87,7 +87,6 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
-	getWgovObs(settings.wgStaID);
 }
 
 async function currentDsObs(){
@@ -104,7 +103,7 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	var url = 'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.long;
+	var url = 'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.lon;
 	
 	logger.info(url);
 	
