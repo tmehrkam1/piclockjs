@@ -36,10 +36,7 @@ setInterval(function() {
 		currentDsObs();
 		currentOwObs();
 		currentCcObs();
-}, settings.currentConditionsInterval * 1000);
-
-
-
+}, 600 * 1000);
 
 //Logging
 var winston = require('winston');
@@ -103,7 +100,7 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon;
+	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed'
 	
 	logger.info(url);
 	
@@ -120,94 +117,17 @@ async function currentCcObs(){
 
 function parseOW(observation){
 	var now = new Date();
-
-	if (observation.dt <= cur.dt)
-	{
-		var update = new Date(0);
-		var current = new Date(0);
-
-		update.setUTCSeconds(observation.dt);
-		current.setUTCSeconds(cur.dt);
-
-		var diffMs = (now - update); // diff in MS
-		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-
-		var diffCur = (current - update);
-		var diffCurMins = (diffCur / 1000 / 60);
-
-		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
-		return;
-	}
-
-	var sunriseEpoch = new Date(0);
-	var sunsetEpoch = new Date(0);
-
-
-
-	sunriseEpoch.setUTCSeconds(observation.sys.sunrise);
-	sunsetEpoch.setUTCSeconds(observation.sys.sunset);
-
-	if ((now > sunsetEpoch ) || (now < sunriseEpoch)) {
-		cur.curIcon = '<i class="wi wi-owm-night-' + observation.weather[0].id +'"></i>';
-	} else {
-		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
-	}
-
-	cur.tempF = observation.main.temp;
-	cur.pressure = observation.main.pressure;
-	cur.humidity = observation.main.humidity;
-	cur.windSpeed = observation.wind.speed;
-	cur.windDir = d2d(observation.wind.deg);
-	cur.curDesc = observation.weather[0].main;
-	cur.sunrise = sunriseEpoch.toString();
-	cur.sunset = sunsetEpoch.toString();
-	cur.dt = observation.dt;
+  
+	logger.info('openweather :' + observation.main.temp + " : " + observation.dt);
 }
 
 function parseDS(body){
 	
 	var observation = body.currently;
-	var now = new Date();
 
-	if (observation.time <= cur.dt)
-	{
-		var update = new Date(0);
-		var current = new Date(0);
-
-		update.setUTCSeconds(observation.time);
-		current.setUTCSeconds(cur.dt);
-
-		var diffMs = (now - update); // diff in MS
-		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-
-		var diffCur = (current - update);
-		var diffCurMins = (diffCur / 1000 / 60);
-
-		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
-		return;
-	}
-	
-	var sunriseEpoch = new Date(0);
-	var sunsetEpoch = new Date(0);
-
-	sunriseEpoch.setUTCSeconds(body.daily.data[0].sunriseTime);
-	sunsetEpoch.setUTCSeconds(body.daily.data[0].sunsetTime);
-	cur.sunrise = sunriseEpoch.toString();
-	cur.sunset = sunsetEpoch.toString();
-
-	cur.curIcon = '<i class="wi wi-forecast-io-' + observation.icon +'"></i>';
-
-	cur.tempF = Math.round(parseFloat(observation.temperature));
-	cur.pressure = Math.round(parseFloat(observation.pressure));
-	cur.humidity = Math.round(parseFloat(observation.humidity * 100));
-	cur.windSpeed = observation.windSpeed;
-	cur.windDir = d2d(observation.windBearing);
-	cur.curDesc = observation.summary;
-	cur.dt = observation.time;
-	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
-
+	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + cur.dt = observation.time);
 }
 
 function parseCC(body){
-	logger.info(body);
+	logger.info('climacell :' + body.temp.value + ":" + body.observation_time.value);
 }
