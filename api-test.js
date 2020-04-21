@@ -104,7 +104,7 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.long;
+	var url = 'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.long;
 	
 	logger.info(url);
 	
@@ -163,8 +163,6 @@ function parseOW(observation){
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 	cur.dt = observation.dt;
-	
-	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseDS(body){
@@ -208,8 +206,7 @@ function parseDS(body){
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
 	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
-	
-	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
+
 }
 
 function parseCC(body){
