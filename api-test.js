@@ -32,6 +32,14 @@ var nightMode = false;
 cur.dt=0;
 alerts.features =[];
 
+setInterval(function() {
+		currentDsObs();
+		currentOwObs();
+		currentCcObs();
+}, settings.currentConditionsInterval * 1000);
+
+
+
 
 //Logging
 var winston = require('winston');
@@ -92,6 +100,23 @@ async function currentDsObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseDS(body);
+}
+
+async function currentCcObs(){
+	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
+	'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.long;
+	
+	logger.info(url);
+	
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs',
+			'apikey' : settings.ccAppId,
+			'accept' : 'application/json'
+		}
+	});
+	parseCC(body);
 }
 
 function parseOW(observation){
@@ -185,4 +210,8 @@ function parseDS(body){
 	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
 	
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
+}
+
+function parseCC(body){
+	logger.info(body);
 }
