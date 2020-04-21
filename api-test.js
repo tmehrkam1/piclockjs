@@ -125,7 +125,7 @@ function parseDS(body){
 	
 	var observation = body.currently;
 
-	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + cur.dt = observation.time);
+	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + observation.time);
 }
 
 function parseCC(body){
