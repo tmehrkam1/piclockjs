@@ -103,7 +103,7 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	var url = 'https://api.climacell.co/v3/weather/nowcast?lat=' + settings.lat + '&lon=' + settings.lon;
+	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon;
 	
 	logger.info(url);
 	
