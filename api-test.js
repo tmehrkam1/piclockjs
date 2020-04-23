@@ -41,7 +41,7 @@ setInterval(function() {
 		currentDsObs();
 		currentOwObs();
 		currentCcObs();
-		currentWgovObs;
+		currentWgovObs();
 }, 600 * 1000);
 
 //Logging
