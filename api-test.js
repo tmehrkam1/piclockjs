@@ -115,6 +115,21 @@ async function currentCcObs(){
 	parseCC(body);
 }
 
+async function currentWgovObs(){
+	var url ="https://api.weather.gov/stations/KJYO/observations";
+	
+	logger.info(url);
+	
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs',
+			'accept' : 'application/json'
+		}
+	});
+	parseWgov(body);
+}
+
 function parseOW(observation){
 	var now = new Date();
 	var update = new Date(0);
@@ -139,4 +154,8 @@ function parseCC(body){
 	var update = new Date(body.observation_time.value);
 	
 	logger.info('climacell :' + body.temp.value + ":" + update );
+}
+
+function parseWgov(body){
+	logger.info(body);
 }
