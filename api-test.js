@@ -117,17 +117,26 @@ async function currentCcObs(){
 
 function parseOW(observation){
 	var now = new Date();
-  
-	logger.info('openweather :' + observation.main.temp + " : " + observation.dt);
+	var update = new Date(0);
+	
+	update.setUTCSeconds(observation.dt);
+	logger.info('openweather :' + observation.main.temp + " : " + update);
 }
 
 function parseDS(body){
 	
 	var observation = body.currently;
+	var now = new Date();
+	var update = new Date(0);
+	
+	update.setUTCSeconds(observation.dt);
 
-	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + observation.time);
+	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + update);
 }
 
 function parseCC(body){
-	logger.info('climacell :' + body.temp.value + ":" + body.observation_time.value);
+	var now = new Date();
+	var update = new Date(body.observation_time.value);
+	
+	logger.info('climacell :' + body.temp.value + ":" + update );
 }
