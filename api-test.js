@@ -142,7 +142,9 @@ function parseDS(body){
 	
 	var observation = body.currently;
 	var now = new Date();
-	var update = observation.time
+	var update = new Date(0);
+	
+	update.setUTCSeconds(observation.time);
 
 	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update);
 }
