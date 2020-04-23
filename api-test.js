@@ -135,7 +135,7 @@ function parseOW(observation){
 	var update = new Date(0);
 	
 	update.setUTCSeconds(observation.dt);
-	logger.info('openweather :' + observation.main.temp + " : " + update);
+	logger.info('openweather : ' + observation.main.temp + " : " + update);
 }
 
 function parseDS(body){
@@ -146,16 +146,22 @@ function parseDS(body){
 	
 	update.setUTCSeconds(observation.dt);
 
-	logger.info('darksky :' + parseFloat(observation.temperature) + " : " + update);
+	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update);
 }
 
 function parseCC(body){
 	var now = new Date();
 	var update = new Date(body.observation_time.value);
 	
-	logger.info('climacell :' + body.temp.value + ":" + update );
+	logger.info('climacell : ' + body.temp.value + " : " + update );
 }
 
 function parseWgov(body){
 	logger.info(body);
+	observation = body.features[0].properties;
+	update = new Date(observation.timestamp);
+	
+	var temp_f = observation.temperature.value * 1.8 + 32;
+	
+	logger.info('usg : ' + temp_f + " : " + update );
 }
