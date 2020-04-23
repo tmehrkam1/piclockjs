@@ -137,7 +137,6 @@ function parseDS(body){
 	var observation = body.currently;
 	var now = new Date();
 	var update = new Date(observation.dt);
-	
 
 	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update);
 }
@@ -150,7 +149,6 @@ function parseCC(body){
 }
 
 function parseWgov(body){
-	logger.info(body);
 	observation = body.features[0].properties;
 	update = new Date(observation.timestamp);
 	
