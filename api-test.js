@@ -135,7 +135,11 @@ function parseOW(observation){
 	var update = new Date(0);
 	
 	update.setUTCSeconds(observation.dt);
-	logger.info('openweather : ' + observation.main.temp + " : " + update);
+	
+	var diffMs = (now - update); // diff in MS
+	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+	
+	logger.info('openweather : ' + observation.main.temp + " : " + update + ' : ' + diffMins);
 }
 
 function parseDS(body){
