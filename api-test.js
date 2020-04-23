@@ -76,7 +76,6 @@ const logger = winston.createLogger({
 
 async function currentOwObs(){
 	var url = 'http://api.openweathermap.org/data/2.5/weather?lat='+settings.lat+'&lon='+settings.lon+'&appid='+settings.owAppId+'&units=imperial'
-	logger.info(url);
 
 	var { body } = await getPromise({
 		url: url,
@@ -88,7 +87,6 @@ async function currentOwObs(){
 
 async function currentDsObs(){
 	var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	logger.info(url);
 
 	var { body } = await getPromise({
 		url: url,
@@ -101,9 +99,7 @@ async function currentDsObs(){
 async function currentCcObs(){
 	//var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
 	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed'
-	
-	logger.info(url);
-	
+		
 	var { body } = await getPromise({
 		url: url,
 		json: true,
@@ -117,9 +113,7 @@ async function currentCcObs(){
 
 async function currentWgovObs(){
 	var url ="https://api.weather.gov/stations/KJYO/observations";
-	
-	logger.info(url);
-	
+		
 	var { body } = await getPromise({
 		url: url,
 		json: true,
@@ -142,9 +136,8 @@ function parseDS(body){
 	
 	var observation = body.currently;
 	var now = new Date();
-	var update = new Date(0);
+	var update = new Date(observation.dt);
 	
-	update(observation.dt);
 
 	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update);
 }
