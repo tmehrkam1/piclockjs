@@ -32,10 +32,16 @@ var nightMode = false;
 cur.dt=0;
 alerts.features =[];
 
+currentDsObs();
+currentOwObs();
+currentCcObs();
+currentWgovObs;
+
 setInterval(function() {
 		currentDsObs();
 		currentOwObs();
 		currentCcObs();
+		currentWgovObs;
 }, 600 * 1000);
 
 //Logging
