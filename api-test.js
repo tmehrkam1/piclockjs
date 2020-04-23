@@ -139,28 +139,40 @@ function parseOW(observation){
 }
 
 function parseDS(body){
-	
 	var observation = body.currently;
+	
 	var now = new Date();
 	var update = new Date(0);
 	
 	update.setUTCSeconds(observation.time);
+	
+	var diffMs = (now - update); // diff in MS
+	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 
-	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update);
+	logger.info('darksky : ' + parseFloat(observation.temperature) + " : " + update + ' : ' + diffMins);
 }
 
 function parseCC(body){
+	
 	var now = new Date();
 	var update = new Date(body.observation_time.value);
 	
-	logger.info('climacell : ' + body.temp.value + " : " + update );
+	var diffMs = (now - update); // diff in MS
+	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+	
+	logger.info('climacell : ' + body.temp.value + " : " + update + ' : ' + diffMins);
 }
 
 function parseWgov(body){
 	observation = body.features[0].properties;
+	
+	var now = new Date();
 	update = new Date(observation.timestamp);
+	
+	var diffMs = (now - update); // diff in MS
+	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
 	var temp_f = observation.temperature.value * 1.8 + 32;
 	
-	logger.info('usg : ' + temp_f + " : " + update );
+	logger.info('usg : ' + temp_f + " : " + update + ' : ' + diffMins);
 }
