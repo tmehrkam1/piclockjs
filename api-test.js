@@ -168,7 +168,7 @@ function parseCC(body){
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
-	logger.info('climacell : ' + body.temp.value + " : " + update + ' : ' + diffMins);
+	logger.info('climacell : ' + body.temp.value + " : " + update + ' : ' + diffMins + ' : ' + body.weather_code.value);
 }
 
 function parseWgov(body){
