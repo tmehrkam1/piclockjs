@@ -165,6 +165,7 @@ function parseCC(body){
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
 	logger.info('climacell : ' + body.temp.value + " : " + update + ' : ' + diffMins + ' : ' + body.weather_code.value);
+	logger.info(body);
 }
 
 function parseWgov(body){
