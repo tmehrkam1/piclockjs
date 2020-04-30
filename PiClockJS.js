@@ -244,6 +244,21 @@ async function currentDsObs(){
 	parseDS(body);
 }
 
+async function currentCcObs(){
+	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
+		
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs',
+			'apikey' : settings.ccAppId,
+			'accept' : 'application/json'
+		}
+	});
+	parseCC(body);
+}
+
+
 async function moonPhase () {
 	var url = 'https://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
 	logger.info(url);
@@ -543,6 +558,28 @@ function parseWgAlert(data) {
 		array.push(alert);
 	}
 	alerts.features = array;
+}
+
+function parseCC(body){
+	
+	var sunriseEpoch = new Date(body.sunrise.value);
+	var sunsetEpoch = new Date(body.sunset.value);
+	cur.sunrise = sunriseEpoch.toString();
+	cur.sunset = sunsetEpoch.toString();
+
+	cur.curIcon = '<i class="wi wi-forecast-io-' + body.weather_code.value +'"></i>';
+
+	cur.tempF = Math.round(parseFloat(body.temp.value));
+	cur.pressure = Math.round(parseFloat(body.pressure.value));
+	cur.humidity = Math.round(parseFloat(body.humidity.value));
+	cur.windSpeed = body.wind_speed.value;
+	cur.windDir = d2d(body.wind_direction.value);
+	cur.curDesc = body.weather_code.value;
+	cur.dt = new Date(body.observation_time.value);
+	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
+	
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
+
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
