@@ -570,7 +570,7 @@ function parseCC(body){
 	cur.curIcon = '<i class="wi wi-forecast-io-' + body.weather_code.value +'"></i>';
 
 	cur.tempF = Math.round(parseFloat(body.temp.value));
-	cur.pressure = Math.round(parseFloat(body.pressure.value));
+	cur.pressure = Math.round(parseFloat(body.pressure.value * 33.86));
 	cur.humidity = Math.round(parseFloat(body.humidity.value));
 	cur.windSpeed = body.wind_speed.value;
 	cur.windDir = d2d(body.wind_direction.value);
