@@ -229,7 +229,7 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
-	getWgovObs(settings.wgStaID);
+	//getWgovObs(settings.wgStaID);
 }
 
 async function currentDsObs(){
