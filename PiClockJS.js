@@ -424,7 +424,8 @@ function parseOW(observation){
 		cur.curIcon = '<i class="wi wi-owm-day-' + observation.weather[0].id +'"></i>';
 	}
 
-	cur.tempF = observation.main.temp;
+	cur.tempF = Math.round(parseFloat(observation.main.temp));
+	cur.feelsLike = Math.round(parseFloat(observation.main.feels_like));
 	cur.pressure = observation.main.pressure;
 	cur.humidity = observation.main.humidity;
 	cur.windSpeed = observation.wind.speed;
