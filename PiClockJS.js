@@ -583,7 +583,7 @@ function parseCC(body){
 	cur.windSpeed = body.wind_speed.value;
 	cur.windDir = d2d(body.wind_direction.value);
 	cur.curDesc = body.weather_code.value;
-	cur.dt = new Date(body.observation_time.value).getTime();
+	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
 	cur.moonPhase = body.moon_phase.value;
 	
