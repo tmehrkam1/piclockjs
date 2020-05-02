@@ -717,7 +717,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-alt-cloudy"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Mostly Clear"
 		};
 	} else if (description == "clear") {
