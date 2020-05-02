@@ -586,7 +586,8 @@ function parseCC(body){
 	cur.dt = new Date(body.observation_time.value);
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
 	cur.moonPhase = body.moon_phase.value;
-	logger.debug([cur.dt,cur.tempF,cur.pressure,cur.humidity]);
+	
+	logger.info([cur.dt,cur.tempF,cur.pressure,cur.humidity]);
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
 }
