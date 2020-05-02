@@ -676,38 +676,73 @@ function ccIcon(description){
 			text: "Light snow"
 		};
 	} else if (description == "flurries") {
+		if (day) {
+			var icon = '<i class="wi wi-day-snow"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-snow"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Flurries"
 		};
 	} else if (description == "tstorm") {
+		if (day) {
+			var icon = '<i class="wi wi-day-thunderstorm"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-thunderstorm"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Thunderstorm"
 		};
 	} else if (description == "fog_light") {
+		if (day) {
+			var icon = '<i class="wi wi-day-fog"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-fog"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Light Fog"
 		};
 	} else if (description == "fog") {
+		if (day) {
+			var icon = '<i class="wi wi-fog"></i>';
+		} else {
+			var icon = '<i class="wi wi-fog"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Fog"
 		};
 	} else if (description == "cloudy") {
+		if (day) {
+			var icon = '<i class="wi wi-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-cloudy"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Cloudy"
 		};
 	} else if (description == "mostly_cloudy") {
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Mostly Cloudy"
 		};
 	} else if (description == "partly_cloudy") {
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Partly Cloudy"
 		};
 	} else if (description == "mostly_clear") {
