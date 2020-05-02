@@ -595,6 +595,15 @@ function parseCC(body){
 
 function ccIcon(description){
 
+	var now = new Date();
+	var day;
+	
+	if ((now > cur.sunset ) || (now < cur.sunrise)) {
+		day = true;
+	} else {
+		day = false;
+	}
+
 	if (description == "rain_heavy"){
 	} else if (description == "rain_heavy") {
 		return {
@@ -707,8 +716,13 @@ function ccIcon(description){
 			text: "Mostly Clear"
 		};
 	} else if (description == "clear") {
+		if (day) {
+			var icon = '<i class="wi wi-day-sunny"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-clear"></i>';
+		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Clear"
 		};
 	}
