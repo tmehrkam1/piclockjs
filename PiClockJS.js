@@ -711,6 +711,11 @@ function ccIcon(description){
 			text: "Partly Cloudy"
 		};
 	} else if (description == "mostly_clear") {
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-alt-cloudy"></i>';
+		}
 		return {
 			icon: "",
 			text: "Mostly Clear"
