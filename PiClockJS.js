@@ -598,6 +598,8 @@ function ccIcon(description){
 	var now = new Date();
 	var day;
 	
+	logger.info(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
+	
 	if ((now < cur.sunset ) && (now > cur.sunrise)) {
 		day = true;
 	} else {
