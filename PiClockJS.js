@@ -734,7 +734,7 @@ function ccIcon(description){
 		};
 	} else if (description == "mostly_cloudy") {
 		if (day) {
-			var icon = '<i class="wi wi-day-cloudy"></i>';
+			var icon = '<i class="wi wi-day-sunny-overcast"></i>';
 		} else {
 			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
 		}
@@ -746,7 +746,7 @@ function ccIcon(description){
 		if (day) {
 			var icon = '<i class="wi wi-day-cloudy"></i>';
 		} else {
-			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
+			var icon = '<i class="wi wi-night-alt-partly-cloudy"></i>';
 		}
 		return {
 			icon: icon,
