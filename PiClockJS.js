@@ -601,7 +601,7 @@ function ccIcon(description){
 	
 	var day;
 	
-	logger.info(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
+	logger.debug(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
 	
 	if (now > sunrise && now < sunset) {
 		day = true;
@@ -609,7 +609,7 @@ function ccIcon(description){
 		day = false;
 	}
 	
-	logger.info(day);
+	logger.debug(day);
 
 	if (description == "rain_heavy"){
 	} else if (description == "rain_heavy") {
