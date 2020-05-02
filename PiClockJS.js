@@ -570,13 +570,13 @@ function parseWgAlert(data) {
 }
 
 function parseCC(body){
-
-	var desc=ccIcon(body.weather_code.value);
 	
 	var sunriseEpoch = new Date(body.sunrise.value);
 	var sunsetEpoch = new Date(body.sunset.value);
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
+
+	var desc=ccIcon(body.weather_code.value);
 
 	cur.curIcon = desc.icon;
 	cur.tempF = Math.round(parseFloat(body.temp.value));
