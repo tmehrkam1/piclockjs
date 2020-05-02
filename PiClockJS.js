@@ -569,27 +569,148 @@ function parseWgAlert(data) {
 }
 
 function parseCC(body){
+
+	var desc=ccIcon(body.weather_code.value);
 	
 	var sunriseEpoch = new Date(body.sunrise.value);
 	var sunsetEpoch = new Date(body.sunset.value);
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 
-	cur.curIcon = '<i class="wi wi-forecast-io-' + body.weather_code.value +'"></i>';
-
+	cur.curIcon = desc.icon;
 	cur.tempF = Math.round(parseFloat(body.temp.value));
 	cur.pressure = Math.round(parseFloat(body.baro_pressure.value * 33.86));
 	cur.humidity = Math.round(parseFloat(body.humidity.value));
 	cur.windSpeed = body.wind_speed.value;
 	cur.windDir = d2d(body.wind_direction.value);
-	cur.curDesc = body.weather_code.value;
+	cur.curDesc = desc.text;
 	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
 	cur.moonPhase = body.moon_phase.value;
 	
-	logger.info([cur.dt,cur.tempF,cur.pressure,cur.humidity]);
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
+}
+
+function ccIcon(description){
+
+	if (description == "rain_heavy"){
+	} else if (description == "rain_heavy") {
+		return {
+			icon: "",
+			text: "Heavy Rain"
+		};
+	} else if (description == "rain") {
+		return {
+			icon: "",
+			text: "Rain"
+		};
+	} else if (description == "rain_light") {
+		return {
+			icon: "",
+			text: "Light Rain"
+		};
+	} else if (description == "freezing_rain_heavy") {
+		return {
+			icon: "",
+			text: "Heavy Freezing Rain"
+		};
+	} else if (description == "freezing_rain") {
+		return {
+			icon: "",
+			text: "Freezing Rain"
+		};
+	} else if (description == "freezing_rain_light") {
+		return {
+			icon: "",
+			text: "Freezing Light Rain"
+		};
+	} else if (description == "freezing_drizzle") {
+		return {
+			icon: "",
+			text: "Freezing Drizzle"
+		};
+	} else if (description == "drizzle") {
+		return {
+			icon: "",
+			text: "Drizzle"
+		};
+	} else if (description == "ice_pellets_heavy") {
+		return {
+			icon: "",
+			text: "Heavy Ice Pellets"
+		};
+	} else if (description == "ice_pellets") {
+		return {
+			icon: "",
+			text: "Ice Pellets"
+		};
+	} else if (description == "ice_pellets_light") {
+		return {
+			icon: "",
+			text: "Light Ice Pellets"
+		};
+	} else if (description == "snow_heavy") {
+		return {
+			icon: "",
+			text: "Heavy Snow"
+		};
+	} else if (description == "snow") {
+		return {
+			icon: "",
+			text: "Snow"
+		};
+	} else if (description == "snow_light") {
+		return {
+			icon: "",
+			text: "Light snow"
+		};
+	} else if (description == "flurries") {
+		return {
+			icon: "",
+			text: "Flurries"
+		};
+	} else if (description == "tstorm") {
+		return {
+			icon: "",
+			text: "Thunderstorm"
+		};
+	} else if (description == "fog_light") {
+		return {
+			icon: "",
+			text: "Light Fog"
+		};
+	} else if (description == "fog") {
+		return {
+			icon: "",
+			text: "Fog"
+		};
+	} else if (description == "cloudy") {
+		return {
+			icon: "",
+			text: "Cloudy"
+		};
+	} else if (description == "mostly_cloudy") {
+		return {
+			icon: "",
+			text: "Mostly Cloudy"
+		};
+	} else if (description == "partly_cloudy") {
+		return {
+			icon: "",
+			text: "Partly Cloudy"
+		};
+	} else if (description == "mostly_clear") {
+		return {
+			icon: "",
+			text: "Mostly Clear"
+		};
+	} else if (description == "clear") {
+		return {
+			icon: "",
+			text: "Clear"
+		};
+	}
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
