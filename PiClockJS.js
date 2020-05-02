@@ -596,11 +596,14 @@ function parseCC(body){
 function ccIcon(description){
 
 	var now = new Date();
+	var sunrise = new Date(cur.sunrise);
+	var sunset = new Date(cur.sunset);
+	
 	var day;
 	
 	logger.info(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
 	
-	if (now.inRange (now,cur.sunrise,cur.sunset)) {
+	if (now > sunrise && now < sunset) {
 		day = true;
 	} else {
 		day = false;
