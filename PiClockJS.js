@@ -605,6 +605,8 @@ function ccIcon(description){
 	} else {
 		day = false;
 	}
+	
+	logger.info(day);
 
 	if (description == "rain_heavy"){
 	} else if (description == "rain_heavy") {
