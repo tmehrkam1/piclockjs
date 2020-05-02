@@ -104,7 +104,13 @@ alerts.features =[];
 if (settings.mode == "local" || settings.mode == "server") {
 	// start server backend
 
-	currentDsObs();
+	if (settings.curProvider=="darksky") {
+			currentDsObs();
+	} else if (settings.curProvider=="openweather"){
+			currentOwObs();
+	} else if (settings.curProvider=="climacell"){
+			currentCcObs();
+	}
 	moonPhase();
 	getWgovGridP();
 	wgAlerts();
@@ -153,6 +159,8 @@ if (settings.mode == "local" || settings.mode == "server") {
 			currentDsObs();
 		} else if (settings.curProvider=="openweather"){
 			currentOwObs();
+		} else if (settings.curProvider=="climacell"){
+			currentCcObs();
 		}
 		//pull any US weather alerts		
 		wgAlerts();
@@ -229,7 +237,6 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
-	//getWgovObs(settings.wgStaID);
 }
 
 async function currentDsObs(){
