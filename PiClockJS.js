@@ -598,7 +598,7 @@ function ccIcon(description){
 	var now = new Date();
 	var day;
 	
-	if ((now > cur.sunset ) || (now < cur.sunrise)) {
+	if ((now < cur.sunset ) || (now > cur.sunrise)) {
 		day = true;
 	} else {
 		day = false;
