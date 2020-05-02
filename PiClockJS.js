@@ -600,7 +600,7 @@ function ccIcon(description){
 	
 	logger.info(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
 	
-	if ((now < cur.sunset ) && (now > cur.sunrise)) {
+	if (now.inRange (now,cur.sunrise,cur.sunset)) {
 		day = true;
 	} else {
 		day = false;
