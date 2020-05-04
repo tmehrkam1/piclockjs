@@ -138,7 +138,7 @@ function parseOW(observation){
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
-	logger.info('openweather : ' + observation.main.temp + " : " + update + ' : ' + diffMins);
+	logger.info('openweather : ' + observation.main.temp + " : " + diffMins + ' : ' + observation.weather[0].main);
 }
 
 function parseDS(body){
