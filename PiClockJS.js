@@ -619,7 +619,7 @@ function ccIcon(description){
 		}
 	} else if (description == "rain_heavy") {
 		return {
-			icon: "",
+			icon: icon,
 			text: "Heavy Rain"
 		};
 	} else if (description == "rain") {
@@ -629,7 +629,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-rain"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Rain"
 		};
 	} else if (description == "rain_light") {
@@ -639,7 +639,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-rain"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Light Rain"
 		};
 	} else if (description == "freezing_rain_heavy") {
@@ -649,7 +649,7 @@ function ccIcon(description){
 		var icon = '<i class="wi wi-night-snow"></i>';
 	}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Heavy Freezing Rain"
 		};
 	} else if (description == "freezing_rain") {
@@ -659,7 +659,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-sleet"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Freezing Rain"
 		};
 	} else if (description == "freezing_rain_light") {
@@ -669,7 +669,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-sleet"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Freezing Light Rain"
 		};
 	} else if (description == "freezing_drizzle") {
@@ -679,7 +679,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-sleet"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Freezing Drizzle"
 		};
 	} else if (description == "drizzle") {
@@ -689,7 +689,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-sleet"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Drizzle"
 		};
 	} else if (description == "ice_pellets_heavy") {
@@ -699,7 +699,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-hail"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Heavy Ice Pellets"
 		};
 	} else if (description == "ice_pellets") {
@@ -709,7 +709,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-hail"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Ice Pellets"
 		};
 	} else if (description == "ice_pellets_light") {
@@ -719,7 +719,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-snow"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Light Ice Pellets"
 		};
 	} else if (description == "snow_heavy") {
@@ -729,7 +729,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-snow"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Heavy Snow"
 		};
 	} else if (description == "snow") {
@@ -739,7 +739,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-snow"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Snow"
 		};
 	} else if (description == "snow_light") {
@@ -749,7 +749,7 @@ function ccIcon(description){
 			var icon = '<i class="wi wi-night-snow"></i>';
 		}
 		return {
-			icon: "",
+			icon: icon,
 			text: "Light snow"
 		};
 	} else if (description == "flurries") {
