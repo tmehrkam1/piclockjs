@@ -676,7 +676,7 @@ function ccIcon(description){
 		if (day) {
 			var icon = '<i class="wi wi-day-sleet"></i>';
 		} else {
-			var icon = '<i class="wi wi-night-sleet"></i>';
+			var icon = '<i class="wi wi-night-alt-showers"></i>';
 		}
 		return {
 			icon: icon,
@@ -684,9 +684,9 @@ function ccIcon(description){
 		};
 	} else if (description == "drizzle") {
 		if (day) {
-			var icon = '<i class="wi wi-day-sleet"></i>';
+			var icon = '<i class="wi wi-day-showers"></i>';
 		} else {
-			var icon = '<i class="wi wi-night-sleet"></i>';
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
 		}
 		return {
 			icon: icon,
