@@ -837,7 +837,7 @@ function ccIcon(description){
 		if (day) {
 			var icon = '<i class="wi wi-day-sunny"></i>';
 		} else {
-			var icon = ';
+			var icon = '<i class="wi wi-night-clear"></i>';
 		}
 		return {
 			icon: icon,
