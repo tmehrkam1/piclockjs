@@ -836,13 +836,45 @@ function ccIcon(description){
 		if (day) {
 			var icon = '<i class="wi wi-day-sunny"></i>';
 		} else {
-			var icon = '<i class="wi wi-night-clear"></i>';
+			var icon = ';
 		}
 		return {
 			icon: icon,
 			text: "Clear"
 		};
 	}
+}
+
+function ccMoon(phase) {
+if (phase="new_moon") {
+		var txt = 'New Moon';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="waxing_crescent") {
+		var txt = 'Waxing Crescent';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="waning_crescent") {
+		var txt = 'Waning Crescent';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="first_quarter") {
+		var txt = 'First Quarter';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="third_quarter") {
+		var txt = 'Third Quarter';
+		var icon = '<i class="wi wi-night-clear"></i>';		
+} else if (phase="waxing_gibbous") {
+		var txt = 'Waxing Gibbous';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="waning_gibbous") {
+		var txt = 'Waning Gibbous';
+		var icon = '<i class="wi wi-night-clear"></i>';
+} else if (phase="full_moon") {
+		var txt = 'Full Moon';
+		var icon = '<i class="wi wi-night-clear"></i>';
+}
+return {
+	icon: icon,
+	text: txt
+};
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
