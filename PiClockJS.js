@@ -577,6 +577,7 @@ function parseCC(body){
 	cur.sunset = sunsetEpoch.toString();
 
 	var desc=ccIcon(body.weather_code.value);
+	var moon=ccMoon(body.moon_phase.value);
 
 	cur.curIcon = desc.icon;
 	cur.tempF = Math.round(parseFloat(body.temp.value));
@@ -587,7 +588,7 @@ function parseCC(body){
 	cur.curDesc = desc.text;
 	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
-	cur.moonPhase = body.moon_phase.value;
+	cur.moonPhase = moon.text;
 	
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
@@ -846,30 +847,30 @@ function ccIcon(description){
 }
 
 function ccMoon(phase) {
-if (phase="new_moon") {
+if (phase=="new_moon") {
 		var txt = 'New Moon';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="waxing_crescent") {
+		var icon = '<i class="wi wi-moon-new"></i>';
+} else if (phase=="waxing_crescent") {
 		var txt = 'Waxing Crescent';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="waning_crescent") {
+		var icon = '<i class="wi wi-moon-waxing-crescent-1"></i>';
+} else if (phase=="waning_crescent") {
 		var txt = 'Waning Crescent';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="first_quarter") {
+		var icon = '<i class="wi wi-moon-waning-crescent-1"></i>';
+} else if (phase=="first_quarter") {
 		var txt = 'First Quarter';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="third_quarter") {
+		var icon = '<i class="wi wi-moon-first-quarter"></i>';
+} else if (phase=="third_quarter") {
 		var txt = 'Third Quarter';
-		var icon = '<i class="wi wi-night-clear"></i>';		
-} else if (phase="waxing_gibbous") {
+		var icon = '<i class="wi wi-moon-third-quarter"></i>';		
+} else if (phase=="waxing_gibbous") {
 		var txt = 'Waxing Gibbous';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="waning_gibbous") {
+		var icon = '<i class="wi wi-moon-waxing-gibbous-1"></i>';
+} else if (phase=="waning_gibbous") {
 		var txt = 'Waning Gibbous';
-		var icon = '<i class="wi wi-night-clear"></i>';
-} else if (phase="full_moon") {
+		var icon = '<i class="wi wi-moon-waning-gibbous-1"></i>';
+} else if (phase=="full_moon") {
 		var txt = 'Full Moon';
-		var icon = '<i class="wi wi-night-clear"></i>';
+		var icon = '<i class="wi wi-moon-full"></i>';
 }
 return {
 	icon: icon,
