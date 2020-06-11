@@ -859,8 +859,8 @@ if (phase=="new_moon") {
 } else if (phase=="first_quarter") {
 		var txt = 'First Quarter';
 		var icon = '<i class="wi wi-moon-first-quarter"></i>';
-} else if (phase=="third_quarter") {
-		var txt = 'Third Quarter';
+} else if (phase=="last_quarter") {
+		var txt = 'Last Quarter';
 		var icon = '<i class="wi wi-moon-third-quarter"></i>';		
 } else if (phase=="waxing_gibbous") {
 		var txt = 'Waxing Gibbous';
