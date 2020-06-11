@@ -871,6 +871,8 @@ if (phase=="new_moon") {
 } else if (phase=="full_moon") {
 		var txt = 'Full Moon';
 		var icon = '<i class="wi wi-moon-full"></i>';
+} else {
+		var txt = phase;
 }
 return {
 	icon: icon,
