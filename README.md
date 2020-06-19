@@ -20,15 +20,13 @@ Current Weather is provided by [climacell.co](https://www.climacell.co/weather-a
 
 Radar imgages are provided by [Iowa State Mesonet](http://mesonet.agron.iastate.edu/GIS/ridge.phtml)
 
-Radar detail page provided by [Aeris Weather](https://www.aerisweather.com/) - developer account required
-
 Maps provided by [Google](http://google.com) - Maps API key required
 
 Forecast headlines and details provided by [NOAA](https://www.weather.gov/)
 
 48 Hour graphs provided by [Highcharts](https://www.highcharts.com/)
 
-Moon images provided by [US Naval Observatory](https://tycho.usno.navy.mil/)
+Moon images provided by [US Naval Observatory](https://tycho.usno.navy.mil/) - URL has been down due to USG.  May be removed.
 
 Unfortunately, the design is US centric, but someone could hack on the code to give it an international source for Radar and Pull the forecasts in from Darksky.
 
