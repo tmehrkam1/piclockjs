@@ -847,7 +847,7 @@ function ccIcon(description){
 }
 
 function ccMoon(phase) {
-if (phase=="new_moon") {
+if (phase=="new") {
 		var txt = 'New Moon';
 		var icon = '<i class="wi wi-moon-new"></i>';
 } else if (phase=="waxing_crescent") {
