@@ -16,7 +16,7 @@ The early days and evolution of it are chronicled on my blog http://n0bel.net/v1
 
 Due to changes in Weather Underground, PiClock needed a new provider for weather information.  I use JS during my day job, so I went from writing a few test scripts to a full blown backend.  Once I had the backend in place, I built a simple HTML front end to lay on top of it.
 
-Current Weather is provided by [Darksky.net](http://darksky.net) - developer account required
+Current Weather is provided by [climacell.co](https://www.climacell.co/weather-api/pricing/) - developer account required
 
 Radar imgages are provided by [Iowa State Mesonet](http://mesonet.agron.iastate.edu/GIS/ridge.phtml)
 
