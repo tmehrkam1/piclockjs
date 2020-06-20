@@ -1,5 +1,6 @@
 #!/bin/sh
+sleep 60
 export DISPLAY=:0.0
 cd ~/PiClock
 unclutter &
-npm start
+xset s off -dpms && npm start
