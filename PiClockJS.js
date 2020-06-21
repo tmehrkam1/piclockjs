@@ -14,17 +14,17 @@ var geoTz = require('geo-tz');
 var SunCalc = require('suncalc');
 const { exec } = require('child_process');
 
-//Read settings
+// Read settings
 const settings = JSON.parse(fs.readFileSync('./settings.json'))
 
-//Express app
+// Express app
 var express = require('express');
 var bodyParser = require('body-parser')
 const appl = express();
 appl.use(bodyParser.json());
 appl.use(express.static("public"));
 
-//Logging
+// Logging
 var winston = require('winston');
 require('winston-daily-rotate-file');
 const NODE_ENV = process.env.NODE_ENV;
@@ -61,8 +61,8 @@ const logger = winston.createLogger({
 });
 
 
-//If we're not in production then log to the `console` with the format:
-//`${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+// If we're not in production then log to the `console` with the format:
+// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 
 
 if (NODE_ENV == 'development') {
@@ -80,15 +80,15 @@ if (NODE_ENV == 'development') {
 }
 
 
-//Handle uncaught handleExceptions
+// Handle uncaught handleExceptions
 process.on('unhandledRejection', (reason, p) => {
 	logger.error('Unhandled Rejection: ' + reason.stack);
 	// application specific logging, throwing an error, or other logic here
 });
 
-//get current weather conditions
+// get current weather conditions
 var cur={};
-//initialize json of arrays
+// initialize json of arrays
 var store={};
 store.timestamp=[];
 store.temp=[];
@@ -162,7 +162,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
 		}
-		//pull any US weather alerts		
+		// pull any US weather alerts
 		wgAlerts();
 	}, settings.currentConditionsInterval * 1000);
 
@@ -184,7 +184,7 @@ if (settings.mode =="local") {
 
 if (settings.mode == "local" || settings.mode == "client") {
 	
-	//add methods to dim display
+	// add methods to dim display
 	appl.get("/day",(req,res) => {
 		if (req.ip == '::ffff:127.0.0.1') {
 			exec('sudo bash -c  "echo 255 > /sys/class/backlight/rpi_backlight/brightness"');
@@ -223,7 +223,7 @@ if (settings.mode == "local" || settings.mode == "client") {
 }
 
 if (settings.mode == "client") {
-	//start node app to listen for display dim event
+	// start node app to listen for display dim event
 	appl.listen(8081, () => logger.info('PiClock listening on port 8081 in client mode'))
 }
 
@@ -375,7 +375,7 @@ async function wgCurrent(staId) {
 			return;
 		}
 		
-		//get heat index temp
+		// get heat index temp
 		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
@@ -383,7 +383,7 @@ async function wgCurrent(staId) {
 			cur.feelsLike = y.nodeValue;
 		}
 		
-		//get wind chill temp
+		// get wind chill temp
 		x = xmlDoc.getElementsByTagName("windchill_f")[0];
 		if (x) { 
 		var y = x.childNodes[0];
@@ -548,9 +548,9 @@ function parseWgAlert(data) {
 		if (data.features[i].properties.event == "Special Weather Statement") {
 			alert.headline = data.features[i].properties.parameters.NWSheadline[0];
 		} else if (data.features[i].properties.event == "Winter Weather Advisory") {
-			//myRegex = /.*/g;
+			// myRegex = /.*/g;
 			myRegex = /\* WHAT\.*([\s\S]*)\* WHERE[\s\S]*\* WHEN\.*([\s\S]*)\*/g;
-			//myRegex = /WHAT([\s\S]*)/g;
+			// myRegex = /WHAT([\s\S]*)/g;
 			str = data.features[i].properties.description;
 			try{
 			match = myRegex.exec(str);
@@ -561,7 +561,7 @@ function parseWgAlert(data) {
 		} else {
 			alert.headline = data.features[i].properties.headline;
 		}
-		//alert.areaDesc = data.features[i].properties.areaDesc;
+		// alert.areaDesc = data.features[i].properties.areaDesc;
 		alert.severity = data.features[i].properties.severity;
 		alert.description = data.features[i].properties.description;
 		array.push(alert);
@@ -635,9 +635,9 @@ function ccIcon(description){
 		};
 	} else if (description == "rain_light") {
 		if (day) {
-			var icon = '<i class="wi wi-day-rain"></i>';
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
 		} else {
-			var icon = '<i class="wi wi-night-rain"></i>';
+			var icon = '<i class="wi wi-night-alt-sprinkle"></i>';
 		}
 		return {
 			icon: icon,
@@ -645,9 +645,9 @@ function ccIcon(description){
 		};
 	} else if (description == "freezing_rain_heavy") {
 		if (day) {
-		var icon = '<i class="wi wi-day-snow"></i>';
+		var icon = '<i class="wi wi-day-rain-mix"></i>';
 	} else {
-		var icon = '<i class="wi wi-night-snow"></i>';
+		var icon = '<i class="wi-night-rain-mix"></i>';
 	}
 		return {
 			icon: icon,
