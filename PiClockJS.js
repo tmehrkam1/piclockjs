@@ -868,7 +868,7 @@ if (phase=="new_moon") {
 } else if (phase=="waning_gibbous") {
 		var txt = 'Waning Gibbous';
 		var icon = '<i class="wi wi-moon-waning-gibbous-1"></i>';
-} else if (phase=="full_moon") {
+} else if (phase=="full") {
 		var txt = 'Full Moon';
 		var icon = '<i class="wi wi-moon-full"></i>';
 } else {
