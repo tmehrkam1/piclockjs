@@ -530,7 +530,7 @@ function parseWgForecast(data) {
 	//usg forecast has a tendancy to mess up now()
 	var now = new Date();
 	var end = new Date(data.properties.periods[0].endTime)
-	if ( end < now()){
+	if ( end < now ){
 		data.properties.shift();
 	}
 	var array = []
