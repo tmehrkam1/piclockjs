@@ -86,6 +86,7 @@ process.on('unhandledRejection', (reason, p) => {
 	// application specific logging, throwing an error, or other logic here
 });
 
+// initialize default vars to store data about weather
 // get current weather conditions
 var cur={};
 // initialize json of arrays
