@@ -215,7 +215,7 @@ function mainLoop(){
 	logger.info(Math.abs(now - timer.cur));
 	
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
-		logger.info("update cur provider " . settings.curProvider);
+		logger.info("update cur provider " + settings.curProvider);
 		if (settings.curProvider=="darksky") {
 			currentDsObs();
 		} else if (settings.curProvider=="openweather"){
