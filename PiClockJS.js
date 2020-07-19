@@ -209,7 +209,7 @@ function initLoop(){
 function mainLoop(){
 	//recurring function to kick off async calls to the various providers
 	logger.info("mainLoop");
-	logger.debug(now - timer.cur);
+	logger.info(now - timer.cur);
 	var now = new Date();
 	if ((now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " . settings.curProvider);
