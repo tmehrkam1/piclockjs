@@ -228,6 +228,7 @@ function mainLoop(){
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
+			//climacell passes moon phase, otherwise call USNO / suncalc
 			moonPhase();
 		}
 		getWgovGridP();
@@ -593,17 +594,19 @@ function parseCC(body){
 
 	var desc=ccIcon(body.weather_code.value);
 	var moon=ccMoon(body.moon_phase.value);
-
+	
+	cur.curDesc = desc.text;
 	cur.curIcon = desc.icon;
+	cur.moonPhase = moon.text;
+	
 	cur.tempF = Math.round(parseFloat(body.temp.value));
 	cur.pressure = Math.round(parseFloat(body.baro_pressure.value * 33.86));
 	cur.humidity = Math.round(parseFloat(body.humidity.value));
 	cur.windSpeed = body.wind_speed.value;
 	cur.windDir = d2d(body.wind_direction.value);
-	cur.curDesc = desc.text;
 	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
-	cur.moonPhase = moon.text;
+
 	
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
@@ -617,15 +620,11 @@ function ccIcon(description){
 	
 	var day;
 	
-	logger.debug(now + ' : ' + cur.sunset + ' : ' + cur.sunrise);
-	
 	if (now > sunrise && now < sunset) {
 		day = true;
 	} else {
 		day = false;
 	}
-	
-	logger.debug(day);
 
 	if (description == "rain_heavy"){
 		if (day) {
