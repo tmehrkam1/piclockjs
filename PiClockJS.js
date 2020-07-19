@@ -97,24 +97,16 @@ store.humidity=[];
 var forecasts = {};
 var alerts = {};
 var nightMode = false;
+//json to store timings for iterative loops
+var timer={};
 
 cur.dt=0;
 alerts.features =[];
 
 if (settings.mode == "local" || settings.mode == "server") {
 	// start server backend
-
-	if (settings.curProvider=="darksky") {
-			currentDsObs();
-	} else if (settings.curProvider=="openweather"){
-			currentOwObs();
-	} else if (settings.curProvider=="climacell"){
-			currentCcObs();
-	}
-	moonPhase();
-	getWgovGridP();
-	wgAlerts();
-
+	initLoop();
+	
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
 	});
@@ -152,30 +144,6 @@ if (settings.mode == "local" || settings.mode == "server") {
 	})
 
 	appl.listen(8081, () => logger.info('PiClock listening on port 8081 in server mode'))
-
-	// update current observations every 2 min
-	setInterval(function() {
-		if (settings.curProvider=="darksky") {
-			currentDsObs();
-		} else if (settings.curProvider=="openweather"){
-			currentOwObs();
-		} else if (settings.curProvider=="climacell"){
-			currentCcObs();
-		}
-		// pull any US weather alerts
-		wgAlerts();
-	}, settings.currentConditionsInterval * 1000);
-
-	// update forecast every 6 hrs
-	setInterval(function() {
-		getWgovGridP();
-	}, settings.forecastInterval * 1000);
-
-	// update moon phase every 12 hrs
-	setInterval(function(){
-		moonPhase();
-	}, 43200000);
-
 }
 
 if (settings.mode =="local") {
@@ -225,6 +193,38 @@ if (settings.mode == "local" || settings.mode == "client") {
 if (settings.mode == "client") {
 	// start node app to listen for display dim event
 	appl.listen(8081, () => logger.info('PiClock listening on port 8081 in client mode'))
+}
+
+function initLoop(){
+	// move the provider selection and loop start here
+	setInterval(function() {
+		mainLoop();
+	}, 1000);
+}
+
+function mainLoop(){
+	//recurring function to kick off async calls to the various providers
+	var now = new Date();
+	if ((now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
+		logger.info("update cur provider " . settings.curProvider);
+		if (settings.curProvider=="darksky") {
+			currentDsObs();
+		} else if (settings.curProvider=="openweather"){
+			currentOwObs();
+		} else if (settings.curProvider=="climacell"){
+			currentCcObs();
+		}
+		wgAlerts();
+		timer.cur = now;
+	}
+	if ((now - timer.fore) > (settings.forecastInterval * 1000)) {
+		logger.info("update forecast provider");
+		if ( settings.curProvider != "climacell") {
+			moonPhase();
+		}
+		getWgovGridP();
+		timer.fore = now;
+	}
 }
 
 async function currentOwObs(){
