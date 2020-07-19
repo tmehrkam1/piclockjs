@@ -197,6 +197,9 @@ if (settings.mode == "client") {
 
 function initLoop(){
 	// move the provider selection and loop start here
+	var now = new Date();
+	timer.cur=now;
+	timer.fore=now;
 	logger.info("initLoop")
 	setInterval(function() {
 		mainLoop();
