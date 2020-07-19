@@ -200,8 +200,6 @@ if (settings.mode == "client") {
 function initLoop(){
 	// move the provider selection and loop start here
 	var now = new Date();
-	timer.cur=now;
-	timer.fore=now;
 	logger.info("initLoop")
 	setInterval(function() {
 		mainLoop();
@@ -211,8 +209,8 @@ function initLoop(){
 function mainLoop(){
 	//recurring function to kick off async calls to the various providers
 	var now = new Date();
-	logger.info("mainLoop");
-	logger.info(Math.abs(now - timer.cur));
+	//logger.info("mainLoop");
+	//logger.info(Math.abs(now - timer.cur));
 	
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
@@ -226,7 +224,7 @@ function mainLoop(){
 		wgAlerts();
 		timer.cur = now;
 	}
-	if ((now - timer.fore) > (settings.forecastInterval * 1000)) {
+	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
 			moonPhase();
