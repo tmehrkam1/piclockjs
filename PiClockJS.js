@@ -197,6 +197,7 @@ if (settings.mode == "client") {
 
 function initLoop(){
 	// move the provider selection and loop start here
+	logger.info("initLoop")
 	setInterval(function() {
 		mainLoop();
 	}, 1000);
@@ -204,6 +205,7 @@ function initLoop(){
 
 function mainLoop(){
 	//recurring function to kick off async calls to the various providers
+	logger.info("mainLoop")
 	var now = new Date();
 	if ((now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " . settings.curProvider);
