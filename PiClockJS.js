@@ -99,6 +99,8 @@ var alerts = {};
 var nightMode = false;
 //json to store timings for iterative loops
 var timer={};
+timer.cur=new Date(0);
+timer.fore=new Date(0);
 
 cur.dt=0;
 alerts.features =[];
