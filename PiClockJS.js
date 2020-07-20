@@ -540,7 +540,7 @@ function parseWgForecast(data) {
 	var now = new Date();
 	var end = new Date(data.properties.periods[0].endTime)
 	if ( end < now ){
-		data.properties.shift();
+		data.properties.periods.shift();
 		logger.warn("WG forecast array shifted")
 	}
 	var array = []
