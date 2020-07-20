@@ -538,10 +538,11 @@ if (phase == 0)	{
 function parseWgForecast(data) {
 	//usg forecast has a tendancy to mess up now()
 	var now = new Date();
-	var end = new Date(data.properties.periods[0].endTime)
-	if ( end < now ){
+	var end = new Date(data.properties.periods[0].endTime);
+	while ( end < now ){
 		data.properties.periods.shift();
 		logger.warn("WG forecast array shifted")
+		end = new Date(data.properties.periods[0].endTime);
 	}
 	var array = []
 	for (var i =0; i < 9; i++) {
