@@ -17,3 +17,11 @@ use raspi-config to boot into xwindows automatically.
     B1 Desktop / CLI 
       B4 Desktop Autologin
 ```
+```
+sudo cp piclock.service /etc/systemd/system/
+sudo systemctl enable piclock
+cp kiosk.sh ..
+cd ~
+chmod +x kiosk.sh
+dos2unix kiosk.sh
+```
