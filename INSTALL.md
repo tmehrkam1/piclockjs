@@ -10,3 +10,10 @@ git clone https://github.com/merky1/PiClock.git
 
 npm install   
 ```
+use raspi-config to boot into xwindows automatically.
+
+...
+  3 - Boot Options
+    B1 Desktop / CLI 
+      B4 Desktop Autologin
+...
