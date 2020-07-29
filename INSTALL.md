@@ -12,8 +12,8 @@ npm install
 ```
 use raspi-config to boot into xwindows automatically.
 
-...
+```
   3 - Boot Options
     B1 Desktop / CLI 
       B4 Desktop Autologin
-...
+```
