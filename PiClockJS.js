@@ -358,7 +358,8 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
-	var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
+	//var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml"; switching to newer json api
+	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
 	try {
@@ -367,39 +368,7 @@ async function wgCurrent(staId) {
 			json: false,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		
-		
-		parser = new DOMParser();
-		xmlDoc = parser.parseFromString(body,'text/xml');
-				
-		var current = new Date(0);
-		current.setUTCSeconds(cur.dt);
-		var obsTime = xmlDoc.getElementsByTagName("observation_time_rfc822")[0].childNodes[0].nodeValue;
-		var update = new Date(obsTime);
-		
-		if (update > current) {
-			logger.info("wg update is fresher " + update);
-		} else {
-			logger.info("wg update is older " + update);
-			return;
-		}
-		
-		// get heat index temp
-		var x = xmlDoc.getElementsByTagName("heat_index_f")[0];
-		if (x) { 
-		var y = x.childNodes[0];
-			logger.info("heat index : " + y.nodeValue);
-			cur.feelsLike = y.nodeValue;
-		}
-		
-		// get wind chill temp
-		x = xmlDoc.getElementsByTagName("windchill_f")[0];
-		if (x) { 
-		var y = x.childNodes[0];
-			logger.info("windchill : " + y.nodeValue);
-			cur.feelsLike = y.nodeValue;
-		}
-		
+		parsewgCurrent(body);
 	}
 	catch(e) {
 		logger.error(e);
@@ -583,6 +552,28 @@ function parseWgAlert(data) {
 		array.push(alert);
 	}
 	alerts.features = array;
+}
+
+function parsewgCurrent(data) {
+	cur.desc= body.properties.textDescription;
+	cur.icon = '<img src="'+body.properties.icon +'"></img>';
+	
+	if (body.properties.windChill.value) {
+		cur.feelsLike = Math.round(parseFloat((body.properties.windChill.value * 9/5) + 32));
+	}
+		
+	if (body.properties.heatIndex.value) {
+		cur.feelsLike = Math.round(parseFloat((body.properties.heatIndex.value * 9/5) + 32));
+	}
+	
+	cur.tempF = Math.round(parseFloat((body.properties.temperature.value * 9/5) + 32));
+	cur.pressure = Math.round(parseFloat(body.properties.barometricPressure.value / 100));
+	cur.humidity = Math.round(parseFloat(body.properties.relativeHumidity.value));
+	cur.windSpeed = Math.round(parseFloat(body.properties.windSpeed.value / 1.609));
+	cur.windDir = d2d(body.properties.windDirection.value)
+	cur.dt = new Date(body.properties.timestamp).getTime() / 1000;
+	
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseCC(body){
