@@ -21,7 +21,9 @@ use raspi-config to boot into xwindows automatically.
 sudo cp piclock.service /etc/systemd/system/
 sudo systemctl enable piclock
 cp kiosk.sh ..
+edit the settings.json (use settings-example.json as a template)
 cd ~
 chmod +x kiosk.sh
 dos2unix kiosk.sh
 ```
+
