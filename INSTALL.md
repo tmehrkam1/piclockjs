@@ -26,4 +26,4 @@ cd ~
 chmod +x kiosk.sh
 dos2unix kiosk.sh
 ```
-
+remember, the clock sleeps for 2 minutes on startup to settle the network issues (name resolution/dhcp)
