@@ -507,10 +507,11 @@ if (phase == 0)	{
 function parseWgForecast(data) {
 	//usg forecast has a tendancy to mess up now()
 	var now = new Date();
-	var end = new Date(data.properties.periods[0].endTime)
-	if ( end < now ){
-		data.properties.shift();
+	var end = new Date(data.properties.periods[0].endTime);
+	while ( end < now ){
+		data.properties.periods.shift();
 		logger.warn("WG forecast array shifted")
+		end = new Date(data.properties.periods[0].endTime);
 	}
 	var array = []
 	for (var i =0; i < 9; i++) {
@@ -889,7 +890,6 @@ return {
 
 function storeValues(timestamp,temp,pressure,humidity) {
 	if (store.timestamp.length > 1440 ) {
-		logger.info("shift array at length  " + store.timestamp.length);
 		store.timestamp.shift();
 		store.temp.shift();
 		store.pressure.shift();
