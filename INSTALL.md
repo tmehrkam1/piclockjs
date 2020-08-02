@@ -74,7 +74,7 @@ After=network.online.target
 [Service]
 Environment=DISPLAY=:0
 Type=simple
-ExecStart=/usr/bin/Xorg
+ExecStart=/usr/bin/Xorg -s off -dpms
 Restart=always
 User=root
 Group=root
@@ -83,7 +83,7 @@ Group=root
 WantedBy=default.target
 ```
 
-### Contents of /etc/systemd/system/piclock.service
+### Contents of /etc/systemd/system/unclutter.service
 ```
 [Unit]
 WantedBy=default.target
@@ -125,8 +125,8 @@ WantedBy=default.target
 
 Execute the following to enable the above services
 ```
-sudo systemctl enable piclock
-sudo systemctl enable piclock
+sudo systemctl enable xorg
+sudo systemctl enable unclutter
 sudo systemctl enable piclock
 systemctl daemon-reload
 reboot
