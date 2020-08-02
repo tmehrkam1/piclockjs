@@ -20,7 +20,7 @@ Current Weather is provided by [climacell.co](https://www.climacell.co/weather-a
 
 Radar imgages are provided by [Iowa State Mesonet](http://mesonet.agron.iastate.edu/GIS/ridge.phtml)
 
-Maps provided by [Google](http://google.com) - Maps API key required
+Maps provided by [Google](http://google.com) - [API Key](https://console.cloud.google.com) required with permissions for Maps Static API and Maps JavaScript API
 
 Forecast headlines and details provided by [NOAA](https://www.weather.gov/)
 
