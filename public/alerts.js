@@ -211,19 +211,24 @@ function updateForecast() {
 }
 
 function updateAlerts(){
-
 	
 	url="alerts";
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
-		for (var i=0;i < data.features.length;i++) {		
-			var option = document.createElement("option");
-			option.text = data.features[i].headline;
-			option.value = data.features[i].id;
-			alertSelect.add(option,i);
-			alertDetails[i] = (data.features[i].description);
-		};
+		if (date.features.length != alertSelect.length){
+			//drop existing array
+			for (var i=0;i < alertSelect.length;i++) {
+				alertSelect.remove(i);
+			}
+			for (var i=0;i < data.features.length;i++) {		
+				var option = document.createElement("option");
+				option.text = data.features[i].headline;
+				option.value = data.features[i].id;
+				alertSelect.add(option,i);
+				alertDetails[i] = (data.features[i].description);
+			};
+		}
 	})
 	.catch(function(error){
 		alert(error);
@@ -233,7 +238,7 @@ function updateAlerts(){
 function alertDetail() {
 	//alert(alertSelect.selectedIndex);
 	if (alertSelect.selectedIndex >= 0){ 
-		alertText.innerHTML = alertSelect.textContent[alertSelect.selectedIndex];
+		alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
 	}
 }
 
