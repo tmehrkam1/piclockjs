@@ -216,7 +216,7 @@ function updateAlerts(){
 	fetch(url)
 	.then((resp) => resp.json())
 	.then(function(data){
-		if (date.features.length != alertSelect.length){
+		if (data.features.length != alertSelect.length){
 			//drop existing array
 			for (var i=0;i < alertSelect.length;i++) {
 				alertSelect.remove(i);
