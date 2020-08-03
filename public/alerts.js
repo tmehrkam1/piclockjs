@@ -25,8 +25,8 @@ alertDiv.innerHTML="";
 var alertSelect = document.createElement("select");
 alertSelect.setAttribute("class","alertList");
 alertSelect.setAttribute("id","alertList");
-alertSelect.onChange = alertDetail();
-//alertSelect.addEventListener("change", alertDetail());
+//alertSelect.onChange = alertDetail();
+alertSelect.addEventListener("change", function() {alertDetail()});
 alertDiv.appendChild(alertSelect);
 
 var alertText = document.createElement("div");
