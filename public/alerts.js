@@ -230,6 +230,7 @@ function updateAlerts(){
 }
 
 function alertDetail() {
+	alert(alertSelect.selectedIndex);
 	if (alertSelect.selectedIndex >= 0){ 
 		alertText.innerHTML = alertSelect.textContent;
 	}
