@@ -218,7 +218,8 @@ function updateAlerts(){
 	.then(function(data){
 		for (var i=0;i < data.features.length;i++) {		
 			var option = document.createElement("option");
-			option.text = data.features[i].headline
+			option.text = data.features[i].headline;
+			option.value = data.features[i].id;
 			alertSelect.add(option,i);
 			alertDetails[i] = (data.features[i].description);
 		};
@@ -231,7 +232,6 @@ function updateAlerts(){
 function alertDetail() {
 	if (alertSelect.selectedIndex >= 0){ 
 		alertText.innerHTML = alertDetails[alertSelect.selectedIndex];
-		alertDiv.appendChild(alertText);
 	}
 }
 
