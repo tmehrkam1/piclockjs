@@ -25,7 +25,7 @@ alertDiv.innerHTML="";
 var alertSelect = document.createElement("select");
 alertSelect.setAttribute("class","alertList");
 alertSelect.setAttribute("id","alertList");
-alertSelect.onchange = alertDetail();
+alertSelect.onChange = alertDetail();
 //alertSelect.addEventListener("change", alertDetail());
 alertDiv.appendChild(alertSelect);
 
