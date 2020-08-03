@@ -550,6 +550,7 @@ function parseWgAlert(data) {
 		// alert.areaDesc = data.features[i].properties.areaDesc;
 		alert.severity = data.features[i].properties.severity;
 		alert.description = data.features[i].properties.description;
+		alert.id = data.features[i].properties.id;
 		array.push(alert);
 	}
 	alerts.features = array;
