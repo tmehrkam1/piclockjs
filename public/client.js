@@ -370,6 +370,7 @@ function updateForecast() {
 function updateAlerts(){
 	var alertDiv = document.getElementById("alerts");
 	alertDiv.textContent="";
+	alertDiv.onclick = function(){alertPage(e)};
 
 	url="alerts";
 	fetch(url)
@@ -541,4 +542,20 @@ function forecastPage(e) {
 	    }
 	    window.location = "/forecast.html"
 }
+
+function alertPage(e) {
+	if (!e)
+	      e = window.event;
+
+	    //IE9 & Other Browsers
+	    if (e.stopPropagation) {
+	      e.stopPropagation();
+	    }
+	    //IE8 and Lower
+	    else {
+	      e.cancelBubble = true;
+	    }
+	    window.location = "/alerts.html"
+}
+
 

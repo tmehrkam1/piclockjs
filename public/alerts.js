@@ -242,3 +242,7 @@ function alertDetail() {
 	}
 }
 
+function reloadMain() {
+	window.location = "/";
+}
+
