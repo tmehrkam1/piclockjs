@@ -370,7 +370,6 @@ function updateForecast() {
 function updateAlerts(){
 	var alertDiv = document.getElementById("alerts");
 	alertDiv.textContent="";
-	alertDiv.onclick = alertPage(e);
 
 	url="alerts";
 	fetch(url)
