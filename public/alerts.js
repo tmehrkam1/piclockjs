@@ -38,7 +38,6 @@ alertDiv.appendChild(alertText);
 updateClock();
 updateCur();
 updateForecast();
-alertText.innerHTML = alertDetails[0];
 
 setInterval(updateClock, 1000); // tick the clock every second
 setInterval(updateCur, 10000); // every ten seconds update current conditions
@@ -229,6 +228,7 @@ function updateAlerts(){
 				alertSelect.add(option,i);
 				alertDetails[i] = (data.features[i].description);
 			};
+			alertText.innerHTML = alertDetails[0];
 		}
 	})
 	.catch(function(error){
