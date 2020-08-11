@@ -560,7 +560,7 @@ function parseWgAlert(data) {
 }
 
 function parsewgCurrent(data) {
-	body = body.properties;
+	body = data.properties;
 	
 	cur.desc= body.textDescription;
 	cur.icon = '<img src="'+body.icon +'"></img>';
