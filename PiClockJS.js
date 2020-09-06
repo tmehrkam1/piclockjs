@@ -225,7 +225,7 @@ function mainLoop(){
 		}
 		timer.cur = now;
 	}
-	if (Math.abs(now - timer.alert) > (settings.forecastInterval * 1000)) {
+	if (Math.abs(now - timer.alert) > (60 * 1000)) {
 		logger.info("update NWS alerts");
 		wgAlerts();
 		timer.alert = now;
