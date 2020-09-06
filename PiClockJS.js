@@ -594,7 +594,7 @@ function parseWgAlert(data) {
 }
 
 function parsewgCurrent(data) {
-	body = data.toJSON();
+	body = JSON.parse(data);
 	logger.info(body.properties);
 	
 
