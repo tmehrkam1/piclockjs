@@ -596,7 +596,7 @@ function parseWgAlert(data) {
 function parsewgCurrent(data) {
 	logger.info(data);
 	body = data.properties;
-	logger.info(data.properties);
+	logger.info(data.id);
 
 	cur.desc= body.textDescription;
 	cur.icon = '<img src="'+body.icon +'"></img>';
