@@ -331,7 +331,7 @@ async function getWgovGridP(){
 		});
 		
 		logger.info(obsbody);
-		settings.wgStaID = obsbody.properties.stationIdentifier;
+		settings.wgStaID = obsbody.features[0].properties.stationIdentifier;
 		logger.info("got NWS gridpoint info");
 	}
 	catch(e) {
