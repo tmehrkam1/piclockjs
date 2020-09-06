@@ -14,17 +14,17 @@ var geoTz = require('geo-tz');
 var SunCalc = require('suncalc');
 const { exec } = require('child_process');
 
-// Read settings
+//Read settings
 const settings = JSON.parse(fs.readFileSync('./settings.json'))
 
-// Express app
+//Express app
 var express = require('express');
 var bodyParser = require('body-parser')
 const appl = express();
 appl.use(bodyParser.json());
 appl.use(express.static("public"));
 
-// Logging
+//Logging
 var winston = require('winston');
 require('winston-daily-rotate-file');
 const NODE_ENV = process.env.NODE_ENV;
@@ -34,35 +34,35 @@ const myFormat = winston.format.printf(info => {
 
 
 var transport = new (winston.transports.DailyRotateFile)({
-  filename: 'PiClock-%DATE%.log',
-  datePattern: 'YYYY-MM-DD',
-  zippedArchive: true,
-  maxSize: '20m',
-  maxFiles: '14d'
+	filename: 'PiClock-%DATE%.log',
+	datePattern: 'YYYY-MM-DD',
+	zippedArchive: true,
+	maxSize: '20m',
+	maxFiles: '14d'
 });
 
 transport.on('rotate', function(oldFilename, newFilename) {
-  // do something fun
+	// do something fun
 });
 
 const logger = winston.createLogger({
 	level: NODE_ENV === "production" ? 'warn' : 'info',
 			transports: [
-			      transport
-			    ],
-			 format: winston.format.combine(
-				winston.format.timestamp({
-					format: 'YYYY-MM-DD hh:mm:ss A ZZ'
-				}),
-				winston.format.colorize({ all: true }),
-				winston.format.simple(),
-				myFormat
-		),
+				transport
+				],
+				format: winston.format.combine(
+						winston.format.timestamp({
+							format: 'YYYY-MM-DD hh:mm:ss A ZZ'
+						}),
+						winston.format.colorize({ all: true }),
+						winston.format.simple(),
+						myFormat
+				),
 });
 
 
-// If we're not in production then log to the `console` with the format:
-// `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
+//If we're not in production then log to the `console` with the format:
+//`${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 
 
 if (NODE_ENV == 'development') {
@@ -80,16 +80,16 @@ if (NODE_ENV == 'development') {
 }
 
 
-// Handle uncaught handleExceptions
+//Handle uncaught handleExceptions
 process.on('unhandledRejection', (reason, p) => {
 	logger.error('Unhandled Rejection: ' + reason.stack);
 	// application specific logging, throwing an error, or other logic here
 });
 
-// initialize default vars to store data about weather
-// get current weather conditions
+//initialize default vars to store data about weather
+//get current weather conditions
 var cur={};
-// initialize json of arrays
+//initialize json of arrays
 var store={};
 store.timestamp=[];
 store.temp=[];
@@ -98,7 +98,7 @@ store.humidity=[];
 var forecasts = {};
 var alerts = {};
 var nightMode = false;
-// json to store timings for iterative loops
+//json to store timings for iterative loops
 var timer={};
 timer.cur=new Date(0);
 timer.fore=new Date(0);
@@ -110,7 +110,7 @@ alerts.features =[];
 if (settings.mode == "local" || settings.mode == "server") {
 	// start server backend
 	initLoop();
-	
+
 	appl.get("/current", (req,res) => {
 		res.status(200).json(cur);
 	});
@@ -125,7 +125,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 
 	appl.get("/coords", (req,res) => {
 		var tz = geoTz(settings.lat, settings.lon);
-		
+
 		res.status(200).json({
 			lat: settings.lat,
 			lon: settings.lon,
@@ -142,7 +142,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 	appl.get("/store", (req,res) => {
 		res.status(200).json(store);
 	})
-	
+
 	appl.get('/', (req,res) => {
 		res.sendFile(__dirname + '/public/index.html');
 	})
@@ -155,7 +155,7 @@ if (settings.mode =="local") {
 }
 
 if (settings.mode == "local" || settings.mode == "client") {
-	
+
 	// add methods to dim display
 	appl.get("/day",(req,res) => {
 		if (req.ip == '::ffff:127.0.0.1') {
@@ -176,22 +176,22 @@ if (settings.mode == "local" || settings.mode == "client") {
 	})
 
 	// fire up the electron broswer.
-	
+
 	const electron = require('electron')
-    const { app, BrowserWindow } = electron	
+	const { app, BrowserWindow } = electron	
 	let win
 
 	app.on('ready', () => {
-  	const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
-  	win = new BrowserWindow({ 
-  		width, 
-  		height, 
-  		frame: false, 
-  		webPreferences: {nodeIntegration: false}
+		const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize
+		win = new BrowserWindow({ 
+			width, 
+			height, 
+			frame: false, 
+			webPreferences: {nodeIntegration: false}
+		})
+		win.loadURL(settings.servIP)
 	})
-  	win.loadURL(settings.servIP)
-})
-   
+
 }
 
 if (settings.mode == "client") {
@@ -214,7 +214,7 @@ function mainLoop(){
 	var now = new Date();
 	// logger.info("mainLoop");
 	// logger.info(Math.abs(now - timer.cur));
-	
+
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
 		if (settings.curProvider=="darksky") {
@@ -272,7 +272,7 @@ async function currentDsObs(){
 async function currentCcObs(){
 	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
 	logger.info(url);
-		
+
 	var { body } = await getPromise({
 		url: url,
 		json: true,
@@ -322,14 +322,15 @@ async function getWgovGridP(){
 	}
 
 	var obsurl = body.properties.observationStations;
-	try 
+	try {
 		var { obsbody } = await getPromise({
-		url: obsurl,
-		json: true,
-		headers: {'User-Agent': 'piclockjs'}
-	});
-	settings.wgStaID = obsbody.properties.stationIdentifier;
-	logger.info("got NWS gridpoint info");
+			url: obsurl,
+			json: true,
+			headers: {'User-Agent': 'piclockjs'}
+		});
+		settings.wgStaID = obsbody.properties.stationIdentifier;
+		logger.info("got NWS gridpoint info");
+	}
 	catch(e) {
 		logger.error(e);
 		await sleep (1000);
@@ -454,12 +455,12 @@ function parseOW(observation){
 	cur.sunrise = sunriseEpoch.toString();
 	cur.sunset = sunsetEpoch.toString();
 	cur.dt = observation.dt;
-	
+
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseDS(body){
-	
+
 	var observation = body.currently;
 	var now = new Date();
 
@@ -480,7 +481,7 @@ function parseDS(body){
 		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
-	
+
 	var sunriseEpoch = new Date(0);
 	var sunsetEpoch = new Date(0);
 
@@ -499,7 +500,7 @@ function parseDS(body){
 	cur.curDesc = observation.summary;
 	cur.dt = observation.time;
 	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
-	
+
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
@@ -516,8 +517,8 @@ function generateMoonPhase() {
 	var timeAndDate = new Date();
 	var phase = SunCalc.getMoonIllumination(timeAndDate).phase;
 	logger.warn('generated moon phase with suncalc at '+phase);
-	
-if (phase == 0)	{
+
+	if (phase == 0)	{
 		cur.moonPhase = "New Moon";
 	} else if (phase>0 && phase <.25) {
 		cur.moonPhase ="Waxing Crescent";
@@ -573,10 +574,10 @@ function parseWgAlert(data) {
 			// myRegex = /WHAT([\s\S]*)/g;
 			str = data.features[i].properties.description;
 			try{
-			match = myRegex.exec(str);
-			alert.headline = match[1]+match[2];
+				match = myRegex.exec(str);
+				alert.headline = match[1]+match[2];
 			} catch(e) {
-			console.log(e.message);
+				console.log(e.message);
 			}
 		} else {
 			alert.headline = data.features[i].properties.headline;
@@ -592,30 +593,30 @@ function parseWgAlert(data) {
 
 function parsewgCurrent(data) {
 	body = data.properties;
-	
+
 	cur.desc= body.textDescription;
 	cur.icon = '<img src="'+body.icon +'"></img>';
-	
+
 	if (body.windChill.value) {
 		cur.feelsLike = Math.round(parseFloat((body.windChill.value * 9/5) + 32));
 	}
-		
+
 	if (body.heatIndex.value) {
 		cur.feelsLike = Math.round(parseFloat((body.heatIndex.value * 9/5) + 32));
 	}
-	
+
 	cur.tempF = Math.round(parseFloat((body.temperature.value * 9/5) + 32));
 	cur.pressure = Math.round(parseFloat(body.barometricPressure.value / 100));
 	cur.humidity = Math.round(parseFloat(body.relativeHumidity.value));
 	cur.windSpeed = Math.round(parseFloat(body.windSpeed.value / 1.609));
 	cur.windDir = d2d(body.windDirection.value)
 	cur.dt = new Date(body.timestamp).getTime() / 1000;
-	
+
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseCC(body){
-	
+
 	var sunriseEpoch = new Date(body.sunrise.value);
 	var sunsetEpoch = new Date(body.sunset.value);
 	cur.sunrise = sunriseEpoch.toString();
@@ -623,11 +624,11 @@ function parseCC(body){
 
 	var desc=ccIcon(body.weather_code.value);
 	var moon=ccMoon(body.moon_phase.value);
-	
+
 	cur.curDesc = desc.text;
 	cur.curIcon = desc.icon;
 	cur.moonPhase = moon.text;
-	
+
 	cur.tempF = Math.round(parseFloat(body.temp.value));
 	cur.pressure = Math.round(parseFloat(body.baro_pressure.value * 33.86));
 	cur.humidity = Math.round(parseFloat(body.humidity.value));
@@ -636,7 +637,7 @@ function parseCC(body){
 	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
 
-	
+
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
 }
@@ -646,9 +647,9 @@ function ccIcon(description){
 	var now = new Date();
 	var sunrise = new Date(cur.sunrise);
 	var sunset = new Date(cur.sunset);
-	
+
 	var day;
-	
+
 	if (now > sunrise && now < sunset) {
 		day = true;
 	} else {
@@ -688,10 +689,10 @@ function ccIcon(description){
 		};
 	} else if (description == "freezing_rain_heavy") {
 		if (day) {
-		var icon = '<i class="wi wi-day-rain-mix"></i>';
-	} else {
-		var icon = '<i class="wi-night-rain-mix"></i>';
-	}
+			var icon = '<i class="wi wi-day-rain-mix"></i>';
+		} else {
+			var icon = '<i class="wi-night-rain-mix"></i>';
+		}
 		return {
 			icon: icon,
 			text: "Heavy Freezing Rain"
@@ -890,37 +891,37 @@ function ccIcon(description){
 }
 
 function ccMoon(phase) {
-if (phase=="new") {
+	if (phase=="new") {
 		var txt = 'New Moon';
 		var icon = '<i class="wi wi-moon-new"></i>';
-} else if (phase=="waxing_crescent") {
+	} else if (phase=="waxing_crescent") {
 		var txt = 'Waxing Crescent';
 		var icon = '<i class="wi wi-moon-waxing-crescent-1"></i>';
-} else if (phase=="waning_crescent") {
+	} else if (phase=="waning_crescent") {
 		var txt = 'Waning Crescent';
 		var icon = '<i class="wi wi-moon-waning-crescent-1"></i>';
-} else if (phase=="first_quarter") {
+	} else if (phase=="first_quarter") {
 		var txt = 'First Quarter';
 		var icon = '<i class="wi wi-moon-first-quarter"></i>';
-} else if (phase=="last_quarter") {
+	} else if (phase=="last_quarter") {
 		var txt = 'Last Quarter';
 		var icon = '<i class="wi wi-moon-third-quarter"></i>';		
-} else if (phase=="waxing_gibbous") {
+	} else if (phase=="waxing_gibbous") {
 		var txt = 'Waxing Gibbous';
 		var icon = '<i class="wi wi-moon-waxing-gibbous-1"></i>';
-} else if (phase=="waning_gibbous") {
+	} else if (phase=="waning_gibbous") {
 		var txt = 'Waning Gibbous';
 		var icon = '<i class="wi wi-moon-waning-gibbous-1"></i>';
-} else if (phase=="full") {
+	} else if (phase=="full") {
 		var txt = 'Full Moon';
 		var icon = '<i class="wi wi-moon-full"></i>';
-} else {
+	} else {
 		var txt = phase;
-}
-return {
-	icon: icon,
-	text: txt
-};
+	}
+	return {
+		icon: icon,
+		text: txt
+	};
 }
 
 function storeValues(timestamp,temp,pressure,humidity) {
@@ -930,13 +931,13 @@ function storeValues(timestamp,temp,pressure,humidity) {
 		store.pressure.shift();
 		store.humidity.shift();
 	}
-	
+
 	store.timestamp.push(timestamp);
 	store.temp.push(temp);
 	store.pressure.push(pressure);
 	store.humidity.push(humidity);
-	
+
 	logger.info('store has value count of :' + store.timestamp.length);
-	
+
 	cur.pressureTrend = trend(store.pressure,{lastpoints:5,avgPoints:60});
 }
