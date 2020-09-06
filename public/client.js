@@ -247,8 +247,9 @@ function updateClock() {
 			hour12 : 'true',
 			timeZone : tz
 		});
-		//var timearr = time.split(" ")
-		document.getElementById("time").textContent = time;
+		
+		var timearr = time.toString.split(" ");
+		document.getElementById("time").textContent = timearr[0];
 	} else {
 		// insert analog script here. Thinking I might move that off of
 		// index.html for sanity
