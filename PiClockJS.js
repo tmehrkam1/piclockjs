@@ -224,7 +224,7 @@ function mainLoop(){
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
 		} else if (settings.curProvider=="nws"){
-			parsewgCurrent(settings.wgStaID)
+			wgCurrent(settings.wgStaID)
 		}
 		timer.cur = now;
 	}
