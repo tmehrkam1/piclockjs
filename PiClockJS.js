@@ -593,10 +593,8 @@ function parseWgAlert(data) {
 	alerts.features = array;
 }
 
-function parsewgCurrent(data) {
-	logger.info(data);
-	body = data;
-	logger.info(data.type);
+function parsewgCurrent(body) {
+	logger.info(body);
 
 	cur.desc= body.textDescription;
 	cur.icon = '<img src="'+body.icon +'"></img>';
