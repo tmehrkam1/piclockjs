@@ -325,13 +325,13 @@ async function getWgovGridP(){
 	logger.info(obsurl);
 	
 	try {
-		var { obsbody } = await getPromise({
+		var { body } = await getPromise({
 			url: obsurl,
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		logger.info(obsbody);
-		settings.wgStaID = obsbody.features[0].properties.stationIdentifier;
+		logger.info(body);
+		settings.wgStaID = body.features[0].properties.stationIdentifier;
 		logger.info("got NWS gridpoint info");
 	}
 	catch(e) {
