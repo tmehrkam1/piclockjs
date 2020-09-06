@@ -321,6 +321,12 @@ async function getWgovGridP(){
 		});
 		settings.wgStaID = obsbody.properties.stationIdentifier;
 		logger.info("got NWS gridpoint info")
+		catch(e) {
+			logger.error(e)
+			await sleep (1000);
+			logger.warn("retrying NWS gridpoint");
+			getWgovGridP();
+		}
 	}
 	catch(e) {
 		logger.error(e)
