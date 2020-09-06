@@ -203,6 +203,7 @@ function initLoop(){
 	// move the provider selection and loop start here
 	var now = new Date();
 	logger.info("initLoop")
+	getWgovGridP();
 	setInterval(function() {
 		mainLoop();
 	}, 1000);
@@ -222,6 +223,8 @@ function mainLoop(){
 			currentOwObs();
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
+		} else if (settings.curProvider=="nws"){
+			parsewgCurrent(settings.wgStaID)
 		}
 		timer.cur = now;
 	}
@@ -237,7 +240,7 @@ function mainLoop(){
 			//climacell passes moon phase, otherwise call USNO / suncalc
 			moonPhase();
 		}
-		getWgovGridP();
+		wgForecast(settings.wgForecast);
 		timer.fore = now;
 	}
 }
@@ -309,11 +312,15 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		wgForecast(body.properties.forecast);
+		settings.wgForecast = (body.properties.forecast);
 		settings.wgStaID = body.properties.observationStations;
+		logger.info("got NWS gridpoint info")
 	}
 	catch(e) {
 		logger.error(e)
+		await sleep (1000);
+		logger.warn("retrying NWS gridpoint");
+		getWgovGridP();
 	}
 }
 
