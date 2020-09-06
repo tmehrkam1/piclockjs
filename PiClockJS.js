@@ -102,6 +102,7 @@ var nightMode = false;
 var timer={};
 timer.cur=new Date(0);
 timer.fore=new Date(0);
+timer.alert=new Date(0);
 
 cur.dt=0;
 alerts.features =[];
@@ -222,9 +223,14 @@ function mainLoop(){
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
 		}
-		wgAlerts();
 		timer.cur = now;
 	}
+	if (Math.abs(now - timer.alert) > (settings.forecastInterval * 1000)) {
+		logger.info("update NWA alerts");
+		wgAlerts();
+		timer.alert = now;
+	}
+
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
@@ -357,6 +363,9 @@ async function wgAlerts(){
 	}
 	catch(e) {
 		logger.error(e)
+		var now = new Date();
+		timer.alert = now - (60 * 1000);
+		logger.warn("set next forecast poll to : " + timer.alert)
 	}
 }
 
