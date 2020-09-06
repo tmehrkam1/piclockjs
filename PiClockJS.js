@@ -312,24 +312,24 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		settings.wgForecast = (body.properties.forecast);
-		var obsurl = body.properties.observationStations;
-		try { obsbody } = await getPromise({
-			url: obsurl,
-			json: true,
-			headers: {'User-Agent': 'piclockjs'}
-		});
-		settings.wgStaID = obsbody.properties.stationIdentifier;
-		logger.info("got NWS gridpoint info")
-		catch(e) {
-			logger.error(e)
-			await sleep (1000);
-			logger.warn("retrying NWS gridpoint");
-			getWgovGridP();
-		}
+		settings.wgForecast = (body.properties.forecast);	
 	}
 	catch(e) {
-		logger.error(e)
+		logger.error(e);
+		await sleep (1000);
+		logger.warn("retrying NWS gridpoint");
+		getWgovGridP();
+	}
+	var obsurl = body.properties.observationStations;
+	try { obsbody } = await getPromise({
+		url: obsurl,
+		json: true,
+		headers: {'User-Agent': 'piclockjs'}
+	});
+	settings.wgStaID = obsbody.properties.stationIdentifier;
+	logger.info("got NWS gridpoint info");
+	catch(e) {
+		logger.error(e);
 		await sleep (1000);
 		logger.warn("retrying NWS gridpoint");
 		getWgovGridP();
