@@ -328,6 +328,7 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
+		logger.info(obsbody);
 		settings.wgStaID = obsbody.properties.stationIdentifier;
 		logger.info("got NWS gridpoint info");
 	}
