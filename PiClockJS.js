@@ -595,26 +595,26 @@ function parseWgAlert(data) {
 
 function parsewgCurrent(data) {
 	body = JSON.parse(data);
-	logger.info(body.properties);
-	
+	observation = body.properties;
+	logger.info(observation);
 
-	cur.desc= body.properties.textDescription;
-	cur.icon = '<img src="'+body.properties.icon +'"></img>';
+	cur.desc= observation.textDescription;
+	cur.icon = '<img src="'+ observation.icon +'"></img>';
 
-	if (body.properties.windChill.value) {
-		cur.feelsLike = Math.round(parseFloat((body.properties.windChill.value * 9/5) + 32));
+	if (observation.windChill.value) {
+		cur.feelsLike = Math.round(parseFloat((observation.windChill.value * 9/5) + 32));
 	}
 
-	if (body.properties.heatIndex.value) {
-		cur.feelsLike = Math.round(parseFloat((body.properties.heatIndex.value * 9/5) + 32));
+	if (observation.heatIndex.value) {
+		cur.feelsLike = Math.round(parseFloat((observation.heatIndex.value * 9/5) + 32));
 	}
 
-	cur.tempF = Math.round(parseFloat((body.properties.temperature.value * 9/5) + 32));
-	cur.pressure = Math.round(parseFloat(body.properties.barometricPressure.value / 100));
-	cur.humidity = Math.round(parseFloat(body.properties.relativeHumidity.value));
-	cur.windSpeed = Math.round(parseFloat(body.properties.windSpeed.value / 1.609));
-	cur.windDir = d2d(body.windDirection.properties.value)
-	cur.dt = new Date(body.timestamp).getTime() / 1000;
+	cur.tempF = Math.round(parseFloat((observation.temperature.value * 9/5) + 32));
+	cur.pressure = Math.round(parseFloat(observation.barometricPressure.value / 100));
+	cur.humidity = Math.round(parseFloat(observation.relativeHumidity.value));
+	cur.windSpeed = Math.round(parseFloat(observation.windSpeed.value / 1.609));
+	cur.windDir = d2d(observation.windDirection.value)
+	cur.dt = new Date(observation.timestamp).getTime() / 1000;
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
