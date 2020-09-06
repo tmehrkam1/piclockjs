@@ -330,9 +330,8 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		logger.info(body);
 		settings.wgStaID = body.features[0].properties.stationIdentifier;
-		logger.info("got NWS gridpoint info");
+		logger.info("got NWS weather station " + body.features[0].properties.stationIdentifier);
 	}
 	catch(e) {
 		logger.error(e);
@@ -595,6 +594,7 @@ function parseWgAlert(data) {
 }
 
 function parsewgCurrent(data) {
+	logger.info(data);
 	body = data.properties;
 
 	cur.desc= body.textDescription;
