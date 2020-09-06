@@ -322,12 +322,14 @@ async function getWgovGridP(){
 	}
 
 	var obsurl = body.properties.observationStations;
+	logger.info(obsurl);
 	try {
 		var { obsbody } = await getPromise({
 			url: obsurl,
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
+		
 		logger.info(obsbody);
 		settings.wgStaID = obsbody.properties.stationIdentifier;
 		logger.info("got NWS gridpoint info");
