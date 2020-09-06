@@ -98,7 +98,7 @@ store.humidity=[];
 var forecasts = {};
 var alerts = {};
 var nightMode = false;
-//json to store timings for iterative loops
+// json to store timings for iterative loops
 var timer={};
 timer.cur=new Date(0);
 timer.fore=new Date(0);
@@ -210,10 +210,10 @@ function initLoop(){
 }
 
 function mainLoop(){
-	//recurring function to kick off async calls to the various providers
+	// recurring function to kick off async calls to the various providers
 	var now = new Date();
-	//logger.info("mainLoop");
-	//logger.info(Math.abs(now - timer.cur));
+	// logger.info("mainLoop");
+	// logger.info(Math.abs(now - timer.cur));
 	
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
@@ -237,7 +237,7 @@ function mainLoop(){
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
-			//climacell passes moon phase, otherwise call USNO / suncalc
+			// climacell passes moon phase, otherwise call USNO / suncalc
 			moonPhase();
 		}
 		wgForecast(settings.wgForecast);
@@ -320,8 +320,10 @@ async function getWgovGridP(){
 		logger.warn("retrying NWS gridpoint");
 		getWgovGridP();
 	}
+
 	var obsurl = body.properties.observationStations;
-	try { obsbody } = await getPromise({
+	try 
+		var { obsbody } = await getPromise({
 		url: obsurl,
 		json: true,
 		headers: {'User-Agent': 'piclockjs'}
@@ -389,7 +391,8 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
-	//var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml"; switching to newer json api
+	// var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
+	// switching to newer json api
 	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
@@ -536,7 +539,7 @@ if (phase == 0)	{
 }
 
 function parseWgForecast(data) {
-	//usg forecast has a tendancy to mess up now()
+	// usg forecast has a tendancy to mess up now()
 	var now = new Date();
 	var end = new Date(data.properties.periods[0].endTime);
 	while ( end < now ){
