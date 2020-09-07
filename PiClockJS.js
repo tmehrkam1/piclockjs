@@ -596,8 +596,11 @@ function parseWgAlert(data) {
 function parsewgCurrent(data) {
 	body = JSON.parse(data);
 	observation = body.properties;
+	
 	obsdt = new Date(observation.timestamp).getTime() / 1000;
-	logger.info(observation);
+	var now = new Date();
+	
+	//logger.info(observation);
 	
 	if (obsdt <= cur.dt)
 	{
