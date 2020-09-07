@@ -31,6 +31,10 @@
 	font-size: 7vh;
 }
 
+#curImg {
+    height:  7vh;
+}
+
 #curDesc {
 	font-size: 3vh;
 }
