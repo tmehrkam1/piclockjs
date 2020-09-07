@@ -480,7 +480,7 @@ function parseDS(body){
 		var diffCur = (current - update);
 		var diffCurMins = (diffCur / 1000 / 60);
 
-		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
 
@@ -616,7 +616,7 @@ function parsewgCurrent(data) {
 		var diffCur = (current - update);
 		var diffCurMins = (diffCur / 1000 / 60);
 
-		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
 
