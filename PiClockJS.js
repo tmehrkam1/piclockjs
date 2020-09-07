@@ -596,7 +596,26 @@ function parseWgAlert(data) {
 function parsewgCurrent(data) {
 	body = JSON.parse(data);
 	observation = body.properties;
+	obsdt = new Date(observation.timestamp).getTime() / 1000;
 	logger.info(observation);
+	
+	if (obsdt <= cur.dt)
+	{
+		var update = new Date(0);
+		var current = new Date(0);
+
+		update.setUTCSeconds(obsdt);
+		current.setUTCSeconds(cur.dt);
+
+		var diffMs = (now - update); // diff in MS
+		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+
+		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		return;
+	}
 
 	cur.curDesc = observation.textDescription;
 	cur.curIcon = '<img src="'+ observation.icon +'"></img>';
