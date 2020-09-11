@@ -401,7 +401,7 @@ async function wgAlerts(){
 	catch(e) {
 		logger.error(e)
 		var now = new Date();
-		timer.alert = now - (60 * 1000);
+		timer.alert = now.getUTCMilliseconds - (60 * 1000);
 		logger.warn("set next alert poll to : " + Date(timer.alert))
 	}
 }
