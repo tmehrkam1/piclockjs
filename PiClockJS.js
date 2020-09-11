@@ -367,7 +367,7 @@ async function wgForecast(url){
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = now.setMinutes(now.getMinutes() - (settings.forecastInterval / 60 + 1))
-		logger.warn("set next forecast poll to : " + Date.setTime(timer.fore));
+		logger.warn("set next forecast poll to : " + Date(timer.fore));
 		return;
     }
 	logger.info(url);
