@@ -553,6 +553,15 @@ function generateMoonPhase() {
 	}
 }
 
+function generateSunTimes(){
+	var now = new Date();
+	var suncalcTimes = SunCalc.getTimes(now, settings.lon, settings.lat);
+	return {
+		sunrise : suncalcTimes.sunrise,
+		sunset : suncalcTimes.sunset
+	}
+}
+
 function parseWgForecast(data) {
 	// usg forecast has a tendancy to mess up now()
 	var now = new Date();
@@ -649,6 +658,10 @@ function parsewgCurrent(data) {
 	cur.windSpeed = Math.round(parseFloat(observation.windSpeed.value / 1.609));
 	cur.windDir = d2d(observation.windDirection.value)
 	cur.dt = new Date(observation.timestamp).getTime() / 1000;
+	
+	var suntimes = new generateSunTimes();
+	cur.sunrise = suntimes.sunrise.toString();
+	cur.sunset = suntimes.sunset.toString();
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
