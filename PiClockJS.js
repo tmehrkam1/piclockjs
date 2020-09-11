@@ -369,7 +369,7 @@ async function wgForecast(url){
     	var now = new Date();
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds);
+		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds());
 		return;
     }
 	logger.info(url);
@@ -385,7 +385,7 @@ async function wgForecast(url){
 		var now = new Date();
 		logger.error(e);
 		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds);
+		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds());
 	}
 }
 
