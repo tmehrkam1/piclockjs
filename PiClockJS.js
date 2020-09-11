@@ -364,7 +364,8 @@ async function wgForecast(url){
 	var now = new Date();
     if (url == null) {
     		logger.warn("forecast gridpoint data not updated");
-		timer.fore = Math.abs(now - settings.forecastInterval * 1000 + 60 * 1000);
+		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
+		logger.info(Date(now - settings.forecastInterval * 1000 + 60 * 1000));
 		logger.warn("set next forecast poll to : " + Date(timer.fore));
 		return;
     }
@@ -379,7 +380,7 @@ async function wgForecast(url){
 	}
 	catch(e) {
 		logger.error(e);
-		timer.fore = Math.abs(now - settings.forecastInterval * 1000 + 60 * 1000);
+		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
 		logger.warn("set next forecast poll to : " + Date(timer.fore));
 	}
 }
@@ -404,8 +405,6 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
-	// var url = "https://w1.weather.gov/xml/current_obs/" + staId + ".xml";
-	// switching to newer json api
 	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
