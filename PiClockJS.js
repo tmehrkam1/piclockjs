@@ -408,6 +408,13 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
+    if (typeof staId === 'undefined') {
+    	logger.warn("current gridpoint data not updated");
+		timer.cur = now - settings.forecastInterval * 1000 + 60 * 1000;
+		logger.warn("set next current poll to : " + timer.cur);
+		return;
+    }
+    
 	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
