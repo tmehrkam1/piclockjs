@@ -233,8 +233,8 @@ function mainLoop(){
 		wgAlerts();
 		timer.alert = now;
 	}
-
-	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
+	logger.info(Math.abs(now.getUTCMilliseconds() - timer.fore.getUTCMilliseconds()) > (settings.forecastInterval * 1000));
+	if (Math.abs(now.getUTCMilliseconds() - timer.fore.getUTCMilliseconds()) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
 			// climacell passes moon phase, otherwise call USNO / suncalc
