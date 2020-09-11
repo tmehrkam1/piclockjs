@@ -363,13 +363,13 @@ async function getWgovObs(wgovObsSta){
 }
 
 async function wgForecast(url){
-	timer.fore = new Date(0);
+	timer.fore = new Date();
+	var now = new Date(0);
 	
     if (typeof url === 'undefined') {
-    	var now = new Date();
     	logger.warn("forecast gridpoint data not updated");
-		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds());
+		timer.fore = now.getUTCMilliseconds() - settings.forecastInterval * 1000 + 60 * 1000;
+		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCMilliseconds()));
 		return;
     }
 	logger.info(url);
@@ -382,10 +382,9 @@ async function wgForecast(url){
 		parseWgForecast(body);
 	}
 	catch(e) {
-		var now = new Date();
 		logger.error(e);
-		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCSeconds());
+		timer.fore = now.getUTCMilliseconds() - settings.forecastInterval * 1000 + 60 * 1000;
+		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCMilliseconds());
 	}
 }
 
