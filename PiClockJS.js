@@ -316,9 +316,11 @@ async function getWgovGridP(){
 	}
 	catch(e) {
 		logger.error(e);
-		await sleep (1000);
-		logger.warn("retrying NWS gridpoint");
-		getWgovGridP();
+		setTimeout(function(){
+			logger.warn("retrying NWS gridpoint");
+			getWgovGridP();
+		}, 5000);
+		
 	}
 
 	var obsurl = body.properties.observationStations;
