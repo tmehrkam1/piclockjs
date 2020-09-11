@@ -369,7 +369,7 @@ async function wgForecast(url){
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore);
+		logger.warn("set next forecast poll to : " + timer.fore + "current time stamp " + now);
 		return;
     }
 	logger.info(url);
@@ -384,7 +384,7 @@ async function wgForecast(url){
 	catch(e) {
 		logger.error(e);
 		timer.fore = now - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore);
+		logger.warn("set next forecast poll to : " + timer.fore + "current time stamp " + now);
 	}
 }
 
