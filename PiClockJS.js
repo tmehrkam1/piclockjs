@@ -343,7 +343,7 @@ async function getWgovGridP(){
 
 async function getWgovObs(wgovObsSta){
 	if (wgovObsSta == null) {
-		logger.warn("gridpoint data not updated");
+		logger.warn("NWS observation gridpoint data not updated");
 		return;
 	}
 	logger.info(wgovObsSta);
@@ -362,8 +362,11 @@ async function getWgovObs(wgovObsSta){
 
 async function wgForecast(url){
     if (url == null) {
-    		logger.warn("gridpoint data not updated");
-    		return;
+    		logger.warn("forecast gridpoint data not updated");
+    		var now = new Date();
+		timer.fore = now - (settings.forecastInterval * 1000) + (60 * 1000);
+		logger.warn("set next forecast poll to : " + timer.fore)
+		return;
     }
 	logger.info(url);
 	try {
