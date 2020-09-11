@@ -342,7 +342,7 @@ async function getWgovGridP(){
 }
 
 async function getWgovObs(wgovObsSta){
-	if (wgovObsSta == null) {
+	if (wgovObsSta === undefined) {
 		logger.warn("NWS observation gridpoint data not updated");
 		return;
 	}
