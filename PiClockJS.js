@@ -369,7 +369,7 @@ async function wgForecast(url){
 	catch(e) {
 		logger.error(e);
 		var now = new Date();
-		timer.fore = now + (60 * 1000);
+		timer.fore = now - (settings.forecastInterval * 1000) + (60 * 1000);
 		logger.warn("set next forecast poll to : " + timer.fore)
 	}
 }
