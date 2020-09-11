@@ -344,7 +344,7 @@ async function getWgovGridP(){
 }
 
 async function getWgovObs(wgovObsSta){
-	if (wgovObsSta === undefined) {
+	if (typeof wgovObsSta === 'undefined') {
 		logger.warn("NWS observation gridpoint data not updated");
 		return;
 	}
@@ -364,7 +364,7 @@ async function getWgovObs(wgovObsSta){
 
 async function wgForecast(url){
 	var now = new Date();
-    if (url == null) {
+    if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = now.setMinutes(now.getMinutes() - (settings.forecastInterval / 60 + 1))
 		logger.warn("set next forecast poll to : " + Date.setTime(timer.fore));
