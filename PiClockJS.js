@@ -342,6 +342,10 @@ async function getWgovGridP(){
 }
 
 async function getWgovObs(wgovObsSta){
+	if (wgovObsSta == null) {
+		logger.warn("gridpoint data not updated");
+		return;
+	}
 	logger.info(wgovObsSta);
 	try {
 		var { body } = await getPromise({
@@ -357,6 +361,10 @@ async function getWgovObs(wgovObsSta){
 }
 
 async function wgForecast(url){
+    if (url == null) {
+    		logger.warn("gridpoint data not updated");
+    		return;
+    }
 	logger.info(url);
 	try {
 		var { body } = await getPromise({
