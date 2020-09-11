@@ -233,7 +233,7 @@ function mainLoop(){
 		wgAlerts();
 		timer.alert = now;
 	}
-	logger.info("last forecast run " + timer.fore)
+	logger.info("last forecast run " + Math.abs(now - timer.fore))
 	if ((now.getUTCMilliseconds() - timer.fore.getUTCMilliseconds()) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
 		if ( settings.curProvider != "climacell") {
