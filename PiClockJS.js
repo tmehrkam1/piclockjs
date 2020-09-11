@@ -369,7 +369,7 @@ async function wgForecast(url){
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = now.getUTCMilliseconds() - settings.forecastInterval * 1000 + 60 * 1000;
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCMilliseconds()));
+		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCMilliseconds());
 		return;
     }
 	logger.info(url);
