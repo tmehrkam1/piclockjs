@@ -400,7 +400,7 @@ async function wgAlerts(){
 		logger.error(e)
 		var now = new Date();
 		timer.alert = now - (60 * 1000);
-		logger.warn("set next forecast poll to : " + timer.alert)
+		logger.warn("set next alert poll to : " + Date(timer.alert))
 	}
 }
 
