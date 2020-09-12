@@ -312,6 +312,13 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
+		if (typeof body.properties === 'undefined') {
+		setTimeout(function(){
+			logger.warn("retrying NWS gridpoint");
+			getWgovGridP();
+		}, 5000);
+		return;
+		}
 		settings.wgForecast = (body.properties.forecast);	
 	}
 	catch(e) {
