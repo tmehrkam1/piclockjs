@@ -312,13 +312,6 @@ async function getWgovGridP(){
 			json: true,
 			headers: {'User-Agent': 'piclockjs'}
 		});
-		if (typeof body.properties === 'undefined') {
-		setTimeout(function(){
-			logger.warn("retrying NWS gridpoint");
-			getWgovGridP();
-		}, 5000);
-		return;
-		}
 		settings.wgForecast = (body.properties.forecast);	
 	}
 	catch(e) {
@@ -329,7 +322,14 @@ async function getWgovGridP(){
 		}, 5000);
 		
 	}
-
+	if (typeof body.properties === 'undefined') {
+		setTimeout(function(){
+			logger.warn("retrying NWS gridpoint");
+			getWgovGridP();
+		}, 5000);
+		logger.warn("failed to retrieve gridpoint");
+		return;
+	}
 	var obsurl = body.properties.observationStations;
 	logger.info(obsurl);
 	
