@@ -217,6 +217,7 @@ function mainLoop(){
 
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
+		timer.cur = now;
 		if (settings.curProvider=="darksky") {
 			currentDsObs();
 		} else if (settings.curProvider=="openweather"){
@@ -226,12 +227,11 @@ function mainLoop(){
 		} else if (settings.curProvider=="nws"){
 			wgCurrent(settings.wgStaID)
 		}
-		timer.cur = now;
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
 		logger.info("update NWS alerts");
-		wgAlerts();
 		timer.alert = now;
+		wgAlerts();
 	}
 
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
