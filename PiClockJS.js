@@ -327,7 +327,7 @@ async function getWgovGridP(){
 		}, 5000);
 		
 	}
-	if (typeof body.properties === 'undefined') {
+	if (typeof body.properties === "undefined") {
 		setTimeout(function(){
 			logger.warn("retrying NWS gridpoint");
 			getWgovGridP();
