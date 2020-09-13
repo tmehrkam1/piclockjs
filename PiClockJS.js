@@ -574,7 +574,7 @@ function generateMoonPhase() {
 
 function generateSunTimes(){
 	var now = new Date();
-	var suncalcTimes = SunCalc.getTimes(now, settings.lon, settings.lat);
+	var suncalcTimes = SunCalc.getTimes(now, settings.lat, settings.lon);
 	return {
 		sunrise : suncalcTimes.sunrise,
 		sunset : suncalcTimes.sunset
