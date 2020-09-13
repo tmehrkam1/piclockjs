@@ -417,7 +417,7 @@ async function wgCurrent(staId) {
 	var now = new Date();
     if (typeof staId === 'undefined') {
     	logger.warn("current gridpoint data not updated");
-		timer.cur = (now.getUTCMilliseconds() - settings.currentConditionsInterval * 1000) + (60 * 1000);
+		timer.cur = (now - settings.currentConditionsInterval * 1000) + (60 * 1000);
 		logger.warn("set next current poll to : " + timer.cur);
 		return;
     }
