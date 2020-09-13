@@ -637,7 +637,7 @@ function parsewgCurrent(data) {
 	
 	//logger.info(observation);
 	
-	if (obsdt <= cur.dt) || (observation.temperature.qualityControl == "qc:Z")
+	if ((obsdt <= cur.dt) || (observation.temperature.qualityControl == "qc:Z"))
 	{
 		var update = new Date(0);
 		var current = new Date(0);
