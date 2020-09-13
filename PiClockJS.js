@@ -240,8 +240,8 @@ function mainLoop(){
 			// climacell passes moon phase, otherwise call USNO / suncalc
 			moonPhase();
 		}
-		wgForecast(settings.wgForecast);
 		timer.fore = now;
+		wgForecast(settings.wgForecast);
 	}
 }
 
