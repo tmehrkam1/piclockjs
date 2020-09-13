@@ -225,7 +225,12 @@ function mainLoop(){
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
 		} else if (settings.curProvider=="nws"){
-			wgCurrent(settings.wgStaID)
+			wgCurrent(settings.wgStaID);
+			
+			var suntimes = new generateSunTimes();
+			cur.sunrise = suntimes.sunrise.toString();
+			cur.sunset = suntimes.sunset.toString();
+
 		}
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
@@ -673,10 +678,6 @@ function parsewgCurrent(data) {
 	cur.windDir = d2d(observation.windDirection.value)
 	cur.dt = new Date(observation.timestamp).getTime() / 1000;
 	
-	var suntimes = new generateSunTimes();
-	cur.sunrise = suntimes.sunrise.toString();
-	cur.sunset = suntimes.sunset.toString();
-
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
