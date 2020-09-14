@@ -217,6 +217,7 @@ function mainLoop(){
 
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
+		timer.cur = now;
 		if (settings.curProvider=="darksky") {
 			currentDsObs();
 		} else if (settings.curProvider=="openweather"){
@@ -224,14 +225,18 @@ function mainLoop(){
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
 		} else if (settings.curProvider=="nws"){
-			wgCurrent(settings.wgStaID)
+			wgCurrent(settings.wgStaID);
+			
+			var suntimes = new generateSunTimes();
+			cur.sunrise = suntimes.sunrise.toString();
+			cur.sunset = suntimes.sunset.toString();
+
 		}
-		timer.cur = now;
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
 		logger.info("update NWS alerts");
-		wgAlerts();
 		timer.alert = now;
+		wgAlerts();
 	}
 
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
@@ -240,8 +245,8 @@ function mainLoop(){
 			// climacell passes moon phase, otherwise call USNO / suncalc
 			moonPhase();
 		}
-		wgForecast(settings.wgForecast);
 		timer.fore = now;
+		wgForecast(settings.wgForecast);
 	}
 }
 
@@ -322,7 +327,7 @@ async function getWgovGridP(){
 		}, 5000);
 		return;
 	}
-	if (typeof body.properties === 'undefined') {
+	if (typeof body.properties === "undefined") {
 		setTimeout(function(){
 			logger.warn("retrying NWS gridpoint");
 			getWgovGridP();
@@ -417,7 +422,7 @@ async function wgCurrent(staId) {
 	var now = new Date();
     if (typeof staId === 'undefined') {
     	logger.warn("current gridpoint data not updated");
-		timer.cur = (now.getUTCMilliseconds() - settings.currentConditionsInterval * 1000) + (60 * 1000);
+		timer.cur = (now - settings.currentConditionsInterval * 1000) + (60 * 1000);
 		logger.warn("set next current poll to : " + timer.cur);
 		return;
     }
@@ -569,7 +574,7 @@ function generateMoonPhase() {
 
 function generateSunTimes(){
 	var now = new Date();
-	var suncalcTimes = SunCalc.getTimes(now, settings.lon, settings.lat);
+	var suncalcTimes = SunCalc.getTimes(now, settings.lat, settings.lon);
 	return {
 		sunrise : suncalcTimes.sunrise,
 		sunset : suncalcTimes.sunset
@@ -637,7 +642,7 @@ function parsewgCurrent(data) {
 	
 	//logger.info(observation);
 	
-	if (obsdt <= cur.dt)
+	if ((obsdt <= cur.dt) || (observation.temperature.qualityControl == "qc:Z"))
 	{
 		var update = new Date(0);
 		var current = new Date(0);
@@ -673,10 +678,6 @@ function parsewgCurrent(data) {
 	cur.windDir = d2d(observation.windDirection.value)
 	cur.dt = new Date(observation.timestamp).getTime() / 1000;
 	
-	var suntimes = new generateSunTimes();
-	cur.sunrise = suntimes.sunrise.toString();
-	cur.sunset = suntimes.sunset.toString();
-
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
