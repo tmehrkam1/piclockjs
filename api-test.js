@@ -128,7 +128,7 @@ async function currentYahoo(){
 		}
 	});
 	logger.info(body);
-}}
+}
 
 async function currentWgovObs(){
 	var url ="https://api.weather.gov/stations/KJYO/observations";
