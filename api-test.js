@@ -40,8 +40,7 @@ currentWgovObs();
 setInterval(function() {
 		currentDsObs();
 		currentOwObs();
-		currentCcObs();
-		currentWgovObs();
+		currentYahoo();
 }, 600 * 1000);
 
 //Logging
