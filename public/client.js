@@ -320,7 +320,12 @@ function updateForecast() {
 	.then(function(data){
 		if (typeof data.list ==="undefined") {
 			data.list = [];
+			setTimeout(function(){
+				updateForecast();
+			}, 5000);
+		return;
 		}
+
 		for (var i=0;i < data.list.length;i++) {		
 			// create a container for the forecast
 			var forecastBlock = document.createElement("div");
