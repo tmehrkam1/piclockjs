@@ -116,6 +116,21 @@ async function currentCcObs(){
 	parseCC(body);
 }
 
+async function currentYahoo(){
+	var url = "https://weather-ydn-yql.media.yahoo.com/forecastrss?lat=" + settings.lat + "&lon="+settings.lon+"&format=json";
+		
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		json: true,
+		headers: {'User-Agent': 'piclockjs',
+			'X-Yahoo-App-Id' : 'xMNTb7Ee',
+			'accept' : 'application/json'
+		}
+	});
+	logger.info(body);
+}}
+
 async function currentWgovObs(){
 	var url ="https://api.weather.gov/stations/KJYO/observations";
 		
