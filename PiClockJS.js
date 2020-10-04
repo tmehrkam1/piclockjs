@@ -278,7 +278,7 @@ async function currentCcObs(){
     //var fields = ["temp","feels_like","humidity","wind_speed","moon_phase","weather_code","sunrise","sunset","wind_direction","baro_pressure"];
 	//var url = 'https://api.climacell.co/v3/weather/realtime';
 	
-			var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
+			var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
 
 
 	logger.info(url);
