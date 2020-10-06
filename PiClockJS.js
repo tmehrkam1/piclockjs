@@ -285,11 +285,11 @@ async function currentCcObs(){
 		url: url,
 		json: true,
 		headers: {
-			'apikey' : settings.ccAppId,
-			'fields' : fields,
-			'lat' : settings.lat,
-			'lon' : settings.lon,
-			'unit_system' : 'us'
+			'apikey': settings.ccAppId,
+			'fields': fields,
+			'lat': settings.lat,
+			'lon': settings.lon,
+			'unit_system': 'us'
 		}
 	});
 	logger.info(request);
