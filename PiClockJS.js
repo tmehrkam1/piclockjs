@@ -284,7 +284,7 @@ async function currentCcObs(){
 	var { body,request } = await getPromise({
 		url: url,
 		json: true,
-		headers: {'User-Agent': 'piclockjs',
+		headers: {
 			'apikey' : settings.ccAppId,
 			'fields' : fields,
 			'lat' : settings.lat,
