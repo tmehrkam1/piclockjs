@@ -293,6 +293,7 @@ async function currentCcObs(){
 			'unit_system' : 'us'
 		}
 	});
+	logger.info(body);
 	parseCC(body);
 }
 
