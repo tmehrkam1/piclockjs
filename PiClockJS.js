@@ -286,7 +286,7 @@ async function currentCcObs(){
 		json: true,
 		headers: {'User-Agent': 'piclockjs',
 			'apikey' : settings.ccAppId,
-			'fields' : fields,
+			'fields' : 'temp',
 			'lat' : settings.lat,
 			'lon' : settings.lon,
 			'unit_system' : 'us'
