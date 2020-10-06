@@ -281,7 +281,7 @@ async function currentCcObs(){
 	//var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
 	logger.info(url);
 
-	var { body } = await getPromise({
+	var { body,request } = await getPromise({
 		url: url,
 		json: true,
 		headers: {'User-Agent': 'piclockjs',
@@ -292,6 +292,7 @@ async function currentCcObs(){
 			'unit_system' : 'us'
 		}
 	});
+	logger.info(request);
 	logger.info(body);
 	parseCC(body);
 }
