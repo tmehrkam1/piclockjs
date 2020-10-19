@@ -412,11 +412,10 @@ async function wgAlerts(){
 		parseWgAlert(body);
 	}
 	catch(e) {
-		logger.error(e)
-		timer.alert = now.getUTCMilliseconds - (60 * 1000);
-		logger.warn("set next alert poll to : " + Date(timer.alert))
+		logger.error(e);
+		timer.alert = now;
+		logger.warn("set next alert poll to : " + Date(timer.alert));
 	}
-	timer.alert = now.getUTCMilliseconds - (60 * 1000);
 }
 
 async function wgCurrent(staId) {
