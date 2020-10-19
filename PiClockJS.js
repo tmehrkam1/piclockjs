@@ -409,6 +409,7 @@ async function wgForecast(url){
 }
 
 async function wgAlerts(){
+	var now = new Date();
 	var url = "https://api.weather.gov/alerts/active?point=" + settings.lat + "," + settings.lon;
 	logger.info(url);
 	try {
@@ -421,10 +422,10 @@ async function wgAlerts(){
 	}
 	catch(e) {
 		logger.error(e)
-		var now = new Date();
 		timer.alert = now.getUTCMilliseconds - (60 * 1000);
 		logger.warn("set next alert poll to : " + Date(timer.alert))
 	}
+	timer.alert = now.getUTCMilliseconds - (60 * 1000);
 }
 
 async function wgCurrent(staId) {
