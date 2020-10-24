@@ -31,12 +31,7 @@ updateCoords();  // grab map coords from backend.
   	if (obj.imgFontColor){
   		imgFontColor = obj.imgFontColor;
   	} else {
-  		url="current";
- 		var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
- 		xhr.open("GET",url,false);
- 		xhr.send(null);
- 		var obj = JSON.parse(xhr.responseText);
- 		updateColor(obj.tempF);
+	  	setInterval(updateColor(), 10000); // every ten seconds update current color
   	}
  	tz = obj.tz;
  }
@@ -80,7 +75,14 @@ function initLocalClocks() {
 }
 
 //change background color based on temp
-function updateColor(temp) {
+function updateColor() {
+	url="current";
+ 	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
+ 	xhr.open("GET",url,false);
+ 	xhr.send(null);
+ 	var obj = JSON.parse(xhr.responseText);
+	var temp = obj.tempF;
+
 	var color;
 	if (temp < 30 ){
 		color = "#fce8dd";
