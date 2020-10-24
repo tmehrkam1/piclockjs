@@ -101,5 +101,10 @@ function updateColor(temp) {
 	}
 	document.body.style.color = color;
 	var hours = document.querySelector('.hours');
+	var minutes = document.querySelector('.minutes');
+	var seconds = document.querySelector('.seconds');	
+	
 	hours.style.background = color;
+	minutes.style.background = color;
+	seconds.style.background = color;
 }
