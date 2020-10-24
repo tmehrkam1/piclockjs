@@ -98,11 +98,5 @@ function updateColor(temp) {
 	} else if (temp>=80 && temp<90){
 		document.body.style.color = '#002B49';
 	}
-	for (var j = 0; j < hands.length; j++) {
-    	var elements = document.querySelectorAll('.' + hands[j].hand);
-    	for (var k = 0; k < elements.length; k++) {
-        	elements[k].style.backround = document.body.style.color;
-    	}    
-    }
-
+	document.querySelector('.hours').background = document.body.style.color;
 }
