@@ -100,5 +100,6 @@ function updateColor(temp) {
 		color = '#002B49';
 	}
 	document.body.style.color = color;
-	document.querySelector('.hours').background = color;
+	var hours = document.querySelector('.hours');
+	hours.background = color;
 }
