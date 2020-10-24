@@ -81,22 +81,24 @@ function initLocalClocks() {
 
 //change background color based on temp
 function updateColor(temp) {
+	var color;
 	if (temp < 30 ){
-		document.body.style.color = "#fce8dd";
+		color = "#fce8dd";
 	} else if (temp>=90) {
-		document.body.style.color = "#ffffff";
+		color = "#ffffff";
 	} else if (temp>=30 && temp<40){
-		document.body.style.color = "#ffe3df";
+		color = "#ffe3df";
 	} else if (temp>=40 && temp<50){
-		document.body.style.color = "#ffe3cc";
+		color = "#ffe3cc";
 	} else if(temp>=50 && temp<60){
-		document.body.style.color = "#8a1e12";
+		color = "#8a1e12";
 	} else if (temp>=60 && temp<70){
-		document.body.style.color = "#002B49";
+		color = "#002B49";
 	}else if (temp>=70 && temp<80){
-		document.body.style.color = '#002B49';
+		color = '#002B49';
 	} else if (temp>=80 && temp<90){
-		document.body.style.color = '#002B49';
+		color = '#002B49';
 	}
-	document.querySelector('.hours').background = document.body.style.color;
+	document.body.style.color = color;
+	document.querySelector('.hours').background = color;
 }
