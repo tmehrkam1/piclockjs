@@ -1024,8 +1024,8 @@ function updateBackground(temp) {
 		color = '#002B49';
 	}
 	
-	if (imgFontColor){
-		color = imgFontColor;
+	if (settings.imgFontColor){
+		color = settings.imgFontColor;
 	}
 	
 	return {
