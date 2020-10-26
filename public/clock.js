@@ -81,32 +81,13 @@ function updateColor() {
  	xhr.open("GET",url,false);
  	xhr.send(null);
  	var obj = JSON.parse(xhr.responseText);
-	var temp = obj.tempF;
 
-	var color;
-	if (temp < 30 ){
-		color = "#fce8dd";
-	} else if (temp>=90) {
-		color = "#ffffff";
-	} else if (temp>=30 && temp<40){
-		color = "#ffe3df";
-	} else if (temp>=40 && temp<50){
-		color = "#ffe3cc";
-	} else if(temp>=50 && temp<60){
-		color = "#8a1e12";
-	} else if (temp>=60 && temp<70){
-		color = "#002B49";
-	}else if (temp>=70 && temp<80){
-		color = '#002B49';
-	} else if (temp>=80 && temp<90){
-		color = '#002B49';
-	}
-	document.body.style.color = color;
+	document.body.style.color = obj.color;
 	var hours = document.querySelector('.hours');
 	var minutes = document.querySelector('.minutes');
 	var seconds = document.querySelector('.seconds');	
 	
-	hours.style.background = color;
-	minutes.style.background = color;
-	seconds.style.background = color;
+	hours.style.background = obj.color;
+	minutes.style.background = obj.color;
+	seconds.style.background = obj.color;
 }
