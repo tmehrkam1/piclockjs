@@ -125,7 +125,8 @@ function updateCur() {
 		document.getElementById("curDesc").innerHTML = data.curDesc;
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
-		updateBackground(data.tempF.toString());
+		document.body.style.backgroundColor = data,bg;
+		document.body.style.color = data.color;
 
 		if (data.feelsLike != null) {
 			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.feelsLike + ' &deg;F';
