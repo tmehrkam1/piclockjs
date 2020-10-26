@@ -230,8 +230,11 @@ function mainLoop(){
 			var suntimes = new generateSunTimes();
 			cur.sunrise = suntimes.sunrise.toString();
 			cur.sunset = suntimes.sunset.toString();
-
+		
 		}
+		var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
 		logger.info("update NWS alerts");
@@ -989,6 +992,43 @@ function ccMoon(phase) {
 		text: txt
 	};
 }
+
+//change background color based on temp
+function updateBackground(temp) {
+	var bg;
+	var color;
+	
+	if (temp < 30 ){
+		bg = "#94b7cf";
+		color = "#fce8dd";
+	} else if (temp>=90) {
+		bg = "#E91E24";
+		color = "#ffffff";
+	} else if (temp>=30 && temp<40){
+		bg = "#00A4E8";
+		color = "#ffe3df";
+	} else if (temp>=40 && temp<50){
+		bg = "#2D3389";
+		color = "#ffe3cc";
+	} else if(temp>=50 && temp<60){
+		bg = "#128A43";
+		color = "#8a1e12";
+	} else if (temp>=60 && temp<70){
+		bg = "#76BD43";
+		color = "#002B49";
+	}else if (temp>=70 && temp<80){
+		bg = "#FBD905";
+		color = '#002B49';
+	} else if (temp>=80 && temp<90){
+		bg = "#F58322";
+		color = '#002B49';
+	}
+	return {
+	 bg: bg,
+	 color: color
+	}
+}
+
 
 function storeValues(timestamp,temp,pressure,humidity) {
 	if (store.timestamp.length > 1440 ) {
