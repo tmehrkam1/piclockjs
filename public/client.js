@@ -296,7 +296,9 @@ function updateCur() {
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
 		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
-		updateBackground(data.tempF.toString());
+		
+		document.body.style.backgroundColor = data.color;
+		document.body.style.color = data.color;
 
 		if (data.feelsLike != null) {
 			document.getElementById("curFeels").innerHTML = 'Feels like ' + data.feelsLike + ' &deg;F';
@@ -399,34 +401,6 @@ function updateAlerts(){
 	.catch(function(error){
 		console.log(error);
 	});
-}
-//change background color based on temp
-function updateBackground(temp) {
-	if (temp < 30 ){
-		document.body.style.backgroundColor = "#94b7cf";
-		document.body.style.color = "#fce8dd";
-	} else if (temp>=90) {
-		document.body.style.backgroundColor = "#E91E24";
-		document.body.style.color = "#ffffff";
-	} else if (temp>=30 && temp<40){
-		document.body.style.backgroundColor = "#00A4E8";
-		document.body.style.color = "#ffe3df";
-	} else if (temp>=40 && temp<50){
-		document.body.style.backgroundColor = "#2D3389";
-		document.body.style.color = "#ffe3cc";
-	} else if(temp>=50 && temp<60){
-		document.body.style.backgroundColor = "#128A43";
-		document.body.style.color = "#8a1e12";
-	} else if (temp>=60 && temp<70){
-		document.body.style.backgroundColor = "#76BD43";
-		document.body.style.color = "#002B49";
-	}else if (temp>=70 && temp<80){
-		document.body.style.backgroundColor = "#FBD905";
-		document.body.style.color = '#002B49';
-	} else if (temp>=80 && temp<90){
-		document.body.style.backgroundColor = "#F58322";
-		document.body.style.color = '#002B49';
-	}
 }
 
 function toggleNight(){
