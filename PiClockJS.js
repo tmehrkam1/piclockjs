@@ -212,9 +212,7 @@ function initLoop(){
 function mainLoop(){
 	// recurring function to kick off async calls to the various providers
 	var now = new Date();
-	// logger.info("mainLoop");
-	// logger.info(Math.abs(now - timer.cur));
-
+	
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
 		timer.cur = now;
@@ -232,9 +230,6 @@ function mainLoop(){
 			cur.sunset = suntimes.sunset.toString();
 		
 		}
-		var colors = updateBackground(cur.tempF);
-		cur.bg = colors.bg;
-		cur.color = colors.color;
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
 		logger.info("update NWS alerts");
@@ -263,6 +258,9 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
+	var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
 }
 
 async function currentDsObs(){
@@ -275,6 +273,9 @@ async function currentDsObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseDS(body);
+	var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
 }
 
 async function currentCcObs(){
@@ -290,6 +291,9 @@ async function currentCcObs(){
 		}
 	});
 	parseCC(body);
+	var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
 }
 
 
