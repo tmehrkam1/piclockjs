@@ -1023,6 +1023,11 @@ function updateBackground(temp) {
 		bg = "#F58322";
 		color = '#002B49';
 	}
+	
+	if (imgFontColor){
+		color = imgFontColor;
+	}
+	
 	return {
 	 bg: bg,
 	 color: color
