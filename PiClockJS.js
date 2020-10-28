@@ -444,6 +444,9 @@ async function wgCurrent(staId) {
 			headers: {'User-Agent': 'piclockjs'}
 		});
 		parsewgCurrent(body);
+		var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
 	}
 	catch(e) {
 		logger.error(e);
