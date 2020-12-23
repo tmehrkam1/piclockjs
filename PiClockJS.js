@@ -387,7 +387,7 @@ async function wgForecast(url){
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = new Date(now - (settings.forecastInterval * 1000) + (60 * 1000));
-		logger.warn("set next forecast poll to : " + timer.fore);
+		logger.warn("set next forecast poll to : " + Date(timer.fore));
 		return;
     }
 	logger.info(url);
@@ -402,7 +402,7 @@ async function wgForecast(url){
 	catch(e) {
 		logger.error(e);
 		timer.fore = new Date(now - settings.forecastInterval * 1000 + 60 * 1000);
-		logger.warn("set next forecast poll to : " + timer.fore + " current time stamp " + now.getUTCMilliseconds());
+		logger.warn("set next forecast poll to : " + Date(timer.fore) + " current time stamp " + Date(now.getUTCMilliseconds()));
 	}
 }
 
@@ -430,7 +430,7 @@ async function wgCurrent(staId) {
     if (typeof staId === 'undefined') {
     	logger.warn("current gridpoint data not updated");
 		timer.cur = (now - settings.currentConditionsInterval * 1000) + (60 * 1000);
-		logger.warn("set next current poll to : " + timer.cur);
+		logger.warn("set next current poll to : " + Date(timer.cur));
 		return;
     }
     
