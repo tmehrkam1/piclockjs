@@ -105,7 +105,7 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + "-1h" + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -117,7 +117,7 @@ function initMap() {
 	
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + "-2h" + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -129,7 +129,7 @@ function initMap() {
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + "-3h" + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -141,7 +141,7 @@ function initMap() {
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + "-4h" + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -153,7 +153,7 @@ function initMap() {
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + "-5h" + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
