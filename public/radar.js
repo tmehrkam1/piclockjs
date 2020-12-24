@@ -10,7 +10,8 @@ updateCoords();  // grab map coords from backend.
 if (aerisID != "") {
 	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar";
 } else {
-	radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
+	//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
+	radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
 }
 
 //shift clock into day mode
@@ -88,12 +89,8 @@ function initMap() {
         title: 'map center'
       });
     
-	if (aerisID !=""){
-		radarURLsuffix = "/current.png"
-	} else {
-		radarURLsuffix = "";
-	}
-
+	radarURLsuffix = ".png"; 
+	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
@@ -104,17 +101,11 @@ function initMap() {
 		isPng: true
 	});
 	
-	if (aerisID !=""){
-		radarURL5 = radarURL +"/";
-		radarURL5suffix = "/-5min.png";
-	} else {
-		radarURL5 = radarURL + "-m05m/";
-		radarURL5suffix = "";
-	}
+	radarURL5suffix = ".png";
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL5 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -122,17 +113,11 @@ function initMap() {
 		isPng: true
 	});
 
-	if (aerisID !=""){
-		radarURL10 = radarURL +"/";
-		radarURL10suffix = "/-10min.png";
-	} else {
-		radarURL10 = radarURL + "-m10m/";
-		radarURL10suffix = "";
-	}
+	radarURL10suffix = ".png";
 	
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL10 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -140,17 +125,11 @@ function initMap() {
 		isPng: true
 	});
 	
-	if (aerisID !=""){
-		radarURL15 = radarURL +"/";
-		radarURL15suffix = "/-15min.png";
-	} else {
-		radarURL15 = radarURL + "-m15m/";
-		radarURL15suffix = "";
-	}
+	radarURL15suffix = ".png";
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL15 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -158,17 +137,11 @@ function initMap() {
 		isPng: true
 	});
 	
-	if (aerisID !=""){
-		radarURL20 = radarURL +"/";
-		radarURL20suffix = "/-20min.png";
-	} else {
-		radarURL20 = radarURL + "-m20m/";
-		radarURL20suffix = "";
-	}
+	radarURL20suffix = ".png";
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL20 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -176,17 +149,11 @@ function initMap() {
 		isPng: true
 	});
 	
-	if (aerisID !=""){
-		radarURL25 = radarURL +"/";
-		radarURL25suffix = "/-25min.png";
-	} else {
-		radarURL25 = radarURL + "-m25m/";
-		radarURL25suffix = "";
-	}
+	radarURL25suffix = ".png";
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL25 + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
+			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -213,15 +180,9 @@ function initMap() {
 		var diffMs = now - timeStamp;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 			
-		if (diffM >= 5) {
+		if (diffM >= 60) {
 
-			if (aerisID !=""){
-				radarURLsuffix = "/current.png";
-			} else {
-				radarURLsuffix = "";
-			}
-			
-			console.log(radarURL + "/z/x/y" + radarURLsuffix);
+			radarURLsuffix = ".png";
 			
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
