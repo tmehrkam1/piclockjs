@@ -105,7 +105,7 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/20201224/100000/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + "/20201224/100000/" + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
