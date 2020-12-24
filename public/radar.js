@@ -11,7 +11,7 @@ if (aerisID != "") {
 	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar";
 } else {
 	//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
-	radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
+	radarURL = "http://realearth.ssec.wisc.edu/tiles/globalir/";
 }
 
 //shift clock into day mode
@@ -93,7 +93,7 @@ function initMap() {
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
+			return radarURL + "/20201224/200000/" + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -105,7 +105,7 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + "/20201224/190000/" + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -117,7 +117,7 @@ function initMap() {
 	
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
+			return radarURL + "/20201224/180000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -129,7 +129,7 @@ function initMap() {
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + "/20201224/170000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -141,7 +141,7 @@ function initMap() {
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + "/20201224/160000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -153,7 +153,7 @@ function initMap() {
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
+			return radarURL + "/20201224/150000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
