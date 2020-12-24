@@ -101,11 +101,11 @@ function initMap() {
 		isPng: true
 	});
 	
-	radarURL5suffix = "20201224_100000.png";
+	radarURL5suffix = ".png";
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + zoom + "/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + zoom + "20201224/100000/"+ tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
