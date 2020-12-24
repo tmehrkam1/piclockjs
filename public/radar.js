@@ -101,7 +101,7 @@ function initMap() {
 		isPng: true
 	});
 	
-	radarURL5suffix = ".png&time=-1h";
+	radarURL5suffix = ".png&timespan=-1h";
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
