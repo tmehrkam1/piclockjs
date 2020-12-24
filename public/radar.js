@@ -101,7 +101,7 @@ function initMap() {
 		isPng: true
 	});
 	
-	radarURL5suffix = ".png&timespan=-1h";
+	radarURL5suffix = "20201224_100000.png";
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
