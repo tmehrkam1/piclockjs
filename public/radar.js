@@ -90,7 +90,7 @@ function initMap() {
       });
     
     //pulling an array of times for animation
-    url="http://realearth.ssec.wisc.edu/api/times?products=globalir-rr"
+    url="http://realearth.ssec.wisc.edu/api/times?products=globalir-rr";
     
     var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
