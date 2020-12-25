@@ -96,7 +96,7 @@ function initMap() {
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
-	var times = obj.globalir-rr;
+	var times = obj.element['globalir-rr'];
 	alert(times);
     var strTime;
     
