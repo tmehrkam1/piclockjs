@@ -97,7 +97,7 @@ function initMap() {
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
 	var times = obj.globalir-rr;
-    vat strTime;
+    var strTime;
     
 	radarURLsuffix = ".png"; 
 	
