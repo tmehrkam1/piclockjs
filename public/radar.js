@@ -106,7 +106,7 @@ function initMap() {
 	strTime = "/" + strTime + "/";
 	
 	//debug
-	alert(strTime);
+	alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -120,7 +120,7 @@ function initMap() {
 	
 	radarURL5suffix = ".png";
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	tileAeris5 = new google.maps.ImageMapType({
@@ -136,7 +136,7 @@ function initMap() {
 	radarURL10suffix = ".png";
 	
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	tileAeris10 = new google.maps.ImageMapType({
@@ -152,7 +152,7 @@ function initMap() {
 	radarURL15suffix = ".png";
 	
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	tileAeris15 = new google.maps.ImageMapType({
@@ -168,7 +168,7 @@ function initMap() {
 	radarURL20suffix = ".png";
 	
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	tileAeris20 = new google.maps.ImageMapType({
@@ -184,7 +184,7 @@ function initMap() {
 	radarURL25suffix = ".png";
 	
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	tileAeris25 = new google.maps.ImageMapType({
