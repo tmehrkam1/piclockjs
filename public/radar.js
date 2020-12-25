@@ -97,13 +97,12 @@ function initMap() {
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
 	var times = obj['globalir-rr'];
-	alert(times);
     var strTime;
     
 	radarURLsuffix = ".png"; 
 	
 	strTime = times.pop();
-	strTime.replace(".","/");
+	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
 	
 	//debug
