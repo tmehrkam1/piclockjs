@@ -89,11 +89,25 @@ function initMap() {
         title: 'map center'
       });
     
+    //pulling an array of times for animation
+    url="http://realearth.ssec.wisc.edu/api/times?products=globalir-rr"
+    
+    var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
+	xhr.open("GET",url,false);
+	xhr.send(null);
+	var obj = JSON.parse(xhr.responseText);
+	var times = obj.globalir-rr;
+    vat strTime;
+    
 	radarURLsuffix = ".png"; 
+	
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/200000/" + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
+			return radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -102,10 +116,13 @@ function initMap() {
 	});
 	
 	radarURL5suffix = ".png";
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/190000/" + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + strTime + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -115,9 +132,13 @@ function initMap() {
 
 	radarURL10suffix = ".png";
 	
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
+	
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/180000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -127,9 +148,13 @@ function initMap() {
 	
 	radarURL15suffix = ".png";
 	
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
+	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/170000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -139,9 +164,13 @@ function initMap() {
 	
 	radarURL20suffix = ".png";
 	
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
+	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/160000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -151,9 +180,13 @@ function initMap() {
 	
 	radarURL25suffix = ".png";
 	
+	strTime = times.pop();
+	strTime.replace(".","/");
+	strTime = "/" + strTime + "/";
+	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			return radarURL + "/20201224/150000/" + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
