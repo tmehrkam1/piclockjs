@@ -106,7 +106,7 @@ function initMap() {
 	strTime = "/" + strTime + "/";
 	
 	//debug
-	alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
+	alert(radarURL + strTime + "1/2/3"+ radarURLsuffix);
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
