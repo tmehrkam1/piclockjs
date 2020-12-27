@@ -652,7 +652,7 @@ function parsewgCurrent(data) {
 	
 	//logger.info(observation);
 	
-	if ((obsdt <= cur.dt) || (observation.temperature.qualityControl == "qc:Z"))
+	if (obsdt <= cur.dt)
 	{
 		var update = new Date(0);
 		var current = new Date(0);
@@ -668,6 +668,17 @@ function parsewgCurrent(data) {
 
 		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
+	} else if (observation.temperature.qualityControl == "qc:Z") {
+		PHKO 272053Z 25006KT 10SM FEW030 27/17 A3006 RMK AO2 SLP179 T02720167 50005
+		var metar = observation.rawMessage;
+		var tempC = metar.search("/T(\d{4})/g");
+		if (tempC.match("/1\d{3}/g") then {
+		 tempC = -tempC.match("/d(\d{3})/g")/10;
+		} else {
+		 tempC = tempC/10;
+		}
+		cur.tempF = Math.round(parseFloat((tempC * 9/5) + 32));
+		
 	}
 
 	cur.curDesc = observation.textDescription;
