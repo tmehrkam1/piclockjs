@@ -103,6 +103,7 @@ function initMap() {
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
 			return radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
