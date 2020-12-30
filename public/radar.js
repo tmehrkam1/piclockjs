@@ -214,7 +214,7 @@ function initMap() {
 		var diffMs = now - timeStamp;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
 			
-		if (diffM >= 60) {
+		if (diffM >= 5) {
 
 			radarURLsuffix = ".png";
 			
