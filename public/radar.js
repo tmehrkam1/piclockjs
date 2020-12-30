@@ -11,7 +11,7 @@ if (aerisID != "") {
 	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar";
 } else {
 	//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
-	radarURL = "http://realearth.ssec.wisc.edu/tiles/globalir-rr/";
+	radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
 }
 
 //shift clock into day mode
@@ -90,7 +90,7 @@ function initMap() {
       });
     
     //pulling an array of times for animation
-    url="http://realearth.ssec.wisc.edu/api/times?products=globalir-rr";
+    url="http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
     
     var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
