@@ -6,13 +6,8 @@ var tz;
 var tileIndex = 0;
 
 updateCoords();  // grab map coords from backend.
-
-if (aerisID != "") {
-	radarURL = "https://maps.aerisapi.com/"+aerisID+"_"+aerisSecret+"/radar";
-} else {
-	//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
-	radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
-}
+//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
+radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
 
 //shift clock into day mode
 url="http://127.0.0.1:8081/day";
@@ -108,7 +103,6 @@ function initMap() {
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
 			return radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -125,7 +119,6 @@ function initMap() {
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
 			return radarURL + strTime + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -142,7 +135,6 @@ function initMap() {
 		
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix)	
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -159,7 +151,7 @@ function initMap() {
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -175,7 +167,7 @@ function initMap() {
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -191,7 +183,6 @@ function initMap() {
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			alert(radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix);
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
