@@ -104,6 +104,7 @@ function initMap() {
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
+	alert(strTime);
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -120,6 +121,7 @@ function initMap() {
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
 	strTime = "/" + strTime + "/";
+	alert(strTime);
 	
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
