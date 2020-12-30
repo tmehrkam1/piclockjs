@@ -131,7 +131,7 @@ function initMap() {
 	
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
-	strTime = "/" + strTime + "/";
+	strTime = strTime + "/";
 		
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -147,7 +147,7 @@ function initMap() {
 	
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
-	strTime = "/" + strTime + "/";
+	strTime = strTime + "/";
 	
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -163,7 +163,7 @@ function initMap() {
 	
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
-	strTime = "/" + strTime + "/";
+	strTime = strTime + "/";
 	
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -179,7 +179,7 @@ function initMap() {
 	
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
-	strTime = "/" + strTime + "/";
+	strTime = strTime + "/";
 	
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -203,7 +203,7 @@ function initMap() {
 	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
 	mapLocal.overlayMapTypes.setAt("5",tileAeris);
 	
-	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
+	setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 	
 	timerId = window.setInterval(function () {
 		var now = new Date();
