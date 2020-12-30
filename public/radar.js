@@ -98,8 +98,7 @@ function initMap() {
 	
 	strTime = times.pop();
 	strTime = strTime.replace(".","/");
-	strTime = "/" + strTime + "/";
-	alert(strTime);
+	strTime = strTime + "/";
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
