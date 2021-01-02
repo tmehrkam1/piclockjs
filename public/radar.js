@@ -207,7 +207,7 @@ function initMap() {
 	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
 	mapLocal.overlayMapTypes.setAt("5",tileAeris);
 	
-	setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
+	//setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 	
 	timerId = window.setInterval(function () {
 		var now = new Date();
