@@ -87,13 +87,12 @@ function initMap() {
     var strTime;
     
 	radarURLsuffix = ".png"; 
-	
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
-	
+		
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";
 			return radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -103,12 +102,12 @@ function initMap() {
 	});
 	
 	radarURL5suffix = ".png";
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
-	
+		
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";	
 			return radarURL + strTime + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -118,13 +117,13 @@ function initMap() {
 	});
 
 	radarURL10suffix = ".png";
-	
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
 			
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";
+			
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -134,13 +133,12 @@ function initMap() {
 	});
 	
 	radarURL15suffix = ".png";
-	
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
 		
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -150,13 +148,13 @@ function initMap() {
 	});
 	
 	radarURL20suffix = ".png";
-	
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
 		
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";
+			
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -166,13 +164,12 @@ function initMap() {
 	});
 	
 	radarURL25suffix = ".png";
-	
-	strTime = times.pop();
-	strTime = strTime.replace(".","/");
-	strTime = strTime + "/";
-		
+			
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
+			strTime = times.pop();
+			strTime = strTime.replace(".","/");
+			strTime = strTime + "/";
 			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
@@ -234,7 +231,7 @@ function initMap() {
 				mapLocal.overlayMapTypes.getAt(i).setOpacity(0);
 			}
 		}
-		// console.log("Animation frame : " + radarFrame);
+		console.log("Animation frame : " + radarFrame);
 		
 		radarFrame++;
 
