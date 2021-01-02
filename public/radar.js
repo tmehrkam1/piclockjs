@@ -9,14 +9,6 @@ updateCoords();  // grab map coords from backend.
 //radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
 radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
 
-//shift clock into day mode
-url="http://127.0.0.1:8081/day";
-var xhttp = new XMLHttpRequest();
-xhttp.open("GET", url, true);
-xhttp.onerror = function () {
-	console.log("no response on 127.0.0.1:8081");
-};
-xhttp.send();
 
 function updateCoords() {
 	url="coords";
