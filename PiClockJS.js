@@ -672,7 +672,7 @@ function parsewgCurrent(data) {
 		//PHKO 272053Z 25006KT 10SM FEW030 27/17 A3006 RMK AO2 SLP179 T02720167 50005
 		var metar = observation.rawMessage;
 		var temp = metar.match(/T(\d{4})/g);
-		tempC=temp.match(/(\d{4})/g);
+		tempC=temp[0].match(/(\d{4})/g);
 		logger.warn(temp);
 		
 		if (tempC.match(/1\d{3}/g)) {
