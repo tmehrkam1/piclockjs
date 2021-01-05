@@ -672,8 +672,9 @@ function parsewgCurrent(data) {
 		//PHKO 272053Z 25006KT 10SM FEW030 27/17 A3006 RMK AO2 SLP179 T02720167 50005
 		var metar = observation.rawMessage;
 		var temp = metar.match(/T(\d{4})/g);
+		tempC=temp.match((\d{4}))
 		logger.warn(temp);
-		tempC = temp[0];
+		
 		if (tempC.match(/1\d{3}/g)) {
 		 tempC = -tempC.search(/d(\d{3})/g)/10;
 		} else {
@@ -681,6 +682,8 @@ function parsewgCurrent(data) {
 		}
 		cur.tempF = Math.round(parseFloat((tempC * 9/5) + 32));
 		
+	} else {
+		cur.tempF = Math.round(parseFloat((observation.temperature.value * 9/5) + 32));	
 	}
 
 	cur.curDesc = observation.textDescription;
@@ -694,7 +697,6 @@ function parsewgCurrent(data) {
 		cur.feelsLike = Math.round(parseFloat((observation.heatIndex.value * 9/5) + 32));
 	}
 
-	cur.tempF = Math.round(parseFloat((observation.temperature.value * 9/5) + 32));
 	cur.pressure = Math.round(parseFloat(observation.barometricPressure.value / 100));
 	cur.humidity = Math.round(parseFloat(observation.relativeHumidity.value));
 	cur.windSpeed = Math.round(parseFloat(observation.windSpeed.value / 1.609));
