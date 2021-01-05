@@ -674,6 +674,7 @@ function parsewgCurrent(data) {
 		var temp = metar.match(/^T(\d{4})/g);
 		
 		logger.warn(temp);
+		var tempC=temp.toString();
 		
 		if (tempC.match(/1\d{3}/g)) {
 		 tempC = -tempC.search(/d(\d{3})/g)/10;
