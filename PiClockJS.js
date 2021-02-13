@@ -634,6 +634,11 @@ function parseWgAlert(data) {
 		} else {
 			alert.headline = data.features[i].properties.headline;
 		}
+		
+		if (!alert.headline) {
+			alert.headline=data.features[i].properties.headline;
+		}
+		
 		// alert.areaDesc = data.features[i].properties.areaDesc;
 		alert.severity = data.features[i].properties.severity;
 		alert.description = data.features[i].properties.description;
