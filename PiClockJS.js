@@ -673,16 +673,15 @@ function parsewgCurrent(data) {
 
 		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
-	} else if (observation.temperature.qualityControl == "qc:Z") {
-
+	} 
+	
+	if (observation.temperature.qualityControl == "qc:Z") {
 		//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
 		var metar = observation.rawMessage.toString();
 		var temp = metar.match(/(\d{2})\//g);
 		logger.warn('fallback to METAR reading : ' + temp);
-		var tempC=temp.toString();
-		
+		var tempC=temp.toString();	
 		cur.tempF = Math.round(parseFloat((tempC * 9/5) + 32));
-		
 	} else {
 		cur.tempF = Math.round(parseFloat((observation.temperature.value * 9/5) + 32));	
 	}
