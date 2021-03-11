@@ -190,9 +190,9 @@ function parseWgov(body){
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
-	//PHKO 272053Z 25006KT 10SM FEW030 27/17 A3006 RMK AO2 SLP179 T02720167 50005
+	//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
 	var metar = observation.rawMessage.toString();
-	var temp = metar.match(/^T(\d{4})/g);
+	var temp = metar.match(/(\d{2})\//g);
 	logger.info(metar + " : " + temp);
 	
 	var temp_f = observation.temperature.value * 1.8 + 32;
