@@ -195,7 +195,7 @@ function parseWgov(body){
 	var temp = metar.match(/(\d{2})\//g);
 	logger.info(metar + " : " + temp);
 	
-	var temp_f = temp * 1.8 + 32;
+	var temp_f = parseInt(temp) * 1.8 + 32;
 	
 	logger.info('usg : ' + temp_f + " : " + diffMins);
 }
