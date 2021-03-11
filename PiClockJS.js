@@ -674,18 +674,13 @@ function parsewgCurrent(data) {
 		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	} else if (observation.temperature.qualityControl == "qc:Z") {
-		//PHKO 272053Z 25006KT 10SM FEW030 27/17 A3006 RMK AO2 SLP179 T02720167 50005
-		var metar = observation.rawMessage;
-		var temp = metar.match(/^T(\d{4})/g);
-		
-		logger.warn(temp);
+
+		//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
+		var metar = observation.rawMessage.toString();
+		var temp = metar.match(/(\d{2})\//g);
+		logger.warn('fallback to METAR reading : ' + temp);
 		var tempC=temp.toString();
 		
-		if (tempC.match(/1\d{3}/g)) {
-		 tempC = -tempC.search(/d(\d{3})/g)/10;
-		} else {
-		 tempC = tempC/10;
-		}
 		cur.tempF = Math.round(parseFloat((tempC * 9/5) + 32));
 		
 	} else {
