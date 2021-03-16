@@ -194,7 +194,7 @@ function parseWgov(body){
 	var metar = observation.rawMessage.toString();
 	var temp = metar.match(/(\d{2})\//);
 	logger.info(metar);
-	logger.info("metar temp : " + temp);
+	logger.info("metar temp : " + temp[1]);
 	
 	var temp_f = parseInt(temp) * 1.8 + 32;
 	
