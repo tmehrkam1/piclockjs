@@ -193,7 +193,8 @@ function parseWgov(body){
 	//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
 	var metar = observation.rawMessage.toString();
 	var temp = metar.match(/(\d{2})\//g);
-	logger.info(metar + " : " + temp);
+	logger.info(metar);
+	logger.info("metar temp : " + temp);
 	
 	var temp_f = parseInt(temp) * 1.8 + 32;
 	
