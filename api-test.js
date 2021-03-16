@@ -32,7 +32,7 @@ var nightMode = false;
 cur.dt=0;
 alerts.features =[];
 
-currentDsObs();
+//currentDsObs();
 currentOwObs();
 currentCcObs();
 currentWgovObs();
