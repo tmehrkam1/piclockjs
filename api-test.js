@@ -196,7 +196,7 @@ function parseWgov(body){
 	logger.info(metar);
 	logger.info("metar temp : " + temp[1]);
 	
-	var temp_f = parseInt(temp) * 1.8 + 32;
+	var temp_f = parseInt(temp[1]) * 1.8 + 32;
 	
-	logger.info('usg : ' + temp_f + " : " + diffMins);
+	logger.info('usg : ' + temp_f + " F : timestamp age = " + diffMins);
 }
