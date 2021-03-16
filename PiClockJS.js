@@ -678,11 +678,12 @@ function parsewgCurrent(data) {
 	if (!observation.temperature.value) {
 		//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
 		var metar = observation.rawMessage.toString();
-		var temp = metar.match(/(\d{2})\//g);
-		logger.warn('fallback to METAR reading : ' + temp);
-		var tempC=temp.toString();	
+		var temp = metar.match(/(\d{2})\//);
+		logger.warn('fallback to METAR reading : ' + temp[1]);
+		var tempC=parseFloat(temp[1]);	
 		cur.tempF = Math.round(parseFloat((tempC * 9/5) + 32));
 	} else {
+		logger.info("using temp value : " + observation.temperature.value);
 		cur.tempF = Math.round(parseFloat((observation.temperature.value * 9/5) + 32));	
 	}
 
