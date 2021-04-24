@@ -114,8 +114,6 @@ async function currentCcObs(){
 	});
 	
 	logger.info(url);
-	logger.info(result.statusCode);
-	logger.error(result.error);
 	//parseCC(body);
 }
 
