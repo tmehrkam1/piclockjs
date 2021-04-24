@@ -112,6 +112,7 @@ async function currentCcObs(){
 			'accept' : 'application/json'
 		}
 	});
+	logger.info(url);
 	parseCC(body);
 }
 
