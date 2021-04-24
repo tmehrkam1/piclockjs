@@ -116,7 +116,7 @@ async function currentCcObs(){
 	logger.info(url);
 	logger.info(statusCode);
 	logger.error(error);
-	parseCC(body);
+	//parseCC(body);
 }
 
 async function currentYahoo(){
