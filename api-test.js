@@ -104,7 +104,7 @@ async function currentDsObs(){
 async function currentCcObs(){
 	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + ',' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure&timesteps=current'
 		
-	var { body } = await getPromise({
+	var { body,result } = await getPromise({
 		url: url,
 		json: true,
 		headers: {'User-Agent': 'piclockjs',
@@ -114,8 +114,8 @@ async function currentCcObs(){
 	});
 	
 	logger.info(url);
-	logger.info(statusCode);
-	logger.error(error);
+	logger.info(result.statusCode);
+	logger.error(result.error);
 	//parseCC(body);
 }
 
