@@ -113,7 +113,7 @@ async function currentCcObs(){
 		}
 	});
 	logger.info(url)
-	logger.warn(JSON.parse(body));
+	logger.warn(body.data.timelines[0]);
 	//parseCC(body);
 }
 
