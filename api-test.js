@@ -102,7 +102,7 @@ async function currentDsObs(){
 }
 
 async function currentCcObs(){
-	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
+	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + ',' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure&timesteps=current'
 		
 	var { body } = await getPromise({
 		url: url,
