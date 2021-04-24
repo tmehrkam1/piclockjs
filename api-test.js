@@ -102,7 +102,7 @@ async function currentDsObs(){
 }
 
 async function currentCcObs(){
-	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure&timesteps=current'
+	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CmoonPhase%2CweatherCode%2CsunriseTime%2CsunsetTime%2CwindDirection%2CpressureSurfaceLevele&timesteps=current'
 		
 	var { body } = await getPromise({
 		url: url,
