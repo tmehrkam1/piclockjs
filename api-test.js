@@ -112,9 +112,8 @@ async function currentCcObs(){
 			'accept' : 'application/json'
 		}
 	});
-	logger.info(url)
-	logger.warn(body.data.timelines[0].intervals[0].values);
-	//parseCC(body);
+	
+	parseCC(body.data.timelines[0].intervals[0].values);
 }
 
 async function currentWgovObs(){
@@ -157,15 +156,7 @@ function parseDS(body){
 }
 
 function parseCC(body){
-	
-	var now = new Date();
-	var update = new Date(body.observation_time.value);
-	
-	var diffMs = (now - update); // diff in MS
-	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-	
-	logger.info('climacell : ' + body.temp.value + " : " + diffMins + ' : ' + body.weather_code.value);
-	//logger.info(body);
+	logger.info('climacell : ' + body.temperature ' : ' + body.weatherCode);
 }
 
 function parseWgov(body){
