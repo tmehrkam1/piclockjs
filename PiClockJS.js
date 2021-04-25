@@ -283,18 +283,23 @@ async function currentCcObs(){
 	
 	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CweatherCode%2CwindDirection%2CpressureSurfaceLevel&timesteps=current'
 	logger.info(url);
-	
-	var { body } = await getPromise({
-		url: url,
-		json: true,
-		headers: {'User-Agent': 'piclockjs',
-			'apikey' : settings.ccAppId,
-			'accept' : 'application/json'
-		}
-	});
-	
-	parseCC(body.data.timelines[0].intervals[0].values);
-	
+	try {
+		var { body } = await getPromise({
+			url: url,
+			json: true,
+			headers: {'User-Agent': 'piclockjs',
+				'apikey' : settings.ccAppId,
+				'accept' : 'application/json'
+			}
+		});
+
+		parseCC(body.data.timelines[0].intervals[0].values);
+	}
+	catch(e) {
+		logger.error(e);
+		generateMoonPhase();
+	}
+
 	var colors = updateBackground(cur.tempF);
 	cur.bg = colors.bg;
 	cur.color = colors.color;
