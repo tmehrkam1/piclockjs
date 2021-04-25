@@ -222,13 +222,16 @@ function mainLoop(){
 			currentOwObs();
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
+			
+			var suntimes = new generateSunTimes();
+			cur.sunrise = suntimes.sunrise.toString();
+			cur.sunset = suntimes.sunset.toString();
 		} else if (settings.curProvider=="nws"){
 			wgCurrent(settings.wgStaID);
 			
 			var suntimes = new generateSunTimes();
 			cur.sunrise = suntimes.sunrise.toString();
 			cur.sunset = suntimes.sunset.toString();
-		
 		}
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
@@ -239,10 +242,8 @@ function mainLoop(){
 
 	if (Math.abs(now - timer.fore) > (settings.forecastInterval * 1000)) {
 		logger.info("update forecast provider");
-		if ( settings.curProvider != "climacell") {
-			// climacell passes moon phase, otherwise call USNO / suncalc
-			moonPhase();
-		}
+		
+		moonPhase();
 		timer.fore = now;
 		wgForecast(settings.wgForecast);
 	}
@@ -280,20 +281,23 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	
-	var url = 'https://api.climacell.co/v3/weather/realtime?lat=' + settings.lat + '&lon=' + settings.lon + '&unit_system=us&fields=temp%2Cfeels_like%2Chumidity%2Cwind_speed%2Cmoon_phase%2Cweather_code%2Csunrise%2Csunset%2Cwind_direction%2Cbaro_pressure'
+	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CweatherCode%2CwindDirection%2CpressureSurfaceLevel&timesteps=current'
 	logger.info(url);
-
-	var { body,request } = await getPromise({
+	
+	var { body } = await getPromise({
 		url: url,
 		json: true,
-		headers: {
-			'apikey': settings.ccAppId
+		headers: {'User-Agent': 'piclockjs',
+			'apikey' : settings.ccAppId,
+			'accept' : 'application/json'
 		}
 	});
-	parseCC(body);
+	
+	parseCC(body.data.timelines[0].intervals[0].values);
+	
 	var colors = updateBackground(cur.tempF);
-		cur.bg = colors.bg;
-		cur.color = colors.color;
+	cur.bg = colors.bg;
+	cur.color = colors.color;
 }
 
 
@@ -709,26 +713,19 @@ function parsewgCurrent(data) {
 
 function parseCC(body){
 
-	var sunriseEpoch = new Date(body.sunrise.value);
-	var sunsetEpoch = new Date(body.sunset.value);
-	cur.sunrise = sunriseEpoch.toString();
-	cur.sunset = sunsetEpoch.toString();
-
-	var desc=ccIcon(body.weather_code.value);
-	var moon=ccMoon(body.moon_phase.value);
+	var desc=ccIcon(body.weatherCode);
 
 	cur.curDesc = desc.text;
 	cur.curIcon = desc.icon;
 	cur.moonPhase = moon.text;
 
-	cur.tempF = Math.round(parseFloat(body.temp.value));
-	cur.pressure = Math.round(parseFloat(body.baro_pressure.value * 33.86));
-	cur.humidity = Math.round(parseFloat(body.humidity.value));
-	cur.windSpeed = body.wind_speed.value;
-	cur.windDir = d2d(body.wind_direction.value);
-	cur.dt = new Date(body.observation_time.value).getTime() / 1000;
-	cur.feelsLike = Math.round(parseFloat(body.feels_like.value));
-
+	cur.tempF = Math.round(parseFloat(body.temperature));
+	cur.pressure = Math.round(parseFloat(body.pressureSurfaceLevel * 33.86));
+	cur.humidity = Math.round(parseFloat(body.humidity));
+	cur.windSpeed = body.windSpeed;
+	cur.windDir = d2d(body.windDirection);
+	cur.dt = new Date().getTime() / 1000;
+	cur.feelsLike = Math.round(parseFloat(body.temperatureApparent));
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
