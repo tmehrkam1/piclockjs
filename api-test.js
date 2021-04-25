@@ -156,7 +156,7 @@ function parseDS(body){
 }
 
 function parseCC(body){
-	logger.debug(body);
+	logger.warn(body);
 	logger.info('climacell : ' + body.temperature + ' : ' + ccIcon(body.weatherCode).text);
 }
 
