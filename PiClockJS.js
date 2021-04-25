@@ -748,7 +748,7 @@ function ccIcon(description){
 		day = false;
 	}
 
-	if (description == "rain_heavy"){
+	if (description == "4201"){
 		if (day) {
 			var icon = '<i class="wi wi-day-rain"></i>';
 		} else {
@@ -759,7 +759,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Heavy Rain"
 		};
-	} else if (description == "rain") {
+	} else if (description == "4001") {
 		if (day) {
 			var icon = '<i class="wi wi-day-rain"></i>';
 		} else {
@@ -769,7 +769,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Rain"
 		};
-	} else if (description == "rain_light") {
+	} else if (description == "4200") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sprinkle"></i>';
 		} else {
@@ -779,7 +779,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Light Rain"
 		};
-	} else if (description == "freezing_rain_heavy") {
+	} else if (description == "6201") {
 		if (day) {
 			var icon = '<i class="wi wi-day-rain-mix"></i>';
 		} else {
@@ -789,7 +789,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Heavy Freezing Rain"
 		};
-	} else if (description == "freezing_rain") {
+	} else if (description == "6001") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sleet"></i>';
 		} else {
@@ -799,7 +799,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Freezing Rain"
 		};
-	} else if (description == "freezing_rain_light") {
+	} else if (description == "6200") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sleet"></i>';
 		} else {
@@ -809,7 +809,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Freezing Light Rain"
 		};
-	} else if (description == "freezing_drizzle") {
+	} else if (description == "6000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sleet"></i>';
 		} else {
@@ -819,7 +819,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Freezing Drizzle"
 		};
-	} else if (description == "drizzle") {
+	} else if (description == "4000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-showers"></i>';
 		} else {
@@ -829,7 +829,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Drizzle"
 		};
-	} else if (description == "ice_pellets_heavy") {
+	} else if (description == "7101") {
 		if (day) {
 			var icon = '<i class="wi wi-day-hail"></i>';
 		} else {
@@ -839,7 +839,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Heavy Ice Pellets"
 		};
-	} else if (description == "ice_pellets") {
+	} else if (description == "7000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-hail"></i>';
 		} else {
@@ -849,7 +849,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Ice Pellets"
 		};
-	} else if (description == "ice_pellets_light") {
+	} else if (description == "7102") {
 		if (day) {
 			var icon = '<i class="wi wi-day-snow"></i>';
 		} else {
@@ -859,7 +859,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Light Ice Pellets"
 		};
-	} else if (description == "snow_heavy") {
+	} else if (description == "5101") {
 		if (day) {
 			var icon = '<i class="wi wi-day-snow"></i>';
 		} else {
@@ -869,7 +869,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Heavy Snow"
 		};
-	} else if (description == "snow") {
+	} else if (description == "5000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-snow"></i>';
 		} else {
@@ -879,7 +879,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Snow"
 		};
-	} else if (description == "snow_light") {
+	} else if (description == "5100") {
 		if (day) {
 			var icon = '<i class="wi wi-day-snow"></i>';
 		} else {
@@ -889,7 +889,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Light snow"
 		};
-	} else if (description == "flurries") {
+	} else if (description == "5001") {
 		if (day) {
 			var icon = '<i class="wi wi-day-snow"></i>';
 		} else {
@@ -899,7 +899,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Flurries"
 		};
-	} else if (description == "tstorm") {
+	} else if (description == "8000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-thunderstorm"></i>';
 		} else {
@@ -909,7 +909,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Thunderstorm"
 		};
-	} else if (description == "fog_light") {
+	} else if (description == "2100") {
 		if (day) {
 			var icon = '<i class="wi wi-day-fog"></i>';
 		} else {
@@ -919,7 +919,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Light Fog"
 		};
-	} else if (description == "fog") {
+	} else if (description == "2000") {
 		if (day) {
 			var icon = '<i class="wi wi-fog"></i>';
 		} else {
@@ -929,7 +929,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Fog"
 		};
-	} else if (description == "cloudy") {
+	} else if (description == "1001") {
 		if (day) {
 			var icon = '<i class="wi wi-cloudy"></i>';
 		} else {
@@ -939,7 +939,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Cloudy"
 		};
-	} else if (description == "mostly_cloudy") {
+	} else if (description == "1102") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sunny-overcast"></i>';
 		} else {
@@ -949,7 +949,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Mostly Cloudy"
 		};
-	} else if (description == "partly_cloudy") {
+	} else if (description == "1101") {
 		if (day) {
 			var icon = '<i class="wi wi-day-cloudy"></i>';
 		} else {
@@ -959,7 +959,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Partly Cloudy"
 		};
-	} else if (description == "mostly_clear") {
+	} else if (description == "1100") {
 		if (day) {
 			var icon = '<i class="wi wi-day-cloudy"></i>';
 		} else {
@@ -969,7 +969,7 @@ function ccIcon(description){
 			icon: icon,
 			text: "Mostly Clear"
 		};
-	} else if (description == "clear") {
+	} else if (description == "1000") {
 		if (day) {
 			var icon = '<i class="wi wi-day-sunny"></i>';
 		} else {
