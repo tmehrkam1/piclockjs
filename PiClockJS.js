@@ -717,8 +717,7 @@ function parseCC(body){
 
 	cur.curDesc = desc.text;
 	cur.curIcon = desc.icon;
-	cur.moonPhase = moon.text;
-
+	
 	cur.tempF = Math.round(parseFloat(body.temperature));
 	cur.pressure = Math.round(parseFloat(body.pressureSurfaceLevel * 33.86));
 	cur.humidity = Math.round(parseFloat(body.humidity));
