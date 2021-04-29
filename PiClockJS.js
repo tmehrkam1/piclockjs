@@ -495,7 +495,7 @@ function parseWA(body){
 		var update = new Date(0);
 		var current = new Date(0);
 
-		update.setUTCSeconds(observation.dt);
+		update.setUTCSeconds(body.current.last_updated_epoch);
 		current.setUTCSeconds(cur.dt);
 
 		var diffMs = (now - update); // diff in MS
