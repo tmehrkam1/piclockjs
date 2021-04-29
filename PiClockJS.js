@@ -232,6 +232,8 @@ function mainLoop(){
 			var suntimes = new generateSunTimes();
 			cur.sunrise = suntimes.sunrise.toString();
 			cur.sunset = suntimes.sunset.toString();
+		} else if (settings.curProvider=="weatherapi") {
+			currentWaObs();
 		}
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
@@ -305,6 +307,30 @@ async function currentCcObs(){
 	cur.color = colors.color;
 }
 
+async function currentWaObs(){
+	var url = 'http://api.weatherapi.com/v1/current.json?key='+settings.waAppId+'&q='+settings.lat+','+settings.lon+'&aqi=no';
+
+	try {
+		var { body } = await getPromise({
+			url: url,
+			json: true,
+			headers: {
+				'User-Agent': 'piclockjs',
+				'accept' : 'application/json'
+			}
+		});
+		catch(e) {
+			logger.error(e);
+			generateMoonPhase();
+		}
+
+		parseWA(body);
+		var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
+
+
+	}
 
 async function moonPhase () {
 	var url = 'https://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
@@ -460,6 +486,44 @@ async function wgCurrent(staId) {
 	catch(e) {
 		logger.error(e);
 	}
+}
+
+function parseWA(body){
+	var now = new Date();
+	
+	if (body.location.localtime_epoch <= cur.dt)
+	{
+		var update = new Date(0);
+		var current = new Date(0);
+
+		update.setUTCSeconds(observation.dt);
+		current.setUTCSeconds(cur.dt);
+
+		var diffMs = (now - update); // diff in MS
+		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+
+		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		return;
+	}
+	cur.dt = body.location.localtime_epoch 
+	
+	cur.tempF = body.current.temp_f;
+	cur.feelsLike = body.current.feelslike_f;
+	cur.curDesc= body.current.condition.text;
+	cur.curIcon = 'http:' + body.current.condition.icon;
+	cur.pressure = body.current.pressure_mb;
+	cur.windSpeed = body.current.wind_mph;
+	cur.windDir = d2d(body.current.wind_degree);
+	
+	var sun = generateSunTimes();
+	cur.sunrise = sun.sunrise;
+	cur.sunset = sun.sunset;
+	
+	generateMoonPhase();
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
 function parseOW(observation){
