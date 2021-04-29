@@ -517,6 +517,7 @@ function parseWA(body){
 	cur.pressure = body.current.pressure_mb;
 	cur.windSpeed = body.current.wind_mph;
 	cur.windDir = d2d(body.current.wind_degree);
+	cur.humidity = body.current.humidity;
 	
 	var sun = generateSunTimes();
 	cur.sunrise = sun.sunrise;
