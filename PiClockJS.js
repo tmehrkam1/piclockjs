@@ -328,7 +328,6 @@ async function currentWaObs(){
 
 	catch(e) {
 		logger.error(e);
-		generateMoonPhase();
 	}
 }
 
@@ -522,8 +521,7 @@ function parseWA(body){
 	var sun = generateSunTimes();
 	cur.sunrise = sun.sunrise;
 	cur.sunset = sun.sunset;
-	
-	generateMoonPhase();
+
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
 
