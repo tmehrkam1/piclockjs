@@ -325,10 +325,12 @@ async function currentWaObs(){
 		cur.bg = colors.bg;
 		cur.color = colors.color;
 	}
+
 	catch(e) {
 		logger.error(e);
 		generateMoonPhase();
 	}
+}
 
 async function moonPhase () {
 	var url = 'https://api.usno.navy.mil/rstt/oneday?date=now&coords=' + settings.lat +',' + settings.lon;
