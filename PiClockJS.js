@@ -309,7 +309,7 @@ async function currentCcObs(){
 
 async function currentWaObs(){
 	var url = 'http://api.weatherapi.com/v1/current.json?key='+settings.waAppId+'&q='+settings.lat+','+settings.lon+'&aqi=no';
-
+	logger.info(url);
 	try {
 		var { body } = await getPromise({
 			url: url,
