@@ -41,6 +41,7 @@ setInterval(function() {
 		currentDsObs();
 		currentOwObs();
 		currentCcObs();
+		currentWaObs();
 }, 600 * 1000);
 
 //Logging
@@ -116,6 +117,21 @@ async function currentCcObs(){
 	parseCC(body.data.timelines[0].intervals[0].values);
 }
 
+async function currentWaObs(){
+	var url = 'http://api.weatherapi.com/v1/current.json?key='+settings.waAppId+'&q='+settings.lat+','+settings.lon+'&aqi=no';
+	
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {
+			'User-Agent': 'piclockjs',
+			'accept' : 'application/json'
+		}
+	});
+	
+	parseWA(body);
+}
+
 async function currentWgovObs(){
 	var url ="https://api.weather.gov/stations/KJYO/observations";
 		
@@ -156,8 +172,11 @@ function parseDS(body){
 }
 
 function parseCC(body){
-	logger.warn(body);
 	logger.info('climacell : ' + body.temperature + ' : ' + ccIcon(body.weatherCode).text);
+}
+
+function parseWA(body){
+	logger.info('weatherapi : ' + body.current.temp_f + ' : ' + body.current.condition.text);
 }
 
 function parseWgov(body){
@@ -169,10 +188,7 @@ function parseWgov(body){
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
-	//KJYO 111915Z AUTO 20012KT 10SM CLR 26/05 A3015 RMK AO2 : null
-	var metar = observation.rawMessage.toString();
 	var temp = metar.match(/(\d{2})\//);
-	logger.info(metar);
 	logger.info("metar temp : " + temp[1]);
 	
 	var temp_f = parseInt(temp[1]) * 1.8 + 32;
