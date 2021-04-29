@@ -188,6 +188,7 @@ function parseWgov(body){
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
 	
+	var metar = observation.rawMessage.toString();
 	var temp = metar.match(/(\d{2})\//);
 	logger.info("metar temp : " + temp[1]);
 	
