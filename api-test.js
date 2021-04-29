@@ -36,6 +36,7 @@ alerts.features =[];
 currentOwObs();
 currentCcObs();
 currentWgovObs();
+currentWaObs();
 
 setInterval(function() {
 		currentDsObs();
