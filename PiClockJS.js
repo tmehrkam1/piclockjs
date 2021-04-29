@@ -319,17 +319,15 @@ async function currentWaObs(){
 				'accept' : 'application/json'
 			}
 		});
-		catch(e) {
-			logger.error(e);
-			generateMoonPhase();
-		}
 
 		parseWA(body);
 		var colors = updateBackground(cur.tempF);
 		cur.bg = colors.bg;
 		cur.color = colors.color;
-
-
+	}
+	catch(e) {
+		logger.error(e);
+		generateMoonPhase();
 	}
 
 async function moonPhase () {
