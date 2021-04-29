@@ -513,7 +513,7 @@ function parseWA(body){
 	cur.tempF = body.current.temp_f;
 	cur.feelsLike = body.current.feelslike_f;
 	cur.curDesc= body.current.condition.text;
-	cur.curIcon = 'http:' + body.current.condition.icon;
+	cur.curIcon = '<img id="curImg" src="http:'+ body.current.condition.icon +'"></img>'; 
 	cur.pressure = body.current.pressure_mb;
 	cur.windSpeed = body.current.wind_mph;
 	cur.windDir = d2d(body.current.wind_degree);
