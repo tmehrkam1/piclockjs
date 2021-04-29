@@ -508,7 +508,7 @@ function parseWA(body){
 		logger.info('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
 		return;
 	}
-	cur.dt = body.body.last_updated_epoch;
+	cur.dt = body.current.last_updated_epoch;
 	
 	cur.tempF = body.current.temp_f;
 	cur.feelsLike = body.current.feelslike_f;
