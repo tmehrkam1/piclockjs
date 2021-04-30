@@ -509,8 +509,8 @@ function parseWA(body){
 	}
 	cur.dt = body.current.last_updated_epoch;
 	
-	cur.tempF = body.current.temp_f;
-	cur.feelsLike = body.current.feelslike_f;
+	cur.tempF = Math.round(body.current.temp_f);
+	cur.feelsLike = Math.round(body.current.feelslike_f);
 	cur.curDesc= body.current.condition.text;
 	cur.curIcon = '<img id="curImg" src="http:'+ body.current.condition.icon +'"></img>'; 
 	cur.pressure = body.current.pressure_mb;
