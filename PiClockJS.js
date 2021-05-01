@@ -538,13 +538,13 @@ function parseVc(body){
 	cur.windDir = d2d(body.winddir);
 	cur.humidity = body.humidity;
 	cur.curDesc = body.conditions;
-	cur.curIcon = vcIcon(body.conditions).icon;
 	
 	//visualcrossing puts sun times in local TZ	
 	var sun = generateSunTimes();
 	cur.sunrise = sun.sunrise;
 	cur.sunset = sun.sunset;
 
+	cur.curIcon = vcIcon(body.conditions).icon;
 	
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
