@@ -32,7 +32,7 @@ var nightMode = false;
 cur.dt=0;
 alerts.features =[];
 
-//currentDsObs();
+currentDsObs();
 currentOwObs();
 currentCcObs();
 currentWgovObs();
@@ -44,6 +44,7 @@ setInterval(function() {
 		currentOwObs();
 		currentCcObs();
 		currentWaObs();
+		currentVcObs();
 }, 600 * 1000);
 
 //Logging
@@ -209,7 +210,7 @@ function parseWgov(body){
 	
 	var metar = observation.rawMessage.toString();
 	var temp = metar.match(/(\d{2})\//);
-	logger.info("metar temp : " + temp[1]);
+	//logger.info("metar temp : " + temp[1]);
 	
 	var temp_f = parseInt(temp[1]) * 1.8 + 32;
 	
