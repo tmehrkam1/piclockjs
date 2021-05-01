@@ -157,7 +157,11 @@ async function currentVcObs(){
 			'accept' : 'application/json'
 		}
 	});
-	logger.warn(body.currentConditions);
+	parseVc(body.currentConditions);
+}
+
+function parseVc(observation){
+	logger.info('visualcrossing : ' + observation.temp + ' : ' + obsevation.conditions);
 }
 
 function parseOW(observation){
