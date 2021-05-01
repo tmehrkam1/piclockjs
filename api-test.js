@@ -37,6 +37,7 @@ currentOwObs();
 currentCcObs();
 currentWgovObs();
 currentWaObs();
+currentVCobs();
 
 setInterval(function() {
 		currentDsObs();
@@ -144,6 +145,19 @@ async function currentWgovObs(){
 		}
 	});
 	parseWgov(body);
+}
+
+async function currentVcObs(){
+	var url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+settings.lat+"%2C"+settings.lon+"/today?unitGroup=us&key="+settings.vcAppId+"&include=current"
+	
+	var { body } = await getPromise({
+		url: url,
+		json: true,
+		headers: {'User-Agent': 'piclockjs',
+			'accept' : 'application/json'
+		}
+	});
+	logger.warn(body);
 }
 
 function parseOW(observation){
