@@ -234,6 +234,8 @@ function mainLoop(){
 			cur.sunset = suntimes.sunset.toString();
 		} else if (settings.curProvider=="weatherapi") {
 			currentWaObs();
+		} else if (settings.curProvider=="visualcrossing"){
+			currentVcObs();
 		}
 	}
 	if (Math.abs(now - timer.alert) > (60 * 1000)) {
@@ -326,6 +328,28 @@ async function currentWaObs(){
 		cur.color = colors.color;
 	}
 
+	catch(e) {
+		logger.error(e);
+	}
+}
+
+async function currentVcObs(){
+	try {
+		var url = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"+settings.lat+"%2C"+settings.lon+"/today?unitGroup=us&key="+settings.vcAppId+"&include=current"
+		logger.info(url);
+		var { body } = await getPromise({
+			url: url,
+			json: true,
+			headers: {'User-Agent': 'piclockjs',
+				'accept' : 'application/json'
+			}
+		});
+		parseVc(body.currentConditions);
+		var colors = updateBackground(cur.tempF);
+		cur.bg = colors.bg;
+		cur.color = colors.color;
+	}
+	
 	catch(e) {
 		logger.error(e);
 	}
@@ -486,7 +510,40 @@ async function wgCurrent(staId) {
 		logger.error(e);
 	}
 }
+function parseVc(body){
+	var now = new Date();
+	
+	if (body.datetimeEpoch <= cur.dt)
+	{
+		var update = new Date(0);
+		var current = new Date(0);
 
+		update.setUTCSeconds(body.datetimeEpoch);
+		current.setUTCSeconds(cur.dt);
+
+		var diffMs = (now - update); // diff in MS
+		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+
+		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		return;
+	}
+	cur.dt = body.datetimeEpoch;
+	cur.tempF = Math.round(body.temp);
+	cur.feelsLike = Math.round(body.feelslike);
+	cur.desc = body.conditions;
+	cur.icon = body.icon; //need to expand this
+	cur.pressure = body.pressure;
+	cur.windSpeed = body.windspeed;
+	cur.windDir = d2d(body.windir);
+	cur.humidity = body.humidty;
+	cur.sunrise = Date(body.sunriseEpoch);
+	cur.sunset = Date(body.sunsetEpoch);
+	
+	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
+}
 function parseWA(body){
 	var now = new Date();
 	
