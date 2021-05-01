@@ -157,7 +157,7 @@ async function currentVcObs(){
 			'accept' : 'application/json'
 		}
 	});
-	logger.warn(body);
+	logger.warn(body.currentConditions);
 }
 
 function parseOW(observation){
