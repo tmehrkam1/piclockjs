@@ -37,7 +37,7 @@ currentOwObs();
 currentCcObs();
 currentWgovObs();
 currentWaObs();
-currentVCobs();
+currentVcObs();
 
 setInterval(function() {
 		currentDsObs();
