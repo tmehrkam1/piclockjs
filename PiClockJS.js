@@ -538,7 +538,7 @@ function parseVc(body){
 	cur.windDir = d2d(body.winddir);
 	cur.humidity = body.humidity;
 	cur.curDesc = body.conditions;
-	cur.curIcon = body.icon;
+	cur.curIcon = vcIcon(body.conditions);
 	
 	//visualcrossing puts sun times in local TZ	
 	var sun = generateSunTimes();
@@ -857,6 +857,34 @@ function parseCC(body){
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 
+}
+
+function vcIcon(description){
+
+	var now = new Date();
+	var sunrise = new Date(cur.sunrise);
+	var sunset = new Date(cur.sunset);
+
+	var day;
+
+	if (now > sunrise && now < sunset) {
+		day = true;
+	} else {
+		day = false;
+	}
+	
+	if (description == "Clear"){
+		if (day) {
+			var icon = '<i class="wi wi-day-sunny"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-clear"></i>';
+		}
+	} else {
+		icon = description;
+	}
+	return {
+		icon : icon
+	}
 }
 
 function ccIcon(description){
