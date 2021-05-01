@@ -533,13 +533,11 @@ function parseVc(body){
 	cur.dt = body.datetimeEpoch;
 	cur.tempF = Math.round(body.temp);
 	cur.feelsLike = Math.round(body.feelslike);
-	cur.desc = body.conditions;
-	cur.icon = body.icon; //need to expand this
 	cur.pressure = body.pressure;
 	cur.windSpeed = body.windspeed;
 	cur.windDir = d2d(body.winddir);
 	cur.humidity = body.humidity;
-	cur.desc = body.conditions;
+	cur.curDesc = body.conditions;
 	cur.curIcon = body.icon;
 	
 	//visualcrossing puts sun times in local TZ	
