@@ -161,7 +161,7 @@ async function currentVcObs(){
 }
 
 function parseVc(observation){
-	logger.info('visualcrossing : ' + observation.temp + ' : ' + obsevation.conditions);
+	logger.info('visualcrossing : ' + observation.temp + ' : ' + observation.conditions);
 }
 
 function parseOW(observation){
