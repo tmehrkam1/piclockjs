@@ -537,13 +537,13 @@ function parseVc(body){
 	cur.icon = body.icon; //need to expand this
 	cur.pressure = body.pressure;
 	cur.windSpeed = body.windspeed;
-	cur.windDir = d2d(body.windir);
+	cur.windDir = d2d(body.winddir);
 	cur.humidity = body.humidity;
 	var sunrise = new Date();
 	var sunset = new Date();
 	
-	sunrise.setUTCSeconds(body.sunriseEpoch);
-	sunset.setUTCSeconds(body.sunsetEpoch);
+	sunrise.setUTCSeconds(body.sunriseEpoch*1000);
+	sunset.setUTCSeconds(body.sunsetEpoch*1000);
 	cur.sunrise = sunrise;
 	cur.sunset = sunset;
 	
