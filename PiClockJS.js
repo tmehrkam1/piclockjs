@@ -539,13 +539,14 @@ function parseVc(body){
 	cur.windSpeed = body.windspeed;
 	cur.windDir = d2d(body.winddir);
 	cur.humidity = body.humidity;
-	var sunrise = new Date(body.sunrise);
-	var sunset = new Date(body.sunset);
+	cur.desc = body.conditions;
+	cur.curIcon = body.icon;
 	
-	//sunrise.setUTCSeconds(body.sunriseEpoch*1000);
-	//sunset.setUTCSeconds(body.sunsetEpoch*1000);
-	cur.sunrise = sunrise;
-	cur.sunset = sunset;
+	//visualcrossing puts sun times in local TZ	
+	var sun = generateSunTimes();
+	cur.sunrise = sun.sunrise;
+	cur.sunset = sun.sunset;
+
 	
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
