@@ -879,6 +879,258 @@ function vcIcon(description){
 		} else {
 			var icon = '<i class="wi wi-night-clear"></i>';
 		}
+	} else if (description =='Blowing Or Drifting Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-snow-wind"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-alt-snow-wind"></i>';
+		}
+	} else if (description =='Drizzle'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
+		}
+	} else if (description =='Heavy Drizzle'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
+		}
+	} else if (description =='Light Drizzle'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
+		}
+	} else if (description =='Heavy Drizzle/Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
+		}
+	} else if (description =='Light Drizzle/Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sprinkle"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sprinkle"></i>';
+		}
+	} else if (description =='Duststorm'){
+		if (day) {
+			var icon = '<i class="wi wi-dust"></i>';
+		} else {
+			var icon = '<i class="wi wi-dust"></i>';
+		}
+	} else if (description =='Fog'){
+		if (day) {
+			var icon = '<i class="wi wi-day-fog"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-fog"></i>';
+		}
+	} else if (description =='Freezing Drizzle/Freezing Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sleet"></i>';
+		}
+	} else if (description =='Heavy Freezing Drizzle/Freezing Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sleet"></i>';
+		}
+	} else if (description =='Light Freezing Drizzle/Freezing Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-sleet"></i>';
+		}
+	} else if (description =='Freezing Fog'){
+		if (day) {
+			var icon = '<i class="wi wi-fog"></i>';
+		} else {
+			var icon = '<i class="wi wi-fog"></i>';
+		}
+	} else if (description =='Heavy Freezing Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-sleet"></i>';
+		}
+	} else if (description =='Light Freezing Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-sleet"></i>';
+		}
+	} else if (description =='Funnel Cloud/Tornado'){
+		if (day) {
+			var icon = '<i class="wi wi-tornado"></i>';
+		} else {
+			var icon = '<i class="wi wi-tornado"></i>';
+		}
+	} else if (description =='Hail Showers'){
+		if (day) {
+			var icon = '<i class="wi wi-day-hail"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-alt-hail"></i>';
+		}
+	} else if (description =='Ice'){
+		if (day) {
+			var icon = '<i class="wi wi-sleet"></i>';
+		} else {
+			var icon = '<i class="wi wi-sleet"></i>';
+		}
+	} else if (description =='Lightning Without Thunder'){
+		if (day) {
+			var icon = '<i class="wi wi-lightning"></i>';
+		} else {
+			var icon = '<i class="wi wi-lightning"></i>';
+		}
+	} else if (description =='Mist'){
+		if (day) {
+			var icon = '<i class="wi wi-raindrops"></i>';
+		} else {
+			var icon = '<i class="wi wi-raindrops"></i>';
+		}
+	} else if (description =='Precipitation In Vicinity'){
+		if (day) {
+			var icon = '<i class="wi wi-raindrop"></i>';
+		} else {
+			var icon = '<i class="wi wi-raindrop"></i>';
+		}
+	} else if (description =='Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain"></i>';
+		}
+	} else if (description =='Heavy Rain And Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain-mix"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain-mix"></i>';
+		}
+	} else if (description =='Light Rain And Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain-mix"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain-mix"></i>';
+		}
+	} else if (description =='Rain Showers'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain"></i>';
+		}
+	} else if (description =='Heavy Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain"></i>';
+		}
+	} else if (description =='Light Rain'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-rain"></i>';
+		}
+	} else if (description =='Sky Coverage Decreasing'){
+		if (day) {
+			var icon = '<i class="wi wi-cloud-down"></i>';
+		} else {
+			var icon = '<i class="wi wi-cloud-down"></i>';
+		}
+	} else if (description =='Sky Coverage Increasing'){
+		if (day) {
+			var icon = '<i class="wi wi-cloud-up"></i>';
+		} else {
+			var icon = '<i class="wi wi-cloud-up"></i>';
+		}
+	} else if (description =='Sky Unchanged'){
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
+		}
+	} else if (description =='Smoke Or Haze'){
+		if (day) {
+			var icon = '<i class="wi wi-day-haze"></i>';
+		} else {
+			var icon = '<i class="wi wi-day-haze"></i>';
+		}
+	} else if (description =='Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-snow"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-snow"></i>';
+		}
+	} else if (description =='Snow And Rain Showers'){
+		if (day) {
+			var icon = '<i class="wi wi-day-rain-mix"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-alt-rain-mix"></i>';
+		}
+	} else if (description =='Snow Showers'){
+		if (day) {
+			var icon = '<i class="wi wi-day-snow"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-snow-wind"></i>';
+		}
+	} else if (description =='Heavy Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-snow"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-snow-wind"></i>';
+		}
+	} else if (description =='Light Snow'){
+		if (day) {
+			var icon = '<i class="wi wi-day-snow"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-snow-wind"></i>';
+		}
+	} else if (description =='Squalls'){
+		if (day) {
+			var icon = '<i class="wi wi-day-windy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-windy"></i>';
+		}
+	} else if (description =='Thunderstorm'){
+		if (day) {
+			var icon = '<i class="wi wi-day-thunderstorm"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-thunderstorm"></i>';
+		}
+	} else if (description =='Thunderstorm Without Precipitation'){
+		if (day) {
+			var icon = '<i class="wi wi-lightning"></i>';
+		} else {
+			var icon = '<i class="wi wi-lightning"></i>';
+		}
+	} else if (description =='Diamond Dust'){
+		if (day) {
+			var icon = '<i class="wi wi-stars"></i>';
+		} else {
+			var icon = '<i class="wi wi-stars"></i>';
+		}
+	} else if (description =='Hail'){
+		if (day) {
+			var icon = '<i class="wi wi-day-hail"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-hail"></i>';
+		}
+	} else if (description =='Overcast'){
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-cloudy"></i>';
+		}
+	} else if (description =='Partially cloudy'){
+		if (day) {
+			var icon = '<i class="wi wi-day-cloudy-high"></i>';
+		} else {
+			var icon = '<i class="wi wi-night-partly-cloudy"></i>';
+		}
 	} else {
 		icon = description;
 	}
