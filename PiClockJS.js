@@ -841,6 +841,23 @@ function parsewgCurrent(data) {
 }
 
 function parseCC(body){
+	var now = new Date();
+	var update = new Date(body.startTime);
+	
+	if (update <= cur.dt)
+	{
+		var current = new Date(0);
+		current.setUTCSeconds(cur.dt);
+
+		var diffMs = (now - update); // diff in MS
+		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+
+		var diffCur = (current - update);
+		var diffCurMins = (diffCur / 1000 / 60);
+
+		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
+		return;
+	}
 
 	var desc=ccIcon(body.weatherCode);
 
