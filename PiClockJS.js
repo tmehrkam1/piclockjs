@@ -296,7 +296,7 @@ async function currentCcObs(){
 				'accept' : 'application/json'
 			}
 		});
-
+		 body.data.timelines[0].intervals[0].values.startTime = body.data.timelines[0].intervals[0].startTime; //stuff the timestamp into the values
 		parseCC(body.data.timelines[0].intervals[0].values);
 	}
 	catch(e) {
