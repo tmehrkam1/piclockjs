@@ -869,7 +869,7 @@ function parseCC(body){
 	cur.humidity = Math.round(parseFloat(body.humidity));
 	cur.windSpeed = body.windSpeed;
 	cur.windDir = d2d(body.windDirection);
-	cur.dt = new Date().getTime() / 1000;
+	cur.dt = update.getTime() / 1000;
 	cur.feelsLike = Math.round(parseFloat(body.temperatureApparent));
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
