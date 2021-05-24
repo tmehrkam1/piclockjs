@@ -902,7 +902,7 @@ function vcIcon(description){
 		} else {
 			var icon = '<i class="wi wi-night-alt-snow-wind"></i>';
 		}
-	} else if (description =='Drizzle'){
+	} else if ((description =='Drizzle')||(description =='Rain, Partially cloudy')){
 		if (day) {
 			var icon = '<i class="wi wi-day-sprinkle"></i>';
 		} else {
