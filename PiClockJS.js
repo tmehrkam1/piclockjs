@@ -1481,7 +1481,7 @@ function updateBackground(temp) {
 
 
 function storeValues(timestamp,temp,pressure,humidity) {
-	if (store.timestamp.length > 576 ) {
+	if (store.timestamp.length > 192 ) {
 		store.timestamp.shift();
 		store.temp.shift();
 		store.pressure.shift();
