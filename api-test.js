@@ -212,10 +212,10 @@ function parseWgov(body){
 		temp = observation.temperature.value;
 	} else {
 		var metar = observation.rawMessage.toString();
-		temp = metar.match(/(\d{2})\//);
+		temp = metar.match(/(\d{2})\//)[1];
 		//logger.info("metar temp : " + temp[1]);
 	}
-	var temp_f = parseInt(temp[1]) * 1.8 + 32;
+	temp_f = parseInt(temp) * 1.8 + 32;
 	
 	logger.info('usg : ' + temp_f + " F : timestamp age = " + diffMins + " : "  + observation.textDescription);
 }
