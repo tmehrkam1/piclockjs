@@ -1481,7 +1481,7 @@ function updateBackground(temp) {
 
 
 function storeValues(timestamp,temp,pressure,humidity) {
-	obsdt = new Date( timestamp );
+	obsdt = new Date( timestamp * 1000 );
 	var now = new Date();
 	var diff = Math.abs(now - obsdt);
 	var diffInHours = diff/1000/60/60; // Convert milliseconds to hours/
