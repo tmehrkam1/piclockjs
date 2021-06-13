@@ -207,14 +207,17 @@ function parseWgov(body){
 	
 	var diffMs = (now - update); // diff in MS
 	var diffMins = Math.round(diffMs / 1000 / 60); // minutes
+	var temp;
+	if (observation.temperature.value){
+		temp = observation.temperature.value;
+	} else {
+		var metar = observation.rawMessage.toString();
+		temp = metar.match(/(\d{2})\//)[1];
+		//logger.info("metar temp : " + temp[1]);
+	}
+	temp_f = parseInt(temp) * 1.8 + 32;
 	
-	var metar = observation.rawMessage.toString();
-	var temp = metar.match(/(\d{2})\//);
-	//logger.info("metar temp : " + temp[1]);
-	
-	var temp_f = parseInt(temp[1]) * 1.8 + 32;
-	
-	logger.info('usg : ' + temp_f + " F : timestamp age = " + diffMins);
+	logger.info('usg : ' + temp_f + " F : timestamp age = " + diffMins + " : "  + observation.textDescription);
 }
 
 
