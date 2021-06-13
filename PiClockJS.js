@@ -1481,7 +1481,12 @@ function updateBackground(temp) {
 
 
 function storeValues(timestamp,temp,pressure,humidity) {
-	if (store.timestamp.length > 192 ) {
+	obsdt = new Date( timestamp );
+	var now = new Date();
+	var diff = Math.abs(now - obsdt);
+	var diffInHours = diff/1000/60/60; // Convert milliseconds to hours/
+	
+	if ( diffInHours > 48 ) {
 		store.timestamp.shift();
 		store.temp.shift();
 		store.pressure.shift();
