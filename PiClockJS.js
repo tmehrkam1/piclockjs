@@ -1484,6 +1484,7 @@ function storeValues(timestamp,temp,pressure,humidity) {
 	obsdt = new Date( timestamp * 1000 );
 	var now = new Date();
 	var diff = Math.abs(now - obsdt);
+	logger.info(diff);
 	var diffInHours = diff/1000/60/60; // Convert milliseconds to hours/
 	logger.info (diffInHours);
 	
