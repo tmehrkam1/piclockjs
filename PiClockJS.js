@@ -1484,7 +1484,7 @@ function storeValues(timestamp,temp,pressure,humidity) {
 	obsdt = new Date( timestamp * 1000 );
 	var oldest = new Date();
 	if ( store.timestamp.length > 0 ){ 
-		oldest = new Date(store.timestamp[store.timestamp.length - 1] * 1000);
+		oldest = new Date(store.timestamp[0] * 1000);
 	} else {
 		oldest = obsdt;
 	}
