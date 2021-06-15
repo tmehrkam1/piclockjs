@@ -1490,11 +1490,9 @@ function storeValues(timestamp,temp,pressure,humidity) {
 	}
 	var diff = Math.abs(obsdt-oldest);
 	var diffInHours = diff/1000/60/60; // Convert milliseconds to hours/
-	logger.info(diffInHours);
-	logger.info(oldest);
-	logger.info(obsdt);
 	
 	if ( diffInHours > 48 ) {
+		logger.info('shifting store array');
 		store.timestamp.shift();
 		store.temp.shift();
 		store.pressure.shift();
@@ -1505,8 +1503,6 @@ function storeValues(timestamp,temp,pressure,humidity) {
 	store.temp.push(temp);
 	store.pressure.push(pressure);
 	store.humidity.push(humidity);
-
-	logger.info('store has value count of :' + store.timestamp.length);
 
 	cur.pressureTrend = trend(store.pressure,{lastpoints:5,avgPoints:60});
 }
