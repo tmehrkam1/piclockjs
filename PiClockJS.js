@@ -728,13 +728,14 @@ function parseWgForecast(data) {
 	// usg forecast has a tendancy to mess up now()
 	var now = new Date();
 	var end = new Date(data.properties.periods[0].endTime);
-	while ( end < now ){
-		data.properties.periods.shift();
-		logger.warn("WG forecast array shifted")
-		end = new Date(data.properties.periods[0].endTime);
-	}
+	
 	var array = []
 	for (var i =0; i < 9; i++) {
+		while ( end < now ){
+			data.properties.periods.shift();
+			logger.warn("WG forecast array shifted")
+			continue;
+		}
 		var forecast ={};  // temp object to build json
 		forecast.name = data.properties.periods[i].name;
 		forecast.temp = data.properties.periods[i].temperature;
