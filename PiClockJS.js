@@ -744,7 +744,7 @@ function parseWgForecast(data) {
 			logger.warn("WG forecast array shifted")
 			continue;
 		}
-		
+	}	
 	forecasts.list = array;
 }
 
