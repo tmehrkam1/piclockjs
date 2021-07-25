@@ -732,13 +732,14 @@ function parseWgForecast(data) {
 	for (var i =0; i < 9; i++) {
 		var end = new Date(data.properties.periods[i].endTime);
 		while ( end > now ){
-		var forecast ={};  // temp object to build json
-		forecast.name = data.properties.periods[i].name;
-		forecast.temp = data.properties.periods[i].temperature;
-		forecast.short = data.properties.periods[i].shortForecast;
-		forecast.icon = data.properties.periods[i].icon;
-		forecast.detailed = data.properties.periods[i].detailedForecast;
-		array.push(forecast);
+			var forecast ={};  // temp object to build json
+			forecast.name = data.properties.periods[i].name;
+			forecast.temp = data.properties.periods[i].temperature;
+			forecast.short = data.properties.periods[i].shortForecast;
+			forecast.icon = data.properties.periods[i].icon;
+			forecast.detailed = data.properties.periods[i].detailedForecast;
+			array.push(forecast);
+		}
 	} else {
 		data.properties.periods.shift();
 		logger.warn("WG forecast array shifted")
