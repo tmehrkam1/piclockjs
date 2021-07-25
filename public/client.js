@@ -281,6 +281,8 @@ function updateCur() {
 			hour12 : 'true',
 			timeZone : tz
 		});
+		
+		var daylight = sunset - sunrise / 1000 / 60 / 60
 
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
 			presTrendIcon = '<i class="fas fa-circle"></i>';
@@ -295,7 +297,7 @@ function updateCur() {
 		document.getElementById("curDesc").innerHTML = data.curDesc;
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
-		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase;
+		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase +"<p> daylight: " + daylight;
 		
 		document.body.style.backgroundColor = data.bg;
 		document.body.style.color = data.color;
