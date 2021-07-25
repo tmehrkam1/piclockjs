@@ -287,7 +287,7 @@ function updateCur() {
 		
 		var daylight = Math.round((ss.getTime() - sr.getTime()) * 10 / 1000 / 60 /60) / 10;
 		var dlhrs = Math.round(daylight);
-		var dlmin = Math.round(daylight - dlhrs * 60);
+		var dlmin = Math.round((daylight - dlhrs) * 60);
 		
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
 			presTrendIcon = '<i class="fas fa-circle"></i>';
