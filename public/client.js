@@ -282,7 +282,10 @@ function updateCur() {
 			timeZone : tz
 		});
 		
-		var daylight = Date(data.sunset).getTime() - Date(data.sunrise).getTime();
+		var ss = new Date(data.sunset);
+		var sr = new Date(data.sunrise);
+		
+		var daylight = ss.getTime() - sr.getTime();
 
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
 			presTrendIcon = '<i class="fas fa-circle"></i>';
