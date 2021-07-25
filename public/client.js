@@ -328,7 +328,7 @@ function updateForecast() {
 		return;
 		}
 
-		for (var i=0;i < data.list.length;i++) {		
+		for (var i=0;i < 9 ;i++) {		
 			// create a container for the forecast
 			var forecastBlock = document.createElement("div");
 			forecastBlock.setAttribute("class","forecastBlock");
