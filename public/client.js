@@ -300,7 +300,7 @@ function updateCur() {
 		document.getElementById("curDesc").innerHTML = data.curDesc;
 		document.getElementById("curPres").innerHTML = 'pressure ' + data.pressure + ' mbar ' + presTrendIcon;
 		document.getElementById("curWind").innerHTML = 'wind ' + data.windSpeed + ' mph from ' + data.windDir;
-		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase +"<p> daylight: " + daylight;
+		document.getElementById("sun_moon").innerHTML = 'Sunrise : ' + sunrise + '  Sunset : ' + sunset + '   Moon Phase : ' + data.moonPhase +"<p> daylight: " + daylight + " hours";
 		
 		document.body.style.backgroundColor = data.bg;
 		document.body.style.color = data.color;
