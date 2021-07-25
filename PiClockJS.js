@@ -729,7 +729,7 @@ function parseWgForecast(data) {
 	var now = new Date();
 	var array = [];
 	
-	for (var i =0; i < 9; i++) {
+	for (var i =0; i < data.properties.periods.length - 1; i++) {
 		var end = new Date(data.properties.periods[i].endTime);
 		if ( end > now ){
 			var forecast ={};  // temp object to build json	
