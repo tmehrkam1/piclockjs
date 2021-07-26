@@ -731,7 +731,7 @@ function parseWgForecast(data) {
 	
 	for (var i =0; i < data.properties.periods.length - 1; i++) {
 		var end = new Date(data.properties.periods[i].endTime);
-		if ( end > new Date(cur.sunrise)){
+		if ( end > now ){
 			var forecast ={};  // temp object to build json	
 			forecast.name = data.properties.periods[i].name;
 			forecast.temp = data.properties.periods[i].temperature;
@@ -740,9 +740,7 @@ function parseWgForecast(data) {
 			forecast.detailed = data.properties.periods[i].detailedForecast;
 			array.push(forecast);
 		} else {
-			data.properties.periods.shift();
-			logger.warn("WG forecast array shifted" + end)
-			continue;
+			logger.warn("WG forecast date mismatch detected : " + end)
 		}
 	}	
 	forecasts.list = array;
