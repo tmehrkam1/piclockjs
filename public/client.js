@@ -285,7 +285,7 @@ function updateCur() {
 		var ss = new Date(data.sunset);
 		var sr = new Date(data.sunrise);
 		
-		var daylight = Math.round((ss.getTime() - sr.getTime()) * 10 / 1000 / 60 /60) / 10;
+		var daylight = (ss.getTime() - sr.getTime() * 10 / 1000 / 60 /60);
 		var dlhrs = Math.round(daylight);
 		var dlmin = Math.round((daylight - dlhrs) * 60);
 		
