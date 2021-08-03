@@ -80,6 +80,7 @@ function updateClock() {
 		});
 		document.getElementById("time").textContent = time;
 
+		/*
 		//update moon image every 4 hours
 		var diffMs = timeStamp - moonTime;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000 );
@@ -92,6 +93,7 @@ function updateClock() {
 			moonImg.style.width = "79vw";
 			moonImg.style.objectFit = "contain";
 		}
+		*/
 }
 
 function updateCur() {
