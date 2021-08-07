@@ -286,7 +286,7 @@ function updateCur() {
 		var sr = new Date(data.sunrise);
 		
 		var daylight = ((ss.getTime() - sr.getTime()) / 1000 / 60 /60);
-		var dlhrs = Math.round(daylight);
+		var dlhrs = parseInt(daylight);
 		var dlmin = Math.round((daylight - dlhrs) * 60);
 		
 		if (data.pressureTrend == 1 || data.pressureTrend == null) {
