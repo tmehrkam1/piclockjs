@@ -353,22 +353,24 @@ function updateForecast() {
 			var forecastText = document.createElement("div");
 			forecastText.setAttribute("class","forecastText");
 			forecastText.setAttribute("id","forecast"+i);
+			
+			if(data.list[i]){
+				// populate the forecast icon with the image
+				var image = document.createElement("img");
+				image.setAttribute("src",data.list[i].icon);
+				image.setAttribute("style","height:100%;");
 
-			// populate the forecast icon with the image
-			var image = document.createElement("img");
-			image.setAttribute("src",data.list[i].icon);
-			image.setAttribute("style","height:100%;");
+				// populate the forecast text
+				forecastText.innerHTML=data.list[i].name + '<br /><span class="forecastTemp">' + data.list[i].temp + '&deg;F</span><br />' + data.list[i].short;
+			
+				// put the image in the div
+				forecastImage.appendChild(image);
 
-			// populate the forecast text
-			forecastText.innerHTML=data.list[i].name + '<br /><span class="forecastTemp">' + data.list[i].temp + '&deg;F</span><br />' + data.list[i].short;
-
-			// put the image in the div
-			forecastImage.appendChild(image);
-
-			// put the image + text into the block
-			forecastBlock.appendChild(forecastImage);
-			forecastBlock.appendChild(forecastText);
-
+				// put the image + text into the block
+				forecastBlock.appendChild(forecastImage);
+				forecastBlock.appendChild(forecastText);
+			}
+			
 			// put the block into the parent div
 			content.appendChild(forecastBlock);
 
