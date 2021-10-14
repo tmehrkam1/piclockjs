@@ -452,8 +452,7 @@ async function wgForecast(url){
 	try {
 		var { body } = await getPromise({
 			url: url,
-			json: true,
-			headers: {'User-Agent': 'piclockjs'}
+			json: true
 		});
 		parseWgForecast(body);
 	}
