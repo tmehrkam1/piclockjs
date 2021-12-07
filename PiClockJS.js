@@ -865,7 +865,7 @@ function parseCC(body){
 	cur.curIcon = desc.icon;
 	
 	cur.tempF = Math.round(parseFloat(body.temperature));
-	cur.pressure = Math.round(parseFloat(body.pressureSurfaceLevel * 33.864));
+	cur.pressure = Math.round(parseFloat(body.pressureSeaLevel * 33.864));
 	cur.humidity = Math.round(parseFloat(body.humidity));
 	cur.windSpeed = body.windSpeed;
 	cur.windDir = d2d(body.windDirection);
