@@ -285,7 +285,7 @@ async function currentDsObs(){
 
 async function currentCcObs(){
 	
-	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CweatherCode%2CwindDirection%2CpressureSurfaceLevel&timesteps=current'
+	var url = 'https://api.tomorrow.io/v4/timelines?location=' + settings.lat + '%2C' + settings.lon + '&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CweatherCode%2CwindDirection%2CpressureSeaLevel&timesteps=current'
 	logger.info(url);
 	try {
 		var { body } = await getPromise({
