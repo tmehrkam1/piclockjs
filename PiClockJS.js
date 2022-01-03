@@ -741,7 +741,10 @@ function parseWgForecast(data) {
 			forecast.detailed = data.properties.periods[i].detailedForecast;
 			array.push(forecast);
 		} else {
-			logger.warn("WG forecast date mismatch detected : " + end)
+			logger.warn("WG forecast date mismatch detected : " + end);
+			timer.fore = new Date(now - settings.forecastInterval * 1000 + 60 * 1000);
+			logger.warn("set next forecast poll to : " + Date(timer.fore) + " current time stamp " + Date(now.getUTCMilliseconds()));
+	
 		}
 	}	
 	forecasts.list = array;
