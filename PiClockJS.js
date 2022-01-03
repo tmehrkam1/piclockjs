@@ -454,7 +454,7 @@ async function wgForecast(url){
 			url: url,
 			json: true,
 			headers: {'User-Agent': 'piclock, tmehrkam@gmail.com',
-				 'Accept':	'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'}
+				 'Accept':	'application/geo+json'}
 		});
 		parseWgForecast(body);
 	}
