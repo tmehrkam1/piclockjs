@@ -453,8 +453,11 @@ async function wgForecast(url){
 		var { body } = await getPromise({
 			url: url,
 			json: true,
-			headers: {'User-Agent': 'piclock, tmehrkam@gmail.com',
-				 'Accept':	'application/geo+json'}
+			headers: 	{
+							'User-Agent': 'piclock, tmehrkam@gmail.com',
+				 			'Accept':	'application/geo+json',
+				 			'Feature-Flags': str(random.randint(1,1000))
+				 		}
 		});
 		logger.warn(body);
 		parseWgForecast(body);
