@@ -729,6 +729,7 @@ function parseWgForecast(data) {
 	// usg forecast has a tendancy to mess up now()
 	var now = new Date();
 	var array = [];
+	var fcount =0;
 	
 	for (var i =0; i < data.properties.periods.length - 1; i++) {
 		var end = new Date(data.properties.periods[i].endTime);
@@ -740,14 +741,17 @@ function parseWgForecast(data) {
 			forecast.icon = data.properties.periods[i].icon;
 			forecast.detailed = data.properties.periods[i].detailedForecast;
 			array.push(forecast);
+			fcount++;
 		} else {
-			logger.warn("WG forecast date mismatch detected : " + end);
-			timer.fore = new Date(now - settings.forecastInterval * 1000 + 60 * 1000);
-			logger.warn("set next forecast poll to : " + Date(timer.fore) + " current time stamp " + Date(now.getUTCMilliseconds()));
-	
+			logger.warn("WG forecast date mismatch detected : " + end);	
 		}
-	}	
-	forecasts.list = array;
+	}
+	if (fcount >= 9){
+		forecasts.list = array;
+	} else {
+		timer.fore = new Date(now - settings.forecastInterval * 1000 + 60 * 1000);
+		logger.warn("set forecast poll to : " + Date(timer.fore) + " current time stamp " + Date(now.getUTCMilliseconds()));
+	}
 }
 
 function parseWgAlert(data) {
