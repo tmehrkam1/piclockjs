@@ -459,7 +459,7 @@ async function wgForecast(url){
 				 			'Feature-Flags': Math.floor(Math.random() * 1000)
 				 		}
 		});
-		logger.warn(body);
+		//logger.warn(body);
 		parseWgForecast(body);
 	}
 	catch(e) {
