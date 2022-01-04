@@ -456,6 +456,7 @@ async function wgForecast(url){
 			headers: {'User-Agent': 'piclock, tmehrkam@gmail.com',
 				 'Accept':	'application/geo+json'}
 		});
+		logger.warn(body);
 		parseWgForecast(body);
 	}
 	catch(e) {
@@ -744,7 +745,7 @@ function parseWgForecast(data) {
 			fcount++;
 		} else {
 			logger.warn("WG forecast date mismatch detected : " + end);	
-			logger.warn(data.properties.periods[i]);
+			//logger.warn(data.properties.periods[i]);
 		}
 	}
 	if (fcount >= 9){
