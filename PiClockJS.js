@@ -441,7 +441,7 @@ async function getWgovObs(wgovObsSta){
 
 async function wgForecast(url){
 	var now = new Date();
-	var str;
+	
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = new Date(now - (settings.forecastInterval * 1000) + (60 * 1000));
@@ -456,7 +456,7 @@ async function wgForecast(url){
 			headers: 	{
 							'User-Agent': 'piclock, tmehrkam@gmail.com',
 				 			'Accept':	'application/geo+json',
-				 			'Feature-Flags': str(random.randint(1,1000))
+				 			'Feature-Flags': Math.floor(Math.random() * 1000)
 				 		}
 		});
 		logger.warn(body);
