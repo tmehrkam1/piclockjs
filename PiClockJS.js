@@ -441,7 +441,7 @@ async function getWgovObs(wgovObsSta){
 
 async function wgForecast(url){
 	var now = new Date();
-	
+	var str;
     if (typeof url === 'undefined') {
     	logger.warn("forecast gridpoint data not updated");
 		timer.fore = new Date(now - (settings.forecastInterval * 1000) + (60 * 1000));
