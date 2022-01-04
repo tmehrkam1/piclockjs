@@ -744,6 +744,7 @@ function parseWgForecast(data) {
 			fcount++;
 		} else {
 			logger.warn("WG forecast date mismatch detected : " + end);	
+			logger.warn(data.properties.period[i].toString());
 		}
 	}
 	if (fcount >= 9){
