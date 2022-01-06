@@ -454,7 +454,7 @@ async function wgForecast(url){
 			url: url,
 			json: true,
 			headers: 	{
-							'User-Agent': 'piclock, tmehrkam@gmail.com',
+							'User-Agent': 'piclock, ' + settings.email,
 				 			'Accept':	'application/geo+json',
 				 			'Feature-Flags': Math.floor(Math.random() * 1000)
 				 		}
