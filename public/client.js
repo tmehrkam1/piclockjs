@@ -247,7 +247,7 @@ function updateClock() {
 			hour12 : 'true',
 			timeZone : tz
 		});
-		document.GetElementById('analogClock').hidden = true;
+		document.getElementById('analogClock').hidden = true;
 		var timearr	 = time.split(" ");
 		document.getElementById("time").textContent = timearr[0];
 	}
