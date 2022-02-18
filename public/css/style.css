@@ -140,10 +140,10 @@
 #analogClock {
 	position: relative;
 	margin: auto;
-	height: 40vw;
+	/*height: 40vw;
 	/*to make the height and width responsive*/
-	width: 40vw;
-	background: url(clock.png) no-repeat;
+	/*width: 40vw;
+	/*background: url(clock.png) no-repeat;
 	/*setting our background image*/
 	background-size: 100%;
 }
