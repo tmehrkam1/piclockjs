@@ -176,13 +176,6 @@ div.analogClock span {
   z-index: 10;
 }
 
-.minutes-container, .hours-container, .seconds-container {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
 .hours {
   background: #000;
   height: 20%;
