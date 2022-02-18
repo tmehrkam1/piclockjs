@@ -76,7 +76,7 @@ function initLocalClocks() {
 
 //change background color based on temp
 function updateColor() {
-	url="coords";
+	url="current";
  	var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
  	xhr.open("GET",url,false);
  	xhr.send(null);
