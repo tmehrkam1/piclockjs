@@ -250,18 +250,7 @@ function updateClock() {
 		
 		var timearr	 = time.split(" ");
 		document.getElementById("time").textContent = timearr[0];
-	} else {
-		// insert analog script here. Thinking I might move that off of
-		// index.html for sanity
-		var clock = document.createElement('iframe');
-		clock.src = "clock.html";
-		clock.setAttribute("id","analogClock");
-		clock.setAttribute("scrolling","no");
-		document.getElementById("time").appendChild(clock);
 	}
-
-
-
 }
 
 function updateCur() {
