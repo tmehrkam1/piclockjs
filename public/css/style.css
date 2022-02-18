@@ -177,6 +177,7 @@ div.analogClock span {
 }
 
 .hours {
+  position: absolute
   background: #000;
   height: 20%;
   left: 48.75%;
@@ -186,6 +187,7 @@ div.analogClock span {
 }
 
 .minutes {
+  position: absolute
   background: #000;
   height: 40%;
   left: 49%;
@@ -195,6 +197,7 @@ div.analogClock span {
 }
 
 .seconds {
+  position: absolute
   background: #000;
   height: 45%;
   left: 49.5%;
