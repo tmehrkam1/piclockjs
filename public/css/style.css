@@ -149,6 +149,8 @@
 
 div.analogClock span {
   transform-origin: bottom center;
+  position: absolute;
+
 }
 
 #char1 { transform: rotate(30deg); }
@@ -165,6 +167,7 @@ div.analogClock span {
 #char12 { transform: rotate(360deg); }
 
 .analogClock.simple:after {
+  position: absolute;
   background: #000;
   border-radius: 50%;
   content: "";
