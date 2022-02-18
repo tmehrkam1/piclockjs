@@ -148,7 +148,6 @@
 }
 
 div.analogClock span {
-  position: absolute;
   transform-origin: bottom center;
 }
 
@@ -169,7 +168,6 @@ div.analogClock span {
   background: #000;
   border-radius: 50%;
   content: "";
-  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -179,7 +177,6 @@ div.analogClock span {
 }
 
 .minutes-container, .hours-container, .seconds-container {
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -190,7 +187,6 @@ div.analogClock span {
   background: #000;
   height: 20%;
   left: 48.75%;
-  position: absolute;
   top: 30%;
   transform-origin: 50% 100%;
   width: 2.5%;
@@ -200,7 +196,6 @@ div.analogClock span {
   background: #000;
   height: 40%;
   left: 49%;
-  position: absolute;
   top: 10%;
   transform-origin: 50% 100%;
   width: 2%;
@@ -210,7 +205,6 @@ div.analogClock span {
   background: #000;
   height: 45%;
   left: 49.5%;
-  position: absolute;
   top: 14%;
   transform-origin: 50% 80%;
   width: 1%;
