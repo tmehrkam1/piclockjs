@@ -77,7 +77,7 @@ function initMap() {
       });
     
     //pulling an array of times for animation
-    url="http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
+    radarUrl = "http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
     imageType = "png";
     
     var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
