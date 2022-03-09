@@ -190,8 +190,9 @@ function initMap() {
 
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
+					return url + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 				},
-				return url + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+				
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
 				name : 'current' + now,
