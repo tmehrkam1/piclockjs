@@ -78,68 +78,61 @@ function initMap() {
     
     //pulling an array of times for animation
     url="http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
+    imageType = "png";
     
     var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
 	xhr.open("GET",url,false);
 	xhr.send(null);
 	var obj = JSON.parse(xhr.responseText);
 	var times = obj['nexrhres'];
-    var strTime;
-    
-	radarURLsuffix = ".png"; 
+    var strTime; 
 		
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";
-			return radarURL + strTime + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix; 
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y + radarURLsuffix; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
 		name : 'current',
 		isPng: true
 	});
-	
-	radarURL5suffix = ".png";
 		
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";	
-			return radarURL + strTime + zoom + "/" + tile.x + "/"+ tile.y + radarURL5suffix; 
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-5min',
 		isPng: true
 	});
-
-	radarURL10suffix = ".png";
-			
+		
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";
 			
-			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL10suffix; 
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-10min',
 		isPng: true
 	});
-	
-	radarURL15suffix = ".png";
 		
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";
-			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL15suffix; 
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -147,30 +140,26 @@ function initMap() {
 		isPng: true
 	});
 	
-	radarURL20suffix = ".png";
-		
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";
 			
-			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL20suffix;
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-20min',
 		isPng: true
 	});
-	
-	radarURL25suffix = ".png";
-			
+		
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","/");
 			strTime = strTime + "/";
-			return radarURL + strTime + zoom + "/"+ tile.x + "/"+ tile.y + radarURL25suffix; 
+			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
