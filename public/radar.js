@@ -90,9 +90,9 @@ function initMap() {
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y + radarURLsuffix; 
+			strTime = strTime.replace(".","_");
+			strTime = strTime;
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -103,10 +103,9 @@ function initMap() {
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";	
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
-		},
+			strTime = strTime.replace(".","_");
+			strTime = strTime;	
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-5min',
@@ -116,10 +115,10 @@ function initMap() {
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";
+			strTime = strTime.replace(".","_");
+			strTime = strTime;
 			
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -130,9 +129,9 @@ function initMap() {
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
+			strTime = strTime.replace(".","_");
+			strTime = strTime;
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -143,10 +142,9 @@ function initMap() {
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";
-			
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			strTime = strTime.replace(".","_");
+			strTime = strTime;
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -157,9 +155,9 @@ function initMap() {
 	tileAeris25 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
-			strTime = strTime.replace(".","/");
-			strTime = strTime + "/";
-			return radarURL + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
+			strTime = strTime.replace(".","_");
+			strTime = strTime;
+			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -188,12 +186,10 @@ function initMap() {
 			
 		if (diffM >= 5) {
 
-			radarURLsuffix = ".png";
-			
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
-					return radarURL + "/" + zoom + "/" + tile.x + "/" + tile.y + radarURLsuffix + "?"+ (new Date()).getTime();
 				},
+				return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
 				name : 'current' + now,
