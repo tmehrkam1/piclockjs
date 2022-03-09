@@ -77,7 +77,7 @@ function initMap() {
       });
     
     //pulling an array of times for animation
-    radarUrl = "http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
+    url = "http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
     imageType = "png";
     
     var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
@@ -92,7 +92,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -105,7 +105,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;	
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;		},
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-5min',
@@ -118,7 +118,7 @@ function initMap() {
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
 			
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -131,7 +131,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -144,7 +144,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -157,7 +157,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return radarURL + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return url + "_" + strTime + "?z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
