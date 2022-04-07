@@ -87,7 +87,7 @@ function initMap() {
 	var times = obj['nexrhres'];
     var strTime; 
 	
-	url = "https://realearth.ssec.wisc.edu/api/image?products=nexrhres";
+	url = "http://realearth.ssec.wisc.edu/api/image?products=nexrhres";
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
