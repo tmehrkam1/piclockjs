@@ -137,16 +137,19 @@
 	to {top: -150%;}
 }
 
-#analogClock {
-	position: relative;
+.analogClock {
+	border-radius: 50%;
+	background-size: 50%;
+	padding-bottom: 31%;
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 	margin: auto;
-	/*height: 40vw;
-	/*to make the height and width responsive*/
-	/*width: 40vw;
-	/*background: url(clock.png) no-repeat;
-	/*setting our background image*/
-	background-size: 100%;
-}
+	transform-origin: bottom center;
+  }
 
 .numerals {
 	font-family: 'Orbitron';
@@ -157,7 +160,7 @@
 	height: 50%;
 }
 
-div.time span {
+div.analogClock span {
   position: absolute;
   transform-origin: bottom center;
 }
