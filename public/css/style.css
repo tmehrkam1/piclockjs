@@ -157,7 +157,7 @@
 	height: 50%;
 }
 
-div.clock span {
+div.analogClock span {
   position: absolute;
   transform-origin: bottom center;
 }
