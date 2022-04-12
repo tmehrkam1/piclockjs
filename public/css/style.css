@@ -142,12 +142,6 @@
 	background-size: 50%;
 	padding-bottom: 31%;
 	
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	margin: auto;
 	transform-origin: bottom center;
   }
 
@@ -165,18 +159,18 @@ div.analogClock span {
   transform-origin: bottom center;
 }
 
-#char1 { transform: rotate(30deg); transform-origin: bottom center;}
-#char2 { transform: rotate(60deg); transform-origin: bottom center;}
-#char3 { transform: rotate(90deg); transform-origin: bottom center;}
-#char4 { transform: rotate(120deg); transform-origin: bottom center; }
-#char5 { transform: rotate(150deg); transform-origin: bottom center; }
-#char6 { transform: rotate(180deg); transform-origin: bottom center; }
-#char7 { transform: rotate(210deg); transform-origin: bottom center; }
-#char8 { transform: rotate(240deg); transform-origin: bottom center;}
-#char9 { transform: rotate(270deg); transform-origin: bottom center;}
-#char10 { transform: rotate(300deg); transform-origin: bottom center;}
-#char11 { transform: rotate(330deg); transform-origin: bottom center;}
-#char12 { transform: rotate(360deg); transform-origin: bottom center;}
+#char1 { transform: rotate(30deg);}
+#char2 { transform: rotate(60deg);}
+#char3 { transform: rotate(90deg);}
+#char4 { transform: rotate(120deg);}
+#char5 { transform: rotate(150deg);}
+#char6 { transform: rotate(180deg);}
+#char7 { transform: rotate(210deg);}
+#char8 { transform: rotate(240deg);}
+#char9 { transform: rotate(270deg);}
+#char10 { transform: rotate(300deg);}
+#char11 { transform: rotate(330deg);}
+#char12 { transform: rotate(360deg);}
 
 
 #hour,
