@@ -87,7 +87,7 @@ function initMap() {
 	var times = obj['nexrhres'];
     var strTime; 
 	
-	url = "https://realearth.ssec.wisc.edu/api/image?products=nexrhres";
+	url = "http://realearth.ssec.wisc.edu/api/image?products=nexrhres";
 	
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
@@ -190,8 +190,9 @@ function initMap() {
 
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
+					return url + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
 				},
-				return url + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+				
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
 				name : 'current' + now,
