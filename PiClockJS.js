@@ -835,6 +835,8 @@ function parsewgCurrent(data) {
 
 	cur.curDesc = observation.textDescription;
 	cur.curIcon = '<img id="curImg" src="'+ observation.icon +'&size=small"></img>';
+	
+	cur.feelsLike = null;
 
 	if (observation.windChill.value) {
 		cur.feelsLike = Math.round(parseFloat((observation.windChill.value * 9/5) + 32));
