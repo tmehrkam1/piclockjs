@@ -28,6 +28,7 @@ function updateCoords() {
 }
 
 //used to load the script and variablize the mapkey
+
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
@@ -35,8 +36,11 @@ addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
+
 function initMap() {
 
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
 		center: {lat: lat, lng: lon},
 		zoom: 7,
@@ -47,7 +51,7 @@ function initMap() {
 		rotateControl: false,
 		fullscreenControl: false,
 		gestureHandling: 'none',
-		mapTypeId: 'hybrid'
+		mapTypeId: 'hybrid',
 	});
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
 		center: {lat: lat, lng: lon},
@@ -59,7 +63,7 @@ function initMap() {
 		rotateControl: false,
 		fullscreenControl: false,
 		gestureHandling: 'none',
-		mapTypeId: 'hybrid'
+		mapTypeId: 'hybrid',
 	});
 
 	
