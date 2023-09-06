@@ -26,7 +26,7 @@ function updateCoords() {
 	imgFontColor = obj.imgFontColor;
 	tz = obj.tz;
 }
-
+/*
 //used to load the script and variablize the mapkey
 
 var addScript = document.createElement("script");
@@ -35,6 +35,7 @@ addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&cal
 addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
+*/
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
@@ -49,6 +50,7 @@ async function initMap() {
 		fullscreenControl: false,
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid',
+		key: gMapKey,
 	});
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
 		center: {lat: lat, lng: lon},
@@ -61,6 +63,7 @@ async function initMap() {
 		fullscreenControl: false,
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid',
+		key: gMapKey,
 	});
 
 	
