@@ -187,8 +187,9 @@ if (settings.mode == "local" || settings.mode == "client") {
 			width, 
 			height, 
 			frame: false, 
-			webPreferences: {nodeIntegration: false},
-			webSecurity: false
+			webPreferences: {nodeIntegration: false,
+							webSecurity: false,
+							allowRunningInsecureContent: true}
 		})
 		win.loadURL(settings.servIP)
 	})
