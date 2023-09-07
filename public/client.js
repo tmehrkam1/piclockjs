@@ -1,3 +1,4 @@
+let map;
 
 var lat;
 var lon;
@@ -28,13 +29,14 @@ function updateCoords() {
 }
 
 //used to load the script and variablize the mapkey
-
+/*
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
 addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
+*/
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
