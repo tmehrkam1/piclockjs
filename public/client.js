@@ -38,7 +38,6 @@ addScript.defer = true;
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
-    map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
 		center: {lat: lat, lng: lon},
 		zoom: 7,
