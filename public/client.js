@@ -210,7 +210,7 @@ async function initMap() {
 		// console.log("Animation frame : " + radarFrame);
 
 		radarFrame++;
-
+		google.maps.event.trigger(map, 'resize');
 		if (radarFrame >= 4) {
 			radarFrame = 0;
 		} 
