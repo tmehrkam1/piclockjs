@@ -33,8 +33,8 @@ var addScript = document.createElement("script");
 addScript.type = "text/javascript";
 addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
 //addScript.src = "https://polyfill.io/v3/polyfill.min.js?features=default"
-//addScript.async = true;
-//addScript.defer = true;
+addScript.async = true;
+addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
 
@@ -52,7 +52,7 @@ async function initMap() {
 		fullscreenControl: false,
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid',
-		key: gMapKey,
+		key: gMapKey
 	});
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
 		center: {lat: lat, lng: lon},
@@ -65,7 +65,7 @@ async function initMap() {
 		fullscreenControl: false,
 		gestureHandling: 'none',
 		mapTypeId: 'hybrid',
-		key: gMapKey,
+		key: gMapKey
 	});
 
 	
