@@ -38,7 +38,7 @@ addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
 
 
-function initMap() {
+async function initMap() {
 	const { Map } = await google.maps.importLibrary("maps");
 
 	map = new google.maps.Map(document.getElementById('rdrRegional'), {
