@@ -31,12 +31,12 @@ function updateCoords() {
 //used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
-addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
-//addScript.src = "https://polyfill.io/v3/polyfill.min.js?features=default"
+//addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
+addScript.src = "https://polyfill.io/v3/polyfill.min.js?features=default"
 addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
-
+initMap();
 
 async function initMap() {
 	const { Map } = await google.maps.importLibrary("maps");
