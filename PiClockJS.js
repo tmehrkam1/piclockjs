@@ -218,9 +218,7 @@ function mainLoop(){
 	if (Math.abs(now - timer.cur) > (settings.currentConditionsInterval * 1000)) {
 		logger.info("update cur provider " + settings.curProvider);
 		timer.cur = now;
-		if (settings.curProvider=="darksky") {
-			currentDsObs();
-		} else if (settings.curProvider=="openweather"){
+		if (settings.curProvider=="openweather"){
 			currentOwObs();
 		} else if (settings.curProvider=="climacell"){
 			currentCcObs();
@@ -265,21 +263,6 @@ async function currentOwObs(){
 		headers: {'User-Agent': 'piclockjs'}
 	});
 	parseOW(body);
-	var colors = updateBackground(cur.tempF);
-		cur.bg = colors.bg;
-		cur.color = colors.color;
-}
-
-async function currentDsObs(){
-	var url = 'https://api.darksky.net/forecast/'+settings.dsAppId+'/'+settings.lat+','+settings.lon;
-	logger.info(url);
-
-	var { body } = await getPromise({
-		url: url,
-		json: true,
-		headers: {'User-Agent': 'piclockjs'}
-	});
-	parseDS(body);
 	var colors = updateBackground(cur.tempF);
 		cur.bg = colors.bg;
 		cur.color = colors.color;
@@ -618,7 +601,6 @@ function parseOW(observation){
 	var sunsetEpoch = new Date(0);
 
 
-
 	sunriseEpoch.setUTCSeconds(observation.sys.sunrise);
 	sunsetEpoch.setUTCSeconds(observation.sys.sunset);
 
@@ -641,52 +623,6 @@ function parseOW(observation){
 
 	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
 }
-
-function parseDS(body){
-
-	var observation = body.currently;
-	var now = new Date();
-
-	if (observation.time <= cur.dt)
-	{
-		var update = new Date(0);
-		var current = new Date(0);
-
-		update.setUTCSeconds(observation.time);
-		current.setUTCSeconds(cur.dt);
-
-		var diffMs = (now - update); // diff in MS
-		var diffMins = Math.round(diffMs / 1000 / 60); // minutes
-
-		var diffCur = (current - update);
-		var diffCurMins = (diffCur / 1000 / 60);
-
-		logger.warn('stale update detected with timestamp : ' + update + " behind current timestamp by : " + diffCurMins + " behind now by : "+ diffMins + " minutes");
-		return;
-	}
-
-	var sunriseEpoch = new Date(0);
-	var sunsetEpoch = new Date(0);
-
-	sunriseEpoch.setUTCSeconds(body.daily.data[0].sunriseTime);
-	sunsetEpoch.setUTCSeconds(body.daily.data[0].sunsetTime);
-	cur.sunrise = sunriseEpoch.toString();
-	cur.sunset = sunsetEpoch.toString();
-
-	cur.curIcon = '<i class="wi wi-forecast-io-' + observation.icon +'"></i>';
-
-	cur.tempF = Math.round(parseFloat(observation.temperature));
-	cur.pressure = Math.round(parseFloat(observation.pressure));
-	cur.humidity = Math.round(parseFloat(observation.humidity * 100));
-	cur.windSpeed = observation.windSpeed;
-	cur.windDir = d2d(observation.windBearing);
-	cur.curDesc = observation.summary;
-	cur.dt = observation.time;
-	cur.feelsLike = Math.round(parseFloat(observation.apparentTemperature));
-
-	storeValues(cur.dt,cur.tempF,cur.pressure,cur.humidity);
-}
-
 
 function parseMoonPhase(observation) {
 	cur.moonPhase = observation.closestphase.phase;
