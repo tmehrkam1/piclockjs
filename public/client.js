@@ -254,8 +254,9 @@ function updateClock() {
 			timeZone : tz
 		});
 		//document.getElementById("analogClock").hidden = true;
-		var timearr	 = time.split(" ");
-		document.getElementById("time").textContent = timearr[0];
+		//var timearr	 = time.split(" ");
+		//document.getElementById("time").textContent = timearr[0];
+		document.getElementById("time").textContent = time.hour . ":" . time.minute;
 	} else {
 	setInterval(() => {
 	d = new Date(); //object of date()
