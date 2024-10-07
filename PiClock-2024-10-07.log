@@ -2663,3 +2663,14 @@
 2024-10-07 04:34:40 PM -0400 [32minfo[39m: [32mupdate cur provider climacell[39m
 2024-10-07 04:34:40 PM -0400 [32minfo[39m: [32mhttps://api.tomorrow.io/v4/timelines?location=39.019863%2C-77.50302&units=imperial&fields=temperature%2CtemperatureApparent%2Chumidity%2CwindSpeed%2CweatherCode%2CwindDirection%2CpressureSeaLevel&timesteps=current[39m
 2024-10-07 04:34:40 PM -0400 [32minfo[39m: [32mshifting store array[39m
+2024-10-07 04:35:17 PM -0400 [32minfo[39m: [32mupdate NWS alerts[39m
+2024-10-07 04:35:17 PM -0400 [32minfo[39m: [32mhttps://api.weather.gov/alerts/active?point=39.019863,-77.50302[39m
+2024-10-07 04:36:17 PM -0400 [32minfo[39m: [32mupdate NWS alerts[39m
+2024-10-07 04:36:17 PM -0400 [32minfo[39m: [32mhttps://api.weather.gov/alerts/active?point=39.019863,-77.50302[39m
+2024-10-07 04:37:16 PM -0400 [32minfo[39m: [32mupdate forecast provider[39m
+2024-10-07 04:37:16 PM -0400 [32minfo[39m: [32mhttps://api.usno.navy.mil/rstt/oneday?date=now&coords=39.019863,-77.50302[39m
+2024-10-07 04:37:16 PM -0400 [32minfo[39m: [32mhttps://api.weather.gov/gridpoints/LWX/80,75/forecast[39m
+2024-10-07 04:37:17 PM -0400 [32minfo[39m: [32mupdate NWS alerts[39m
+2024-10-07 04:37:17 PM -0400 [32minfo[39m: [32mhttps://api.weather.gov/alerts/active?point=39.019863,-77.50302[39m
+2024-10-07 04:37:18 PM -0400 [31merror[39m: [31mgetaddrinfo ENOTFOUND api.usno.navy.mil[39m
+2024-10-07 04:37:18 PM -0400 [33mwarn[39m: [33mgenerated moon phase with suncalc at 0.1572656340289369[39m
