@@ -256,7 +256,7 @@ function updateClock() {
 		//document.getElementById("analogClock").hidden = true;
 		//var timearr	 = time.split(" ");
 		//document.getElementById("time").textContent = timearr[0];
-		document.getElementById("time").textContent = parseInt(time.getHours) + ":" + parseStr(time.getMinutes);
+		document.getElementById("time").textContent = parseInt(time.getHours) + ":" + parseInt(time.getMinutes);
 	} else {
 	setInterval(() => {
 	d = new Date(); //object of date()
