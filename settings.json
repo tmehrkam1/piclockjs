@@ -1,0 +1,13 @@
+{"lat" : 39.019863,
+"lon" : -77.503020,
+"owAppId" : "d519d99a531040c65d931f2c3060fb3e",
+"gMapKey" : "AIzaSyDl0a72JVj85MuZVmFveLpje2JfBft0lgA",
+"ccAppId" : "8jduWrtpvfrMb96maXM0NFQVy79qt3HF",
+"curProvider" : "climacell",
+"currentConditionsInterval": 300,
+"forecastInterval": 3600,
+"clock":"digital",
+"backgroundImg":"",
+"imgFontColor":"",
+"mode":"server"
+}
