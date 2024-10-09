@@ -87,14 +87,15 @@ function initMap() {
 	var times = obj['nexrhres'];
     var strTime; 
 	
-	url = "http://realearth.ssec.wisc.edu/api/image?products=nexrhres";
+	//url = "http://realearth.ssec.wisc.edu/api/image?products=nexrhres";
 	
+	 
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"};
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
@@ -107,7 +108,8 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;	
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;		},
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"};
+		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-5min',
@@ -118,9 +120,8 @@ function initMap() {
 		getTileUrl: function(tile, zoom) {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
-			strTime = strTime;
-			
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y; 
+			strTime = strTime;	
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -133,7 +134,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -146,7 +147,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
@@ -159,7 +160,7 @@ function initMap() {
 			strTime = times.pop();
 			strTime = strTime.replace(".","_");
 			strTime = strTime;
-			return url + "_" + strTime + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
