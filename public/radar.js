@@ -6,8 +6,8 @@ var tz;
 var tileIndex = 0;
 
 updateCoords();  // grab map coords from backend.
-//radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
-radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
+radarURL = "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913";
+//radarURL = "http://realearth.ssec.wisc.edu/tiles/nexrhres/";
 
 
 function updateCoords() {
