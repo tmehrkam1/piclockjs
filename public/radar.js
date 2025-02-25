@@ -56,7 +56,22 @@ timeDiv.style.float = "left";
 timeDiv.style.padding = "5px 0px 0px 50px";
 
 
-function initMap() {
+async function initMap() {
+	const { Map } = await google.maps.importLibrary("maps");
+
+	map = new google.maps.Map(document.getElementById('rdrRegional'), {
+		center: {lat: lat, lng: lon},
+		zoom: 7,
+		zoomControl: false,
+		mapTypeControl: false,
+		scaleControl: false,
+		streetViewControl: false,
+		rotateControl: false,
+		fullscreenControl: false,
+		gestureHandling: 'none',
+		mapTypeId: 'hybrid',
+		key: gMapKey
+	});
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
 		center: {lat: lat, lng: lon},
 		zoom: 11,
@@ -67,164 +82,154 @@ function initMap() {
 		rotateControl: false,
 		fullscreenControl: false,
 		gestureHandling: 'none',
-		mapTypeId: 'hybrid'
+		mapTypeId: 'hybrid',
+		key: gMapKey
 	});
+
 	
     var marker = new google.maps.Marker({
         position: {lat: lat, lng: lon},
         map: mapLocal,
         title: 'map center'
       });
-    
-    //pulling an array of times for animation
-    url = "http://realearth.ssec.wisc.edu/api/times?products=nexrhres";
-    imageType = "png";
-    
-    var xhr = new XMLHttpRequest();  // need a sync call to initialize Maps
-	xhr.open("GET",url,false);
-	xhr.send(null);
-	var obj = JSON.parse(xhr.responseText);
-	var times = obj['nexrhres'];
-    var strTime; 
-	
-	//url = "http://realearth.ssec.wisc.edu/api/image?products=nexrhres";
-	
-	 
+
 	tileAeris = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"};
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0.60,
 		name : 'current',
 		isPng: true
 	});
-		
+
 	tileAeris5 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;	
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"};
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m05m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-5min',
 		isPng: true
 	});
-		
+
 	tileAeris10 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;	
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m10m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-10min',
 		isPng: true
 	});
-		
+
 	tileAeris15 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m15m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-15min',
 		isPng: true
 	});
-	
+
 	tileAeris20 = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913-m20m/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime();  
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-20min',
 		isPng: true
 	});
-		
-	tileAeris25 = new google.maps.ImageMapType({
+
+	tilePrecip = new google.maps.ImageMapType({
 		getTileUrl: function(tile, zoom) {
-			strTime = times.pop();
-			strTime = strTime.replace(".","_");
-			strTime = strTime;
-			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/goes_east_conus_ch13/" + zoom + "/" + tile.x + "/" + tile.y +".png?"}; 
+			return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
 		name : '-25min',
 		isPng: true
 	});
-	
+
 	var radarFrame = 0;
 	var timeStamp = new Date();
-	
-	console.log("loading radar");
+	var tileIndex =0;
 
-	mapLocal.overlayMapTypes.setAt("0",tileAeris25);
-	mapLocal.overlayMapTypes.setAt("1",tileAeris20);
-	mapLocal.overlayMapTypes.setAt("2",tileAeris15);
-	mapLocal.overlayMapTypes.setAt("3",tileAeris10);
-	mapLocal.overlayMapTypes.setAt("4",tileAeris5);
-	mapLocal.overlayMapTypes.setAt("5",tileAeris);
-	
-	//setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
-	
+	console.log("loading radar");
+	map.overlayMapTypes.setAt("0",tileAeris20);
+	map.overlayMapTypes.setAt("1",tileAeris15);
+	map.overlayMapTypes.setAt("2",tileAeris10);
+	map.overlayMapTypes.setAt("3",tileAeris5);
+	map.overlayMapTypes.setAt("4",tileAeris);
+
+	mapLocal.overlayMapTypes.setAt("0",tileAeris20);
+	mapLocal.overlayMapTypes.setAt("1",tileAeris15);
+	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
+	mapLocal.overlayMapTypes.setAt("3",tileAeris5);
+	mapLocal.overlayMapTypes.setAt("4",tileAeris);
+	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
+
+	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
+
 	timerId = window.setInterval(function () {
 		var now = new Date();
 		var diffMs = now - timeStamp;
 		var diffM = Math.round(((diffMs % 86400000) % 3600000) / 60000);
-			
+
 		if (diffM >= 5) {
 
 			tileAeris = new google.maps.ImageMapType({
 				getTileUrl: function(tile, zoom) {
-					return url + "&z=" + zoom + "&x=" + tile.x + "&y=" + tile.y;
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
 				},
-				
 				tileSize: new google.maps.Size(256, 256),
 				opacity:0.60,
-				name : 'current' + now,
+				name : 'current',
 				isPng: true
 			});
-			
+
+			tilePrecip = new google.maps.ImageMapType({
+				getTileUrl: function(tile, zoom) {
+					return "https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/q2-n1p-900913/" + zoom + "/" + tile.x + "/" + tile.y +".png?"+ (new Date()).getTime(); 
+				},
+				tileSize: new google.maps.Size(256, 256),
+				opacity:0,
+				name : '-25min',
+				isPng: true
+			});
+
 			console.log("update tile # " + tileIndex);
-		
+			map.overlayMapTypes.setAt(tileIndex,null);
+			map.overlayMapTypes.setAt(tileIndex,tileAeris);
+
 			mapLocal.overlayMapTypes.setAt(tileIndex,null);
 			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
-		
+
+			mapLocal.overlayMapTypes.setAt(5,null);
+			mapLocal.overlayMapTypes.setAt(5,tilePrecip);
+
 			tileIndex++;
 			timeStamp = now;
 			console.log("tileIndex : " + tileIndex);
-			if (tileIndex >= 6) {
+			if (tileIndex >= 5) {
 				tileIndex=0;
 			}
-			
+
 		}
-		for (i = 0;i < 6;i++) {
+		for (i = 0;i < 5;i++) {
 			if (i == radarFrame) {
-				mapLocal.overlayMapTypes.getAt(i).setOpacity(.6);
+				map.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
-				mapLocal.overlayMapTypes.getAt(i).setOpacity(0);
+				map.overlayMapTypes.getAt(i).setOpacity(0);
 			}
 		}
-		//console.log("Animation frame : " + radarFrame);
-		
-		radarFrame++;
+		// console.log("Animation frame : " + radarFrame);
 
-		if (radarFrame >= 6) {
+		radarFrame++;
+		google.maps.event.trigger(map, 'resize');
+		if (radarFrame >= 4) {
 			radarFrame = 0;
 		} 
 	}, 1000);
