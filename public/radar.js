@@ -182,9 +182,6 @@ async function initMap() {
 			});
 
 			console.log("update tile # " + tileIndex);
-			map.overlayMapTypes.setAt(tileIndex,null);
-			map.overlayMapTypes.setAt(tileIndex,tileAeris);
-
 			mapLocal.overlayMapTypes.setAt(tileIndex,null);
 			mapLocal.overlayMapTypes.setAt(tileIndex,tileAeris);
 
@@ -201,9 +198,9 @@ async function initMap() {
 		}
 		for (i = 0;i < 5;i++) {
 			if (i == radarFrame) {
-				map.overlayMapTypes.getAt(i).setOpacity(.6);
+				mapLocal.overlayMapTypes.getAt(i).setOpacity(.6);
 			} else {
-				map.overlayMapTypes.getAt(i).setOpacity(0);
+				mapLocal.overlayMapTypes.getAt(i).setOpacity(0);
 			}
 		}
 		// console.log("Animation frame : " + radarFrame);
