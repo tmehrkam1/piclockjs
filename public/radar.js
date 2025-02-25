@@ -32,7 +32,7 @@ function updateCoords() {
 // used to load the script and variablize the mapkey
 var addScript = document.createElement("script");
 addScript.type = "text/javascript";
-addScript.src = "https://maps.googleapis.com/maps/api/js?key=" + gMapKey + "&callback=initMap";
+addScript.src = 'https://maps.googleapis.com/maps/api/js?key=' + gMapKey + '&callback=initMap&v=3.53';
 addScript.async = true;
 addScript.defer = true;
 (document.getElementsByTagName("head")[0] || document.documentElement ).appendChild(addScript);
