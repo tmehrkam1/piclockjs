@@ -145,18 +145,12 @@ async function initMap() {
 	var tileIndex =0;
 
 	console.log("loading radar");
-	map.overlayMapTypes.setAt("0",tileAeris20);
-	map.overlayMapTypes.setAt("1",tileAeris15);
-	map.overlayMapTypes.setAt("2",tileAeris10);
-	map.overlayMapTypes.setAt("3",tileAeris5);
-	map.overlayMapTypes.setAt("4",tileAeris);
-
+	
 	mapLocal.overlayMapTypes.setAt("0",tileAeris20);
 	mapLocal.overlayMapTypes.setAt("1",tileAeris15);
 	mapLocal.overlayMapTypes.setAt("2",tileAeris10);
 	mapLocal.overlayMapTypes.setAt("3",tileAeris5);
 	mapLocal.overlayMapTypes.setAt("4",tileAeris);
-	mapLocal.overlayMapTypes.setAt("5",tilePrecip);
 
 	// setInterval(updateRadar(), 10000); // update radar loop every 5 minutes
 
