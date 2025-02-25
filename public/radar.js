@@ -58,20 +58,7 @@ timeDiv.style.padding = "5px 0px 0px 50px";
 
 async function initMap() {
 	const { Map } = await google.maps.importLibrary("maps");
-
-	map = new google.maps.Map(document.getElementById('rdrRegional'), {
-		center: {lat: lat, lng: lon},
-		zoom: 7,
-		zoomControl: false,
-		mapTypeControl: false,
-		scaleControl: false,
-		streetViewControl: false,
-		rotateControl: false,
-		fullscreenControl: false,
-		gestureHandling: 'none',
-		mapTypeId: 'hybrid',
-		key: gMapKey
-	});
+	
 	mapLocal = new google.maps.Map(document.getElementById('rdrLocal'), {
 		center: {lat: lat, lng: lon},
 		zoom: 11,
@@ -149,7 +136,7 @@ async function initMap() {
 		},
 		tileSize: new google.maps.Size(256, 256),
 		opacity:0,
-		name : '-25min',
+		name : 'Precip',
 		isPng: true
 	});
 
