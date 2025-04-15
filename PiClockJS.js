@@ -474,6 +474,7 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
+	logger.info('start wgCurrent'+staId);
 	var now = new Date();
 	logger.info("1");
     if (typeof staId === 'undefined') {
