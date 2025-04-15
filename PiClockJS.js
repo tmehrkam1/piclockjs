@@ -475,13 +475,14 @@ async function wgAlerts(){
 
 async function wgCurrent(staId) {
 	var now = new Date();
+	logger.info("1");
     if (typeof staId === 'undefined') {
-    	logger.warn("current gridpoint data not updated");
+    		logger.warn("current gridpoint data not updated");
 		timer.cur = (now - settings.currentConditionsInterval * 1000) + (60 * 1000);
 		logger.warn("set next current poll to : " + Date(timer.cur));
 		return;
     }
-    
+    logger.info("2");
 	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
