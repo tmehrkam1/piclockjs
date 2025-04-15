@@ -482,7 +482,7 @@ async function wgCurrent(staId) {
 		return;
     }
     
-	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest"+"?date="+parseString(now);
+	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest"+"?date="+string(now);
 	logger.info(url);
 
 	try {
