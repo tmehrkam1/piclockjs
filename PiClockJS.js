@@ -482,8 +482,8 @@ async function wgCurrent(staId) {
 		return;
     }
     
-	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
-	logger.info(url)+"?date="+parseString(now);
+	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest"+"?date="+parseString(now);
+	logger.info(url);
 
 	try {
 		var { body } = await getPromise({
