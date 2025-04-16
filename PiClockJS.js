@@ -474,7 +474,6 @@ async function wgAlerts(){
 }
 
 async function wgCurrent(staId) {
-	logger.info('start wgCurrent'+staId);
 	var now = new Date();
 	
     if (typeof staId === 'undefined') {
@@ -483,8 +482,8 @@ async function wgCurrent(staId) {
 		logger.warn("set next current poll to : " + Date(timer.cur));
 		return;
     }
-    logger.info("2");
-	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest?date="+now;
+ 
+	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
 	logger.info(url);
 
 	try {
