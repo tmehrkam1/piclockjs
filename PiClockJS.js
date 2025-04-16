@@ -476,7 +476,7 @@ async function wgAlerts(){
 async function wgCurrent(staId) {
 	logger.info('start wgCurrent'+staId);
 	var now = new Date();
-	logger.info("1");
+	
     if (typeof staId === 'undefined') {
     		logger.warn("current gridpoint data not updated");
 		timer.cur = (now - settings.currentConditionsInterval * 1000) + (60 * 1000);
@@ -484,7 +484,7 @@ async function wgCurrent(staId) {
 		return;
     }
     logger.info("2");
-	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest";
+	var url = "https://api.weather.gov/stations/"+staId+"/observations/latest?date="+now;
 	logger.info(url);
 
 	try {
