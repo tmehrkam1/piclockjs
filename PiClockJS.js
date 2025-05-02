@@ -133,9 +133,7 @@ if (settings.mode == "local" || settings.mode == "server") {
 			gMapKey: settings.gMapKey,
 			backgroundImg : settings.backgroundImg,
 			imgFontColor : settings.imgFontColor,
-			tz: tz,
-			aerisID : settings.aerisID,
-			aerisSecret : settings.aerisSecret
+			tz: tz
 		})
 	});
 
